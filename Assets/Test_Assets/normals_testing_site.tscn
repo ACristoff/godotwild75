@@ -24,7 +24,7 @@ texture = SubResource("CanvasTexture_yt6xh")
 offset = Vector2(0, -20)
 
 [node name="RadialLight" type="PointLight2D" parent="."]
-position = Vector2(75, -20)
-color = Color(1, 0, 0, 1)
-energy = 5.04
+position = Vector2(30, -15)
+color = Color(0.0833335, 0, 1, 1)
+energy = 6.79
 texture = SubResource("GradientTexture2D_6nru6")
