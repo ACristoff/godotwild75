@@ -5,7 +5,7 @@ var active_unit: Unit
 var _walkable_cells := []
 var is_player_turn: bool = true
 
-@export var grid: Resource = preload("res://Game/Data/grid.tres")
+@export var grid: Resource = preload("res://Game/data/grid_manager.tres")
 
 #wait till pathing is solved
 @onready var _unit_path = null
