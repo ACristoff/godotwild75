@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://h5146w071m0k"]
+
+[ext_resource type="PackedScene" uid="uid://dhpwg1bdfb71f" path="res://Game/characters/unit.tscn" id="1_g0j7b"]
+
+[node name="DebugLevel" type="Node2D"]
+
+[node name="Unit" parent="." instance=ExtResource("1_g0j7b")]
+move_speed = 100.0
