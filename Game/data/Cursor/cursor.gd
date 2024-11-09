@@ -14,6 +14,8 @@ signal moved(new_cell)
 ## Time before the cursor can move again in seconds.
 @export var ui_cooldown := 0.1
 
+@onready var _timer: Timer = $Timer
+
 ## Coordinates of the current cell the cursor is hovering.
 var cell := Vector2.ZERO:
 	set(value):
@@ -31,9 +33,6 @@ var cell := Vector2.ZERO:
 		position = grid.calculate_map_position(cell)
 		emit_signal("moved", cell)
 		_timer.start()
-
-@onready var _timer: Timer = $Timer
-
 
 func _ready() -> void:
 	_timer.wait_time = ui_cooldown

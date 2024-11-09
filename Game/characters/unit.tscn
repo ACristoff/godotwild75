@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Game/characters/unit.gd" id="1_n4fra"]
 [ext_resource type="Texture2D" uid="uid://u320lcdagfjb" path="res://icon.svg" id="1_r7xxw"]
-[ext_resource type="Resource" uid="uid://2ba3k0f2oc86" path="res://Game/Data/grid.tres" id="2_ygl1n"]
+[ext_resource type="Resource" uid="uid://ctiykqo8lcum4" path="res://Game/Data/grid.tres" id="2_ygl1n"]
 
 [node name="Unit" type="Path2D"]
 script = ExtResource("1_n4fra")
