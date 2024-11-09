@@ -15,6 +15,7 @@ func _init(grid: Grid, walkable_cells: Array) -> void:
 	_astar.default_compute_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
 	_astar.default_estimate_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
 	_astar.update()
+	
 	# Iterate over all points on the grid and disable any which are
 	#	not in the given array of walkable cells
 	for y in _grid.size.y:

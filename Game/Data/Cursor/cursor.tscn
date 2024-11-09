@@ -48,6 +48,7 @@ script = ExtResource("1_v2tgw")
 grid = ExtResource("2_jjd4a")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -43.8005)
 texture = ExtResource("3_tov3r")
 hframes = 6
 frame = 1
