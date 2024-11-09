@@ -62,6 +62,10 @@ var _is_walking := false:
 @onready var _anim_player: AnimationPlayer = $AnimationPlayer
 @onready var _path_follow: PathFollow2D = $PathFollow2D
 
+#Fix this later with a proper data struct that is descriptive
+var facing_direction = [1,2,3,4]
+#direction the unit is facing
+var current_direction = 3
 
 func _ready() -> void:
 	set_process(false)

@@ -12,6 +12,3 @@ position = Vector2(608, 304)
 move_speed = 120.0
 
 [node name="Cursor" parent="." instance=ExtResource("2_pogwr")]
-bob_height = null
-bob_speed = null
-cursor_offset_y = null
