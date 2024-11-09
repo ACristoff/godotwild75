@@ -49,7 +49,8 @@ var is_selected := false:
 	set(value):
 		is_selected = value
 		if is_selected:
-			_anim_player.play("selected")
+			#_anim_player.play("selected")
+			pass
 		else:
 			_anim_player.play("idle")
 

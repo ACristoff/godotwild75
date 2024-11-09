@@ -15,6 +15,7 @@ position = Vector2(40, 40)
 position = Vector2(40, 40)
 
 [node name="UnitPath" parent="." instance=ExtResource("4_feshh")]
+y_sort_origin = -1
 
 [connection signal="accept_pressed" from="Cursor" to="." method="_on_cursor_accept_pressed"]
 [connection signal="moved" from="Cursor" to="." method="_on_cursor_moved"]

@@ -7,7 +7,7 @@ const DIRECTIONS = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 
 var units := {}
 var active_unit: Unit
-var _walkable_cells := []
+var walkable_cells := []
 var is_player_turn: bool = true
 
 
@@ -33,15 +33,47 @@ func reinitialize():
 func is_occupied(cell: Vector2) -> bool:
 	return units.has(cell)
 
-func select_unit(cell: Vector2):
-	prints("selecting: ", cell)
+## Returns an array of cells a given unit can walk using the flood fill algorithm.
+func get_walkable_cells(unit: Unit) -> Array:
+	return flood_fill(unit.cell, unit.move_range)
+
+func flood_fill(origin: Vector2, max_distance: int):
+	var array = []
+	var stack = [origin]
 	
+	while not stack.size() == 0:
+		var current = stack.pop_back()
+		if not grid.is_within_bounds(current):
+			continue
+		if current in array:
+			continue
+		
+		var difference: Vector2 = (current - origin).abs()
+		var distance = int(difference.x + difference.y)
+		if distance > max_distance:
+			continue
+		
+		array.append(current)
+		for direction in DIRECTIONS:
+			var coordinates: Vector2 = current + direction
+			if is_occupied(coordinates):
+				continue
+			if coordinates in array:
+				continue
+			if coordinates in stack:
+				continue
+			stack.append(coordinates)
+	return array
+
+func select_unit(cell: Vector2):	
 	#checks if the cell has a unit entry
 	if not units.has(cell):
 		return
-	
 	active_unit = units[cell]
-	print(active_unit)
+	active_unit.is_selected = true
+	walkable_cells = get_walkable_cells(active_unit)
+	print(walkable_cells)
+	unit_path.initialize(walkable_cells)
 	pass
 
 func deselect_unit():
@@ -49,19 +81,21 @@ func deselect_unit():
 	pass
 
 func move_current_unit(new_cell: Vector2):
-	if is_occupied(new_cell) or not new_cell in _walkable_cells:
+	if is_occupied(new_cell) or not new_cell in walkable_cells:
 		print('blocked')
 		return
 	
 	units.erase(active_unit.cell)
 	units[new_cell] = active_unit
 	deselect_unit()
-	#active_unit.walk_along()
-	pass
+	print(unit_path.current_path)
+	active_unit.walk_along(unit_path.current_path)
+	await active_unit.walk_finished
+	clear_active_unit()
 
 func clear_active_unit() -> void:
 	active_unit = null
-	_walkable_cells.clear()
+	walkable_cells.clear()
 
 func _on_cursor_accept_pressed(cell):
 	if active_unit == null:
@@ -74,5 +108,6 @@ func _on_cursor_accept_pressed(cell):
 
 
 func _on_cursor_moved(new_cell):
-	#print(new_cell)
+	if active_unit and active_unit.is_selected:
+		unit_path.draw(active_unit.cell, new_cell)
 	pass # Replace with function body.
