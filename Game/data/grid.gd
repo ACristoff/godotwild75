@@ -2,7 +2,7 @@ class_name Grid
 extends Resource
 
 #@export_group("My Properties")
-
+@export_group("Dimensions")
 # The grid's size in rows and columns.
 @export var size: Vector2 = Vector2(20, 20)
 
