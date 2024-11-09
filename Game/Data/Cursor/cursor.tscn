@@ -1,8 +1,47 @@
-[gd_scene load_steps=4 format=3 uid="uid://d1rww8eno83bs"]
+[gd_scene load_steps=7 format=3 uid="uid://d1rww8eno83bs"]
 
 [ext_resource type="Script" path="res://Game/Data/Cursor/cursor.gd" id="1_v2tgw"]
 [ext_resource type="Resource" uid="uid://utpajlyrymk" path="res://Game/Data/grid_manager.tres" id="2_jjd4a"]
 [ext_resource type="Texture2D" uid="uid://cq2opv6bbq0ky" path="res://Assets/UserInterface/Gameplay/TileIndicator.png" id="3_tov3r"]
+
+[sub_resource type="Animation" id="Animation_2p5p1"]
+resource_name = "rotate"
+length = 0.5
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_11wos"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eqy5g"]
+_data = {
+"RESET": SubResource("Animation_11wos"),
+"rotate": SubResource("Animation_2p5p1")
+}
 
 [node name="Cursor" type="Node2D"]
 script = ExtResource("1_v2tgw")
@@ -11,7 +50,12 @@ grid = ExtResource("2_jjd4a")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("3_tov3r")
 hframes = 6
+frame = 1
 
 [node name="Timer" type="Timer" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_eqy5g")
+}
+autoplay = "rotate"
