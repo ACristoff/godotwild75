@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dskshrij31rv2"]
+
+[ext_resource type="PackedScene" uid="uid://hqcychtuc805" path="res://Game/Characters/unit_base.tscn" id="1_qvwdw"]
+
+[node name="DebugLevel" type="Node2D"]
+
+[node name="UnitBase" parent="." instance=ExtResource("1_qvwdw")]
