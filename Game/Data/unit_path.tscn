@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://copviu6p757h8"]
+
+[ext_resource type="Script" path="res://Game/Data/unit_path.gd" id="1_dns56"]
+
+[node name="UnitPath" type="TileMapLayer"]
+script = ExtResource("1_dns56")

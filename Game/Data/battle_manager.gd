@@ -50,6 +50,11 @@ func move_current_unit(new_cell: Vector2):
 	if is_occupied(new_cell) or not new_cell in _walkable_cells:
 		print('blocked')
 		return
+	
+	units.erase(active_unit.cell)
+	units[new_cell] = active_unit
+	deselect_unit()
+	#active_unit.walk_along()
 	pass
 
 func clear_active_unit() -> void:

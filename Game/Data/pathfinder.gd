@@ -1,10 +1,12 @@
-class_name Pathfinder
+## Finds the path between two points among walkable cells using the AStar pathfinding algorithm.
+class_name PathFinder
 extends Resource
 
 const DIRECTIONS = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 
 var _grid: Resource
 var _astar := AStarGrid2D.new()
+
 
 ## Initializes the AstarGrid2D object upon creation.
 func _init(grid: Grid, walkable_cells: Array) -> void:
@@ -15,7 +17,6 @@ func _init(grid: Grid, walkable_cells: Array) -> void:
 	_astar.default_compute_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
 	_astar.default_estimate_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
 	_astar.update()
-	
 	# Iterate over all points on the grid and disable any which are
 	#	not in the given array of walkable cells
 	for y in _grid.size.y:
