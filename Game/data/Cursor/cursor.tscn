@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://cm65r8sefg7w8"]
+
+[ext_resource type="Script" path="res://Game/Data/Cursor/cursor.gd" id="1_0vtc4"]
+[ext_resource type="Texture2D" uid="uid://u320lcdagfjb" path="res://icon.svg" id="1_ujvqq"]
+[ext_resource type="Resource" uid="uid://2ba3k0f2oc86" path="res://Game/Data/grid.tres" id="2_ajtub"]
+
+[node name="Cursor" type="Node2D"]
+script = ExtResource("1_0vtc4")
+grid = ExtResource("2_ajtub")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ujvqq")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
