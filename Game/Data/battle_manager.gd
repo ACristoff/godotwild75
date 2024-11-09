@@ -15,6 +15,7 @@ func _ready():
 	pass
 
 
+
 ## Clears, and refills the `_units` dictionary with game objects that are on the board.
 func reinitialize():
 	units.clear()
@@ -26,6 +27,10 @@ func reinitialize():
 		units[unit.cell] = unit
 	#print(units)
 
+## Returns `true` if the cell is occupied by a unit.
+func is_occupied(cell: Vector2) -> bool:
+	return units.has(cell)
+
 func select_unit(cell: Vector2):
 	prints("selecting: ", cell)
 	
@@ -34,8 +39,7 @@ func select_unit(cell: Vector2):
 		return
 	
 	active_unit = units[cell]
-	#grab the unit from the cell
-	#active_unit = 
+	print(active_unit)
 	pass
 
 func deselect_unit():
@@ -43,6 +47,9 @@ func deselect_unit():
 	pass
 
 func move_current_unit(new_cell: Vector2):
+	if is_occupied(new_cell) or not new_cell in _walkable_cells:
+		print('blocked')
+		return
 	pass
 
 func clear_active_unit() -> void:
@@ -50,7 +57,12 @@ func clear_active_unit() -> void:
 	_walkable_cells.clear()
 
 func _on_cursor_accept_pressed(cell):
-	print(cell)
+	if active_unit == null:
+		select_unit(cell)
+		#pass
+	elif active_unit.is_selected:
+		move_current_unit(cell)
+	#print(cell)
 	pass # Replace with function body.
 
 

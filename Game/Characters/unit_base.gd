@@ -79,15 +79,15 @@ func _ready() -> void:
 	if not Engine.is_editor_hint():
 		curve = Curve2D.new()
 	
-	print(cell)
+	#print(cell)
 	#Debug Movement
-	var points := [
-		Vector2(2, 2),
-		Vector2(2, 5),
-		Vector2(8, 5),
-		Vector2(8, 7),
-	]
-	walk_along(PackedVector2Array(points))
+	#var points := [
+		#Vector2(2, 2),
+		#Vector2(2, 5),
+		#Vector2(8, 5),
+		#Vector2(8, 7),
+	#]
+	#walk_along(PackedVector2Array(points))
 
 
 func _process(delta: float) -> void:
