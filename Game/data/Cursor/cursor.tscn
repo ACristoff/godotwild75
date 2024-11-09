@@ -9,7 +9,7 @@ script = ExtResource("1_0vtc4")
 grid = ExtResource("2_ajtub")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -40)
+position = Vector2(30, -40)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("1_ujvqq")
 

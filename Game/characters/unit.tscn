@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://dhpwg1bdfb71f"]
 
-[ext_resource type="Script" path="res://Game/characters/unit.gd" id="1_n4fra"]
-[ext_resource type="Texture2D" uid="uid://u320lcdagfjb" path="res://icon.svg" id="1_r7xxw"]
+[ext_resource type="Script" path="res://Game/Characters/unit.gd" id="1_n4fra"]
 [ext_resource type="Resource" uid="uid://ctiykqo8lcum4" path="res://Game/Data/grid.tres" id="2_ygl1n"]
+[ext_resource type="Texture2D" uid="uid://bpmvmcaiamrh5" path="res://Assets/Characters/Friendly/Miko.png" id="4_n80tx"]
 
 [node name="Unit" type="Path2D"]
 script = ExtResource("1_n4fra")
 grid = ExtResource("2_ygl1n")
-skin = ExtResource("1_r7xxw")
+skin = ExtResource("4_n80tx")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
 rotates = false
@@ -16,6 +16,8 @@ loop = false
 [node name="Shadow" type="Sprite2D" parent="PathFollow2D"]
 
 [node name="Sprite" type="Sprite2D" parent="PathFollow2D"]
-texture = ExtResource("1_r7xxw")
+texture = ExtResource("4_n80tx")
+offset = Vector2(0, -20)
+hframes = 16
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
