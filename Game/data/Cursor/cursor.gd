@@ -46,6 +46,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	# Trying to select something in a cell.
 	elif event.is_action_pressed("click") or event.is_action_pressed("ui_accept"):
 		emit_signal("accept_pressed", cell)
+		print(cell)
 		get_viewport().set_input_as_handled()
 
 	var should_move := event.is_pressed() 
