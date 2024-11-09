@@ -15,6 +15,7 @@ signal moved(new_cell)
 @export var ui_cooldown := 0.1
 
 @onready var _timer: Timer = $Timer
+@onready var cursor_sprite = $Sprite2D
 
 ## Coordinates of the current cell the cursor is hovering.
 var cell := Vector2.ZERO:
@@ -38,6 +39,25 @@ func _ready() -> void:
 	_timer.wait_time = ui_cooldown
 	position = grid.calculate_map_position(cell)
 
+var awake = true
+var d := 1.0
+@export var bob_height := 5
+@export var bob_speed := 2
+@export var cursor_offset_y := -45
+
+func _process(delta):
+	if  d >= 12:
+		d = 0
+	if awake == true:
+		d += delta
+		#var new_frame = floor(d)
+		#print(d)
+		#print(sin(d * bob_speed) * bob_height)
+		cursor_sprite.position = Vector2(
+			0,
+			sin(d * bob_speed) * bob_height + cursor_offset_y
+		)
+	pass
 
 func _unhandled_input(event: InputEvent) -> void:
 	# Navigating cells with the mouse.
