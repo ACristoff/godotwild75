@@ -75,6 +75,7 @@ func _ready() -> void:
 	if not Engine.is_editor_hint():
 		curve = Curve2D.new()
 	
+	print(cell)
 	#Debug Movement
 	#var points := [
 		#Vector2(2, 2),
@@ -96,6 +97,25 @@ func _process(delta: float) -> void:
 		curve.clear_points()
 		emit_signal("walk_finished")
 
+#All the shit for dying
+func die():
+	print("unit dies")
+	#free the tile
+	#remove from turn order
+	queue_free()
+	pass
+
+#All the stuff for taking damage
+func take_damage(damage):
+	health -= damage
+	if (health == 0):
+		die()
+		pass
+
+#All the stuff for attacking
+func attack(cells, damage):
+	prints(cells, damage)
+	pass
 
 ## Starts walking along the `path`.
 ## `path` is an array of grid coordinates that the function converts to map coordinates.
