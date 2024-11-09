@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1rww8eno83bs"]
+
+[ext_resource type="Script" path="res://Game/Data/Cursor/cursor.gd" id="1_v2tgw"]
+[ext_resource type="Resource" uid="uid://utpajlyrymk" path="res://Game/Data/grid_manager.tres" id="2_jjd4a"]
+[ext_resource type="Texture2D" uid="uid://cq2opv6bbq0ky" path="res://Assets/UserInterface/Gameplay/TileIndicator.png" id="3_tov3r"]
+
+[node name="Cursor" type="Node2D"]
+script = ExtResource("1_v2tgw")
+grid = ExtResource("2_jjd4a")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_tov3r")
+hframes = 6
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

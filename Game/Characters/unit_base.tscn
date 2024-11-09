@@ -9,10 +9,14 @@ script = ExtResource("1_0rb1m")
 grid = ExtResource("2_rcmob")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
+rotates = false
+loop = false
 
 [node name="Shadow" type="Sprite2D" parent="PathFollow2D"]
 
 [node name="Sprite" type="Sprite2D" parent="PathFollow2D"]
 texture = ExtResource("3_ntet5")
+offset = Vector2(0, -20)
+hframes = 16
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

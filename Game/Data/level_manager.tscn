@@ -1,3 +1,7 @@
-[gd_scene format=3 uid="uid://pspu4kxlebsj"]
+[gd_scene load_steps=2 format=3 uid="uid://pspu4kxlebsj"]
+
+[ext_resource type="PackedScene" uid="uid://dskshrij31rv2" path="res://Game/Data/Levels/debug_level.tscn" id="1_p7yjj"]
 
 [node name="LevelManager" type="Node2D"]
+
+[node name="DebugLevel" parent="." instance=ExtResource("1_p7yjj")]
