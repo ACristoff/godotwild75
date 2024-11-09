@@ -12,3 +12,6 @@ position = Vector2(40, 40)
 
 [node name="Cursor" parent="." instance=ExtResource("2_pogwr")]
 position = Vector2(40, 40)
+
+[connection signal="accept_pressed" from="Cursor" to="." method="_on_cursor_accept_pressed"]
+[connection signal="moved" from="Cursor" to="." method="_on_cursor_moved"]

@@ -10,6 +10,22 @@ var is_player_turn: bool = true
 #wait till pathing is solved
 @onready var _unit_path = null
 
+func _ready():
+	reinitialize()
+	pass
+
+
+## Clears, and refills the `_units` dictionary with game objects that are on the board.
+func reinitialize():
+	units.clear()
+	
+	for child in get_children():
+		var unit := child as Unit
+		if not unit:
+			continue
+		units[unit.cell] = unit
+	#print(units)
+
 func select_unit(cell: Vector2):
 	prints("selecting: ", cell)
 	
@@ -28,3 +44,16 @@ func deselect_unit():
 
 func move_current_unit(new_cell: Vector2):
 	pass
+
+func clear_active_unit() -> void:
+	active_unit = null
+	_walkable_cells.clear()
+
+func _on_cursor_accept_pressed(cell):
+	print(cell)
+	pass # Replace with function body.
+
+
+func _on_cursor_moved(new_cell):
+	#print(new_cell)
+	pass # Replace with function body.
