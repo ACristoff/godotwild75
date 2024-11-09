@@ -1,20 +1,22 @@
+class_name BattleManager
 extends Node2D
+
+const DIRECTIONS = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
+
+@export var grid: Resource = preload("res://Game/Data/grid.tres")
 
 var units := {}
 var active_unit: Unit
 var _walkable_cells := []
 var is_player_turn: bool = true
 
-@export var grid: Resource = preload("res://Game/Data/grid.tres")
 
-#wait till pathing is solved
-@onready var _unit_path = null
+@onready var unit_overlay = null
+@onready var unit_path: UnitPath = $UnitPath
 
 func _ready():
 	reinitialize()
 	pass
-
-
 
 ## Clears, and refills the `_units` dictionary with game objects that are on the board.
 func reinitialize():
