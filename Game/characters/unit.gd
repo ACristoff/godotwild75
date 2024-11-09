@@ -15,6 +15,14 @@ signal walk_finished
 ## The unit's move speed when it's moving along a path.
 @export var move_speed := 600.0
 ## Texture representing the unit.
+@export var max_health := 8
+
+@export var health: int:
+	set(value):
+		health = clamp(value, 0, max_health)
+
+@export var damage := 2
+
 @export var skin: Texture:
 	set(value):
 		skin = value

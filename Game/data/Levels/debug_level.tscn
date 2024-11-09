@@ -8,5 +8,7 @@
 [node name="Unit" parent="." instance=ExtResource("1_pigkk")]
 position = Vector2(608, 304)
 move_speed = 120.0
+health = null
+damage = null
 
 [node name="Cursor" parent="." instance=ExtResource("2_pogwr")]
