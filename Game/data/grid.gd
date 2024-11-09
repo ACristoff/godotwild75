@@ -1,13 +1,13 @@
 class_name Grid
 extends Resource
 
-#@export_group("My Properties")
+
 @export_group("Dimensions")
 # The grid's size in rows and columns.
-@export var size: Vector2 = Vector2(20, 20)
+@export var size: Vector2 = Vector2(20, 10)
 
 # The size of a cell in pixels.
-@export var cell_size: Vector2 = Vector2(80, 80)
+@export var cell_size: Vector2 = Vector2(32, 32)
 
 # Half of ``cell_size``.
 # We will use this to calculate the center of a grid cell in pixels, on the screen.

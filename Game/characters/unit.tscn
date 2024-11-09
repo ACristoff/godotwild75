@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhpwg1bdfb71f"]
+
+[sub_resource type="Curve2D" id="Curve2D_mktni"]
+
+[node name="Unit" type="Path2D"]
+curve = SubResource("Curve2D_mktni")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+
+[node name="Shadow" type="Sprite2D" parent="PathFollow2D"]
+
+[node name="Sprite" type="Sprite2D" parent="PathFollow2D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
