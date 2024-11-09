@@ -27,7 +27,6 @@ func reinitialize():
 		if not unit:
 			continue
 		units[unit.cell] = unit
-	#print(units)
 
 ## Returns `true` if the cell is occupied by a unit.
 func is_occupied(cell: Vector2) -> bool:
@@ -72,23 +71,22 @@ func select_unit(cell: Vector2):
 	active_unit = units[cell]
 	active_unit.is_selected = true
 	walkable_cells = get_walkable_cells(active_unit)
-	print(walkable_cells)
 	unit_path.initialize(walkable_cells)
 	pass
 
 func deselect_unit():
 	active_unit.is_selected = false
+#	unit_overlay.clear()
+	unit_path.stop()
 	pass
 
 func move_current_unit(new_cell: Vector2):
 	if is_occupied(new_cell) or not new_cell in walkable_cells:
-		print('blocked')
 		return
 	
 	units.erase(active_unit.cell)
 	units[new_cell] = active_unit
 	deselect_unit()
-	print(unit_path.current_path)
 	active_unit.walk_along(unit_path.current_path)
 	await active_unit.walk_finished
 	clear_active_unit()
@@ -100,12 +98,8 @@ func clear_active_unit() -> void:
 func _on_cursor_accept_pressed(cell):
 	if active_unit == null:
 		select_unit(cell)
-		#pass
 	elif active_unit.is_selected:
 		move_current_unit(cell)
-	#print(cell)
-	pass # Replace with function body.
-
 
 func _on_cursor_moved(new_cell):
 	if active_unit and active_unit.is_selected:
