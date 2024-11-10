@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://copviu6p757h8"]
+[gd_scene load_steps=10 format=3 uid="uid://copviu6p757h8"]
 
 [ext_resource type="Script" path="res://Game/Data/unit_path.gd" id="1_dns56"]
 [ext_resource type="Texture2D" uid="uid://dmcteyh27dqep" path="res://Assets/UserInterface/Gameplay/Arrows.png" id="1_y72yb"]
 [ext_resource type="Texture2D" uid="uid://bxee1s4g3rrkw" path="res://Assets/UserInterface/Gameplay/arrows.svg" id="2_bkw0h"]
+[ext_resource type="Texture2D" uid="uid://botq4ydp6balk" path="res://Assets/UserInterface/Gameplay/ArrowsBIG.png" id="3_3vce6"]
 [ext_resource type="Resource" uid="uid://utpajlyrymk" path="res://Game/Data/grid.tres" id="3_i4wb2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jyiru"]
@@ -113,15 +114,72 @@ texture_region_size = Vector2i(32, 32)
 3:2/0/terrain = 1
 3:2/0/terrains_peering_bit/right_side = 1
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_54qad"]
+texture = ExtResource("3_3vce6")
+texture_region_size = Vector2i(64, 64)
+3:2/0 = 0
+3:2/0/terrain_set = 0
+3:2/0/terrain = 2
+3:2/0/terrains_peering_bit/right_side = 2
+2:2/0 = 0
+2:2/0/terrain_set = 0
+2:2/0/terrain = 2
+2:2/0/terrains_peering_bit/top_side = 2
+0:2/0 = 0
+0:2/0/terrain_set = 0
+0:2/0/terrain = 2
+0:2/0/terrains_peering_bit/right_side = 2
+0:2/0/terrains_peering_bit/top_side = 2
+1:2/0 = 0
+1:2/0/terrain_set = 0
+1:2/0/terrain = 2
+1:2/0/terrains_peering_bit/left_side = 2
+1:2/0/terrains_peering_bit/top_side = 2
+0:1/0 = 0
+0:1/0/terrain_set = 0
+0:1/0/terrain = 2
+0:1/0/terrains_peering_bit/right_side = 2
+0:1/0/terrains_peering_bit/bottom_side = 2
+1:1/0 = 0
+1:1/0/terrain_set = 0
+1:1/0/terrain = 2
+1:1/0/terrains_peering_bit/bottom_side = 2
+1:1/0/terrains_peering_bit/left_side = 2
+2:1/0 = 0
+2:1/0/terrain_set = 0
+2:1/0/terrain = 2
+2:1/0/terrains_peering_bit/bottom_side = 2
+3:1/0 = 0
+3:1/0/terrain_set = 0
+3:1/0/terrain = 2
+3:1/0/terrains_peering_bit/left_side = 2
+3:0/0 = 0
+2:0/0 = 0
+2:0/0/terrain_set = 0
+2:0/0/terrain = 2
+2:0/0/terrains_peering_bit/bottom_side = 2
+2:0/0/terrains_peering_bit/top_side = 2
+1:0/0 = 0
+1:0/0/terrain_set = 0
+1:0/0/terrain = 2
+1:0/0/terrains_peering_bit/right_side = 2
+1:0/0/terrains_peering_bit/left_side = 2
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 2
+
 [sub_resource type="TileSet" id="TileSet_arv40"]
-tile_size = Vector2i(32, 32)
+tile_size = Vector2i(64, 64)
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 terrain_set_0/terrain_1/name = "Terrain32"
 terrain_set_0/terrain_1/color = Color(0.5, 0.4375, 0.25, 1)
+terrain_set_0/terrain_2/name = "Terrain64"
+terrain_set_0/terrain_2/color = Color(0.46875, 0.5, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_jyiru")
 sources/1 = SubResource("TileSetAtlasSource_clgni")
+sources/2 = SubResource("TileSetAtlasSource_54qad")
 
 [node name="UnitPath" type="TileMapLayer"]
 tile_set = SubResource("TileSet_arv40")
