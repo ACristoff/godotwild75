@@ -1,8 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://pspu4kxlebsj"]
+[gd_scene load_steps=3 format=3 uid="uid://pspu4kxlebsj"]
 
 [ext_resource type="PackedScene" uid="uid://dskshrij31rv2" path="res://Game/Data/Levels/debug_level.tscn" id="1_p7yjj"]
+
+[sub_resource type="Environment" id="Environment_0voul"]
+background_mode = 3
+ambient_light_source = 3
+tonemap_exposure = 6.73
+glow_enabled = true
+glow_bloom = 0.07
+glow_hdr_scale = 0.0
+fog_mode = 1
+fog_density = 1.0
+adjustment_enabled = true
+adjustment_saturation = 1.08
 
 [node name="LevelManager" type="Node2D"]
 
 [node name="DebugLevel" parent="." instance=ExtResource("1_p7yjj")]
 y_sort_enabled = false
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0voul")
