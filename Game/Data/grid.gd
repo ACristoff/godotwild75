@@ -8,7 +8,9 @@ extends Resource
 ## The grid's rows and columns.
 @export var size := Vector2(20, 20)
 ## The size of a cell in pixels.
-@export var cell_size := Vector2(80, 80)
+@export var cell_size := Vector2(64, 64)
+#This could be calculated as tiles but whatever for now
+var offset_to_origin = Vector2(64, 128)
 
 ## Half of ``cell_size``
 var _half_cell_size = cell_size / 2
@@ -20,12 +22,16 @@ func calculate_mirror_position(cell):
 
 ## Returns the position of a cell's center in pixels.
 func calculate_map_position(grid_position: Vector2) -> Vector2:
-	return grid_position * cell_size + _half_cell_size
+	var new_grid_position = grid_position + Vector2(-1, -2)
+	prints(grid_position, new_grid_position)
+	return new_grid_position * cell_size + _half_cell_size
 
 
 ## Returns the coordinates of the cell on the grid given a position on the map.
 func calculate_grid_coordinates(map_position: Vector2) -> Vector2:
-	return (map_position / cell_size).floor()
+	var new_map_position = map_position + offset_to_origin
+	#prints('map pos', map_position + offset_to_origin)
+	return (new_map_position / cell_size).floor()
 
 
 ## Returns true if the `cell_coordinates` are within the grid.

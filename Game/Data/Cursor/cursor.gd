@@ -57,9 +57,9 @@ func _process(delta):
 func _unhandled_input(event: InputEvent) -> void:
 	# Navigating cells with the mouse.
 	if event is InputEventMouseMotion:
-		cell = grid.calculate_grid_coordinates(event.position + Vector2(-10, -10))
+		cell = grid.calculate_grid_coordinates(event.position + Vector2(0, 0))
 		
-		print(cell, event.position, self.position)
+		#print(cell, event.position, self.position)
 	# Trying to select something in a cell.
 	elif event.is_action_pressed("click") or event.is_action_pressed("ui_accept"):
 		emit_signal("accept_pressed", cell)

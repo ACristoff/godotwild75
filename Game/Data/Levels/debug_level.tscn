@@ -14,7 +14,7 @@ script = ExtResource("1_uyhos")
 [node name="Cursor" parent="." instance=ExtResource("2_pogwr")]
 
 [node name="UnitBase" parent="." instance=ExtResource("1_qvwdw")]
-position = Vector2(200, 200)
+position = Vector2(232, 232)
 
 [node name="UnitPath" parent="." instance=ExtResource("4_feshh")]
 y_sort_origin = -1

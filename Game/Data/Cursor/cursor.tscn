@@ -44,12 +44,11 @@ _data = {
 }
 
 [node name="Cursor" type="Node2D"]
-position = Vector2(40, 40)
 script = ExtResource("1_v2tgw")
 grid = ExtResource("2_jjd4a")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -48.1662)
+position = Vector2(0, -40.0627)
 scale = Vector2(2, 2)
 texture = ExtResource("3_tov3r")
 hframes = 6
