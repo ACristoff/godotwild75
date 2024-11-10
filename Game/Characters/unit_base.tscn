@@ -1,12 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://hqcychtuc805"]
+[gd_scene load_steps=5 format=3 uid="uid://hqcychtuc805"]
 
 [ext_resource type="Script" path="res://Game/Characters/unit_base.gd" id="1_0rb1m"]
 [ext_resource type="Resource" uid="uid://utpajlyrymk" path="res://Game/Data/grid.tres" id="2_rcmob"]
 [ext_resource type="Texture2D" uid="uid://k10sy15l0bhm" path="res://Assets/Characters/Friendly/MikoSpirit.png" id="3_ge4xx"]
+[ext_resource type="PackedScene" uid="uid://crwr1o18ja3aa" path="res://Game/UI/turn_action_button.tscn" id="4_v2lqb"]
 
 [node name="UnitBase" type="Path2D"]
 y_sort_enabled = true
-position = Vector2(104, 168)
+position = Vector2(-24, -88)
 script = ExtResource("1_0rb1m")
 grid = ExtResource("2_rcmob")
 
@@ -25,3 +26,6 @@ hframes = 16
 frame = 11
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="action_selection_interface" parent="." instance=ExtResource("4_v2lqb")]
+position = Vector2(33, -139)

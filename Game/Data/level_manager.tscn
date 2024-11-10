@@ -5,3 +5,4 @@
 [node name="LevelManager" type="Node2D"]
 
 [node name="DebugLevel" parent="." instance=ExtResource("1_p7yjj")]
+y_sort_enabled = false

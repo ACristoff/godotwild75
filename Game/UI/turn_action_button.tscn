@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=3 uid="uid://crwr1o18ja3aa"]
+
+[ext_resource type="Script" path="res://Game/UI/turn_action_button.gd" id="1_oqsgb"]
+[ext_resource type="Theme" uid="uid://b1i1vgp6mmqn5" path="res://Assets/Themes/Buttons.tres" id="1_p3did"]
+[ext_resource type="Texture2D" uid="uid://dipb1eh6q500v" path="res://Assets/UserInterface/Gameplay/FightIcon.png" id="2_jhlnf"]
+[ext_resource type="Texture2D" uid="uid://dtb7dx7u0jowt" path="res://Assets/UserInterface/Gameplay/GoldSelection.png" id="3_u1upw"]
+[ext_resource type="AudioStream" uid="uid://c2xq3x4j7p7fi" path="res://Assets/Audio/UI/glass_006.ogg" id="5_auoww"]
+[ext_resource type="AudioStream" uid="uid://c22aajxja72kj" path="res://Assets/Audio/UI/glass_004.ogg" id="6_yuvyn"]
+
+[node name="action_selection_interface" type="Node2D"]
+script = ExtResource("1_oqsgb")
+
+[node name="move" type="Button" parent="."]
+offset_right = 111.0
+offset_bottom = 39.0
+theme = ExtResource("1_p3did")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_constants/icon_max_width = 25
+theme_override_font_sizes/font_size = 38
+text = "Move"
+expand_icon = true
+
+[node name="attack" type="Button" parent="."]
+offset_top = 49.0
+offset_right = 111.0
+offset_bottom = 88.0
+theme = ExtResource("1_p3did")
+theme_override_colors/font_hover_pressed_color = Color(0.776471, 0.168627, 0.168627, 1)
+theme_override_colors/font_hover_color = Color(0.94, 0.368167, 0.2538, 1)
+theme_override_colors/font_pressed_color = Color(0.776471, 0.168627, 0.168627, 1)
+theme_override_colors/font_focus_color = Color(0.776471, 0.168627, 0.168627, 1)
+theme_override_colors/font_color = Color(0.776471, 0.168627, 0.168627, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_constants/icon_max_width = 25
+theme_override_font_sizes/font_size = 38
+text = "Attack"
+icon = ExtResource("2_jhlnf")
+expand_icon = true
+
+[node name="GoldSelection" type="Sprite2D" parent="."]
+position = Vector2(-3.8147e-06, -1.90735e-06)
+scale = Vector2(0.995868, 0.989796)
+texture = ExtResource("3_u1upw")
+offset = Vector2(55.4793, 19.9536)
+
+[node name="switch_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_auoww")
+
+[node name="select_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_yuvyn")
+volume_db = -0.99
+pitch_scale = 0.77
+
+[connection signal="mouse_entered" from="move" to="." method="_on_move_mouse_entered"]
+[connection signal="pressed" from="move" to="." method="_on_move_pressed"]
+[connection signal="mouse_entered" from="attack" to="." method="_on_attack_mouse_entered"]
+[connection signal="pressed" from="attack" to="." method="_on_attack_pressed"]
