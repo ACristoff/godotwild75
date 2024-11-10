@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cx4kwdcn8ymig"]
+[gd_scene load_steps=5 format=3 uid="uid://cx4kwdcn8ymig"]
 
 [ext_resource type="PackedScene" uid="uid://hqcychtuc805" path="res://Game/Characters/unit_base.tscn" id="1_su1ee"]
 [ext_resource type="Script" path="res://Game/Characters/player_unit.gd" id="2_pcb3j"]
+[ext_resource type="PackedScene" uid="uid://crwr1o18ja3aa" path="res://Game/UI/action_select.tscn" id="4_4dehy"]
 [ext_resource type="Texture2D" uid="uid://c4s0q7ybhh3x2" path="res://Assets/Characters/Friendly/HeikoSpirit.png" id="4_ptio3"]
 
 [node name="PlayerUnit" instance=ExtResource("1_su1ee")]
@@ -14,3 +15,5 @@ skin = ExtResource("4_ptio3")
 y_sort_enabled = false
 texture = ExtResource("4_ptio3")
 frame = 0
+
+[node name="action_select" parent="." index="2" instance=ExtResource("4_4dehy")]

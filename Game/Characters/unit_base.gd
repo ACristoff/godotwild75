@@ -8,6 +8,15 @@ extends Path2D
 ## Emitted when the unit reached the end of a path along which it was walking.
 signal walk_finished
 
+@onready var _sprite: Sprite2D = $PathFollow2D/Sprite
+@onready var _anim_player: AnimationPlayer = $AnimationPlayer
+@onready var _path_follow: PathFollow2D = $PathFollow2D
+
+#Fix this later with a proper data struct that is descriptive
+var facing_direction = [1,2,3,4]
+#direction the unit is facing
+var current_direction = 3
+
 ## Shared resource of type Grid, used to calculate map coordinates.
 @export var grid: Resource
 ## Distance to which the unit can walk in cells.
@@ -37,36 +46,18 @@ signal walk_finished
 		if not _sprite:
 			await ready
 		_sprite.position = value
-
 ## Coordinates of the current cell the cursor moved to.
 var cell := Vector2.ZERO:
 	set(value):
 		# When changing the cell's value, we don't want to allow coordinates outside
 		#	the grid, so we clamp them
 		cell = grid.grid_clamp(value)
-## Toggles the "selected" animation on the unit.
-var is_selected := false:
-	set(value):
-		is_selected = value
-		if is_selected:
-			#_anim_player.play("selected")
-			pass
-		else:
-			_anim_player.play("idle")
-
 var _is_walking := false:
 	set(value):
 		_is_walking = value
 		set_process(_is_walking)
 
-@onready var _sprite: Sprite2D = $PathFollow2D/Sprite
-@onready var _anim_player: AnimationPlayer = $AnimationPlayer
-@onready var _path_follow: PathFollow2D = $PathFollow2D
 
-#Fix this later with a proper data struct that is descriptive
-var facing_direction = [1,2,3,4]
-#direction the unit is facing
-var current_direction = 3
 
 func _ready() -> void:
 	set_process(false)
@@ -79,17 +70,6 @@ func _ready() -> void:
 	# moving the unit.
 	if not Engine.is_editor_hint():
 		curve = Curve2D.new()
-	
-	#print(cell)
-	#Debug Movement
-	#var points := [
-		#Vector2(2, 2),
-		#Vector2(2, 5),
-		#Vector2(8, 5),
-		#Vector2(8, 7),
-	#]
-	#walk_along(PackedVector2Array(points))
-
 
 func _process(delta: float) -> void:
 	_path_follow.progress += move_speed * delta
@@ -127,7 +107,6 @@ func attack(cells, damage):
 func walk_along(path: PackedVector2Array) -> void:
 	if path.is_empty():
 		return
-
 	curve.add_point(Vector2.ZERO)
 	for point in path:
 		curve.add_point(grid.calculate_map_position(point) - position)

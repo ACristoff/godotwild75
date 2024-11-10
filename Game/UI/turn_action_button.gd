@@ -1,6 +1,9 @@
 extends Node2D
 
 
+signal attack_selected
+signal move_selected
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -30,8 +33,6 @@ func border_effect():
 
 func _on_move_pressed() -> void:
 	$select_sound.play()
-	
-
 
 func _on_attack_pressed() -> void:
 	$select_sound.play()
