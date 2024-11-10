@@ -11,14 +11,14 @@ script = ExtResource("1_uyhos")
 
 [node name="Environment" parent="." instance=ExtResource("2_p8do1")]
 
-[node name="UnitBase" parent="." instance=ExtResource("1_qvwdw")]
-position = Vector2(232, 232)
-
-[node name="Cursor" parent="." instance=ExtResource("2_pogwr")]
-position = Vector2(40, 40)
-
 [node name="UnitPath" parent="." instance=ExtResource("4_feshh")]
 y_sort_origin = -1
+
+[node name="UnitBase" parent="." instance=ExtResource("1_qvwdw")]
+position = Vector2(349, 556)
+
+[node name="Cursor" parent="." instance=ExtResource("2_pogwr")]
+position = Vector2(104, 168)
 
 [connection signal="accept_pressed" from="Cursor" to="." method="_on_cursor_accept_pressed"]
 [connection signal="moved" from="Cursor" to="." method="_on_cursor_moved"]

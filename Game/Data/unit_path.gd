@@ -22,9 +22,8 @@ func draw(cell_start: Vector2, cell_end: Vector2) -> void:
 	for vector in current_path:
 		var new_vector = vector + Vector2(1, 2)
 		test_offset_path.append(new_vector)
-		#print(vector)
 		pass
-	print(current_path, test_offset_path)
+	#print(current_path, test_offset_path)
 	set_cells_terrain_connect(test_offset_path, 0, 2, 0)
 
 

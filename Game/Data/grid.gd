@@ -15,7 +15,7 @@ var _half_cell_size = cell_size / 2
 
 
 func calculate_mirror_position(cell):
-	
+	print(cell)
 	return null
 
 ## Returns the position of a cell's center in pixels.
