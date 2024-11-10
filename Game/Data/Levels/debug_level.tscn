@@ -17,15 +17,14 @@ script = ExtResource("1_uyhos")
 y_sort_origin = -1
 
 [node name="PlayerUnit" parent="." instance=ExtResource("5_sf2un")]
-y_sort_enabled = false
 position = Vector2(801, 240)
 
 [node name="UnitBase" parent="." instance=ExtResource("1_qvwdw")]
 y_sort_enabled = false
-position = Vector2(-24, -88)
+position = Vector2(96, 160)
 
 [node name="Cursor" parent="." instance=ExtResource("2_pogwr")]
-position = Vector2(-24, -88)
+position = Vector2(96, 160)
 
 [connection signal="accept_pressed" from="Cursor" to="." method="_on_cursor_accept_pressed"]
 [connection signal="moved" from="Cursor" to="." method="_on_cursor_moved"]
