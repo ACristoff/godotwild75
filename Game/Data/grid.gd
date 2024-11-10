@@ -27,7 +27,7 @@ func calculate_map_position(grid_position: Vector2) -> Vector2:
 
 ## Returns the coordinates of the cell on the grid given a position on the map.
 func calculate_grid_coordinates(map_position: Vector2) -> Vector2:
-	prints(map_position, (map_position / cell_size).floor() + Vector2(-1, -2))
+	#prints(map_position, (map_position / cell_size).floor() + Vector2(-1, -2))
 	return (map_position / cell_size).floor() + Vector2(-1,-2)
 
 
@@ -43,5 +43,4 @@ func grid_clamp(grid_position: Vector2) -> Vector2:
 	var out := grid_position
 	out.x = clamp(out.x, 0, size.x - 1.0)
 	out.y = clamp(out.y, 0, size.y - 1.0)
-	#print(grid_position, out)
 	return out

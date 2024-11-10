@@ -44,12 +44,13 @@ _data = {
 }
 
 [node name="Cursor" type="Node2D"]
+position = Vector2(104, 168)
 script = ExtResource("1_v2tgw")
 grid = ExtResource("2_jjd4a")
 cursor_offset_y = -75
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -70.1721)
+position = Vector2(0, -76.2251)
 scale = Vector2(2, 2)
 texture = ExtResource("3_tov3r")
 hframes = 6
