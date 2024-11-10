@@ -2,10 +2,11 @@
 
 [ext_resource type="Script" path="res://Game/Characters/unit_base.gd" id="1_0rb1m"]
 [ext_resource type="Resource" uid="uid://utpajlyrymk" path="res://Game/Data/grid.tres" id="2_rcmob"]
-[ext_resource type="Texture2D" uid="uid://bpmvmcaiamrh5" path="res://Assets/Characters/Friendly/Miko.png" id="3_ntet5"]
+[ext_resource type="Texture2D" uid="uid://k10sy15l0bhm" path="res://Assets/Characters/Friendly/MikoSpirit.png" id="3_ge4xx"]
 
 [node name="UnitBase" type="Path2D"]
-position = Vector2(40, 40)
+y_sort_enabled = true
+position = Vector2(104, 168)
 script = ExtResource("1_0rb1m")
 grid = ExtResource("2_rcmob")
 
@@ -16,9 +17,11 @@ loop = false
 [node name="Shadow" type="Sprite2D" parent="PathFollow2D"]
 
 [node name="Sprite" type="Sprite2D" parent="PathFollow2D"]
+y_sort_enabled = true
 scale = Vector2(2, 2)
-texture = ExtResource("3_ntet5")
+texture = ExtResource("3_ge4xx")
 offset = Vector2(0, -20)
 hframes = 16
+frame = 11
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://2nbe138odbl8"]
+
+[ext_resource type="PackedScene" uid="uid://cx4kwdcn8ymig" path="res://Game/Characters/player_unit.tscn" id="1_av5i1"]
+[ext_resource type="Script" path="res://Game/Characters/miko_unit.gd" id="2_5ylnv"]
+
+[node name="MikoUnit" instance=ExtResource("1_av5i1")]
+script = ExtResource("2_5ylnv")
+grid = null
+skin = null
