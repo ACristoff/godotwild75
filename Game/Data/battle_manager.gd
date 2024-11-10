@@ -68,6 +68,8 @@ func select_unit(cell: Vector2):
 	#checks if the cell has a unit entry
 	if not units.has(cell):
 		return
+	if units[cell] is not PlayerUnit:
+		return
 	active_unit = units[cell]
 	active_unit.is_selected = true
 	walkable_cells = get_walkable_cells(active_unit)

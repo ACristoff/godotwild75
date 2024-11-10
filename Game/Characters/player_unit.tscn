@@ -7,7 +7,6 @@
 
 [node name="PlayerUnit" instance=ExtResource("1_su1ee")]
 y_sort_enabled = false
-position = Vector2(40, 40)
 script = ExtResource("2_pcb3j")
 skin = ExtResource("4_ptio3")
 
@@ -17,3 +16,4 @@ texture = ExtResource("4_ptio3")
 frame = 0
 
 [node name="action_select" parent="." index="2" instance=ExtResource("4_4dehy")]
+visible = false

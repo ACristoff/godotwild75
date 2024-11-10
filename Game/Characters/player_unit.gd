@@ -9,22 +9,29 @@ enum unit_states {IDLE, SELECTED, ACTION_SELECT, ATTACK_THINK, MOVE_THINK, ATTAC
 
 var unit_state = "IDLE"
 
-#Action select
-#Spawn the action select
-#Despawn the action select
-func action_select():
-	pass
-
-
 ## Toggles the "selected" animation on the unit.
 var is_selected := false:
 	set(value):
 		is_selected = value
 		if is_selected:
 			#_anim_player.play("selected")
+			action_select(true)
 			pass
 		else:
+			action_select(false)
 			_anim_player.play("idle")
+
+#Action select
+#Spawn the action select
+#Despawn the action select
+func action_select(state):
+	action_ui.visible = state
+	pass
+
+func _process(delta):
+	super(delta)
+	pass
+
 #State transition func
 
 

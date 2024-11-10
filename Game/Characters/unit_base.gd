@@ -71,9 +71,9 @@ func _ready() -> void:
 	if not Engine.is_editor_hint():
 		curve = Curve2D.new()
 
-func _process(delta: float) -> void:
+func walk(delta):
 	_path_follow.progress += move_speed * delta
-
+	
 	if _path_follow.progress_ratio >= 1.0:
 		_is_walking = false
 		# Setting this value to 0.0 causes a Zero Length Interval error
@@ -81,6 +81,11 @@ func _process(delta: float) -> void:
 		position = grid.calculate_map_position(cell)
 		curve.clear_points()
 		emit_signal("walk_finished")
+	pass
+
+func _process(delta: float) -> void:
+	walk(delta)
+
 
 #All the shit for dying
 func die():
