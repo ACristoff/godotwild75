@@ -22,16 +22,16 @@ func calculate_mirror_position(cell):
 
 ## Returns the position of a cell's center in pixels.
 func calculate_map_position(grid_position: Vector2) -> Vector2:
-	var new_grid_position = grid_position + Vector2(-1, -2)
-	prints(grid_position, new_grid_position)
-	return new_grid_position * cell_size + _half_cell_size
+	#var new_grid_position = grid_position + Vector2(-1, -2)
+	#prints(grid_position, new_grid_position)
+	return grid_position * cell_size + _half_cell_size
 
 
 ## Returns the coordinates of the cell on the grid given a position on the map.
 func calculate_grid_coordinates(map_position: Vector2) -> Vector2:
-	var new_map_position = map_position + offset_to_origin
-	#prints('map pos', map_position + offset_to_origin)
-	return (new_map_position / cell_size).floor()
+	#var new_map_position = map_position + offset_to_origin
+	prints('map pos', map_position, (map_position / cell_size).floor())
+	return (map_position / cell_size).floor()
 
 
 ## Returns true if the `cell_coordinates` are within the grid.
@@ -43,6 +43,9 @@ func is_within_bounds(cell_coordinates: Vector2) -> bool:
 ## Makes the `grid_position` fit within the grid's bounds.
 func grid_clamp(grid_position: Vector2) -> Vector2:
 	var out := grid_position
-	out.x = clamp(out.x, 0, size.x - 1.0)
-	out.y = clamp(out.y, 0, size.y - 1.0)
+	#out.x = clamp(out.x, 0, size.x - 1.0)
+	#out.y = clamp(out.y, 0, size.y - 1.0)
+	out.x = clamp(out.x, 1, size.x)
+	out.y = clamp(out.y, 2, size.y + 1)
+	print(out)
 	return out
