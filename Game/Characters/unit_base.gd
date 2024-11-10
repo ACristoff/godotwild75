@@ -80,20 +80,30 @@ func walk(delta):
 		_path_follow.progress = 0.00001
 		position = grid.calculate_map_position(cell)
 		curve.clear_points()
-		emit_signal("walk_finished")
+		finish_walk()
+	pass
+
+func finish_walk():
+	emit_signal("walk_finished")
 	pass
 
 func _process(delta: float) -> void:
 	walk(delta)
 
+func explode(pattern):
+	print("boom, explosion pattern:", pattern)
 
 #All the shit for dying
 func die():
 	print("unit dies")
 	#free the tile
+	#explode
 	#remove from turn order
+	explode([])
 	queue_free()
 	pass
+
+
 
 #All the stuff for taking damage
 func take_damage(damage):

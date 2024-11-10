@@ -33,7 +33,9 @@ func border_effect():
 	$switch_sound.play()
 
 func _on_move_pressed() -> void:
+	move_selected.emit()
 	$select_sound.play()
 
 func _on_attack_pressed() -> void:
+	attack_selected.emit()
 	$select_sound.play()

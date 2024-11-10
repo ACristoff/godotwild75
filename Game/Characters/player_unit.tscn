@@ -17,3 +17,6 @@ frame = 0
 
 [node name="action_select" parent="." index="2" instance=ExtResource("4_4dehy")]
 visible = false
+
+[connection signal="attack_selected" from="action_select" to="." method="_on_action_select_attack_selected"]
+[connection signal="move_selected" from="action_select" to="." method="_on_action_select_move_selected"]
