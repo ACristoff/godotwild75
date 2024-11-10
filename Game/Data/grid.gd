@@ -14,6 +14,10 @@ extends Resource
 var _half_cell_size = cell_size / 2
 
 
+func calculate_mirror_position(cell):
+	
+	return null
+
 ## Returns the position of a cell's center in pixels.
 func calculate_map_position(grid_position: Vector2) -> Vector2:
 	return grid_position * cell_size + _half_cell_size
