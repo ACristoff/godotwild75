@@ -11,6 +11,7 @@ var walkable_cells := []
 var is_player_turn: bool = true
 
 
+
 @onready var unit_overlay = null
 @onready var unit_path: UnitPath = $UnitPath
 
@@ -27,6 +28,16 @@ func reinitialize():
 		if not unit:
 			continue
 		units[unit.cell] = unit
+		unit.connect("unit_state_change", on_unit_state_change)
+
+func on_unit_state_change(state):
+	if state == PlayerUnit.unit_states.MOVE_THINK:
+		walkable_cells = get_walkable_cells(active_unit)
+		unit_path.initialize(walkable_cells)
+	if state == PlayerUnit.unit_states.ATTACK_THINK:
+		print("ATTACK THINK!")
+		pass
+	pass
 
 ## Returns `true` if the cell is occupied by a unit.
 func is_occupied(cell: Vector2) -> bool:
@@ -68,10 +79,12 @@ func select_unit(cell: Vector2):
 	#checks if the cell has a unit entry
 	if not units.has(cell):
 		return
+	if units[cell] is not PlayerUnit:
+		return
 	active_unit = units[cell]
 	active_unit.is_selected = true
-	walkable_cells = get_walkable_cells(active_unit)
-	unit_path.initialize(walkable_cells)
+	#walkable_cells = get_walkable_cells(active_unit)
+	#unit_path.initialize(walkable_cells)
 	pass
 
 func deselect_unit():
@@ -83,12 +96,12 @@ func deselect_unit():
 func move_current_unit(new_cell: Vector2):
 	if is_occupied(new_cell) or not new_cell in walkable_cells:
 		return
-	
 	units.erase(active_unit.cell)
 	units[new_cell] = active_unit
 	deselect_unit()
 	active_unit.walk_along(unit_path.current_path)
 	await active_unit.walk_finished
+	active_unit.has_moved = true
 	clear_active_unit()
 
 func clear_active_unit() -> void:
@@ -102,6 +115,6 @@ func _on_cursor_accept_pressed(cell):
 		move_current_unit(cell)
 
 func _on_cursor_moved(new_cell):
-	if active_unit and active_unit.is_selected:
+	if active_unit and active_unit.is_selected and active_unit.unit_state == PlayerUnit.unit_states.MOVE_THINK:
 		unit_path.draw(active_unit.cell, new_cell)
 	pass # Replace with function body.
