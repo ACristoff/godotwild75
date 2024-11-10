@@ -21,7 +21,6 @@ position = Vector2(801, 240)
 
 [node name="UnitBase" parent="." instance=ExtResource("1_qvwdw")]
 y_sort_enabled = false
-position = Vector2(96, 160)
 
 [node name="Cursor" parent="." instance=ExtResource("2_pogwr")]
 position = Vector2(96, 160)

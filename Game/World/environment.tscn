@@ -1,6 +1,12 @@
-[gd_scene load_steps=4 format=4 uid="uid://gcdapkkqr808"]
+[gd_scene load_steps=22 format=4 uid="uid://gcdapkkqr808"]
 
 [ext_resource type="Texture2D" uid="uid://cig0shmgu75ha" path="res://Assets/Environment/GridTileMap/TilemapGrid.png" id="1_vknam"]
+[ext_resource type="Shader" path="res://Assets/Shaders/wavyshader.gdshader" id="2_21iao"]
+[ext_resource type="Texture2D" uid="uid://dwuvoq82qclc3" path="res://Assets/Environment/GridTileMap/white.png" id="3_1h3k0"]
+[ext_resource type="Texture2D" uid="uid://cyrhfkn654cct" path="res://Assets/Environment/GridTileMap/Separator2.png" id="3_pkqa3"]
+[ext_resource type="Texture2D" uid="uid://ccfyifwmn653b" path="res://Assets/Environment/GridTileMap/Separator.png" id="5_vf1iu"]
+[ext_resource type="PackedScene" uid="uid://domnit2msh3jg" path="res://Assets/Shaders/god_ray.tscn" id="6_sanjg"]
+[ext_resource type="Shader" path="res://Assets/Shaders/clouds.gdshader" id="7_nffsk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2dks7"]
 resource_name = "GridTiles"
@@ -14,13 +20,292 @@ texture_region_size = Vector2i(32, 32)
 2:1/0 = 0
 3:1/0 = 0
 3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+7:1/0 = 0
+6:1/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_i7mqe"]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_2dks7")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vytax"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_del0o"]
+shader = ExtResource("2_21iao")
+shader_parameter/progress = 0.0
+shader_parameter/meltness = 5.0
+shader_parameter/how_low = 0.0
+shader_parameter/wave_frequency = 30.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_78oyj"]
+shader = ExtResource("2_21iao")
+shader_parameter/progress = 0.5
+shader_parameter/meltness = 5.0
+shader_parameter/how_low = 0.0
+shader_parameter/wave_frequency = 30.0
+
+[sub_resource type="Animation" id="Animation_hk5jc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Separator2:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ibrwe"]
+resource_name = "wave2"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Separator2:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ke7wo"]
+_data = {
+"RESET": SubResource("Animation_hk5jc"),
+"wave2": SubResource("Animation_ibrwe")
+}
+
+[sub_resource type="Animation" id="Animation_dbost"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Separator:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5]
+}
+
+[sub_resource type="Animation" id="Animation_phsm8"]
+resource_name = "wavy3"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Separator:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.5, 1.5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n0rqa"]
+_data = {
+"RESET": SubResource("Animation_dbost"),
+"wavy3": SubResource("Animation_phsm8")
+}
+
+[sub_resource type="Shader" id="Shader_3lihg"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
+uniform float angle = -0.3;
+uniform float position = -0.2;
+uniform float spread : hint_range(0.0, 1.0) = 0.5;
+uniform float cutoff : hint_range(-1.0, 1.0) = 0.1;
+uniform float falloff : hint_range(0.0, 1.0) = 0.2;
+uniform float edge_fade : hint_range(0.0, 1.0) = 0.15;
+
+uniform float speed = 1.0;
+uniform float ray1_density = 8.0;
+uniform float ray2_density = 30.0;
+uniform float ray2_intensity : hint_range(0.0, 1.0) = 0.3;
+
+uniform vec4 color : source_color = vec4(1.0, 0.9, 0.65, 0.8);
+
+uniform bool hdr = false;
+uniform float seed = 5.0;
+
+// Random and noise functions from Book of Shader's chapter on Noise.
+float random(vec2 _uv) {
+    return fract(sin(dot(_uv.xy,
+                         vec2(12.9898, 78.233))) *
+        43758.5453123);
+}
+
+float noise (in vec2 uv) {
+    vec2 i = floor(uv);
+    vec2 f = fract(uv);
+
+    // Four corners in 2D of a tile
+    float a = random(i);
+    float b = random(i + vec2(1.0, 0.0));
+    float c = random(i + vec2(0.0, 1.0));
+    float d = random(i + vec2(1.0, 1.0));
+
+
+    // Smooth Interpolation
+
+    // Cubic Hermine Curve. Same as SmoothStep()
+    vec2 u = f * f * (3.0-2.0 * f);
+
+    // Mix 4 coorners percentages
+    return mix(a, b, u.x) +
+            (c - a)* u.y * (1.0 - u.x) +
+            (d - b) * u.x * u.y;
+}
+
+mat2 rotate(float _angle){
+    return mat2(vec2(cos(_angle), -sin(_angle)),
+                vec2(sin(_angle), cos(_angle)));
+}
+
+vec4 screen(vec4 base, vec4 blend){
+	return 1.0 - (1.0 - base) * (1.0 - blend);
+}
+
+void fragment()
+{
+	
+	// Rotate, skew and move the UVs
+	vec2 transformed_uv = ( rotate(angle) * (UV - position) )  / ( (UV.y + spread) - (UV.y * spread) );
+	
+	// Animate the ray according the the new transformed UVs
+	vec2 ray1 = vec2(transformed_uv.x * ray1_density + sin(TIME * 0.1 * speed) * (ray1_density * 0.2) + seed, 1.0);
+	vec2 ray2 = vec2(transformed_uv.x * ray2_density + sin(TIME * 0.2 * speed) * (ray1_density * 0.2) + seed, 1.0);
+	
+	// Cut off the ray's edges
+	float cut = step(cutoff, transformed_uv.x) * step(cutoff, 1.0 - transformed_uv.x);
+	ray1 *= cut;
+	ray2 *= cut;
+	
+	// Apply the noise pattern (i.e. create the rays)
+	float rays;
+	
+	if (hdr){
+		// This is not really HDR, but check this to not clamp the two merged rays making 
+		// their values go over 1.0. Can make for some nice effect
+		rays = noise(ray1) + (noise(ray2) * ray2_intensity);
+	}
+	else{
+		 rays = clamp(noise(ray1) + (noise(ray2) * ray2_intensity), 0., 1.);
+	}
+	
+	// Fade out edges
+	rays *= smoothstep(0.0, falloff, (1.0 - UV.y)); // Bottom
+	rays *= smoothstep(0.0 + cutoff, edge_fade + cutoff, transformed_uv.x); // Left
+	rays *= smoothstep(0.0 + cutoff, edge_fade + cutoff, 1.0 - transformed_uv.x); // Right
+	
+	// Color to the rays
+	vec3 shine = vec3(rays) * color.rgb;
+
+	// Try different blending modes for a nicer effect. \"Screen\" is included in the code,
+	// but take a look at https://godotshaders.com/snippet/blending-modes/ for more.
+	// With \"Screen\" blend mode:
+	shine = screen(texture(SCREEN_TEXTURE, SCREEN_UV), vec4(color)).rgb;
+	
+	COLOR = vec4(shine, rays * color.a);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wb1fm"]
+resource_local_to_scene = true
+shader = SubResource("Shader_3lihg")
+shader_parameter/angle = -0.3
+shader_parameter/position = -0.2
+shader_parameter/spread = 0.62
+shader_parameter/cutoff = 0.183
+shader_parameter/falloff = 0.732
+shader_parameter/edge_fade = 0.065
+shader_parameter/speed = 1.0
+shader_parameter/ray1_density = 8.0
+shader_parameter/ray2_density = 30.0
+shader_parameter/ray2_intensity = 0.651
+shader_parameter/color = Color(1, 0.9, 0.65, 0.8)
+shader_parameter/hdr = false
+shader_parameter/seed = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nhb1b"]
+shader = ExtResource("7_nffsk")
+shader_parameter/intensity = 1.0
+shader_parameter/use_custom_texture = 0.0
+shader_parameter/clouds_speed = 3.28
+shader_parameter/clouds_direction = 0.2
+shader_parameter/clouds_scale = 2.11
+shader_parameter/clouds_cutoff = 0.49
+shader_parameter/clouds_fuzziness = 0.0
+shader_parameter/clouds_color = Color(0.95, 0, 1, 1)
+shader_parameter/edge_fade = 0.67
+shader_parameter/box_position_x = 0.617
+shader_parameter/box_position_y = 0.532
+shader_parameter/box_size = 0.0
+
 [node name="Environment" type="TileMapLayer"]
 scale = Vector2(2, 2)
-tile_map_data = PackedByteArray("AAABAAEAAAACAAEAAAADAAEAAAADAAAAAAAFAAEAAAADAAAAAAAHAAEAAAADAAAAAAAJAAEAAAADAAAAAAALAAEAAAADAAAAAAANAAEAAAADAAAAAAAPAAEAAAADAAAAAAARAAEAAAADAAAAAAATAAEAAAACAAEAAAASAAoAAAACAAEAAAAQAAoAAAACAAEAAAAOAAoAAAACAAEAAAAMAAoAAAACAAEAAAAKAAoAAAACAAEAAAAIAAoAAAACAAEAAAAGAAoAAAACAAEAAAAEAAoAAAADAAAAAAACAAoAAAACAAEAAAABAAkAAAAAAAAAAAAAAAoAAAACAAEAAAAAAAgAAAACAAEAAAABAAcAAAABAAEAAAAAAAYAAAACAAEAAAABAAUAAAABAAEAAAAAAAQAAAACAAEAAAABAAMAAAAAAAAAAAAAAAIAAAACAAEAAAAAAAEAAAADAAEAAAABAAIAAAAAAAEAAAAAAAMAAAACAAAAAAACAAEAAAACAAAAAAAEAAEAAAACAAAAAAAGAAEAAAACAAAAAAAIAAEAAAACAAAAAAAKAAEAAAACAAAAAAAMAAEAAAACAAAAAAAOAAEAAAACAAAAAAAQAAEAAAACAAAAAAASAAEAAAADAAEAAAATAAoAAAADAAEAAAARAAoAAAADAAEAAAAPAAoAAAADAAEAAAANAAoAAAADAAEAAAALAAoAAAADAAEAAAAJAAoAAAADAAEAAAAHAAoAAAADAAEAAAAFAAoAAAADAAEAAAADAAoAAAADAAEAAAABAAoAAAADAAEAAAAAAAkAAAADAAEAAAABAAgAAAAAAAEAAAAAAAcAAAADAAEAAAABAAYAAAAAAAEAAAAAAAUAAAADAAEAAAABAAQAAAABAAAAAAACAAIAAAAAAAAAAAACAAMAAAAAAAEAAAACAAQAAAAAAAAAAAACAAUAAAAAAAEAAAACAAYAAAAAAAAAAAACAAcAAAAAAAEAAAACAAgAAAAAAAAAAAACAAkAAAAAAAEAAAADAAIAAAABAAAAAAADAAMAAAABAAEAAAADAAQAAAABAAAAAAADAAUAAAABAAEAAAADAAYAAAABAAAAAAADAAcAAAAAAAAAAAADAAgAAAAAAAEAAAADAAkAAAABAAEAAAAEAAIAAAAAAAAAAAAEAAMAAAAAAAEAAAAEAAQAAAAAAAAAAAAEAAUAAAAAAAEAAAAEAAYAAAAAAAAAAAAEAAcAAAABAAAAAAAEAAgAAAABAAEAAAAEAAkAAAAAAAEAAAAFAAIAAAABAAAAAAAFAAMAAAABAAEAAAAFAAQAAAABAAAAAAAFAAUAAAABAAEAAAAFAAYAAAABAAAAAAAFAAcAAAAAAAAAAAAFAAgAAAAAAAEAAAAFAAkAAAAAAAAAAAAGAAIAAAAAAAAAAAAGAAMAAAAAAAEAAAAGAAQAAAAAAAAAAAAGAAUAAAAAAAEAAAAGAAYAAAAAAAAAAAAGAAcAAAABAAAAAAAGAAgAAAABAAEAAAAGAAkAAAABAAAAAAAHAAIAAAABAAAAAAAHAAMAAAABAAEAAAAHAAQAAAABAAAAAAAHAAUAAAABAAEAAAAHAAYAAAABAAAAAAAHAAcAAAAAAAAAAAAHAAgAAAAAAAEAAAAHAAkAAAABAAEAAAAIAAIAAAAAAAAAAAAIAAMAAAAAAAEAAAAIAAQAAAAAAAAAAAAIAAUAAAAAAAEAAAAIAAYAAAAAAAAAAAAIAAcAAAABAAAAAAAIAAgAAAABAAEAAAAIAAkAAAAAAAEAAAAJAAIAAAACAAEAAAAJAAMAAAADAAEAAAAJAAQAAAACAAEAAAAJAAUAAAADAAEAAAAJAAYAAAACAAEAAAAJAAcAAAADAAEAAAAJAAgAAAADAAAAAAAJAAkAAAADAAEAAAATAAIAAAADAAAAAAATAAMAAAACAAAAAAATAAYAAAACAAEAAAATAAcAAAADAAEAAAATAAUAAAACAAAAAAATAAkAAAACAAAAAAATAAgAAAADAAAAAAATAAQAAAADAAAAAAAKAAIAAAADAAEAAAAKAAMAAAACAAEAAAAKAAQAAAACAAAAAAAKAAUAAAACAAEAAAAKAAYAAAADAAEAAAAKAAcAAAADAAAAAAAKAAgAAAADAAEAAAAKAAkAAAACAAEAAAALAAIAAAABAAAAAAALAAMAAAABAAEAAAALAAQAAAABAAAAAAALAAUAAAABAAEAAAALAAYAAAABAAAAAAALAAcAAAAAAAAAAAALAAgAAAAAAAEAAAALAAkAAAABAAEAAAAMAAIAAAAAAAAAAAAMAAMAAAAAAAEAAAAMAAQAAAAAAAAAAAAMAAUAAAAAAAEAAAAMAAYAAAAAAAAAAAAMAAcAAAABAAAAAAAMAAgAAAABAAEAAAAMAAkAAAAAAAEAAAANAAIAAAABAAAAAAANAAMAAAABAAEAAAANAAQAAAABAAAAAAANAAUAAAABAAEAAAANAAYAAAABAAAAAAANAAcAAAAAAAAAAAANAAgAAAAAAAEAAAANAAkAAAAAAAAAAAAOAAIAAAAAAAAAAAAOAAMAAAAAAAEAAAAOAAQAAAAAAAAAAAAOAAUAAAAAAAEAAAAOAAYAAAAAAAAAAAAOAAcAAAABAAAAAAAOAAgAAAABAAEAAAAOAAkAAAABAAAAAAAPAAIAAAABAAAAAAAPAAMAAAABAAEAAAAPAAQAAAABAAAAAAAPAAUAAAABAAEAAAAPAAYAAAABAAAAAAAPAAcAAAAAAAAAAAAPAAgAAAAAAAEAAAAPAAkAAAABAAEAAAAQAAIAAAAAAAAAAAAQAAMAAAAAAAEAAAAQAAQAAAAAAAAAAAAQAAUAAAAAAAEAAAAQAAYAAAAAAAAAAAAQAAcAAAABAAAAAAAQAAgAAAABAAEAAAAQAAkAAAAAAAEAAAARAAIAAAABAAAAAAARAAMAAAABAAEAAAARAAQAAAABAAAAAAARAAUAAAABAAEAAAARAAYAAAABAAAAAAARAAcAAAABAAEAAAARAAgAAAABAAAAAAARAAkAAAABAAEAAAASAAIAAAABAAEAAAASAAMAAAAAAAEAAAASAAQAAAABAAEAAAASAAUAAAABAAAAAAASAAYAAAABAAEAAAASAAcAAAABAAAAAAASAAgAAAAAAAAAAAASAAkAAAABAAAAAAA=")
+tile_map_data = PackedByteArray("AAABAAEAAAACAAEAAAADAAEAAAADAAAAAAAFAAEAAAADAAAAAAAHAAEAAAADAAAAAAAJAAEAAAACAAEAAAALAAEAAAAHAAAAAAANAAEAAAAHAAAAAAAPAAEAAAAHAAAAAAARAAEAAAAHAAAAAAATAAEAAAAGAAEAAAASAAoAAAAGAAEAAAAQAAoAAAAGAAEAAAAOAAoAAAAGAAEAAAAMAAoAAAAHAAAAAAAKAAoAAAAGAAEAAAAIAAoAAAACAAEAAAAGAAoAAAACAAEAAAAEAAoAAAADAAAAAAACAAoAAAACAAEAAAABAAkAAAAAAAAAAAAAAAoAAAACAAEAAAAAAAgAAAACAAEAAAABAAcAAAABAAEAAAAAAAYAAAACAAEAAAABAAUAAAABAAEAAAAAAAQAAAACAAEAAAABAAMAAAAAAAAAAAAAAAIAAAACAAEAAAAAAAEAAAADAAEAAAABAAIAAAAAAAEAAAAAAAMAAAACAAAAAAACAAEAAAACAAAAAAAEAAEAAAACAAAAAAAGAAEAAAACAAAAAAAIAAEAAAACAAAAAAAKAAEAAAAGAAAAAAAMAAEAAAAGAAAAAAAOAAEAAAAGAAAAAAAQAAEAAAAGAAAAAAASAAEAAAAGAAAAAAATAAoAAAAHAAEAAAARAAoAAAAHAAEAAAAPAAoAAAAHAAEAAAANAAoAAAAHAAEAAAALAAoAAAAGAAAAAAAJAAoAAAADAAEAAAAHAAoAAAADAAEAAAAFAAoAAAADAAEAAAADAAoAAAADAAEAAAABAAoAAAADAAEAAAAAAAkAAAADAAEAAAABAAgAAAAAAAEAAAAAAAcAAAADAAEAAAABAAYAAAAAAAEAAAAAAAUAAAADAAEAAAABAAQAAAABAAAAAAACAAIAAAAAAAAAAAACAAMAAAAAAAEAAAACAAQAAAAAAAAAAAACAAUAAAAAAAEAAAACAAYAAAAAAAAAAAACAAcAAAAAAAEAAAACAAgAAAAAAAAAAAACAAkAAAAAAAEAAAADAAIAAAABAAAAAAADAAMAAAABAAEAAAADAAQAAAABAAAAAAADAAUAAAABAAEAAAADAAYAAAABAAAAAAADAAcAAAAAAAAAAAADAAgAAAAAAAEAAAADAAkAAAABAAEAAAAEAAIAAAAAAAAAAAAEAAMAAAAAAAEAAAAEAAQAAAAAAAAAAAAEAAUAAAAAAAEAAAAEAAYAAAAAAAAAAAAEAAcAAAABAAAAAAAEAAgAAAABAAEAAAAEAAkAAAAAAAEAAAAFAAIAAAABAAAAAAAFAAMAAAABAAEAAAAFAAQAAAABAAAAAAAFAAUAAAABAAEAAAAFAAYAAAABAAAAAAAFAAcAAAAAAAAAAAAFAAgAAAAAAAEAAAAFAAkAAAAAAAAAAAAGAAIAAAAAAAAAAAAGAAMAAAAAAAEAAAAGAAQAAAAAAAAAAAAGAAUAAAAAAAEAAAAGAAYAAAAAAAAAAAAGAAcAAAABAAAAAAAGAAgAAAABAAEAAAAGAAkAAAABAAAAAAAHAAIAAAABAAAAAAAHAAMAAAABAAEAAAAHAAQAAAABAAAAAAAHAAUAAAABAAEAAAAHAAYAAAABAAAAAAAHAAcAAAAAAAAAAAAHAAgAAAAAAAEAAAAHAAkAAAABAAEAAAAIAAIAAAAAAAAAAAAIAAMAAAAAAAEAAAAIAAQAAAAAAAAAAAAIAAUAAAAAAAEAAAAIAAYAAAAAAAAAAAAIAAcAAAABAAAAAAAIAAgAAAABAAEAAAAIAAkAAAAAAAEAAAAJAAIAAAADAAEAAAAJAAMAAAACAAEAAAAJAAQAAAADAAEAAAAJAAUAAAACAAEAAAAJAAYAAAADAAEAAAAJAAcAAAACAAEAAAAJAAgAAAADAAEAAAAJAAkAAAACAAEAAAATAAIAAAAHAAEAAAATAAMAAAAGAAEAAAATAAYAAAAHAAEAAAATAAcAAAAGAAEAAAATAAUAAAAHAAAAAAATAAkAAAAHAAAAAAATAAgAAAAHAAEAAAATAAQAAAAHAAEAAAAKAAIAAAAGAAEAAAAKAAMAAAAHAAEAAAAKAAQAAAAGAAEAAAAKAAUAAAAHAAEAAAAKAAYAAAAGAAEAAAAKAAcAAAAHAAEAAAAKAAgAAAAGAAEAAAAKAAkAAAAHAAEAAAALAAIAAAAFAAAAAAALAAMAAAAFAAEAAAALAAQAAAAEAAEAAAALAAUAAAAFAAEAAAALAAYAAAAEAAEAAAALAAcAAAAFAAEAAAALAAgAAAAEAAEAAAALAAkAAAAFAAEAAAAMAAIAAAAFAAEAAAAMAAMAAAAEAAEAAAAMAAQAAAAEAAAAAAAMAAUAAAAEAAEAAAAMAAYAAAAFAAEAAAAMAAcAAAAEAAEAAAAMAAgAAAAEAAAAAAAMAAkAAAAEAAEAAAANAAIAAAAEAAEAAAANAAMAAAAFAAEAAAANAAQAAAAEAAEAAAANAAUAAAAFAAEAAAANAAYAAAAEAAEAAAANAAcAAAAFAAEAAAANAAgAAAAEAAEAAAANAAkAAAAEAAAAAAAOAAIAAAAFAAEAAAAOAAMAAAAEAAEAAAAOAAQAAAAFAAEAAAAOAAUAAAAEAAEAAAAOAAYAAAAEAAAAAAAOAAcAAAAEAAEAAAAOAAgAAAAFAAEAAAAOAAkAAAAEAAEAAAAPAAIAAAAEAAEAAAAPAAMAAAAFAAEAAAAPAAQAAAAEAAEAAAAPAAUAAAAFAAEAAAAPAAYAAAAEAAEAAAAPAAcAAAAFAAEAAAAPAAgAAAAEAAEAAAAPAAkAAAAFAAEAAAAQAAIAAAAFAAEAAAAQAAMAAAAEAAEAAAAQAAQAAAAEAAAAAAAQAAUAAAAEAAEAAAAQAAYAAAAFAAEAAAAQAAcAAAAEAAEAAAAQAAgAAAAFAAEAAAAQAAkAAAAEAAEAAAARAAIAAAAFAAAAAAARAAMAAAAFAAEAAAARAAQAAAAEAAEAAAARAAUAAAAFAAEAAAARAAYAAAAEAAEAAAARAAcAAAAFAAEAAAARAAgAAAAFAAAAAAARAAkAAAAFAAEAAAASAAIAAAAFAAEAAAASAAMAAAAFAAAAAAASAAQAAAAFAAEAAAASAAUAAAAEAAEAAAASAAYAAAAFAAEAAAASAAcAAAAFAAAAAAASAAgAAAAFAAEAAAASAAkAAAAEAAEAAAABAAAAAAADAAEAAAADAAAAAAADAAEAAAAFAAAAAAADAAEAAAAHAAAAAAADAAEAAAAJAAAAAAADAAEAAAAIAP//AAADAAEAAAAGAP//AAADAAEAAAAEAP//AAADAAEAAAACAP//AAADAAEAAAAAAP//AAADAAEAAAAAAAAAAAACAAEAAAABAP//AAACAAEAAAACAAAAAAACAAEAAAADAP//AAACAAEAAAAEAAAAAAACAAEAAAAFAP//AAACAAEAAAAGAAAAAAACAAEAAAAHAP//AAACAAEAAAAIAAAAAAACAAEAAAAJAP//AAACAAEAAAALAAAAAAAHAAEAAAANAAAAAAAHAAEAAAAPAAAAAAAHAAEAAAARAAAAAAAHAAEAAAATAAAAAAAHAAEAAAASAP//AAAHAAEAAAAQAP//AAAHAAEAAAAOAP//AAAHAAEAAAAMAP//AAAHAAEAAAAKAP//AAAHAAEAAAAKAAAAAAAGAAEAAAALAP//AAAGAAEAAAAMAAAAAAAGAAEAAAANAP//AAAGAAEAAAAOAAAAAAAGAAEAAAAPAP//AAAGAAEAAAAQAAAAAAAGAAEAAAARAP//AAAGAAEAAAASAAAAAAAGAAEAAAATAP//AAAGAAEAAAAAAAsAAAADAAEAAAACAAsAAAADAAEAAAAEAAsAAAADAAEAAAAGAAsAAAADAAEAAAAIAAsAAAADAAEAAAAKAAsAAAAHAAEAAAAMAAsAAAAHAAEAAAAOAAsAAAAHAAEAAAAQAAsAAAAHAAEAAAASAAsAAAAHAAEAAAATAAsAAAAGAAEAAAARAAsAAAAGAAEAAAAPAAsAAAAGAAEAAAANAAsAAAAGAAEAAAALAAsAAAAGAAEAAAAJAAsAAAACAAEAAAAHAAsAAAACAAEAAAAFAAsAAAACAAEAAAADAAsAAAACAAEAAAABAAsAAAACAAEAAAA=")
 tile_set = SubResource("TileSet_i7mqe")
+
+[node name="White" type="Sprite2D" parent="."]
+self_modulate = Color(1, 0.86, 0.993, 1)
+material = SubResource("ShaderMaterial_vytax")
+position = Vector2(321, 176)
+texture = ExtResource("3_1h3k0")
+
+[node name="Separator2" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_del0o")
+position = Vector2(305, 176)
+scale = Vector2(0.9375, 1)
+texture = ExtResource("3_pkqa3")
+
+[node name="Separator" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_78oyj")
+position = Vector2(334.999, 176)
+rotation = 3.14159
+scale = Vector2(0.937429, -1)
+texture = ExtResource("5_vf1iu")
+
+[node name="grassborder" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ke7wo")
+}
+autoplay = "wave2"
+
+[node name="warpgrassborder" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_n0rqa")
+}
+autoplay = "wavy3"
+
+[node name="Node2D" parent="." instance=ExtResource("6_sanjg")]
+material = SubResource("ShaderMaterial_wb1fm")
+position = Vector2(20, 93)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+clip_children = 2
+visibility_layer = 2
+material = SubResource("ShaderMaterial_nhb1b")
+offset_left = 313.5
+offset_top = -41.0
+offset_right = 771.5
+offset_bottom = 417.0
+mouse_filter = 2

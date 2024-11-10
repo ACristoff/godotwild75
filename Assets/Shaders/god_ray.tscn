@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://domnit2msh3jg"]
+
+[ext_resource type="Shader" path="res://Assets/Shaders/godrays.gdshader" id="1_6gql6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lvfqp"]
+resource_local_to_scene = true
+shader = ExtResource("1_6gql6")
+shader_parameter/angle = -0.3
+shader_parameter/position = -0.2
+shader_parameter/spread = 0.5
+shader_parameter/cutoff = 0.1
+shader_parameter/falloff = 0.2
+shader_parameter/edge_fade = 0.15
+shader_parameter/speed = 1.0
+shader_parameter/ray1_density = 8.0
+shader_parameter/ray2_density = 30.0
+shader_parameter/ray2_intensity = 0.3
+shader_parameter/color = Color(1, 0.9, 0.65, 0.8)
+shader_parameter/hdr = false
+shader_parameter/seed = 5.0
+
+[node name="Node2D" type="Node2D"]
+material = SubResource("ShaderMaterial_lvfqp")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+use_parent_material = true
+offset_left = -59.5
+offset_top = -122.0
+offset_right = 188.5
+offset_bottom = 134.0
+mouse_filter = 2
