@@ -3,16 +3,15 @@
 [ext_resource type="PackedScene" uid="uid://hqcychtuc805" path="res://Game/Characters/unit_base.tscn" id="1_qvwdw"]
 [ext_resource type="Script" path="res://Game/Data/battle_manager.gd" id="1_uyhos"]
 [ext_resource type="PackedScene" uid="uid://d1rww8eno83bs" path="res://Game/Data/Cursor/cursor.tscn" id="2_pogwr"]
-[ext_resource type="PackedScene" path="res://Game/Data/unit_path.tscn" id="4_feshh"]
+[ext_resource type="PackedScene" uid="uid://copviu6p757h8" path="res://Game/Data/unit_path.tscn" id="4_feshh"]
 
 [node name="DebugLevel" type="Node2D"]
 script = ExtResource("1_uyhos")
 
 [node name="UnitBase" parent="." instance=ExtResource("1_qvwdw")]
-position = Vector2(168, 168)
+position = Vector2(136, 136)
 
 [node name="Cursor" parent="." instance=ExtResource("2_pogwr")]
-position = Vector2(40, 40)
 
 [node name="UnitPath" parent="." instance=ExtResource("4_feshh")]
 y_sort_origin = -1
