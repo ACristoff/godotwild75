@@ -19,10 +19,25 @@ func _ready():
 	reinitialize()
 	pass
 
+##Finds the next unit in a given team that has moves available
+func find_next_possible(team):
+	var candidate = null
+	for unit in team:
+		print(unit)
+	return
+
+func turn_manager():
+	if is_player_turn:
+		#Check if all units are exhausted
+		var next_unit = find_next_possible(friendlies)
+		print(next_unit)
+		pass
+	pass
+
 ## Clears, and refills the `_units` dictionary with game objects that are on the board.
+##Fills the friendlies and enemies dictionaries with references for turn ordering
 func reinitialize():
 	units.clear()
-	
 	for child in get_children():
 		var unit := child as Unit
 		if not unit:
