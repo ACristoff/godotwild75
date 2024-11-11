@@ -8,6 +8,7 @@ extends Node2D
 signal accept_pressed(cell)
 ## Emitted when the cursor moved to a new cell.
 signal moved(new_cell)
+signal deselect_pressed()
 
 ## Grid resource, giving the node access to the grid size, and more.
 @export var grid: Resource
@@ -64,7 +65,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event.is_action_pressed("click") or event.is_action_pressed("ui_accept"):
 		emit_signal("accept_pressed", cell)
 		get_viewport().set_input_as_handled()
-
+	elif event.is_action_pressed("right_click"):
+		deselect_pressed.emit()
 	var should_move := event.is_pressed() 
 	if event.is_echo():
 		should_move = should_move and _timer.is_stopped()

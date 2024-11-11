@@ -26,4 +26,5 @@ position = Vector2(96, 160)
 position = Vector2(299, 297)
 
 [connection signal="accept_pressed" from="Cursor" to="." method="_on_cursor_accept_pressed"]
+[connection signal="deselect_pressed" from="Cursor" to="." method="_on_cursor_deselect_pressed"]
 [connection signal="moved" from="Cursor" to="." method="_on_cursor_moved"]
