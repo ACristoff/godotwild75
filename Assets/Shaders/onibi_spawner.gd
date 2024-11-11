@@ -17,7 +17,7 @@ func spawn():
 	var ONIBI = fire.instantiate()
 	self.add_child(ONIBI)
 	ONIBI.position = Vector2(rand_x, rand_y)
-	prints(rand_x, rand_y, ONIBI.position)
+	#prints(rand_x, rand_y, ONIBI.position)
 
 func _on_spawner_timeout() -> void:
 	spawn()

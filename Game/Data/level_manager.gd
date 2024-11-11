@@ -20,7 +20,8 @@ func _input(event):
 	if event.is_action_pressed("debug_prev_level"):
 		prevLevel()
 	if event.is_action_pressed("click"):
-		print("click")
+		#print("click")
+		pass
 	pass
 
 func switchScene(level):
