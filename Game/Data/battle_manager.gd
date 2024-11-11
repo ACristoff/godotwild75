@@ -21,16 +21,22 @@ func _ready():
 
 ##Finds the next unit in a given team that has moves available
 func find_next_possible(team):
-	var candidate = null
+	#var candidate = null
 	for unit in team:
-		print(unit)
-	return
+		var current = units[unit] as PlayerUnit
+		if !current.has_moved:
+			return current
+	return null
 
 func turn_manager():
+	print(units)
 	if is_player_turn:
 		#Check if all units are exhausted
 		var next_unit = find_next_possible(friendlies)
-		print(next_unit)
+		if next_unit == null:
+			is_player_turn = false
+			prints('player turn:', is_player_turn)
+		#print(next_unit)
 		pass
 	pass
 
@@ -48,6 +54,7 @@ func reinitialize():
 			friendlies[unit.cell] = unit
 		if unit is EnemyUnit:
 			enemies[unit.cell] = unit
+	turn_manager()
 
 func on_unit_state_change(state):
 	if state == PlayerUnit.unit_states.MOVE_THINK:
@@ -116,11 +123,15 @@ func move_current_unit(new_cell: Vector2):
 		return
 	units.erase(active_unit.cell)
 	units[new_cell] = active_unit
+	#TODO repeated code, refactor later
+	friendlies.erase(active_unit.cell)
+	friendlies[new_cell] = active_unit
 	deselect_unit()
 	active_unit.walk_along(unit_path.current_path)
 	await active_unit.walk_finished
 	active_unit.has_moved = true
 	clear_active_unit()
+	turn_manager()
 
 func clear_active_unit() -> void:
 	active_unit = null
