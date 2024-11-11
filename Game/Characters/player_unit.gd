@@ -9,6 +9,15 @@ enum unit_states {IDLE, SELECTED, ATTACK_THINK, MOVE_THINK, ATTACKING, MOVING}
 
 var unit_state = unit_states.IDLE
 
+var attacks = {
+	"BASE": {
+		"RANGE": 3,
+		"DAMAGE": 2,
+		"EXORCISM": false,
+		"BLAST_PATTERN": []
+	},
+}
+
 signal unit_state_change(state: unit_states)
 
 ## Toggles the "selected" animation on the unit.
@@ -36,7 +45,6 @@ func action_select(state):
 
 func _process(delta):
 	super(delta)
-	
 	pass
 
 #On_action_selected
