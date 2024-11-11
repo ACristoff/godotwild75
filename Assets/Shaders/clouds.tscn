@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://ct7uf0wb0o5h6"]
+
+[ext_resource type="Shader" path="res://Assets/Shaders/cloudshadow.gdshader" id="1_my8l3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qhrs1"]
+resource_local_to_scene = true
+shader = ExtResource("1_my8l3")
+shader_parameter/intensity = 1.0
+shader_parameter/use_custom_texture = 0.0
+shader_parameter/clouds_speed = 2.0
+shader_parameter/clouds_direction = 0.2
+shader_parameter/clouds_scale = 1.0
+shader_parameter/clouds_cutoff = 0.3
+shader_parameter/clouds_fuzziness = 0.5
+shader_parameter/clouds_color = Color(1, 1, 1, 1)
+shader_parameter/edge_fade = 0.15
+shader_parameter/box_position_x = 0.5
+shader_parameter/box_position_y = 0.5
+shader_parameter/box_size = 0.2
+
+[node name="Control" type="Control"]
+material = SubResource("ShaderMaterial_qhrs1")
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+use_parent_material = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
