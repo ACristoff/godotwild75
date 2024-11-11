@@ -107,6 +107,9 @@ func _process(delta: float) -> void:
 			#print("down")
 			pass
 	old_pos = _sprite.global_position
+	var new_anim = str("idle_" + direction.keys()[current_direction])
+	prints(direction.keys()[current_direction], new_anim)
+	_anim_player.current_animation = new_anim
 	walk(delta)
 
 
