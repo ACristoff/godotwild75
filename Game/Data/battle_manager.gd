@@ -5,6 +5,8 @@ const DIRECTIONS = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 
 @export var grid: Resource = preload("res://Game/Data/grid.tres")
 
+@export var level_music: AudioStreamWAV
+
 var units := {}
 var enemies := {}
 var friendlies := {}
