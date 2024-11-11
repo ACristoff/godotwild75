@@ -33,7 +33,7 @@ func render_attacks(attacks):
 		var current = attacks[attack]
 		var new_attack_text = str(attack, ' ', current.DAMAGE)
 		#prints(new_attack_text)
-		menu.new_button(new_attack_text)
+		menu.new_button(new_attack_text, attack)
 		menu.connect('attack_chosen', _on_attack_chosen)
 	pass
 
@@ -60,7 +60,6 @@ func _on_attack_pressed() -> void:
 	attack_selected.emit()
 	$select_sound.play()
 
-func _on_attack_chosen():
-	print('test')
-	#attack_chosen.emit(attack)
+func _on_attack_chosen(attack):
+	print(attack)
 	pass
