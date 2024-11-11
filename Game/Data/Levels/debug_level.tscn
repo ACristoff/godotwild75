@@ -18,10 +18,10 @@ script = ExtResource("1_uyhos")
 y_sort_origin = -1
 
 [node name="PlayerUnit" parent="." instance=ExtResource("5_sf2un")]
-position = Vector2(801, 240)
+position = Vector2(867, 481)
 
 [node name="MikoUnit" parent="." instance=ExtResource("6_ichhw")]
-position = Vector2(299, 297)
+position = Vector2(287, 489)
 
 [node name="EnemyBase" parent="." instance=ExtResource("6_xe3j1")]
 position = Vector2(262, 230)
