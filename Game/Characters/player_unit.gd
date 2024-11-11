@@ -36,6 +36,7 @@ func action_select(state):
 
 func _process(delta):
 	super(delta)
+	
 	pass
 
 #On_action_selected

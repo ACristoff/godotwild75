@@ -6,6 +6,8 @@ const DIRECTIONS = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 @export var grid: Resource = preload("res://Game/Data/grid.tres")
 
 var units := {}
+var enemies := {}
+var friendlies := {}
 var active_unit: Unit
 var walkable_cells := []
 var is_player_turn: bool = true
@@ -17,16 +19,42 @@ func _ready():
 	reinitialize()
 	pass
 
+##Finds the next unit in a given team that has moves available
+func find_next_possible(team):
+	#var candidate = null
+	for unit in team:
+		var current = units[unit] as PlayerUnit
+		if !current.has_moved:
+			return current
+	return null
+
+func turn_manager():
+	print(units)
+	if is_player_turn:
+		#Check if all units are exhausted
+		var next_unit = find_next_possible(friendlies)
+		if next_unit == null:
+			is_player_turn = false
+			prints('player turn:', is_player_turn)
+		#print(next_unit)
+		pass
+	pass
+
 ## Clears, and refills the `_units` dictionary with game objects that are on the board.
+##Fills the friendlies and enemies dictionaries with references for turn ordering
 func reinitialize():
 	units.clear()
-	
 	for child in get_children():
 		var unit := child as Unit
 		if not unit:
 			continue
 		units[unit.cell] = unit
 		unit.connect("unit_state_change", on_unit_state_change)
+		if unit is PlayerUnit:
+			friendlies[unit.cell] = unit
+		if unit is EnemyUnit:
+			enemies[unit.cell] = unit
+	turn_manager()
 
 func on_unit_state_change(state):
 	if state == PlayerUnit.unit_states.MOVE_THINK:
@@ -95,11 +123,15 @@ func move_current_unit(new_cell: Vector2):
 		return
 	units.erase(active_unit.cell)
 	units[new_cell] = active_unit
+	#TODO repeated code, refactor later
+	friendlies.erase(active_unit.cell)
+	friendlies[new_cell] = active_unit
 	deselect_unit()
 	active_unit.walk_along(unit_path.current_path)
 	await active_unit.walk_finished
 	active_unit.has_moved = true
 	clear_active_unit()
+	turn_manager()
 
 func clear_active_unit() -> void:
 	active_unit = null
