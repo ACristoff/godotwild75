@@ -112,3 +112,4 @@ libraries = {
 "": SubResource("AnimationLibrary_d0on5")
 }
 autoplay = "idle_UP"
+speed_scale = 0.5

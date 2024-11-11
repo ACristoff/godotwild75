@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" path="res://Game/Data/unit_path.tscn" id="4_feshh"]
 [ext_resource type="PackedScene" uid="uid://2nbe138odbl8" path="res://Game/Characters/miko_unit.tscn" id="6_ichhw"]
 [ext_resource type="PackedScene" uid="uid://cg34obo360a5w" path="res://Game/Characters/enemy_base.tscn" id="6_xe3j1"]
-[ext_resource type="PackedScene" uid="uid://dsajr33ktqwdk" path="res://Game/Characters/heiko_unit.tscn" id="7_2tvfr"]
+[ext_resource type="PackedScene" uid="uid://2r5lvg6715f" path="res://Game/Characters/heiko_unit.tscn" id="7_2tvfr"]
 
 [node name="DebugLevel" type="Node2D"]
 y_sort_enabled = true
