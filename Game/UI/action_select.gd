@@ -2,6 +2,7 @@ extends Node2D
 
 
 signal attack_selected
+signal attack_chosen
 signal move_selected
 
 @onready var move = $move
@@ -33,6 +34,7 @@ func render_attacks(attacks):
 		var new_attack_text = str(attack, ' ', current.DAMAGE)
 		#prints(new_attack_text)
 		menu.new_button(new_attack_text)
+		menu.connect('attack_chosen', _on_attack_chosen)
 	pass
 
 func _on_move_mouse_entered() -> void:
@@ -57,3 +59,8 @@ func _on_move_pressed() -> void:
 func _on_attack_pressed() -> void:
 	attack_selected.emit()
 	$select_sound.play()
+
+func _on_attack_chosen():
+	print('test')
+	#attack_chosen.emit(attack)
+	pass

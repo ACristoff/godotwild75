@@ -1,11 +1,17 @@
 extends Node2D
 
 @onready var attack_button = preload("res://Game/UI/attack_button_template.tscn")
-#@onready var attack_menu = preload("res://Game/UI/attack_select.tscn")
+
+signal attack_chosen
 
 func new_button(attack):
-	print(attack, attack_button)
-	var new_button = attack_button.instantiate()
-	self.add_child(new_button)
-	new_button.text = attack
+	#print(attack, attack_button)
+	var new_button_inst = attack_button.instantiate()
+	self.add_child(new_button_inst)
+	new_button_inst.text = attack
+	new_button_inst.connect("pressed", emit_chosen)
+	pass
+
+func emit_chosen():
+	print("bingus")
 	pass
