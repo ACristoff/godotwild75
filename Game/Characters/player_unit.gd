@@ -5,7 +5,7 @@ class_name PlayerUnit
 @onready var action_ui = $action_select
 
 #The logic for having these various states is due to so many different UI elements
-enum unit_states {IDLE, SELECTED, ATTACK_THINK, MOVE_THINK, ATTACKING, MOVING}
+enum unit_states {IDLE, SELECTED, ATTACK_THINK, ATTACK_ACTION_THINK, MOVE_THINK, ATTACKING, MOVING}
 
 var unit_state = unit_states.IDLE
 
@@ -36,6 +36,7 @@ var is_selected := false:
 
 var has_moved = false
 var has_attacked = false
+var current_attack = null
 
 #Action select
 #Spawn the action select
@@ -55,6 +56,7 @@ func _process(delta):
 func attack(cells, damage):
 	super(cells, damage)
 	has_attacked = true
+	current_attack = null
 	pass
 
 #State transition func
@@ -81,7 +83,8 @@ func _on_action_select_move_selected():
 	action_select(false)
 	pass # Replace with function body.
 
-
 func _on_action_select_attack_chosen(attack):
-	print(attack)
+	current_attack = attacks[attack]
+	state_change(unit_states.ATTACK_ACTION_THINK)
+	action_select(false)
 	pass # Replace with function body.
