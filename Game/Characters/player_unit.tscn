@@ -12,7 +12,6 @@ skin = ExtResource("4_ptio3")
 
 [node name="Sprite" parent="PathFollow2D" index="1"]
 y_sort_enabled = false
-texture = ExtResource("4_ptio3")
 frame = 0
 
 [node name="action_select" parent="." index="2" instance=ExtResource("4_4dehy")]

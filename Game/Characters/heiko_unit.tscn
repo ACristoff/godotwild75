@@ -100,6 +100,7 @@ _data = {
 }
 
 [node name="HeikoUnit" instance=ExtResource("1_k1f0n")]
+skin = ExtResource("2_htbp3")
 
 [node name="Sprite" parent="PathFollow2D" index="1"]
 texture = ExtResource("2_htbp3")
