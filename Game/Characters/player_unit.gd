@@ -47,8 +47,6 @@ func _process(delta):
 func state_change(state):
 	unit_state = state
 	unit_state_change.emit(unit_state)
-	#print(unit_state)
-
 func finish_walk():
 	super()
 	state_change(unit_states.IDLE)

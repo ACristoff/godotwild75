@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://8wlgl1cect8y"]
+[gd_scene load_steps=3 format=3 uid="uid://uxh57d4b5bja"]
 
 [ext_resource type="Shader" path="res://Assets/Shaders/clouds.gdshader" id="1_ne2yd"]
 
@@ -16,6 +16,8 @@ shader_parameter/edge_fade = 0.66
 shader_parameter/box_position_x = 0.5
 shader_parameter/box_position_y = 0.5
 shader_parameter/box_size = 0.0
+shader_parameter/PRIME_X = 501125701
+shader_parameter/PRIME_Y = 1136930381
 
 [node name="smog" type="Control"]
 material = SubResource("ShaderMaterial_en568")
