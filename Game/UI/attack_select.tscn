@@ -1,26 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cu4pnsew27ruv"]
+[gd_scene load_steps=2 format=3 uid="uid://cu4pnsew27ruv"]
 
 [ext_resource type="Script" path="res://Game/UI/attack_select.gd" id="1_1ew2b"]
-[ext_resource type="Theme" uid="uid://b1i1vgp6mmqn5" path="res://Assets/Themes/Buttons.tres" id="1_lmpgv"]
-[ext_resource type="Texture2D" uid="uid://dipb1eh6q500v" path="res://Assets/UserInterface/Gameplay/FightIcon.png" id="2_n8swb"]
 
 [node name="AttackSelect" type="Node2D"]
 script = ExtResource("1_1ew2b")
-
-[node name="attack" type="Button" parent="."]
-visible = false
-offset_left = 120.0
-offset_right = 347.0
-offset_bottom = 39.0
-theme = ExtResource("1_lmpgv")
-theme_override_colors/font_hover_pressed_color = Color(0.776471, 0.168627, 0.168627, 1)
-theme_override_colors/font_hover_color = Color(0.94, 0.368167, 0.2538, 1)
-theme_override_colors/font_pressed_color = Color(0.776471, 0.168627, 0.168627, 1)
-theme_override_colors/font_focus_color = Color(0.776471, 0.168627, 0.168627, 1)
-theme_override_colors/font_color = Color(0.776471, 0.168627, 0.168627, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 7
-theme_override_constants/icon_max_width = 25
-theme_override_font_sizes/font_size = 38
-text = "Attack Name 2"
-icon = ExtResource("2_n8swb")

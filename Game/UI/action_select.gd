@@ -35,6 +35,10 @@ func render_attacks(attacks):
 		menu.connect('attack_chosen', _on_attack_chosen)
 	pass
 
+func attacking(attack_key):
+	attack_chosen.emit(attack_key)
+	pass
+
 func _on_move_mouse_entered() -> void:
 	var tween = create_tween()
 	tween.set_parallel(true)
@@ -59,5 +63,5 @@ func _on_attack_pressed() -> void:
 	$select_sound.play()
 
 func _on_attack_chosen(attack):
-	print(attack)
+	attacking(attack)
 	pass

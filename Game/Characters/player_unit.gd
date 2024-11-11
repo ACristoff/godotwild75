@@ -80,3 +80,8 @@ func _on_action_select_move_selected():
 	state_change(unit_states.MOVE_THINK)
 	action_select(false)
 	pass # Replace with function body.
+
+
+func _on_action_select_attack_chosen(attack):
+	print(attack)
+	pass # Replace with function body.
