@@ -70,6 +70,8 @@ func on_unit_state_change(state):
 	if state == PlayerUnit.unit_states.ATTACK_ACTION_THINK:
 		print("ATTACK PICKED, NOW CHOOSING")
 		print(active_unit.current_attack)
+		var attack_cells = get_attack_cells(active_unit, active_unit.current_attack)
+		print(attack_cells)
 	pass
 
 ## Returns `true` if the cell is occupied by a unit.

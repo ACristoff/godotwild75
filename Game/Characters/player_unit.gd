@@ -11,7 +11,7 @@ var unit_state = unit_states.IDLE
 
 var attacks = {
 	"BASE": {
-		"RANGE": 3,
+		"RANGE": 2,
 		"DAMAGE": 2,
 		"MOVE": Vector2(0,0),
 		"EXORCISM": false,
