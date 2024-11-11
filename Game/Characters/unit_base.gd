@@ -12,10 +12,11 @@ signal walk_finished
 @onready var _anim_player: AnimationPlayer = $AnimationPlayer
 @onready var _path_follow: PathFollow2D = $PathFollow2D
 
-#Fix this later with a proper data struct that is descriptive
+#const VECTOR_DIRECTIONS = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 enum direction {UP, DOWN, LEFT, RIGHT}
 #direction the unit is facing
 var current_direction = direction.UP
+@onready var old_pos = global_position
 
 ## Shared resource of type Grid, used to calculate map coordinates.
 @export var grid: Resource
@@ -73,7 +74,6 @@ func _ready() -> void:
 
 func walk(delta):
 	_path_follow.progress += move_speed * delta
-	
 	if _path_follow.progress_ratio >= 1.0:
 		_is_walking = false
 		# Setting this value to 0.0 causes a Zero Length Interval error
@@ -88,7 +88,27 @@ func finish_walk():
 	pass
 
 func _process(delta: float) -> void:
+	#prints(old_pos, _sprite.global_position)
+	if old_pos != _sprite.global_position:
+		var normal = ( _sprite.global_position - old_pos).normalized()
+		if normal == Vector2.LEFT: 
+			#print("left")
+			current_direction = direction.LEFT
+		elif normal == Vector2.RIGHT:
+			#print("right")
+			current_direction = direction.RIGHT
+			pass
+		elif normal == Vector2.UP:
+			#print("up")
+			current_direction = direction.UP
+			pass
+		elif normal == Vector2.DOWN:
+			current_direction = direction.DOWN
+			#print("down")
+			pass
+	old_pos = _sprite.global_position
 	walk(delta)
+
 
 func explode(pattern):
 	print("boom, explosion pattern:", pattern)
@@ -103,8 +123,6 @@ func die():
 	queue_free()
 	pass
 
-
-
 #All the stuff for taking damage
 func take_damage(damage):
 	health -= damage
@@ -117,7 +135,7 @@ func attack(cells, damage):
 	prints(cells, damage)
 	pass
 
-## Starts walking along the `path`.
+## Starts walking along`	 the `path`.
 ## `path` is an array of grid coordinates that the function converts to map coordinates.
 func walk_along(path: PackedVector2Array) -> void:
 	if path.is_empty():
@@ -127,4 +145,4 @@ func walk_along(path: PackedVector2Array) -> void:
 		curve.add_point(grid.calculate_map_position(point) - position)
 	cell = path[-1]
 	_is_walking = true
-	print(path)
+	#print(path)

@@ -6,6 +6,8 @@ const DIRECTIONS = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 @export var grid: Resource = preload("res://Game/Data/grid.tres")
 
 var units := {}
+var enemies := {}
+var friendlies := {}
 var active_unit: Unit
 var walkable_cells := []
 var is_player_turn: bool = true
@@ -27,6 +29,13 @@ func reinitialize():
 			continue
 		units[unit.cell] = unit
 		unit.connect("unit_state_change", on_unit_state_change)
+		if unit is PlayerUnit:
+			print(unit)
+			friendlies[unit.cell] = unit
+		if unit is EnemyUnit:
+			print(unit)
+			enemies[unit.cell] = unit
+	prints(friendlies, enemies, units)
 
 func on_unit_state_change(state):
 	if state == PlayerUnit.unit_states.MOVE_THINK:
