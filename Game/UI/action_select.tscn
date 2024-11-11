@@ -12,7 +12,7 @@
 texture = ExtResource("3_7jwym")
 modulate_color = Color(0, 0, 0, 0.509804)
 
-[node name="action_select" type="Node2D"]
+[node name="ActionSelect" type="Node2D"]
 script = ExtResource("1_7o3yn")
 
 [node name="move" type="Button" parent="."]

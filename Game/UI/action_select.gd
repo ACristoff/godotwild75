@@ -7,6 +7,8 @@ signal move_selected
 @onready var move = $move
 @onready var attack = $attack
 
+@onready var attack_menu = preload("res://Game/UI/attack_select.tscn")
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	self.visible = false
@@ -20,6 +22,17 @@ func disable_attack():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	pass
+
+func render_attacks(attacks):
+	#print(attacks)
+	var menu = attack_menu.instantiate()
+	attack.add_child(menu)
+	for attack in attacks:
+		var current = attacks[attack]
+		var new_attack_text = str(attack, ' ', current.DAMAGE)
+		#prints(new_attack_text)
+		menu.new_button(new_attack_text)
 	pass
 
 func _on_move_mouse_entered() -> void:

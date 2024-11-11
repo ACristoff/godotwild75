@@ -65,6 +65,7 @@ func on_unit_state_change(state):
 		unit_path.initialize(walkable_cells)
 	if state == PlayerUnit.unit_states.ATTACK_THINK:
 		print("ATTACK THINK!")
+		#var attack_cells = get_attack_cells()
 		pass
 	pass
 
@@ -75,6 +76,9 @@ func is_occupied(cell: Vector2) -> bool:
 ## Returns an array of cells a given unit can walk using the flood fill algorithm.
 func get_walkable_cells(unit: Unit) -> Array:
 	return flood_fill(unit.cell, unit.move_range)
+
+func get_attack_cells(unit: PlayerUnit, attack):
+	return flood_fill(unit.cell, attack.RANGE)
 
 func flood_fill(origin: Vector2, max_distance: int):
 	var array = []

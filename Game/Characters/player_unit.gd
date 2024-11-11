@@ -13,8 +13,9 @@ var attacks = {
 	"BASE": {
 		"RANGE": 3,
 		"DAMAGE": 2,
+		"MOVE": Vector2(0,0),
 		"EXORCISM": false,
-		"BLAST_PATTERN": []
+		"BLAST_PATTERN": [],
 	},
 }
 
@@ -51,11 +52,20 @@ func _process(delta):
 #grab the signal from action select
 #transition unit state
 #do action
+func attack(cells, damage):
+	super(cells, damage)
+	has_attacked = true
+	pass
 
 #State transition func
 func state_change(state):
 	unit_state = state
 	unit_state_change.emit(unit_state)
+	
+	if state == unit_states.ATTACK_THINK:
+		action_ui.render_attacks(attacks)
+		#action_select(false)
+
 func finish_walk():
 	super()
 	state_change(unit_states.IDLE)
