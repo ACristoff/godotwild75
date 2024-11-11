@@ -45,12 +45,9 @@ func reinitialize():
 		units[unit.cell] = unit
 		unit.connect("unit_state_change", on_unit_state_change)
 		if unit is PlayerUnit:
-			print(unit)
 			friendlies[unit.cell] = unit
 		if unit is EnemyUnit:
-			print(unit)
 			enemies[unit.cell] = unit
-	prints(friendlies, enemies, units)
 
 func on_unit_state_change(state):
 	if state == PlayerUnit.unit_states.MOVE_THINK:
