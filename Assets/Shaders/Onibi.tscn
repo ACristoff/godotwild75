@@ -1,0 +1,55 @@
+[gd_scene load_steps=10 format=3 uid="uid://c0okvummo8dad"]
+
+[ext_resource type="Texture2D" uid="uid://cxv5b7d60qvm7" path="res://Assets/Effects/Particles/firelantern.png" id="1_85llr"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rn58b"]
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Curve" id="Curve_1lka6"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0901857, 1), 0.0, 0.0, 0, 0, Vector2(0.830239, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_wj67u"]
+curve = SubResource("Curve_1lka6")
+
+[sub_resource type="Gradient" id="Gradient_1es4o"]
+offsets = PackedFloat32Array(0.802292, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0, 0.95, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_uhbvv"]
+gradient = SubResource("Gradient_1es4o")
+
+[sub_resource type="Curve" id="Curve_vxclq"]
+min_value = -1.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_niunw"]
+curve = SubResource("Curve_vxclq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qlb1e"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 9.357
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 4.0
+color_ramp = SubResource("GradientTexture1D_uhbvv")
+alpha_curve = SubResource("CurveTexture_wj67u")
+hue_variation_min = -2.23517e-08
+hue_variation_max = -2.23517e-08
+hue_variation_curve = SubResource("CurveTexture_niunw")
+anim_speed_min = 20.0
+anim_speed_max = 20.0
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_rn58b")
+amount = 2
+process_material = SubResource("ParticleProcessMaterial_qlb1e")
+texture = ExtResource("1_85llr")
+lifetime = 10.0
