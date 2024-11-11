@@ -4,16 +4,23 @@ extends Node2D
 signal attack_selected
 signal move_selected
 
+@onready var move = $move
+@onready var attack = $attack
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	self.visible = false
 	pass # Replace with function body.
 
+func disable_move():
+	move.disabled = true
+
+func disable_attack():
+	attack.disabled = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
-
 
 func _on_move_mouse_entered() -> void:
 	var tween = create_tween()

@@ -52,6 +52,7 @@ func state_change(state):
 func finish_walk():
 	super()
 	state_change(unit_states.IDLE)
+	action_ui.disable_move()
 	pass
 
 #func attack_selected():
@@ -71,4 +72,5 @@ func _on_action_select_attack_selected():
 
 func _on_action_select_move_selected():
 	state_change(unit_states.MOVE_THINK)
+	action_select(false)
 	pass # Replace with function body.
