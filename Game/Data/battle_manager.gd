@@ -29,14 +29,15 @@ func find_next_possible(team):
 	return null
 
 func turn_manager():
-	print(units)
+	#print(units)
 	if is_player_turn:
 		#Check if all units are exhausted
 		var next_unit = find_next_possible(friendlies)
 		if next_unit == null:
 			is_player_turn = false
-			prints('player turn:', is_player_turn)
-		#print(next_unit)
+			#prints('player turn:', is_player_turn)
+	else:
+		#print("Enemy turn start")
 		pass
 	pass
 
@@ -49,9 +50,9 @@ func reinitialize():
 		if not unit:
 			continue
 		units[unit.cell] = unit
-		unit.connect("unit_state_change", on_unit_state_change)
 		if unit is PlayerUnit:
 			friendlies[unit.cell] = unit
+			unit.connect("unit_state_change", on_unit_state_change)
 		if unit is EnemyUnit:
 			enemies[unit.cell] = unit
 	turn_manager()

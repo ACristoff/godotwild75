@@ -92,23 +92,19 @@ func _process(delta: float) -> void:
 	if old_pos != _sprite.global_position:
 		var normal = ( _sprite.global_position - old_pos).normalized()
 		if normal == Vector2.LEFT: 
-			#print("left")
 			current_direction = direction.LEFT
 		elif normal == Vector2.RIGHT:
-			#print("right")
 			current_direction = direction.RIGHT
 			pass
 		elif normal == Vector2.UP:
-			#print("up")
 			current_direction = direction.UP
 			pass
 		elif normal == Vector2.DOWN:
 			current_direction = direction.DOWN
-			#print("down")
 			pass
 	old_pos = _sprite.global_position
 	var new_anim = str("idle_" + direction.keys()[current_direction])
-	prints(direction.keys()[current_direction], new_anim)
+	#prints(direction.keys()[current_direction], new_anim)
 	_anim_player.current_animation = new_anim
 	walk(delta)
 
