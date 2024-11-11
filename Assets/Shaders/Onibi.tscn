@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://c0okvummo8dad"]
+[gd_scene load_steps=11 format=3 uid="uid://c0okvummo8dad"]
 
 [ext_resource type="Texture2D" uid="uid://cxv5b7d60qvm7" path="res://Assets/Effects/Particles/firelantern.png" id="1_85llr"]
+[ext_resource type="Script" path="res://Assets/Shaders/onibi.gd" id="2_fyjgo"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rn58b"]
 particles_animation = true
@@ -16,7 +17,7 @@ point_count = 4
 curve = SubResource("Curve_1lka6")
 
 [sub_resource type="Gradient" id="Gradient_1es4o"]
-offsets = PackedFloat32Array(0.802292, 1)
+offsets = PackedFloat32Array(0.522124, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 0, 0.95, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_uhbvv"]
@@ -33,10 +34,10 @@ curve = SubResource("Curve_vxclq")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qlb1e"]
 particle_flag_disable_z = true
 direction = Vector3(0, -1, 0)
-spread = 9.357
-initial_velocity_min = 5.0
-initial_velocity_max = 10.0
-gravity = Vector3(0, 0, 0)
+spread = 0.0
+initial_velocity_min = 10.0
+initial_velocity_max = 25.0
+gravity = Vector3(0, 10, 0)
 scale_min = 2.0
 scale_max = 4.0
 color_ramp = SubResource("GradientTexture1D_uhbvv")
@@ -49,7 +50,14 @@ anim_speed_max = 20.0
 
 [node name="GPUParticles2D" type="GPUParticles2D"]
 material = SubResource("CanvasItemMaterial_rn58b")
-amount = 2
+amount = 1
 process_material = SubResource("ParticleProcessMaterial_qlb1e")
 texture = ExtResource("1_85llr")
 lifetime = 10.0
+script = ExtResource("2_fyjgo")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwgsd5xm65etm"]
+
+[ext_resource type="Script" path="res://Assets/Shaders/onibi_spawner.gd" id="1_3sj1q"]
+
+[node name="OnibiSpawner" type="Node2D"]
+script = ExtResource("1_3sj1q")
+
+[node name="Spawner" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Spawner" to="." method="_on_spawner_timeout"]
