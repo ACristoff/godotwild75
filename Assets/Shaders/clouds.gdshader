@@ -18,8 +18,8 @@ uniform float box_position_x : hint_range(0.0, 1.0) = 0.5; // X position
 uniform float box_position_y : hint_range(0.0, 1.0) = 0.5; // Y position
 uniform float box_size : hint_range(0.0, 1.0) = 0.2; // Size of the box
 
-const int PRIME_X = 501125321;
-const int PRIME_Y = 1136930381;
+uniform int PRIME_X = 501125221;
+uniform int PRIME_Y = 1136930381;
 
 float lerp(float a, float b, float t) {
     return a + t * (b - a);

@@ -10,8 +10,6 @@ var active_unit: Unit
 var walkable_cells := []
 var is_player_turn: bool = true
 
-
-
 @onready var unit_overlay = null
 @onready var unit_path: UnitPath = $UnitPath
 
@@ -112,7 +110,6 @@ func _on_cursor_accept_pressed(cell):
 		select_unit(cell)
 	elif active_unit.is_selected:
 		if active_unit.unit_state == PlayerUnit.unit_states.SELECTED && cell != active_unit.cell:
-			prints('happy thoughts', active_unit.cell, cell)
 			deselect_unit()
 			clear_active_unit()
 			
