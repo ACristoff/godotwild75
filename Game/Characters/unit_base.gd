@@ -13,9 +13,9 @@ signal walk_finished
 @onready var _path_follow: PathFollow2D = $PathFollow2D
 
 #Fix this later with a proper data struct that is descriptive
-var facing_direction = [1,2,3,4]
+enum direction {UP, DOWN, LEFT, RIGHT}
 #direction the unit is facing
-var current_direction = 3
+var current_direction = direction.UP
 
 ## Shared resource of type Grid, used to calculate map coordinates.
 @export var grid: Resource
@@ -127,3 +127,4 @@ func walk_along(path: PackedVector2Array) -> void:
 		curve.add_point(grid.calculate_map_position(point) - position)
 	cell = path[-1]
 	_is_walking = true
+	print(path)

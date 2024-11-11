@@ -5,7 +5,7 @@ class_name PlayerUnit
 @onready var action_ui = $action_select
 
 #The logic for having these various states is due to so many different UI elements
-enum unit_states {IDLE, SELECTED, ACTION_SELECT, ATTACK_THINK, MOVE_THINK, ATTACKING, MOVING}
+enum unit_states {IDLE, SELECTED, ATTACK_THINK, MOVE_THINK, ATTACKING, MOVING}
 
 var unit_state = unit_states.IDLE
 
@@ -16,9 +16,11 @@ var is_selected := false:
 	set(value):
 		is_selected = value
 		if is_selected:
+			unit_state = unit_states.SELECTED
 			action_select(true)
 			pass
 		else:
+			unit_state = unit_states.IDLE
 			action_select(false)
 			#_anim_player.play("idle")
 
@@ -36,14 +38,12 @@ func _process(delta):
 	super(delta)
 	pass
 
-#State transition func
-
-
 #On_action_selected
 #grab the signal from action select
 #transition unit state
 #do action
 
+#State transition func
 func state_change(state):
 	unit_state = state
 	unit_state_change.emit(unit_state)
@@ -55,20 +55,9 @@ func finish_walk():
 	action_ui.disable_move()
 	pass
 
-#func attack_selected():
-	#unit_state = 
-	#print()
-	#pass
-
-#func move_selected():
-	#unit_state = unit_states.MOVE_THINK
-	#pass
-
-
 func _on_action_select_attack_selected():
 	state_change(unit_states.ATTACK_THINK)
 	pass # Replace with function body.
-
 
 func _on_action_select_move_selected():
 	state_change(unit_states.MOVE_THINK)

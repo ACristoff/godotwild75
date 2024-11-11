@@ -83,12 +83,11 @@ func select_unit(cell: Vector2):
 		return
 	active_unit = units[cell]
 	active_unit.is_selected = true
-	#walkable_cells = get_walkable_cells(active_unit)
-	#unit_path.initialize(walkable_cells)
 	pass
 
 func deselect_unit():
-	active_unit.is_selected = false
+	if active_unit:
+		active_unit.is_selected = false
 #	unit_overlay.clear()
 	unit_path.stop()
 	pass
@@ -112,9 +111,21 @@ func _on_cursor_accept_pressed(cell):
 	if active_unit == null:
 		select_unit(cell)
 	elif active_unit.is_selected:
+		if active_unit.unit_state == PlayerUnit.unit_states.SELECTED && cell != active_unit.cell:
+			prints('happy thoughts', active_unit.cell, cell)
+			deselect_unit()
+			clear_active_unit()
+			
+			pass
 		move_current_unit(cell)
 
 func _on_cursor_moved(new_cell):
 	if active_unit and active_unit.is_selected and active_unit.unit_state == PlayerUnit.unit_states.MOVE_THINK:
 		unit_path.draw(active_unit.cell, new_cell)
+	pass # Replace with function body.
+
+func _on_cursor_deselect_pressed():
+	if active_unit:
+		deselect_unit()
+		clear_active_unit()
 	pass # Replace with function body.
