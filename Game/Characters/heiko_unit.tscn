@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://2r5lvg6715f"]
+
+[ext_resource type="PackedScene" uid="uid://cx4kwdcn8ymig" path="res://Game/Characters/player_unit.tscn" id="1_k1f0n"]
+
+[node name="HeikoUnit" instance=ExtResource("1_k1f0n")]

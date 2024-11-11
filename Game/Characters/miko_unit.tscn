@@ -111,3 +111,4 @@ texture = ExtResource("3_nhepp")
 libraries = {
 "": SubResource("AnimationLibrary_d0on5")
 }
+autoplay = "idle_UP"
