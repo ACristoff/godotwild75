@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cueix1ep0w4b7"
-path="res://.godot/imported/8698.jpg-d627b990554518740834da8f01b2c7c0.ctex"
+uid="uid://jrqfo2tf2gf7"
+path="res://.godot/imported/Broom.png-f7bb6e7b6c00d94e451c99d0b78a49e8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Environment/8698.jpg"
-dest_files=["res://.godot/imported/8698.jpg-d627b990554518740834da8f01b2c7c0.ctex"]
+source_file="res://Assets/Weapons/Broom.png"
+dest_files=["res://.godot/imported/Broom.png-f7bb6e7b6c00d94e451c99d0b78a49e8.ctex"]
 
 [params]
 
