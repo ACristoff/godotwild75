@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://7svoiv3k6b8h"]
+
+[ext_resource type="Script" path="res://Game/Data/hit_overlay.gd" id="1_adhdm"]
+
+[node name="HitOverlay" type="TileMapLayer"]
+script = ExtResource("1_adhdm")
