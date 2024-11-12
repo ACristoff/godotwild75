@@ -107,5 +107,5 @@ func _on_bg_mbutt_pressed() -> void:
 
 
 func _on_cutscene_animation_finished(anim_name: StringName) -> void:
-	if anim_name == ("Cutscene"):
+	if anim_name == "Cutscene":
 		LevelManager.nextLevel()

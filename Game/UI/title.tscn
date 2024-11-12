@@ -22,7 +22,6 @@
 [ext_resource type="Texture2D" uid="uid://u23t433su4c6" path="res://Assets/UserInterface/Menu/Sound.png" id="16_6tcal"]
 [ext_resource type="Texture2D" uid="uid://lf5ircidgcgc" path="res://Assets/Characters/Hostile/Kappa_full_anim.png" id="18_y8ji2"]
 [ext_resource type="PackedScene" uid="uid://b5wuajjdswd23" path="res://Assets/Effects/transition.tscn" id="22_4jrs0"]
-[ext_resource type="Shader" path="res://Assets/Shaders/transition.gdshader" id="23_mpud5"]
 [ext_resource type="Texture2D" uid="uid://bjx2labdxfhtt" path="res://Assets/UserInterface/Menu/FlameTransition.png" id="24_6mb7l"]
 
 [sub_resource type="Animation" id="Animation_w1x0l"]
@@ -170,6 +169,30 @@ tracks/11/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Transition2:mouse_filter")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("WorldEnvironment:environment:glow_enabled")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_6xxa5"]
@@ -339,6 +362,30 @@ tracks/12/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Transition2:mouse_filter")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("WorldEnvironment:environment:glow_enabled")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5gt7b"]
 _data = {
@@ -393,10 +440,10 @@ tracks/3/path = NodePath("Camera2D2:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.8, 3, 10.5, 11, 12, 13, 15, 17.5, 18.5),
-"transitions": PackedFloat32Array(1, 0.5, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.8, 3, 10.5, 11, 12, 13, 15, 17.5, 18.5, 24.6, 26.6),
+"transitions": PackedFloat32Array(1, 0.5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(640, 360), Vector2(640, 360), Vector2(635, 459), Vector2(635, 459), Vector2(785, 459), Vector2(785, 459), Vector2(835, 459), Vector2(835, 459), Vector2(895, 459), Vector2(819.685, 459)]
+"values": [Vector2(640, 360), Vector2(640, 360), Vector2(635, 459), Vector2(635, 459), Vector2(785, 459), Vector2(785, 459), Vector2(835, 459), Vector2(835, 459), Vector2(895, 459), Vector2(819.685, 459), Vector2(819.685, 459), Vector2(640, 360)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -405,10 +452,10 @@ tracks/4/path = NodePath("Camera2D2:zoom")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.8, 3, 10.5, 11, 12, 13, 15, 18, 18.5),
-"transitions": PackedFloat32Array(1, 0.233259, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.8, 3, 10.5, 11, 12, 13, 15, 18, 18.5, 24.6, 26.6),
+"transitions": PackedFloat32Array(1, 0.233259, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1.4, 1.4), Vector2(1.4, 1.4), Vector2(1.5, 1.5), Vector2(1.5, 1.5), Vector2(1.6, 1.6), Vector2(1.6, 1.6), Vector2(1.8, 1.8), Vector2(1.4, 1.4)]
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1.4, 1.4), Vector2(1.4, 1.4), Vector2(1.5, 1.5), Vector2(1.5, 1.5), Vector2(1.6, 1.6), Vector2(1.6, 1.6), Vector2(1.8, 1.8), Vector2(1.4, 1.4), Vector2(1.4, 1.4), Vector2(1, 1)]
 }
 tracks/5/type = "method"
 tracks/5/imported = false
@@ -1029,7 +1076,7 @@ _data = {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5j0b3"]
 
-[sub_resource type="Shader" id="Shader_qlus2"]
+[sub_resource type="Shader" id="Shader_87ans"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -1066,7 +1113,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xt8vo"]
 resource_local_to_scene = true
-shader = SubResource("Shader_qlus2")
+shader = SubResource("Shader_87ans")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.05
 shader_parameter/maxStrength = 0.01
@@ -1077,7 +1124,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-[sub_resource type="Shader" id="Shader_plmid"]
+[sub_resource type="Shader" id="Shader_drwpx"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -1114,7 +1161,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dvxt8"]
 resource_local_to_scene = true
-shader = SubResource("Shader_plmid")
+shader = SubResource("Shader_drwpx")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.061
 shader_parameter/maxStrength = 0.224
@@ -1284,6 +1331,36 @@ tracks/12/keys = {
 "values": [4.0]
 }
 
+[sub_resource type="Animation" id="Animation_newh3"]
+resource_name = "Shiver"
+length = 2.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(2, 0), Vector2(0, 0), Vector2(-2, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer:speed_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [4.0]
+}
+
 [sub_resource type="Animation" id="Animation_1je5g"]
 resource_name = "sweep"
 length = 2.0
@@ -1438,36 +1515,6 @@ tracks/11/keys = {
 resource_name = "sweep_stop"
 step = 0.1
 
-[sub_resource type="Animation" id="Animation_newh3"]
-resource_name = "Shiver"
-length = 2.0
-loop_mode = 1
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(2, 0), Vector2(0, 0), Vector2(-2, 0), Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimationPlayer:speed_scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [4.0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rpar7"]
 _data = {
 "RESET": SubResource("Animation_cxu1q"),
@@ -1493,6 +1540,21 @@ shader_parameter/color = Color(1, 0.9, 0.65, 0.8)
 shader_parameter/hdr = false
 shader_parameter/seed = 5.0
 
+[sub_resource type="Animation" id="Animation_o3dgc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [20]
+}
+
 [sub_resource type="Animation" id="Animation_gpk0m"]
 resource_name = "kappa"
 length = 0.8
@@ -1511,7 +1573,13 @@ tracks/0/keys = {
 "values": [20, 21, 22, 23, 24, 25, 26, 27]
 }
 
-[sub_resource type="Animation" id="Animation_o3dgc"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u7eh1"]
+_data = {
+"RESET": SubResource("Animation_o3dgc"),
+"kappa": SubResource("Animation_gpk0m")
+}
+
+[sub_resource type="Animation" id="Animation_bvau8"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -1524,12 +1592,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [20]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_u7eh1"]
-_data = {
-"RESET": SubResource("Animation_o3dgc"),
-"kappa": SubResource("Animation_gpk0m")
 }
 
 [sub_resource type="Animation" id="Animation_fd5n2"]
@@ -1548,21 +1610,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [20, 21, 22, 23, 24, 25, 26, 27]
-}
-
-[sub_resource type="Animation" id="Animation_bvau8"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [20]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_78au8"]
@@ -1617,9 +1664,30 @@ scale_max = 2.0
 color_ramp = SubResource("GradientTexture1D_ayymu")
 anim_offset_max = 1.0
 
+[sub_resource type="Shader" id="Shader_1yl5v"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+uniform sampler2D mask;
+uniform float scale : hint_range(0.0, 1.0, 0.1);
+void fragment() {
+	float s = scale * 75.0f;
+	//float s = scale == 0.0 ? 0.0 : pow(2.0, 10.0 * scale - 10.0);
+	//s += 75.0f;
+	int cutoff = int(s/75.0f);
+	vec2 offset = vec2(0.5, 0.5) * (1.0 - s);
+	vec4 mask_color = texture(mask, UV * s + offset);
+	COLOR.a = COLOR.a - mask_color.a + float(cutoff);
+}
+
+//void light() {
+	// Called for every pixel for every light affecting the CanvasItem.
+	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yscm4"]
 resource_local_to_scene = true
-shader = ExtResource("23_mpud5")
+shader = SubResource("Shader_1yl5v")
 shader_parameter/scale = 0.0
 shader_parameter/mask = ExtResource("24_6mb7l")
 
@@ -1724,6 +1792,7 @@ libraries = {
 "": SubResource("AnimationLibrary_78au8")
 }
 autoplay = "kappa2"
+speed_scale = 2.0
 
 [node name="Barrel" type="Sprite2D" parent="."]
 position = Vector2(945, 569)
@@ -1883,7 +1952,6 @@ position = Vector2(640, 360)
 
 [node name="Transition2" parent="." instance=ExtResource("22_4jrs0")]
 material = SubResource("ShaderMaterial_yscm4")
-anchors_preset = -1
 offset_right = 1280.0
 offset_bottom = 720.0
 
@@ -1893,8 +1961,8 @@ offset_bottom = 720.0
 [connection signal="pressed" from="UI/MainMenu/HFlowContainer/ExitGame" to="." method="_on_exit_game_pressed"]
 [connection signal="pressed" from="UI/Settings/HFlowContainer/Fullscreen" to="." method="_on_fullscreen_pressed"]
 [connection signal="pressed" from="UI/Settings/HFlowContainer/Back" to="." method="_on_back_pressed"]
-[connection signal="pressed" from="SFXbutt" to="." method="_on_sf_xbutt_pressed"]
 [connection signal="pressed" from="SFXbutt" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="SFXbutt" to="." method="_on_sf_xbutt_pressed"]
 [connection signal="pressed" from="BGMbutt" to="." method="_on_bg_mbutt_pressed"]
 
 [editable path="Node2D"]
