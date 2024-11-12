@@ -192,6 +192,9 @@ func manage_attack(attack_cells, team_to_hit):
 func _on_cursor_moved(new_cell):
 	if active_unit and active_unit.is_selected and active_unit.unit_state == PlayerUnit.unit_states.MOVE_THINK:
 		unit_path.draw(active_unit.cell, new_cell)
+	if active_unit and active_unit.is_selected and active_unit.unit_state == PlayerUnit.unit_states.ATTACK_ACTION_THINK:
+		print(new_cell)
+		pass
 	pass # Replace with function body.
 
 func _on_cursor_deselect_pressed():
