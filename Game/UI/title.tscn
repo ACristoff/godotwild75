@@ -17,7 +17,7 @@ glow_hdr_luminance_cap = 38.95
 adjustment_enabled = true
 adjustment_contrast = 1.26
 
-[node name="Control" type="Node2D"]
+[node name="TitleScreen" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(638, 357)
