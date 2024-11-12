@@ -2,7 +2,7 @@ extends AudioStreamPlayer2D
 
 
 #const levelMusic = preload("res://assets/audio/psycho-logy.mp3")
-@export var LevelMusic : Array[AudioStreamWAV]
+@export var LevelMusic : Array[AudioStreamMP3]
 
 func _play_music(music: AudioStream, volume = 0.0):
 	if stream == music:

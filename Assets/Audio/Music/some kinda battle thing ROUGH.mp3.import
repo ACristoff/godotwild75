@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://brj38gtsd012f"
+path="res://.godot/imported/some kinda battle thing ROUGH.mp3-a86179a181aaf000d11ea1bb287db7ae.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/Music/some kinda battle thing ROUGH.mp3"
+dest_files=["res://.godot/imported/some kinda battle thing ROUGH.mp3-a86179a181aaf000d11ea1bb287db7ae.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

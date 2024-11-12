@@ -3,6 +3,10 @@ extends Node2D
 @onready var Settings = $UI/Settings
 @onready var MainMenu = $UI/MainMenu
 
+@onready var logosfx = preload("res://Assets/Audio/UI/BERET PARADE Cadence rev 2.mp3")
+@onready var washsfx = preload("res://Assets/Audio/UI/Title Splash Screen Transition.mp3")
+@onready var titlebgm = preload("res://Assets/Audio/Music/MM Theme but again.mp3")
+
 var fullscreen = false
 
 # Called when the node enters the scene tree for the first time.
@@ -13,6 +17,21 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+	
+#func LogoSFX():
+	#AudioManager.play(logosfx)
+#func WashSFX():
+	#AudioManager.play(washsfx)
+#func TitleMusic():
+	#AudioManager.play(titlebgm)
+	
+	
+	
+	
+	
+	
+	
+	
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		get_tree().quit()

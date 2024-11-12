@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cktu0tf4f7okq"
+path="res://.godot/imported/GUT PUNCH 4000.mp3-10a013e7eba315116e3aa44c502355d1.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/UI/GUT PUNCH 4000.mp3"
+dest_files=["res://.godot/imported/GUT PUNCH 4000.mp3-10a013e7eba315116e3aa44c502355d1.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

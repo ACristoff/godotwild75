@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://blte3nhxthn55"
+path="res://.godot/imported/Title Splash Screen Transition.mp3-ddaf14d9e082dfd3da99821b1ae10df4.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/UI/Title Splash Screen Transition.mp3"
+dest_files=["res://.godot/imported/Title Splash Screen Transition.mp3-ddaf14d9e082dfd3da99821b1ae10df4.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
