@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dtjthk07jpugb"]
+[gd_scene load_steps=8 format=3 uid="uid://k8rumcuxr4rp"]
 
 [ext_resource type="Texture2D" uid="uid://1gsgwrxvici6" path="res://Assets/Environment/Objects/Foliage.png" id="1_ckhxw"]
 [ext_resource type="Texture2D" uid="uid://cvac1rhk2c816" path="res://Assets/Characters/Friendly/MikoSweep.png" id="1_t67nd"]
@@ -10,13 +10,14 @@
 [sub_resource type="Environment" id="Environment_xutyv"]
 background_mode = 3
 glow_enabled = true
+glow_intensity = 1.73
 glow_bloom = 0.31
 glow_hdr_scale = 2.67
 glow_hdr_luminance_cap = 38.95
 adjustment_enabled = true
 adjustment_contrast = 1.26
 
-[node name="Control" type="Node2D"]
+[node name="TitleScreen" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(638, 357)
