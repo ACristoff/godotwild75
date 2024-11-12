@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Game/Data/battle_manager.gd" id="1_uyhos"]
 [ext_resource type="PackedScene" uid="uid://gcdapkkqr808" path="res://Game/World/environment.tscn" id="2_p8do1"]
 [ext_resource type="PackedScene" uid="uid://d1rww8eno83bs" path="res://Game/Data/Cursor/cursor.tscn" id="2_pogwr"]
-[ext_resource type="PackedScene" path="res://Game/Data/unit_path.tscn" id="4_feshh"]
+[ext_resource type="PackedScene" uid="uid://copviu6p757h8" path="res://Game/Data/unit_path.tscn" id="4_feshh"]
 [ext_resource type="PackedScene" uid="uid://2nbe138odbl8" path="res://Game/Characters/miko_unit.tscn" id="6_ichhw"]
 [ext_resource type="PackedScene" uid="uid://cg34obo360a5w" path="res://Game/Characters/enemy_base.tscn" id="6_xe3j1"]
 [ext_resource type="PackedScene" uid="uid://2r5lvg6715f" path="res://Game/Characters/heiko_unit.tscn" id="7_2tvfr"]

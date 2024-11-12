@@ -2,10 +2,13 @@ extends Node2D
 
 
 signal attack_selected
+signal attack_chosen
 signal move_selected
 
 @onready var move = $move
 @onready var attack = $attack
+
+@onready var attack_menu = preload("res://Game/UI/attack_select.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -20,6 +23,20 @@ func disable_attack():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	pass
+
+func render_attacks(attacks):
+	var menu = attack_menu.instantiate()
+	attack.add_child(menu)
+	for attack in attacks:
+		var current = attacks[attack]
+		var new_attack_text = str(attack, ' ', current.DAMAGE)
+		menu.new_button(new_attack_text, attack)
+		menu.connect('attack_chosen', _on_attack_chosen)
+	pass
+
+func attacking(attack_key):
+	attack_chosen.emit(attack_key)
 	pass
 
 func _on_move_mouse_entered() -> void:
@@ -44,3 +61,7 @@ func _on_move_pressed() -> void:
 func _on_attack_pressed() -> void:
 	attack_selected.emit()
 	$select_sound.play()
+
+func _on_attack_chosen(attack):
+	attacking(attack)
+	pass

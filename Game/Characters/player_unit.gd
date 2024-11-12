@@ -5,9 +5,19 @@ class_name PlayerUnit
 @onready var action_ui = $action_select
 
 #The logic for having these various states is due to so many different UI elements
-enum unit_states {IDLE, SELECTED, ATTACK_THINK, MOVE_THINK, ATTACKING, MOVING}
+enum unit_states {IDLE, SELECTED, ATTACK_THINK, ATTACK_ACTION_THINK, MOVE_THINK, ATTACKING, MOVING}
 
 var unit_state = unit_states.IDLE
+
+var attacks = {
+	"BASE": {
+		"RANGE": 2,
+		"DAMAGE": 2,
+		"MOVE": Vector2(0,0),
+		"EXORCISM": false,
+		"BLAST_PATTERN": [],
+	},
+}
 
 signal unit_state_change(state: unit_states)
 
@@ -26,6 +36,7 @@ var is_selected := false:
 
 var has_moved = false
 var has_attacked = false
+var current_attack = null
 
 #Action select
 #Spawn the action select
@@ -36,18 +47,27 @@ func action_select(state):
 
 func _process(delta):
 	super(delta)
-	
 	pass
 
 #On_action_selected
 #grab the signal from action select
 #transition unit state
 #do action
+func attack(cells, damage):
+	super(cells, damage)
+	has_attacked = true
+	current_attack = null
+	pass
 
 #State transition func
 func state_change(state):
 	unit_state = state
 	unit_state_change.emit(unit_state)
+	
+	if state == unit_states.ATTACK_THINK:
+		action_ui.render_attacks(attacks)
+		#action_select(false)
+
 func finish_walk():
 	super()
 	state_change(unit_states.IDLE)
@@ -60,5 +80,11 @@ func _on_action_select_attack_selected():
 
 func _on_action_select_move_selected():
 	state_change(unit_states.MOVE_THINK)
+	action_select(false)
+	pass # Replace with function body.
+
+func _on_action_select_attack_chosen(attack):
+	current_attack = attacks[attack]
+	state_change(unit_states.ATTACK_ACTION_THINK)
 	action_select(false)
 	pass # Replace with function body.

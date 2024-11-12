@@ -5,6 +5,8 @@ const DIRECTIONS = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 
 @export var grid: Resource = preload("res://Game/Data/grid.tres")
 
+@export var level_music: AudioStreamWAV
+
 var units := {}
 var enemies := {}
 var friendlies := {}
@@ -63,7 +65,13 @@ func on_unit_state_change(state):
 		unit_path.initialize(walkable_cells)
 	if state == PlayerUnit.unit_states.ATTACK_THINK:
 		print("ATTACK THINK!")
+		#var attack_cells = get_attack_cells()
 		pass
+	if state == PlayerUnit.unit_states.ATTACK_ACTION_THINK:
+		print("ATTACK PICKED, NOW CHOOSING")
+		print(active_unit.current_attack)
+		var attack_cells = get_attack_cells(active_unit, active_unit.current_attack)
+		print(attack_cells)
 	pass
 
 ## Returns `true` if the cell is occupied by a unit.
@@ -73,6 +81,9 @@ func is_occupied(cell: Vector2) -> bool:
 ## Returns an array of cells a given unit can walk using the flood fill algorithm.
 func get_walkable_cells(unit: Unit) -> Array:
 	return flood_fill(unit.cell, unit.move_range)
+
+func get_attack_cells(unit: PlayerUnit, attack):
+	return flood_fill(unit.cell, attack.RANGE)
 
 func flood_fill(origin: Vector2, max_distance: int):
 	var array = []
