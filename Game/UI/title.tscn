@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dtjthk07jpugb"]
+[gd_scene load_steps=4 format=3 uid="uid://k8rumcuxr4rp"]
 
 [ext_resource type="Texture2D" uid="uid://cvac1rhk2c816" path="res://Assets/Characters/Friendly/MikoSweep.png" id="1_t67nd"]
 [ext_resource type="Texture2D" uid="uid://jrqfo2tf2gf7" path="res://Assets/Weapons/Broom.png" id="2_wmbyw"]

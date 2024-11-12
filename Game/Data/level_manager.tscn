@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Game/Data/level_manager.gd" id="1_dm5k4"]
 [ext_resource type="PackedScene" uid="uid://dskshrij31rv2" path="res://Game/Data/Levels/debug_level.tscn" id="1_p7yjj"]
-[ext_resource type="PackedScene" uid="uid://dtjthk07jpugb" path="res://Game/UI/title.tscn" id="2_834oh"]
+[ext_resource type="PackedScene" uid="uid://k8rumcuxr4rp" path="res://Game/UI/title.tscn" id="2_834oh"]
 
 [sub_resource type="Environment" id="Environment_0voul"]
 background_mode = 3
@@ -19,9 +19,6 @@ adjustment_saturation = 1.08
 [node name="LevelManager" type="Node2D" groups=["levelmanager"]]
 script = ExtResource("1_dm5k4")
 level_list = Array[PackedScene]([ExtResource("2_834oh"), ExtResource("1_p7yjj")])
-
-[node name="DebugLevel" parent="." instance=ExtResource("1_p7yjj")]
-y_sort_enabled = false
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_0voul")
