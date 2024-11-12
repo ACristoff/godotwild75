@@ -7,3 +7,4 @@
 [node name="LevelManager" type="Node2D" groups=["levelmanager"]]
 script = ExtResource("1_dm5k4")
 level_list = Array[PackedScene]([ExtResource("2_834oh"), ExtResource("1_p7yjj")])
+enable_manager = false
