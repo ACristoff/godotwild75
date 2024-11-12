@@ -614,12 +614,14 @@ anim_offset_max = 1.0
 [node name="Title" type="Node2D"]
 script = ExtResource("1_xhony")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="SplashScreen" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_5gt7b")
 }
 autoplay = "Start"
 speed_scale = 0.7
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(638, 357)
@@ -670,7 +672,7 @@ offset_bottom = 559.0
 
 [node name="Brush" type="Sprite2D" parent="."]
 self_modulate = Color(0.627451, 0.141176, 0.141176, 1)
-position = Vector2(1896, 492)
+position = Vector2(1121, 492)
 rotation = 1.5708
 scale = Vector2(2.61527, 2.61527)
 texture = ExtResource("3_1utxv")
