@@ -13,7 +13,11 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
-
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		get_tree().quit()
+	if event is not InputEventMouseMotion:
+		print("start")
 
 func _on_start_game_pressed():
 	LevelManager.nextLevel()

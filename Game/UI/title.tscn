@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dtjthk07jpugb"]
+[gd_scene load_steps=33 format=3 uid="uid://dtjthk07jpugb"]
 
 [ext_resource type="Texture2D" uid="uid://1gsgwrxvici6" path="res://Assets/Environment/Objects/Foliage.png" id="1_ckhxw"]
 [ext_resource type="Texture2D" uid="uid://cvac1rhk2c816" path="res://Assets/Characters/Friendly/MikoSweep.png" id="1_t67nd"]
@@ -8,7 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://jrqfo2tf2gf7" path="res://Assets/Weapons/Broom.png" id="2_wmbyw"]
 [ext_resource type="Texture2D" uid="uid://6spl2drkii4x" path="res://Assets/UserInterface/Menu/Brush.png" id="3_1utxv"]
 [ext_resource type="Texture2D" uid="uid://buuibqrotwlwv" path="res://Assets/UserInterface/Menu/MirrorMiko.png" id="4_6jovv"]
+[ext_resource type="PackedScene" uid="uid://domnit2msh3jg" path="res://Assets/Shaders/god_ray.tscn" id="7_4v4wb"]
 [ext_resource type="Texture2D" uid="uid://cl06vw6rxuxd" path="res://Assets/Effects/Particles/Dust.png" id="8_3auyt"]
+[ext_resource type="Shader" path="res://Assets/Shaders/godrays.gdshader" id="8_5djii"]
 [ext_resource type="Texture2D" uid="uid://cp1i2rrme4saq" path="res://Assets/Environment/Objects/Petals.png" id="9_od2by"]
 [ext_resource type="Texture2D" uid="uid://ulmebv12bmbk" path="res://Assets/UserInterface/Menu/beretparadelogo.png" id="11_t3nwi"]
 
@@ -75,6 +77,18 @@ tracks/4/keys = {
 "update": 0,
 "values": [0.0, 1.0, 0.16]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ColorRect:mouse_filter")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 2]
+}
 
 [sub_resource type="Animation" id="Animation_w1x0l"]
 length = 0.001
@@ -137,6 +151,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.16]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ColorRect:mouse_filter")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5gt7b"]
@@ -522,6 +548,23 @@ _data = {
 "sweep": SubResource("Animation_1je5g")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2ec88"]
+resource_local_to_scene = true
+shader = ExtResource("8_5djii")
+shader_parameter/angle = -0.3
+shader_parameter/position = -0.2
+shader_parameter/spread = 0.32
+shader_parameter/cutoff = 0.133
+shader_parameter/falloff = 0.97
+shader_parameter/edge_fade = 0.183
+shader_parameter/speed = 1.0
+shader_parameter/ray1_density = 8.0
+shader_parameter/ray2_density = 30.0
+shader_parameter/ray2_intensity = 0.382
+shader_parameter/color = Color(1, 0.9, 0.65, 0.8)
+shader_parameter/hdr = false
+shader_parameter/seed = 5.0
+
 [sub_resource type="Gradient" id="Gradient_3ll1r"]
 offsets = PackedFloat32Array(0.00740741, 1)
 colors = PackedColorArray(0, 0.149333, 0.28, 0.309804, 1, 1, 1, 0.223529)
@@ -616,9 +659,18 @@ libraries = {
 }
 autoplay = "sweep"
 
+[node name="Node2D" parent="." instance=ExtResource("7_4v4wb")]
+material = SubResource("ShaderMaterial_2ec88")
+position = Vector2(40, 113)
+
+[node name="ColorRect" parent="Node2D" index="0"]
+offset_left = -59.0
+offset_right = 602.0
+offset_bottom = 559.0
+
 [node name="Brush" type="Sprite2D" parent="."]
 self_modulate = Color(0.627451, 0.141176, 0.141176, 1)
-position = Vector2(1125, 492)
+position = Vector2(1896, 492)
 rotation = 1.5708
 scale = Vector2(2.61527, 2.61527)
 texture = ExtResource("3_1utxv")
@@ -717,8 +769,14 @@ position = Vector2(613, 395)
 scale = Vector2(0.451852, 0.451852)
 texture = ExtResource("11_t3nwi")
 
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(1125, 492)
+scale = Vector2(1, 1)
+
 [connection signal="pressed" from="UI/MainMenu/HFlowContainer/StartGame" to="." method="_on_start_game_pressed"]
 [connection signal="pressed" from="UI/MainMenu/HFlowContainer/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="UI/MainMenu/HFlowContainer/ExitGame" to="." method="_on_exit_game_pressed"]
 [connection signal="pressed" from="UI/Settings/HFlowContainer/Fullscreen" to="." method="_on_fullscreen_pressed"]
 [connection signal="pressed" from="UI/Settings/HFlowContainer/Back" to="." method="_on_back_pressed"]
+
+[editable path="Node2D"]
