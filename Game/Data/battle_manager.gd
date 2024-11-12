@@ -73,8 +73,6 @@ func on_unit_state_change(state):
 		print("ATTACK PICKED, NOW CHOOSING")
 		print(active_unit.current_attack)
 		var attack_cells = get_attack_cells(active_unit, active_unit.current_attack)
-		print(attack_cells)
-		#attack_overlay.draw(get_walkable_cells($MikoUnit))
 		attack_overlay.draw(attack_cells)
 	pass
 
@@ -131,6 +129,7 @@ func deselect_unit():
 	if active_unit:
 		active_unit.is_selected = false
 #	unit_overlay.clear()
+	attack_overlay.clear()
 	unit_path.stop()
 	pass
 
@@ -160,8 +159,20 @@ func _on_cursor_accept_pressed(cell):
 		if active_unit.unit_state == PlayerUnit.unit_states.SELECTED && cell != active_unit.cell:
 			deselect_unit()
 			clear_active_unit()
-			
 			pass
+		if active_unit.unit_state == PlayerUnit.unit_states.ATTACK_ACTION_THINK:
+			#print(cell)
+			#print(active_unit.current_attack.ATTACK_PATTERN)
+			#TODO range check
+			# if range bad then deselect
+			
+			var attack_origin = cell
+			var attack_cells = []
+			for to_hit_cell in active_unit.current_attack.ATTACK_PATTERN:
+				var hit_cell = attack_origin + to_hit_cell
+				attack_cells.append(hit_cell)
+				#print(to_hit_cell, hit_cell)
+			print(attack_origin, attack_cells)
 		move_current_unit(cell)
 
 func _on_cursor_moved(new_cell):
