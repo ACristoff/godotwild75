@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://Game/Data/hit_overlay.gd" id="1_adhdm"]
 
-[node name="HitOverlay" type="TileMapLayer"]
+[node name="HitOverlay" type="Node2D"]
 script = ExtResource("1_adhdm")

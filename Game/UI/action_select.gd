@@ -10,6 +10,13 @@ signal move_selected
 
 @onready var attack_menu = preload("res://Game/UI/attack_select.tscn")
 
+func close():
+	self.visible = false
+	var buttons = attack.get_children()
+	for button in buttons:
+		button.queue_free()
+	#attack.
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	self.visible = false
