@@ -82,13 +82,13 @@ func is_occupied(cell: Vector2) -> bool:
 
 ## Returns an array of cells a given unit can walk using the flood fill algorithm.
 func get_walkable_cells(unit: Unit) -> Array:
-	return flood_fill(unit.cell, unit.move_range)
+	return flood_fill(unit.cell, unit.move_range, false)
 
 func get_attack_cells(unit: PlayerUnit, attack):
 	##TODO Give flood fill the ability to use every tile in range
-	return flood_fill(unit.cell, attack.RANGE)
+	return flood_fill(unit.cell, attack.RANGE, true)
 
-func flood_fill(origin: Vector2, max_distance: int):
+func flood_fill(origin: Vector2, max_distance: int, ignore_dudes: bool):
 	var array = []
 	var stack = [origin]
 	
@@ -107,7 +107,7 @@ func flood_fill(origin: Vector2, max_distance: int):
 		array.append(current)
 		for direction in DIRECTIONS:
 			var coordinates: Vector2 = current + direction
-			if is_occupied(coordinates):
+			if is_occupied(coordinates) && ignore_dudes == false:
 				continue
 			if coordinates in array:
 				continue
@@ -162,19 +162,14 @@ func _on_cursor_accept_pressed(cell):
 			clear_active_unit()
 			pass
 		if active_unit.unit_state == PlayerUnit.unit_states.ATTACK_ACTION_THINK:
-			#print(cell)
-			#print(active_unit.current_attack.ATTACK_PATTERN)
 			#TODO range check
 			# if range bad then deselect
-			
 			var attack_origin = cell
 			var attack_cells = []
 			for to_hit_cell in active_unit.current_attack.ATTACK_PATTERN:
 				var hit_cell = attack_origin + to_hit_cell
 				attack_cells.append(hit_cell)
-				#print(to_hit_cell, hit_cell)
 			##DO ATTACK
-			#print(attack_origin, attack_cells)
 			manage_attack(attack_cells, "ENEMY")
 		move_current_unit(cell)
 
@@ -182,10 +177,17 @@ func manage_attack(attack_cells, team_to_hit):
 	for cell in attack_cells:
 		if units.has(cell):
 			print('HIT', units[cell])
+			var unit = units[cell] as Unit
+			units[cell].take_damage(1)
+			##TODO HIT THIS SHIT
 		else:
 			print("MISS", cell)
 	#print(attack_cells)
-	pass
+	attack_overlay.clear()
+	active_unit.has_attacked = true
+	active_unit.state_change(PlayerUnit.unit_states.IDLE)
+	deselect_unit()
+	clear_active_unit()
 
 func _on_cursor_moved(new_cell):
 	if active_unit and active_unit.is_selected and active_unit.unit_state == PlayerUnit.unit_states.MOVE_THINK:
