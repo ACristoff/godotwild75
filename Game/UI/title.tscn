@@ -1,27 +1,57 @@
-[gd_scene load_steps=4 format=3 uid="uid://dtjthk07jpugb"]
+[gd_scene load_steps=8 format=3 uid="uid://dtjthk07jpugb"]
 
+[ext_resource type="Texture2D" uid="uid://1gsgwrxvici6" path="res://Assets/Environment/Objects/Foliage.png" id="1_ckhxw"]
 [ext_resource type="Texture2D" uid="uid://cvac1rhk2c816" path="res://Assets/Characters/Friendly/MikoSweep.png" id="1_t67nd"]
+[ext_resource type="Texture2D" uid="uid://cjqp7qxkqaotd" path="res://Assets/Environment/Objects/Shrine.png" id="2_2j4ax"]
 [ext_resource type="Texture2D" uid="uid://jrqfo2tf2gf7" path="res://Assets/Weapons/Broom.png" id="2_wmbyw"]
 [ext_resource type="Texture2D" uid="uid://6spl2drkii4x" path="res://Assets/UserInterface/Menu/Brush.png" id="3_1utxv"]
+[ext_resource type="Texture2D" uid="uid://buuibqrotwlwv" path="res://Assets/UserInterface/Menu/MirrorMiko.png" id="4_6jovv"]
+
+[sub_resource type="Environment" id="Environment_xutyv"]
+background_mode = 3
+glow_enabled = true
+glow_bloom = 0.31
+glow_hdr_scale = 2.67
+glow_hdr_luminance_cap = 38.95
+adjustment_enabled = true
+adjustment_contrast = 1.26
 
 [node name="Control" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(638, 357)
 
+[node name="Foliage" type="Sprite2D" parent="."]
+position = Vector2(638, 357)
+scale = Vector2(4, 4)
+texture = ExtResource("1_ckhxw")
+
+[node name="Shrine" type="Sprite2D" parent="."]
+position = Vector2(638, 357)
+scale = Vector2(4, 4)
+texture = ExtResource("2_2j4ax")
+
 [node name="MikoSweep" type="Sprite2D" parent="."]
-position = Vector2(365, 435)
+position = Vector2(382, 543)
 scale = Vector2(4, 4)
 texture = ExtResource("1_t67nd")
 
-[node name="Broom" type="Sprite2D" parent="."]
-position = Vector2(369, 431)
-scale = Vector2(4, 4)
+[node name="Broom" type="Sprite2D" parent="MikoSweep"]
+position = Vector2(1, -1)
 texture = ExtResource("2_wmbyw")
 
 [node name="Brush" type="Sprite2D" parent="."]
 self_modulate = Color(0.627451, 0.141176, 0.141176, 1)
-position = Vector2(1097, 538)
+position = Vector2(1125, 492)
 rotation = 1.5708
 scale = Vector2(2.61527, 2.61527)
 texture = ExtResource("3_1utxv")
+
+[node name="MirrorMiko" type="Sprite2D" parent="Brush"]
+position = Vector2(-124.652, 27.9135)
+rotation = -1.5708
+scale = Vector2(0.19, 0.19)
+texture = ExtResource("4_6jovv")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_xutyv")
