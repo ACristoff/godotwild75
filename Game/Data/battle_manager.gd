@@ -183,7 +183,11 @@ func manage_attack(attack_cells, team_to_hit):
 		else:
 			print("MISS", cell)
 	#print(attack_cells)
-	pass
+	attack_overlay.clear()
+	active_unit.has_attacked = true
+	active_unit.state_change(PlayerUnit.unit_states.IDLE)
+	deselect_unit()
+	clear_active_unit()
 
 func _on_cursor_moved(new_cell):
 	if active_unit and active_unit.is_selected and active_unit.unit_state == PlayerUnit.unit_states.MOVE_THINK:
