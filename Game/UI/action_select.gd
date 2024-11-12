@@ -30,7 +30,7 @@ func render_attacks(attacks):
 	attack.add_child(menu)
 	for attack in attacks:
 		var current = attacks[attack]
-		var new_attack_text = str(attack, ' ', current.DAMAGE)
+		var new_attack_text = str(attack)
 		menu.new_button(new_attack_text, attack)
 		menu.connect('attack_chosen', _on_attack_chosen)
 	pass

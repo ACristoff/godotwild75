@@ -91,7 +91,7 @@ _data = {
 "idle_right": SubResource("Animation_o5106")
 }
 
-[node name="EnemyBase" instance=ExtResource("1_b7v2w")]
+[node name="EnemyBase" groups=["enemy"] instance=ExtResource("1_b7v2w")]
 script = ExtResource("2_5h661")
 skin = ExtResource("4_5ped2")
 

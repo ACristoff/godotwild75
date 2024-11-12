@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3537es1ks7r1"]
+
+[ext_resource type="Texture2D" uid="uid://dnknemc0hiwd7" path="res://Assets/UserInterface/Gameplay/AttackAreas.png" id="1_54wrh"]
+
+[node name="HitOverlayTile" type="Sprite2D"]
+texture = ExtResource("1_54wrh")
+hframes = 9
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

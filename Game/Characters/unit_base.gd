@@ -131,7 +131,7 @@ func take_damage(damage):
 
 #All the stuff for attacking
 func attack(cells, damage):
-	prints(cells, damage)
+	#prints(cells, damage)
 	pass
 
 ## Starts walking along`	 the `path`.

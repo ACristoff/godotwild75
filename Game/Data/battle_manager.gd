@@ -85,6 +85,7 @@ func get_walkable_cells(unit: Unit) -> Array:
 	return flood_fill(unit.cell, unit.move_range)
 
 func get_attack_cells(unit: PlayerUnit, attack):
+	##TODO Give flood fill the ability to use every tile in range
 	return flood_fill(unit.cell, attack.RANGE)
 
 func flood_fill(origin: Vector2, max_distance: int):
@@ -172,8 +173,19 @@ func _on_cursor_accept_pressed(cell):
 				var hit_cell = attack_origin + to_hit_cell
 				attack_cells.append(hit_cell)
 				#print(to_hit_cell, hit_cell)
-			print(attack_origin, attack_cells)
+			##DO ATTACK
+			#print(attack_origin, attack_cells)
+			manage_attack(attack_cells, "ENEMY")
 		move_current_unit(cell)
+
+func manage_attack(attack_cells, team_to_hit):
+	for cell in attack_cells:
+		if units.has(cell):
+			print('HIT', units[cell])
+		else:
+			print("MISS", cell)
+	#print(attack_cells)
+	pass
 
 func _on_cursor_moved(new_cell):
 	if active_unit and active_unit.is_selected and active_unit.unit_state == PlayerUnit.unit_states.MOVE_THINK:

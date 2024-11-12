@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://7upsmtrof85o" path="res://Game/UI/action_select.tscn" id="4_4dehy"]
 [ext_resource type="Texture2D" uid="uid://c4s0q7ybhh3x2" path="res://Assets/Characters/Friendly/HeikoSpirit.png" id="4_ptio3"]
 
-[node name="PlayerUnit" instance=ExtResource("1_su1ee")]
+[node name="PlayerUnit" groups=["player"] instance=ExtResource("1_su1ee")]
 y_sort_enabled = false
 script = ExtResource("2_pcb3j")
 skin = ExtResource("4_ptio3")
