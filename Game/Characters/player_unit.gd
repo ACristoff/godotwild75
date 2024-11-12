@@ -75,6 +75,9 @@ func finish_walk():
 	action_ui.disable_move()
 	pass
 
+func finish_attack():
+	action_ui.disable_attack()
+
 func _on_action_select_attack_selected():
 	state_change(unit_states.ATTACK_THINK)
 	pass # Replace with function body.

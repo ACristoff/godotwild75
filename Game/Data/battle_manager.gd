@@ -15,16 +15,17 @@ var walkable_cells := []
 var is_player_turn: bool = true
 
 @onready var attack_overlay = $AttackOverlay
+@onready var hit_overlay = $HitOverlay
 @onready var unit_path: UnitPath = $UnitPath
+
+##TODO organize functions
 
 func _ready():
 	reinitialize()
-	#attack_overlay.draw(get_walkable_cells($MikoUnit))
 	pass
 
 ##Finds the next unit in a given team that has moves available
 func find_next_possible(team):
-	#var candidate = null
 	for unit in team:
 		var current = units[unit] as PlayerUnit
 		if !current.has_moved:
@@ -32,21 +33,18 @@ func find_next_possible(team):
 	return null
 
 func turn_manager():
-	#print(units)
 	if is_player_turn:
 		#Check if all units are exhausted
 		var next_unit = find_next_possible(friendlies)
 		if next_unit == null:
 			is_player_turn = false
-			#prints('player turn:', is_player_turn)
 	else:
-		print("Enemy turn start")
-		print(enemies)
+		##TODO Do enemy turns here
 		pass
 	pass
 
 ## Clears, and refills the `_units` dictionary with game objects that are on the board.
-##Fills the friendlies and enemies dictionaries with references for turn ordering
+## Fills the friendlies and enemies dictionaries with references for turn ordering
 func reinitialize():
 	units.clear()
 	for child in get_children():
@@ -66,14 +64,15 @@ func on_unit_state_change(state):
 		walkable_cells = get_walkable_cells(active_unit)
 		unit_path.initialize(walkable_cells)
 	if state == PlayerUnit.unit_states.ATTACK_THINK:
-		print("ATTACK THINK!")
+		#print("ATTACK THINK!")
 		#var attack_cells = get_attack_cells()
 		pass
 	if state == PlayerUnit.unit_states.ATTACK_ACTION_THINK:
-		print("ATTACK PICKED, NOW CHOOSING")
-		print(active_unit.current_attack)
+		#print("ATTACK PICKED, NOW CHOOSING")
+		#print(active_unit.current_attack)
 		var attack_cells = get_attack_cells(active_unit, active_unit.current_attack)
 		attack_overlay.draw(attack_cells)
+		hit_overlay.make_squares(active_unit.current_attack)
 	pass
 
 ## Returns `true` if the cell is occupied by a unit.
@@ -129,7 +128,6 @@ func select_unit(cell: Vector2):
 func deselect_unit():
 	if active_unit:
 		active_unit.is_selected = false
-#	unit_overlay.clear()
 	attack_overlay.clear()
 	unit_path.stop()
 	pass
@@ -186,6 +184,7 @@ func manage_attack(attack_cells, team_to_hit):
 	attack_overlay.clear()
 	active_unit.has_attacked = true
 	active_unit.state_change(PlayerUnit.unit_states.IDLE)
+	active_unit.finish_attack()
 	deselect_unit()
 	clear_active_unit()
 
@@ -193,7 +192,9 @@ func _on_cursor_moved(new_cell):
 	if active_unit and active_unit.is_selected and active_unit.unit_state == PlayerUnit.unit_states.MOVE_THINK:
 		unit_path.draw(active_unit.cell, new_cell)
 	if active_unit and active_unit.is_selected and active_unit.unit_state == PlayerUnit.unit_states.ATTACK_ACTION_THINK:
-		print(new_cell)
+		var move_to_pos = grid.calculate_map_position(new_cell)
+		print(new_cell, move_to_pos)
+		
 		pass
 	pass # Replace with function body.
 
