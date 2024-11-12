@@ -18,7 +18,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 LevelManager="*res://Game/Data/level_manager.tscn"
-AudioManager="*res://Game/Data/audio_manager.gd"
 
 [display]
 

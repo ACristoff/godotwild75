@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bjx2labdxfhtt" path="res://Assets/UserInterface/Menu/FlameTransition.png" id="2_6yqxp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qtrj1"]
+resource_local_to_scene = true
 shader = ExtResource("1_lu3kf")
 shader_parameter/scale = 0.0
 shader_parameter/mask = ExtResource("2_6yqxp")
@@ -103,6 +104,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 color = Color(0, 0, 0, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

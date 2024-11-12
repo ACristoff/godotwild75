@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://dtjthk07jpugb"]
+[gd_scene load_steps=56 format=3 uid="uid://dtjthk07jpugb"]
 
 [ext_resource type="Texture2D" uid="uid://1gsgwrxvici6" path="res://Assets/Environment/Objects/Foliage.png" id="1_ckhxw"]
 [ext_resource type="Texture2D" uid="uid://cvac1rhk2c816" path="res://Assets/Characters/Friendly/MikoSweep.png" id="1_t67nd"]
@@ -22,6 +22,8 @@
 [ext_resource type="Texture2D" uid="uid://u23t433su4c6" path="res://Assets/UserInterface/Menu/Sound.png" id="16_6tcal"]
 [ext_resource type="Texture2D" uid="uid://lf5ircidgcgc" path="res://Assets/Characters/Hostile/Kappa_full_anim.png" id="18_y8ji2"]
 [ext_resource type="PackedScene" uid="uid://b5wuajjdswd23" path="res://Assets/Effects/transition.tscn" id="22_4jrs0"]
+[ext_resource type="Shader" path="res://Assets/Shaders/transition.gdshader" id="23_mpud5"]
+[ext_resource type="Texture2D" uid="uid://bjx2labdxfhtt" path="res://Assets/UserInterface/Menu/FlameTransition.png" id="24_6mb7l"]
 
 [sub_resource type="Animation" id="Animation_w1x0l"]
 length = 0.001
@@ -346,7 +348,7 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_dnkfm"]
 resource_name = "Main_Cutscene"
-length = 26.0
+length = 28.0
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -643,6 +645,66 @@ tracks/22/keys = {
 "update": 0,
 "values": [Vector2(-260, 567), Vector2(810, 567), Vector2(1610, 567)]
 }
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("WorldEnvironment:environment:glow_bloom")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(24.7),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.16]
+}
+tracks/24/type = "value"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("WorldEnvironment:environment:glow_intensity")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"times": PackedFloat32Array(24.7),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.78]
+}
+tracks/25/type = "value"
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/path = NodePath("WorldEnvironment:environment:adjustment_enabled")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/keys = {
+"times": PackedFloat32Array(20.8),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/26/type = "value"
+tracks/26/imported = false
+tracks/26/enabled = true
+tracks/26/path = NodePath("Transition2:material:shader_parameter/scale")
+tracks/26/interp = 1
+tracks/26/loop_wrap = true
+tracks/26/keys = {
+"times": PackedFloat32Array(26.4, 28),
+"transitions": PackedFloat32Array(3.86374, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/27/type = "value"
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/path = NodePath("WorldEnvironment:environment:glow_enabled")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/keys = {
+"times": PackedFloat32Array(27.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_rac0d"]
 length = 0.001
@@ -898,6 +960,66 @@ tracks/20/keys = {
 "update": 0,
 "values": [Vector2(-260, 567)]
 }
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("WorldEnvironment:environment:glow_bloom")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.16]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("WorldEnvironment:environment:glow_intensity")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.78]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("WorldEnvironment:environment:adjustment_enabled")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/24/type = "value"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("Transition2:material:shader_parameter/scale")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/25/type = "value"
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/path = NodePath("WorldEnvironment:environment:glow_enabled")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6eflu"]
 _data = {
@@ -907,7 +1029,7 @@ _data = {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5j0b3"]
 
-[sub_resource type="Shader" id="Shader_o5lic"]
+[sub_resource type="Shader" id="Shader_qlus2"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -944,7 +1066,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xt8vo"]
 resource_local_to_scene = true
-shader = SubResource("Shader_o5lic")
+shader = SubResource("Shader_qlus2")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.05
 shader_parameter/maxStrength = 0.01
@@ -955,7 +1077,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-[sub_resource type="Shader" id="Shader_fpl1a"]
+[sub_resource type="Shader" id="Shader_plmid"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -992,7 +1114,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dvxt8"]
 resource_local_to_scene = true
-shader = SubResource("Shader_fpl1a")
+shader = SubResource("Shader_plmid")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.061
 shader_parameter/maxStrength = 0.224
@@ -1459,11 +1581,11 @@ gradient = SubResource("Gradient_3ll1r")
 [sub_resource type="Environment" id="Environment_xutyv"]
 background_mode = 3
 reflected_light_source = 2
-glow_enabled = true
 glow_intensity = 0.78
 glow_bloom = 0.16
 glow_hdr_scale = 2.67
 glow_hdr_luminance_cap = 38.95
+adjustment_enabled = true
 adjustment_contrast = 1.26
 adjustment_color_correction = SubResource("GradientTexture1D_7rm8t")
 
@@ -1494,6 +1616,12 @@ scale_min = 1.5
 scale_max = 2.0
 color_ramp = SubResource("GradientTexture1D_ayymu")
 anim_offset_max = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yscm4"]
+resource_local_to_scene = true
+shader = ExtResource("23_mpud5")
+shader_parameter/scale = 0.0
+shader_parameter/mask = ExtResource("24_6mb7l")
 
 [node name="Title" type="Node2D"]
 script = ExtResource("1_xhony")
@@ -1753,8 +1881,13 @@ hframes = 2
 [node name="Camera2D2" type="Camera2D" parent="."]
 position = Vector2(640, 360)
 
-[node name="Transition" parent="." instance=ExtResource("22_4jrs0")]
+[node name="Transition2" parent="." instance=ExtResource("22_4jrs0")]
+material = SubResource("ShaderMaterial_yscm4")
+anchors_preset = -1
+offset_right = 1280.0
+offset_bottom = 720.0
 
+[connection signal="animation_finished" from="Cutscene" to="." method="_on_cutscene_animation_finished"]
 [connection signal="pressed" from="UI/MainMenu/HFlowContainer/StartGame" to="." method="_on_start_game_pressed"]
 [connection signal="pressed" from="UI/MainMenu/HFlowContainer/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="UI/MainMenu/HFlowContainer/ExitGame" to="." method="_on_exit_game_pressed"]

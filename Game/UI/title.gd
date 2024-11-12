@@ -10,6 +10,7 @@ extends Node2D
 var fullscreen = false
 var on1 = true
 var on2 = true
+var played = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -51,7 +52,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		get_tree().quit()
 	if event is not InputEventMouseMotion:
-		$Cutscene.play("Main_Cutscene")
+		if played == false:
+			$Cutscene.play("Main_Cutscene")
+			played = true
 
 func _on_start_game_pressed():
 	LevelManager.nextLevel()
@@ -101,3 +104,8 @@ func _on_bg_mbutt_pressed() -> void:
 		#turn music on
 		$BGMbutt/Sound.frame = 0
 		on2 = true
+
+
+func _on_cutscene_animation_finished(anim_name: StringName) -> void:
+	if anim_name == ("Cutscene"):
+		LevelManager.nextLevel()
