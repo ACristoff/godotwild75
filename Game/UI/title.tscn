@@ -1,8 +1,16 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=16 format=3 uid="uid://dtjthk07jpugb"]
 
 [ext_resource type="Texture2D" uid="uid://1gsgwrxvici6" path="res://Assets/Environment/Objects/Foliage.png" id="1_ckhxw"]
 [ext_resource type="Texture2D" uid="uid://cvac1rhk2c816" path="res://Assets/Characters/Friendly/MikoSweep.png" id="1_t67nd"]
 [ext_resource type="Shader" path="res://Game/UI/sway.gdshader" id="1_vcxwa"]
+=======
+[gd_scene load_steps=9 format=3 uid="uid://k8rumcuxr4rp"]
+
+[ext_resource type="Texture2D" uid="uid://1gsgwrxvici6" path="res://Assets/Environment/Objects/Foliage.png" id="1_ckhxw"]
+[ext_resource type="Texture2D" uid="uid://cvac1rhk2c816" path="res://Assets/Characters/Friendly/MikoSweep.png" id="1_t67nd"]
+[ext_resource type="Script" path="res://Game/UI/title.gd" id="1_xhony"]
+>>>>>>> Stashed changes
 [ext_resource type="Texture2D" uid="uid://cjqp7qxkqaotd" path="res://Assets/Environment/Objects/Shrine.png" id="2_2j4ax"]
 [ext_resource type="Texture2D" uid="uid://jrqfo2tf2gf7" path="res://Assets/Weapons/Broom.png" id="2_wmbyw"]
 [ext_resource type="Texture2D" uid="uid://6spl2drkii4x" path="res://Assets/UserInterface/Menu/Brush.png" id="3_1utxv"]
@@ -319,7 +327,12 @@ adjustment_enabled = true
 adjustment_contrast = 1.26
 adjustment_color_correction = SubResource("GradientTexture1D_xipfq")
 
+<<<<<<< Updated upstream
 [node name="Title" type="Node2D"]
+=======
+[node name="TitleScreen" type="Node2D"]
+script = ExtResource("1_xhony")
+>>>>>>> Stashed changes
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(638, 357)
@@ -367,6 +380,7 @@ texture = ExtResource("4_6jovv")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_xutyv")
 
+<<<<<<< Updated upstream
 [node name="Dust" type="Sprite2D" parent="."]
 modulate = Color(0.78, 0.61789, 0.4446, 0.941176)
 position = Vector2(334, 639)
@@ -378,3 +392,60 @@ modulate = Color(0.78, 0.61789, 0.4446, 0.941176)
 position = Vector2(441, 633)
 scale = Vector2(4, 4)
 texture = ExtResource("8_3auyt")
+=======
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 550.0
+offset_top = 360.0
+offset_right = 590.0
+offset_bottom = 400.0
+scale = Vector2(2, 2)
+
+[node name="MainMenu" type="MarginContainer" parent="UI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MainMenu"]
+layout_mode = 2
+alignment = 1
+
+[node name="Start Game" type="Button" parent="UI/MainMenu/VBoxContainer"]
+layout_mode = 2
+text = "Start Game"
+
+[node name="Settings" type="Button" parent="UI/MainMenu/VBoxContainer"]
+layout_mode = 2
+text = "Settings
+"
+
+[node name="Exit Game" type="Button" parent="UI/MainMenu/VBoxContainer"]
+layout_mode = 2
+text = "Exit Game"
+
+[node name="Settings" type="MarginContainer" parent="UI"]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HFlowContainer" type="HFlowContainer" parent="UI/Settings"]
+layout_mode = 2
+alignment = 1
+
+[node name="Fullscreen" type="Button" parent="UI/Settings/HFlowContainer"]
+layout_mode = 2
+text = "Fullscreen
+"
+
+[node name="Back" type="Button" parent="UI/Settings/HFlowContainer"]
+layout_mode = 2
+text = "Back"
+
+[connection signal="pressed" from="UI/MainMenu/VBoxContainer/Start Game" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="UI/MainMenu/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="UI/MainMenu/VBoxContainer/Exit Game" to="." method="_on_exit_game_pressed"]
+[connection signal="pressed" from="UI/Settings/HFlowContainer/Fullscreen" to="." method="_on_fullscreen_pressed"]
+[connection signal="pressed" from="UI/Settings/HFlowContainer/Back" to="." method="_on_back_pressed"]
+>>>>>>> Stashed changes
