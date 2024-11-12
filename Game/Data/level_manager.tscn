@@ -1,31 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://pspu4kxlebsj"]
+[gd_scene load_steps=4 format=3 uid="uid://cjwlby0861emh"]
 
 [ext_resource type="Script" path="res://Game/Data/level_manager.gd" id="1_dm5k4"]
 [ext_resource type="PackedScene" uid="uid://dskshrij31rv2" path="res://Game/Data/Levels/debug_level.tscn" id="1_p7yjj"]
-<<<<<<< HEAD
-
-[sub_resource type="Environment" id="Environment_0voul"]
-background_mode = 3
-ambient_light_source = 3
-tonemap_exposure = 6.73
-glow_enabled = true
-glow_bloom = 0.07
-glow_hdr_scale = 0.0
-fog_mode = 1
-fog_density = 1.0
-adjustment_enabled = true
-adjustment_saturation = 1.08
-
-[node name="LevelManager" type="Node2D" groups=["levelmanager"]]
-script = ExtResource("1_dm5k4")
-level_list = Array[PackedScene]([ExtResource("1_p7yjj")])
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_0voul")
-=======
 [ext_resource type="PackedScene" uid="uid://k8rumcuxr4rp" path="res://Game/UI/title.tscn" id="2_834oh"]
 
 [node name="LevelManager" type="Node2D" groups=["levelmanager"]]
 script = ExtResource("1_dm5k4")
 level_list = Array[PackedScene]([ExtResource("2_834oh"), ExtResource("1_p7yjj")])
->>>>>>> c87c7869cfd69d5a2bd40e90b488c9bc49ad571a
