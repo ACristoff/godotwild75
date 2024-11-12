@@ -1,9 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://dskshrij31rv2"]
+[gd_scene load_steps=8 format=3 uid="uid://dskshrij31rv2"]
 
 [ext_resource type="Script" path="res://Game/Data/battle_manager.gd" id="1_uyhos"]
 [ext_resource type="PackedScene" uid="uid://gcdapkkqr808" path="res://Game/World/environment.tscn" id="2_p8do1"]
 [ext_resource type="PackedScene" uid="uid://d1rww8eno83bs" path="res://Game/Data/Cursor/cursor.tscn" id="2_pogwr"]
+<<<<<<< HEAD
 [ext_resource type="PackedScene" uid="uid://c0vnt11umxslf" path="res://Game/Data/attack_overlay.tscn" id="4_b5j10"]
+=======
+>>>>>>> c87c7869cfd69d5a2bd40e90b488c9bc49ad571a
 [ext_resource type="PackedScene" uid="uid://copviu6p757h8" path="res://Game/Data/unit_path.tscn" id="4_feshh"]
 [ext_resource type="PackedScene" uid="uid://2nbe138odbl8" path="res://Game/Characters/miko_unit.tscn" id="6_ichhw"]
 [ext_resource type="PackedScene" uid="uid://cg34obo360a5w" path="res://Game/Characters/enemy_base.tscn" id="6_xe3j1"]

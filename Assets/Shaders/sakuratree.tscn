@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://bat17sfqaplx7"]
+
+[ext_resource type="Shader" path="res://Game/UI/sway.gdshader" id="1_pmweg"]
+[ext_resource type="Texture2D" uid="uid://7oed8mmwm3ng" path="res://Assets/Environment/Objects/Trunk.png" id="2_d1yp1"]
+[ext_resource type="Texture2D" uid="uid://b0hgnjn7s45q6" path="res://Assets/Environment/Objects/Leaves.png" id="3_tcqsf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_koig1"]
+resource_local_to_scene = true
+shader = ExtResource("1_pmweg")
+shader_parameter/speed = 1.0
+shader_parameter/minStrength = 0.05
+shader_parameter/maxStrength = 0.01
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 1.0
+shader_parameter/distortion = null
+shader_parameter/heightOffset = null
+shader_parameter/offset = 0.0
+
+[node name="Trunk" type="Sprite2D"]
+material = SubResource("ShaderMaterial_koig1")
+position = Vector2(182, 208)
+scale = Vector2(4, 4)
+texture = ExtResource("2_d1yp1")
+
+[node name="Leaves2" type="Sprite2D" parent="."]
+use_parent_material = true
+position = Vector2(8.5, 4)
+texture = ExtResource("3_tcqsf")
