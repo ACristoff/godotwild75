@@ -1,3 +1,18 @@
-[gd_scene format=3 uid="uid://c0vnt11umxslf"]
+[gd_scene load_steps=5 format=3 uid="uid://c0vnt11umxslf"]
+
+[ext_resource type="Texture2D" uid="uid://bxkvvkop8d6ta" path="res://Game/Data/tileset_unit_overlay.svg" id="1_bxsuq"]
+[ext_resource type="Script" path="res://Game/Data/attack_overlay.gd" id="1_sk8r3"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q4ffn"]
+texture = ExtResource("1_bxsuq")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ucxu8"]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_q4ffn")
 
 [node name="AttackOverlay" type="TileMapLayer"]
+modulate = Color(1, 0, 0, 0.352941)
+tile_set = SubResource("TileSet_ucxu8")
+script = ExtResource("1_sk8r3")

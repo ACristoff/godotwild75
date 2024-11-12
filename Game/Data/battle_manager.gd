@@ -14,11 +14,12 @@ var active_unit: Unit
 var walkable_cells := []
 var is_player_turn: bool = true
 
-@onready var unit_overlay = null
+@onready var attack_overlay = $AttackOverlay
 @onready var unit_path: UnitPath = $UnitPath
 
 func _ready():
 	reinitialize()
+	#attack_overlay.draw(get_walkable_cells($MikoUnit))
 	pass
 
 ##Finds the next unit in a given team that has moves available
@@ -39,7 +40,8 @@ func turn_manager():
 			is_player_turn = false
 			#prints('player turn:', is_player_turn)
 	else:
-		#print("Enemy turn start")
+		print("Enemy turn start")
+		print(enemies)
 		pass
 	pass
 
@@ -72,6 +74,8 @@ func on_unit_state_change(state):
 		print(active_unit.current_attack)
 		var attack_cells = get_attack_cells(active_unit, active_unit.current_attack)
 		print(attack_cells)
+		#attack_overlay.draw(get_walkable_cells($MikoUnit))
+		attack_overlay.draw(attack_cells)
 	pass
 
 ## Returns `true` if the cell is occupied by a unit.
