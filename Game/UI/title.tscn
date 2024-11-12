@@ -1,346 +1,32 @@
-<<<<<<< Updated upstream
-[gd_scene load_steps=16 format=3 uid="uid://dtjthk07jpugb"]
-
-[ext_resource type="Texture2D" uid="uid://1gsgwrxvici6" path="res://Assets/Environment/Objects/Foliage.png" id="1_ckhxw"]
-[ext_resource type="Texture2D" uid="uid://cvac1rhk2c816" path="res://Assets/Characters/Friendly/MikoSweep.png" id="1_t67nd"]
-[ext_resource type="Shader" path="res://Game/UI/sway.gdshader" id="1_vcxwa"]
-=======
 [gd_scene load_steps=9 format=3 uid="uid://k8rumcuxr4rp"]
 
 [ext_resource type="Texture2D" uid="uid://1gsgwrxvici6" path="res://Assets/Environment/Objects/Foliage.png" id="1_ckhxw"]
 [ext_resource type="Texture2D" uid="uid://cvac1rhk2c816" path="res://Assets/Characters/Friendly/MikoSweep.png" id="1_t67nd"]
 [ext_resource type="Script" path="res://Game/UI/title.gd" id="1_xhony"]
->>>>>>> Stashed changes
 [ext_resource type="Texture2D" uid="uid://cjqp7qxkqaotd" path="res://Assets/Environment/Objects/Shrine.png" id="2_2j4ax"]
 [ext_resource type="Texture2D" uid="uid://jrqfo2tf2gf7" path="res://Assets/Weapons/Broom.png" id="2_wmbyw"]
 [ext_resource type="Texture2D" uid="uid://6spl2drkii4x" path="res://Assets/UserInterface/Menu/Brush.png" id="3_1utxv"]
 [ext_resource type="Texture2D" uid="uid://buuibqrotwlwv" path="res://Assets/UserInterface/Menu/MirrorMiko.png" id="4_6jovv"]
-[ext_resource type="Texture2D" uid="uid://cl06vw6rxuxd" path="res://Assets/Effects/Particles/Dust.png" id="8_3auyt"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5j0b3"]
-shader = ExtResource("1_vcxwa")
-shader_parameter/speed = 1.0
-shader_parameter/minStrength = 0.05
-shader_parameter/maxStrength = 0.01
-shader_parameter/strengthScale = 100.0
-shader_parameter/interval = 3.5
-shader_parameter/detail = 1.0
-shader_parameter/distortion = null
-shader_parameter/heightOffset = null
-shader_parameter/offset = 0.0
-
-[sub_resource type="Animation" id="Animation_1je5g"]
-resource_name = "sweep"
-length = 2.0
-loop_mode = 1
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Broom:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1, 1.5),
-"transitions": PackedFloat32Array(0.196146, 3.13834, 0.203063, 2.46229),
-"update": 0,
-"values": [0.0, -0.645772, 0.0, 0.645772]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../Dust2:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.1, 0.9),
-"transitions": PackedFloat32Array(2.21915, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../Dust2:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.1, 0.9),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1.8125, 1.8125), Vector2(2.99647, 2.99647)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../Dust2:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.1, 0.9),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 1.06116]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../Dust2:modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0.1, 0.9),
-"transitions": PackedFloat32Array(3.13834, 1),
-"update": 0,
-"values": [Color(0.78, 0.61789, 0.4446, 0.941176), Color(0.78, 0.61789, 0.4446, 0)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("../Dust2:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0.1, 0.9),
-"transitions": PackedFloat32Array(0.353554, 1),
-"update": 0,
-"values": [Vector2(441, 633), Vector2(484, 625)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("../Dust:visible")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0, 1.1, 1.7),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("../Dust:modulate")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(1.1, 1.7),
-"transitions": PackedFloat32Array(3.03144, 1),
-"update": 0,
-"values": [Color(0.78, 0.61789, 0.4446, 0.941176), Color(0.78, 0.61789, 0.4446, 0)]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("../Dust:scale")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(1.1, 1.7),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1.6875, 1.6875), Vector2(3.29597, 3.29597)]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("../Dust:rotation")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(1.1, 1.7),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 2.30034]
-}
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("../Dust:position")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"times": PackedFloat32Array(1.1, 1.7),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(334, 639), Vector2(282, 619)]
-}
-
-[sub_resource type="Animation" id="Animation_cxu1q"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Broom:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../Dust2:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../Dust2:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(4, 4)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../Dust2:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../Dust2:modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.78, 0.61789, 0.4446, 0.941176)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("../Dust2:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(441, 633)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("../Dust:visible")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("../Dust:modulate")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.78, 0.61789, 0.4446, 0.941176)]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("../Dust:scale")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1.6875, 1.6875)]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("../Dust:rotation")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("../Dust:position")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(334, 639)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_rpar7"]
-_data = {
-"RESET": SubResource("Animation_cxu1q"),
-"sweep": SubResource("Animation_1je5g")
-}
-
-[sub_resource type="Gradient" id="Gradient_3ll1r"]
-offsets = PackedFloat32Array(0.00740741, 1)
-colors = PackedColorArray(0, 0.102, 0.18, 0.309804, 1, 1, 1, 0.223529)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_xipfq"]
-gradient = SubResource("Gradient_3ll1r")
 
 [sub_resource type="Environment" id="Environment_xutyv"]
 background_mode = 3
-reflected_light_source = 2
 glow_enabled = true
-glow_intensity = 0.78
-glow_bloom = 0.16
+glow_intensity = 1.73
+glow_bloom = 0.31
 glow_hdr_scale = 2.67
 glow_hdr_luminance_cap = 38.95
 adjustment_enabled = true
 adjustment_contrast = 1.26
-adjustment_color_correction = SubResource("GradientTexture1D_xipfq")
 
-<<<<<<< Updated upstream
-[node name="Title" type="Node2D"]
-=======
 [node name="TitleScreen" type="Node2D"]
 script = ExtResource("1_xhony")
->>>>>>> Stashed changes
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(638, 357)
 
 [node name="Foliage" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_5j0b3")
-position = Vector2(629, 348)
-scale = Vector2(4.13438, 4.07222)
+position = Vector2(638, 357)
+scale = Vector2(4, 4)
 texture = ExtResource("1_ckhxw")
 
 [node name="Shrine" type="Sprite2D" parent="."]
@@ -354,15 +40,8 @@ scale = Vector2(4, 4)
 texture = ExtResource("1_t67nd")
 
 [node name="Broom" type="Sprite2D" parent="MikoSweep"]
-position = Vector2(-1.25, 9)
+position = Vector2(1, -1)
 texture = ExtResource("2_wmbyw")
-offset = Vector2(2.25, -10)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MikoSweep"]
-libraries = {
-"": SubResource("AnimationLibrary_rpar7")
-}
-autoplay = "sweep"
 
 [node name="Brush" type="Sprite2D" parent="."]
 self_modulate = Color(0.627451, 0.141176, 0.141176, 1)
@@ -380,19 +59,6 @@ texture = ExtResource("4_6jovv")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_xutyv")
 
-<<<<<<< Updated upstream
-[node name="Dust" type="Sprite2D" parent="."]
-modulate = Color(0.78, 0.61789, 0.4446, 0.941176)
-position = Vector2(334, 639)
-scale = Vector2(1.6875, 1.6875)
-texture = ExtResource("8_3auyt")
-
-[node name="Dust2" type="Sprite2D" parent="."]
-modulate = Color(0.78, 0.61789, 0.4446, 0.941176)
-position = Vector2(441, 633)
-scale = Vector2(4, 4)
-texture = ExtResource("8_3auyt")
-=======
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
@@ -403,6 +69,7 @@ offset_bottom = 400.0
 scale = Vector2(2, 2)
 
 [node name="MainMenu" type="MarginContainer" parent="UI"]
+visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -425,7 +92,6 @@ layout_mode = 2
 text = "Exit Game"
 
 [node name="Settings" type="MarginContainer" parent="UI"]
-visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -448,4 +114,3 @@ text = "Back"
 [connection signal="pressed" from="UI/MainMenu/VBoxContainer/Exit Game" to="." method="_on_exit_game_pressed"]
 [connection signal="pressed" from="UI/Settings/HFlowContainer/Fullscreen" to="." method="_on_fullscreen_pressed"]
 [connection signal="pressed" from="UI/Settings/HFlowContainer/Back" to="." method="_on_back_pressed"]
->>>>>>> Stashed changes
