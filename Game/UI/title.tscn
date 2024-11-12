@@ -569,7 +569,7 @@ shader_parameter/seed = 5.0
 offsets = PackedFloat32Array(0.00740741, 1)
 colors = PackedColorArray(0, 0.149333, 0.28, 0.309804, 1, 1, 1, 0.223529)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_xipfq"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_7rm8t"]
 gradient = SubResource("Gradient_3ll1r")
 
 [sub_resource type="Environment" id="Environment_xutyv"]
@@ -581,7 +581,7 @@ glow_bloom = 0.16
 glow_hdr_scale = 2.67
 glow_hdr_luminance_cap = 38.95
 adjustment_contrast = 1.26
-adjustment_color_correction = SubResource("GradientTexture1D_xipfq")
+adjustment_color_correction = SubResource("GradientTexture1D_7rm8t")
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_x5688"]
 particles_animation = true
@@ -593,7 +593,7 @@ particles_anim_loop = false
 offsets = PackedFloat32Array(0, 0.528455, 1)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_2qn36"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ayymu"]
 gradient = SubResource("Gradient_ubmgc")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ijnob"]
@@ -608,7 +608,7 @@ angular_velocity_max = 50.0
 gravity = Vector3(0, 10, 0)
 scale_min = 1.5
 scale_max = 2.0
-color_ramp = SubResource("GradientTexture1D_2qn36")
+color_ramp = SubResource("GradientTexture1D_ayymu")
 anim_offset_max = 1.0
 
 [node name="Title" type="Node2D"]
