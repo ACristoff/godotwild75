@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://5flf1lg3ttdl"]
+
+[sub_resource type="Curve" id="Curve_5kiqx"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.801324, 1), -0.0345698, -0.0345698, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_lne8v"]
+curve = SubResource("Curve_5kiqx")
+
+[sub_resource type="Gradient" id="Gradient_fpy5d"]
+offsets = PackedFloat32Array(0.390244, 1)
+colors = PackedColorArray(1, 0.966667, 0, 1, 1, 0.383333, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vdvmo"]
+gradient = SubResource("Gradient_fpy5d")
+
+[sub_resource type="Curve" id="Curve_a71q2"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.834437, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_4nfec"]
+curve = SubResource("Curve_a71q2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_neovp"]
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 30.0
+linear_accel_max = 30.0
+linear_accel_curve = SubResource("CurveTexture_4nfec")
+scale_min = 5.0
+scale_max = 5.0
+color_ramp = SubResource("GradientTexture1D_vdvmo")
+alpha_curve = SubResource("CurveTexture_lne8v")
+
+[node name="Node2D" type="Node2D"]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_neovp")
+lifetime = 2.0

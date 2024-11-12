@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://gcdapkkqr808"]
+[gd_scene load_steps=25 format=4 uid="uid://gcdapkkqr808"]
 
 [ext_resource type="Texture2D" uid="uid://cig0shmgu75ha" path="res://Assets/Environment/GridTileMap/TilemapGrid.png" id="1_vknam"]
 [ext_resource type="Shader" path="res://Assets/Shaders/wavyshader.gdshader" id="2_21iao"]
@@ -37,6 +37,13 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_2dks7")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vytax"]
+
+[sub_resource type="Gradient" id="Gradient_h66sm"]
+offsets = PackedFloat32Array(0.0709677, 0.503226, 0.883871)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6ehh7"]
+gradient = SubResource("Gradient_h66sm")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_del0o"]
 shader = ExtResource("2_21iao")
@@ -126,7 +133,7 @@ _data = {
 "wavy3": SubResource("Animation_phsm8")
 }
 
-[sub_resource type="Shader" id="Shader_dp87w"]
+[sub_resource type="Shader" id="Shader_u1epj"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 
@@ -232,7 +239,7 @@ void fragment()
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wb1fm"]
 resource_local_to_scene = true
-shader = SubResource("Shader_dp87w")
+shader = SubResource("Shader_u1epj")
 shader_parameter/angle = -0.3
 shader_parameter/position = -0.2
 shader_parameter/spread = 0.62
@@ -262,6 +269,13 @@ position = Vector2(642, 356)
 scale = Vector2(2, 2)
 texture = ExtResource("3_1h3k0")
 
+[node name="PointLight2D" type="PointLight2D" parent="White"]
+position = Vector2(-2.74998, -12.5)
+scale = Vector2(0.330078, 679)
+color = Color(0.983334, 0, 1, 1)
+energy = 2.29
+texture = SubResource("GradientTexture1D_6ehh7")
+
 [node name="Separator2" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_del0o")
 position = Vector2(608, 357)
@@ -289,7 +303,7 @@ autoplay = "wavy3"
 
 [node name="Node2D" parent="." instance=ExtResource("6_sanjg")]
 material = SubResource("ShaderMaterial_wb1fm")
-position = Vector2(15, 64.5)
+position = Vector2(71, 185)
 scale = Vector2(2, 2)
 
 [node name="smog" parent="." instance=ExtResource("7_qpput")]
