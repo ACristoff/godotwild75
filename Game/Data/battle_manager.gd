@@ -39,7 +39,8 @@ func turn_manager():
 			is_player_turn = false
 			#prints('player turn:', is_player_turn)
 	else:
-		#print("Enemy turn start")
+		print("Enemy turn start")
+		print(enemies)
 		pass
 	pass
 
