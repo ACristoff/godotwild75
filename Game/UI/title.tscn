@@ -1,15 +1,149 @@
-[gd_scene load_steps=26 format=3 uid="uid://k8rumcuxr4rp"]
+[gd_scene load_steps=30 format=3 uid="uid://dtjthk07jpugb"]
 
 [ext_resource type="Texture2D" uid="uid://1gsgwrxvici6" path="res://Assets/Environment/Objects/Foliage.png" id="1_ckhxw"]
 [ext_resource type="Texture2D" uid="uid://cvac1rhk2c816" path="res://Assets/Characters/Friendly/MikoSweep.png" id="1_t67nd"]
 [ext_resource type="Script" path="res://Game/UI/title.gd" id="1_xhony"]
 [ext_resource type="Texture2D" uid="uid://cjqp7qxkqaotd" path="res://Assets/Environment/Objects/Shrine.png" id="2_2j4ax"]
-[ext_resource type="PackedScene" path="res://Assets/Shaders/sakuratree.tscn" id="2_vga1q"]
+[ext_resource type="PackedScene" uid="uid://bat17sfqaplx7" path="res://Assets/Shaders/sakuratree.tscn" id="2_vga1q"]
 [ext_resource type="Texture2D" uid="uid://jrqfo2tf2gf7" path="res://Assets/Weapons/Broom.png" id="2_wmbyw"]
 [ext_resource type="Texture2D" uid="uid://6spl2drkii4x" path="res://Assets/UserInterface/Menu/Brush.png" id="3_1utxv"]
 [ext_resource type="Texture2D" uid="uid://buuibqrotwlwv" path="res://Assets/UserInterface/Menu/MirrorMiko.png" id="4_6jovv"]
 [ext_resource type="Texture2D" uid="uid://cl06vw6rxuxd" path="res://Assets/Effects/Particles/Dust.png" id="8_3auyt"]
 [ext_resource type="Texture2D" uid="uid://cp1i2rrme4saq" path="res://Assets/Environment/Objects/Petals.png" id="9_od2by"]
+[ext_resource type="Texture2D" uid="uid://ulmebv12bmbk" path="res://Assets/UserInterface/Menu/beretparadelogo.png" id="11_t3nwi"]
+
+[sub_resource type="Animation" id="Animation_6xxa5"]
+resource_name = "Start"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Beretparadelogo:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.0500002, 0, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(0.00999999, 0.0265002, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WorldEnvironment:environment:adjustment_enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3.33333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ColorRect:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3.33333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WorldEnvironment:environment:glow_intensity")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(3.3, 3.33333, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 8.0, 0.78]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("WorldEnvironment:environment:glow_bloom")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(3.3, 3.33333, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.16]
+}
+
+[sub_resource type="Animation" id="Animation_w1x0l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Beretparadelogo:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WorldEnvironment:environment:adjustment_enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ColorRect:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WorldEnvironment:environment:glow_intensity")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.78]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("WorldEnvironment:environment:glow_bloom")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.16]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5gt7b"]
+_data = {
+"RESET": SubResource("Animation_w1x0l"),
+"Start": SubResource("Animation_6xxa5")
+}
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5j0b3"]
 
@@ -403,7 +537,6 @@ glow_intensity = 0.78
 glow_bloom = 0.16
 glow_hdr_scale = 2.67
 glow_hdr_luminance_cap = 38.95
-adjustment_enabled = true
 adjustment_contrast = 1.26
 adjustment_color_correction = SubResource("GradientTexture1D_xipfq")
 
@@ -437,6 +570,13 @@ anim_offset_max = 1.0
 
 [node name="Title" type="Node2D"]
 script = ExtResource("1_xhony")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5gt7b")
+}
+autoplay = "Start"
+speed_scale = 0.7
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(638, 357)
@@ -513,12 +653,13 @@ texture = ExtResource("9_od2by")
 lifetime = 10.0
 
 [node name="UI" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
-offset_left = 550.0
-offset_top = 360.0
-offset_right = 590.0
-offset_bottom = 400.0
+offset_left = 937.0
+offset_top = 319.0
+offset_right = 977.0
+offset_bottom = 359.0
 scale = Vector2(2, 2)
 
 [node name="MainMenu" type="MarginContainer" parent="UI"]
@@ -560,6 +701,21 @@ text = "Fullscreen
 [node name="Back" type="Button" parent="UI/Settings/HFlowContainer"]
 layout_mode = 2
 text = "Back"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+modulate = Color(0, 0, 0, 1)
+offset_left = -83.0
+offset_top = -31.0
+offset_right = 1384.0
+offset_bottom = 763.0
+color = Color(0, 0, 0, 1)
+
+[node name="Beretparadelogo" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(613, 395)
+scale = Vector2(0.451852, 0.451852)
+texture = ExtResource("11_t3nwi")
 
 [connection signal="pressed" from="UI/MainMenu/HFlowContainer/StartGame" to="." method="_on_start_game_pressed"]
 [connection signal="pressed" from="UI/MainMenu/HFlowContainer/Settings" to="." method="_on_settings_pressed"]
