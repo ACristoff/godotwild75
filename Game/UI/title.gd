@@ -8,6 +8,8 @@ extends Node2D
 @onready var titlebgm = preload("res://Assets/Audio/Music/MM Theme but again.mp3")
 
 var fullscreen = false
+var on1 = true
+var on2 = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,13 +20,26 @@ func _ready():
 func _process(delta):
 	pass
 	
-#func LogoSFX():
+func LogoSFX():
+	pass
 	#AudioManager.play(logosfx)
-#func WashSFX():
+func WashSFX():
+	pass
 	#AudioManager.play(washsfx)
-#func TitleMusic():
+func TitleMusic():
+	pass
 	#AudioManager.play(titlebgm)
-	
+func BarrelSequence():
+	var tween = create_tween()
+	tween.tween_property($Barrel, "scale", Vector2(4.5, 3.5), .25)
+	tween.tween_property($Barrel, "scale", Vector2(3.5, 4.5), .25)
+	tween.tween_property($Barrel, "scale", Vector2(4, 4), .5)
+func SweepStop():
+	$MikoSweep/AnimationPlayer.play("sweep_stop")
+func MikoShiver():
+	var shiver = true
+func Escape():
+	$KappaFullAnim/AnimationPlayer.play("kappa")
 	
 	
 	
@@ -36,7 +51,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		get_tree().quit()
 	if event is not InputEventMouseMotion:
-		print("start")
+		$Cutscene.play("Main_Cutscene")
 
 func _on_start_game_pressed():
 	LevelManager.nextLevel()
@@ -61,3 +76,28 @@ func _on_fullscreen_pressed():
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 		$UI/Settings/HFlowContainer/Fullscreen.text = "Windowed"
 		fullscreen = true
+
+
+
+
+func _on_sf_xbutt_pressed() -> void:
+	if on1:
+		#turn sounds off
+		$SFXbutt/Music.frame = 1
+		on1 = false
+	else:
+		#turn sounds on
+		$SFXbutt/Music.frame = 0
+		on1 = true
+	
+
+
+func _on_bg_mbutt_pressed() -> void:
+	if on2:
+		#turn music off
+		$BGMbutt/Sound.frame = 1
+		on2 = false
+	else:
+		#turn music on
+		$BGMbutt/Sound.frame = 0
+		on2 = true
