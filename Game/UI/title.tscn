@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dtjthk07jpugb"]
+[gd_scene load_steps=8 format=3 uid="uid://k8rumcuxr4rp"]
 
 [ext_resource type="Texture2D" uid="uid://1gsgwrxvici6" path="res://Assets/Environment/Objects/Foliage.png" id="1_ckhxw"]
 [ext_resource type="Texture2D" uid="uid://cvac1rhk2c816" path="res://Assets/Characters/Friendly/MikoSweep.png" id="1_t67nd"]
