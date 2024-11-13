@@ -610,10 +610,6 @@ adjustment_color_correction = SubResource("GradientTexture1D_7rm8t")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5tn0e"]
 shader = ExtResource("9_4u75f")
-shader_parameter/center = null
-shader_parameter/force = 50.0
-shader_parameter/size = 30.0
-shader_parameter/thickness = 20.0
 
 [node name="Cutscene2" type="Node2D"]
 

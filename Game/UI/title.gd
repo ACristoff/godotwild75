@@ -36,6 +36,8 @@ func SweepSFX():
 	$AudioStreamPlayer2D.play()
 func Start_sweep():
 	$MikoSweep/AnimationPlayer.play("sweep")
+func Kacophany():
+	$AudioStreamPlayer2D2.play()
 func BarrelSequence():
 	AudioManager.play_sfx(kappasfx, 1)
 	var tween = create_tween()
