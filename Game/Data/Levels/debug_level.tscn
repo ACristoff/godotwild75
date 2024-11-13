@@ -24,7 +24,7 @@ y_sort_origin = -1
 [node name="AttackOverlay" parent="." instance=ExtResource("4_j42nd")]
 
 [node name="MikoUnit" parent="." instance=ExtResource("6_ichhw")]
-position = Vector2(246, 548)
+position = Vector2(346, 568)
 
 [node name="EnemyBase2" parent="." instance=ExtResource("6_xe3j1")]
 position = Vector2(358, 390)
