@@ -11,6 +11,7 @@ var fullscreen = false
 var on1 = true
 var on2 = true
 var played = false
+var click = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,16 +21,16 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+func EnableClick():
+	click = true
 	
 func LogoSFX():
-	pass
-	#AudioManager.play(logosfx)
+	AudioManager.play_sfx(logosfx, 1)
 func WashSFX():
-	pass
-	#AudioManager.play(washsfx)
+	AudioManager.play_sfx(washsfx, 1)
 func TitleMusic():
-	pass
-	#AudioManager.play(titlebgm)
+	AudioManager.play_sfx(titlebgm, 1)
+	
 func BarrelSequence():
 	var tween = create_tween()
 	tween.tween_property($Barrel, "scale", Vector2(4.5, 3.5), .25)
@@ -52,7 +53,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		get_tree().quit()
 	if event is not InputEventMouseMotion:
-		if played == false:
+		if click and !played:
 			$Cutscene.play("Main_Cutscene")
 			played = true
 
