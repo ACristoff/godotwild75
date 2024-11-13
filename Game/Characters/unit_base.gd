@@ -49,11 +49,12 @@ var current_direction = direction.UP
 			await ready
 		_sprite.position = value
 ## Coordinates of the current cell the cursor moved to.
-var cell := Vector2.ZERO:
+@export var cell := Vector2.ZERO:
 	set(value):
 		# When changing the cell's value, we don't want to allow coordinates outside
 		#	the grid, so we clamp them
 		cell = grid.grid_clamp(value)
+
 var _is_walking := false:
 	set(value):
 		_is_walking = value

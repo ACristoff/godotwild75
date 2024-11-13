@@ -17,6 +17,7 @@ func initialize(walkable_cells: Array) -> void:
 ## Finds and draws the path between `cell_start` and `cell_end`
 func draw(cell_start: Vector2, cell_end: Vector2) -> void:
 	clear()
+	#print('BUGGED HERe', cell_start, cell_end)
 	current_path = _pathfinder.calculate_point_path(cell_start, cell_end)
 	var test_offset_path: PackedVector2Array = [] 
 	for vector in current_path:
