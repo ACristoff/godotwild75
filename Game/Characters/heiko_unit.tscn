@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://2r5lvg6715f"]
+[gd_scene load_steps=10 format=3 uid="uid://2r5lvg6715f"]
 
 [ext_resource type="PackedScene" uid="uid://cx4kwdcn8ymig" path="res://Game/Characters/player_unit.tscn" id="1_k1f0n"]
 [ext_resource type="Texture2D" uid="uid://dyq0tu7gqp7la" path="res://Assets/Characters/Friendly/Heiko.png" id="2_htbp3"]
+[ext_resource type="Script" path="res://Game/Characters/heiko_unit.gd" id="2_welh2"]
 
 [sub_resource type="Animation" id="Animation_cly3v"]
 length = 0.001
@@ -100,6 +101,7 @@ _data = {
 }
 
 [node name="HeikoUnit" instance=ExtResource("1_k1f0n")]
+script = ExtResource("2_welh2")
 skin = ExtResource("2_htbp3")
 
 [node name="Sprite" parent="PathFollow2D" index="1"]

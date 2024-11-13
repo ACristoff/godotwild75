@@ -1,9 +1,9 @@
 extends PlayerUnit
 
-var miko_attacks = {
-	"Sword": {
-		"RANGE": 2,
-		"DAMAGE": 2,
+var heiko_attacks = {
+	"Palm Strike": {
+		"RANGE": 1,
+		"DAMAGE": 1,
 		"MOVE": Vector2(0,0),
 		"EXORCISM": false,
 		"BLAST_PATTERN": [],
@@ -12,5 +12,5 @@ var miko_attacks = {
 }
 
 func _init():
-	attacks = miko_attacks
+	attacks = heiko_attacks
 	pass
