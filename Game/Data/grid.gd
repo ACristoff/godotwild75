@@ -15,10 +15,12 @@ var _half_cell_size = cell_size / 2
 
 
 func calculate_mirror_position(cell):
-	var mirrored_cell = Vector2(cell.x - 7, cell.y)
+	var mirrored_cell = Vector2(cell.x - 9, cell.y)
 	if mirrored_cell.x < 0:
-		mirrored_cell.x = 17 + mirrored_cell.x  
-		pass
+		mirrored_cell.x = 19 + mirrored_cell.x  
+	else:
+		#print("mirrored is", mirrored_cell)
+		mirrored_cell.x = mirrored_cell.x - 1
 	#print(cell)
 	return mirrored_cell
 

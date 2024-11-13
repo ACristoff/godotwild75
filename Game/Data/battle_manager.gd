@@ -221,6 +221,19 @@ func _on_cursor_accept_pressed(cell):
 				var hit_cell = attack_origin + to_hit_cell
 				attack_cells.append(hit_cell)
 			if active_unit == miko || active_unit == spirit_miko:
+				var mirrored_unit_cell = null
+				if active_unit == miko:
+					mirrored_unit_cell = spirit_miko.cell
+				else:
+					mirrored_unit_cell = miko.cell
+				var mirror_origin = attack_origin - active_unit.cell
+				prints("relative is", mirror_origin, mirrored_unit_cell)
+				for to_hit_cell in current_attack.ATTACK_PATTERN:
+					##Refactor this to work from alternate miko origin, then do an operation
+					var hit_cell = mirror_origin + to_hit_cell
+					hit_cell = hit_cell + mirrored_unit_cell
+					attack_cells.append(hit_cell)
+					pass
 				print("miko or spirit miko attacked!")
 				pass
 			##DO ATTACK
