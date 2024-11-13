@@ -6,6 +6,8 @@ extends Node2D
 @onready var logosfx = preload("res://Assets/Audio/UI/BERET PARADE Cadence rev 2.mp3")
 @onready var washsfx = preload("res://Assets/Audio/UI/Title Splash Screen Transition.mp3")
 @onready var titlebgm = preload("res://Assets/Audio/Music/MM Theme but again.mp3")
+@onready var sweepsfx = preload("res://Assets/Audio/UI/Sweep_3.mp3")
+@onready var kappasfx = preload("res://Assets/Audio/UI/Kappa.mp3")
 
 var fullscreen = false
 var on1 = true
@@ -30,12 +32,16 @@ func WashSFX():
 	AudioManager.play_sfx(washsfx, 1)
 func TitleMusic():
 	AudioManager.play_sfx(titlebgm, 1)
-	
+func SweepSFX():
+	$AudioStreamPlayer2D.play()
+func Start_sweep():
+	$MikoSweep/AnimationPlayer.play("sweep")
 func BarrelSequence():
+	AudioManager.play_sfx(kappasfx, 1)
 	var tween = create_tween()
-	tween.tween_property($Barrel, "scale", Vector2(4.5, 3.5), .25)
-	tween.tween_property($Barrel, "scale", Vector2(3.5, 4.5), .25)
-	tween.tween_property($Barrel, "scale", Vector2(4, 4), .5)
+	tween.tween_property($Barrel, "scale", Vector2(4.2, 3.8), .33)
+	tween.tween_property($Barrel, "scale", Vector2(3.8, 4.2), .33)
+	tween.tween_property($Barrel, "scale", Vector2(4, 4), .44)
 func SweepStop():
 	$MikoSweep/AnimationPlayer.play("sweep_stop")
 func MikoShiver():

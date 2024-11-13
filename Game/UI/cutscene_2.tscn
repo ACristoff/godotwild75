@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bo3muq21abh88"]
+[gd_scene load_steps=29 format=3 uid="uid://bo3muq21abh88"]
 
 [ext_resource type="PackedScene" uid="uid://gcdapkkqr808" path="res://Game/World/environment.tscn" id="1_hv48d"]
 [ext_resource type="Texture2D" uid="uid://bpmvmcaiamrh5" path="res://Assets/Characters/Friendly/Miko.png" id="2_fvuus"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bxkvvkop8d6ta" path="res://Game/Data/tileset_unit_overlay.svg" id="6_7ajn3"]
 [ext_resource type="Texture2D" uid="uid://ccfyifwmn653b" path="res://Assets/Environment/GridTileMap/Separator.png" id="7_belic"]
 [ext_resource type="Texture2D" uid="uid://k10sy15l0bhm" path="res://Assets/Characters/Friendly/MikoSpirit.png" id="8_lbwrc"]
+[ext_resource type="Shader" path="res://Assets/Shaders/shockwave.gdshader" id="9_4u75f"]
 
 [sub_resource type="Shader" id="Shader_iul0v"]
 resource_local_to_scene = true
@@ -607,6 +608,13 @@ adjustment_enabled = true
 adjustment_contrast = 1.26
 adjustment_color_correction = SubResource("GradientTexture1D_7rm8t")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5tn0e"]
+shader = ExtResource("9_4u75f")
+shader_parameter/center = null
+shader_parameter/force = 50.0
+shader_parameter/size = 30.0
+shader_parameter/thickness = 20.0
+
 [node name="Cutscene2" type="Node2D"]
 
 [node name="Environment" parent="." instance=ExtResource("1_hv48d")]
@@ -704,5 +712,11 @@ scale = Vector2(2, 2)
 texture = ExtResource("8_lbwrc")
 hframes = 16
 frame = 8
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_5tn0e")
+offset_left = -325.0
+offset_top = 250.0
+offset_bottom = 585.0
 
 [editable path="Environment"]

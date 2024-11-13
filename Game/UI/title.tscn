@@ -1,13 +1,16 @@
-[gd_scene load_steps=56 format=3 uid="uid://dtjthk07jpugb"]
+[gd_scene load_steps=60 format=3 uid="uid://dtjthk07jpugb"]
 
 [ext_resource type="Texture2D" uid="uid://1gsgwrxvici6" path="res://Assets/Environment/Objects/Foliage.png" id="1_ckhxw"]
 [ext_resource type="Texture2D" uid="uid://cvac1rhk2c816" path="res://Assets/Characters/Friendly/MikoSweep.png" id="1_t67nd"]
 [ext_resource type="Script" path="res://Game/UI/title.gd" id="1_xhony"]
 [ext_resource type="Texture2D" uid="uid://cjqp7qxkqaotd" path="res://Assets/Environment/Objects/Shrine.png" id="2_2j4ax"]
+[ext_resource type="AudioStream" uid="uid://mb7cdnj4wwov" path="res://Assets/Audio/UI/Sweep_1.mp3" id="2_pckjq"]
 [ext_resource type="PackedScene" uid="uid://bat17sfqaplx7" path="res://Assets/Shaders/sakuratree.tscn" id="2_vga1q"]
 [ext_resource type="Texture2D" uid="uid://jrqfo2tf2gf7" path="res://Assets/Weapons/Broom.png" id="2_wmbyw"]
 [ext_resource type="Texture2D" uid="uid://6spl2drkii4x" path="res://Assets/UserInterface/Menu/Brush.png" id="3_1utxv"]
+[ext_resource type="AudioStream" uid="uid://bc0dxvitr4786" path="res://Assets/Audio/UI/Sweep_2.mp3" id="3_25d4v"]
 [ext_resource type="Texture2D" uid="uid://buuibqrotwlwv" path="res://Assets/UserInterface/Menu/MirrorMiko.png" id="4_6jovv"]
+[ext_resource type="AudioStream" uid="uid://big5x8trmvttm" path="res://Assets/Audio/UI/Sweep_3.mp3" id="4_6nr5b"]
 [ext_resource type="Script" path="res://Game/UI/miko_shivering.gd" id="6_l5kyv"]
 [ext_resource type="PackedScene" uid="uid://domnit2msh3jg" path="res://Assets/Shaders/god_ray.tscn" id="7_4v4wb"]
 [ext_resource type="Texture2D" uid="uid://cl06vw6rxuxd" path="res://Assets/Effects/Particles/Dust.png" id="8_3auyt"]
@@ -23,6 +26,12 @@
 [ext_resource type="Texture2D" uid="uid://lf5ircidgcgc" path="res://Assets/Characters/Hostile/Kappa_full_anim.png" id="18_y8ji2"]
 [ext_resource type="PackedScene" uid="uid://b5wuajjdswd23" path="res://Assets/Effects/transition.tscn" id="22_4jrs0"]
 [ext_resource type="Texture2D" uid="uid://bjx2labdxfhtt" path="res://Assets/UserInterface/Menu/FlameTransition.png" id="24_6mb7l"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_p2qx4"]
+streams_count = 3
+stream_0/stream = ExtResource("2_pckjq")
+stream_1/stream = ExtResource("3_25d4v")
+stream_2/stream = ExtResource("4_6nr5b")
 
 [sub_resource type="Animation" id="Animation_w1x0l"]
 length = 0.001
@@ -277,14 +286,17 @@ tracks/6/path = NodePath(".")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0.333333, 3.36667, 5),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0.333333, 3.36667, 4.13333, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "values": [{
 "args": [],
 "method": &"LogoSFX"
 }, {
 "args": [],
 "method": &"WashSFX"
+}, {
+"args": [],
+"method": &"Start_sweep"
 }, {
 "args": [],
 "method": &"EnableClick"
@@ -464,8 +476,8 @@ tracks/5/path = NodePath(".")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(3.5, 4, 5.5, 8.4, 9.4, 22.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(3.5, 4, 5.5, 8.4, 9.4, 18, 22.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "values": [{
 "args": [],
 "method": &"BarrelSequence"
@@ -481,6 +493,9 @@ tracks/5/keys = {
 }, {
 "args": [],
 "method": &"MikoShiver"
+}, {
+"args": [],
+"method": &"BarrelSequence"
 }, {
 "args": [],
 "method": &"Escape"
@@ -1510,6 +1525,23 @@ tracks/11/keys = {
 "update": 0,
 "values": [1.0]
 }
+tracks/12/type = "method"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("..")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(1, 2),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"SweepSFX"
+}, {
+"args": [],
+"method": &"SweepSFX"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_v0bd1"]
 resource_name = "sweep_stop"
@@ -1694,6 +1726,10 @@ shader_parameter/mask = ExtResource("24_6mb7l")
 [node name="Title" type="Node2D"]
 script = ExtResource("1_xhony")
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_p2qx4")
+pitch_scale = 1.4
+
 [node name="SplashScreen" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_5gt7b")
@@ -1742,7 +1778,6 @@ offset = Vector2(2.25, -10)
 libraries = {
 "": SubResource("AnimationLibrary_rpar7")
 }
-autoplay = "sweep"
 speed_scale = 4.0
 
 [node name="Node2D" parent="." instance=ExtResource("7_4v4wb")]
