@@ -4,8 +4,11 @@ extends Node2D
 const DIRECTIONS = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 
 @export var grid: Resource = preload("res://Game/Data/grid.tres")
-
 @export var level_music: AudioStreamWAV
+
+@onready var spirit_miko_scene:  = preload("res://Game/Characters/Friendlies/spirit_miko_unit.tscn") 
+var miko: PlayerUnit
+var spirit_miko: PlayerUnit
 
 var units := {}
 var enemies := {}
@@ -74,6 +77,10 @@ func reinitialize():
 		if unit is PlayerUnit:
 			friendlies[unit.cell] = unit
 			unit.connect("unit_state_change", on_unit_state_change)
+			if unit.is_in_group("miko"):
+				print(unit)
+				var spirit_miko_spawned = spirit_miko_scene.instantiate()
+				add_child(spirit_miko_spawned)
 		if unit is EnemyUnit:
 			enemies[unit.cell] = unit
 	turn_manager()
