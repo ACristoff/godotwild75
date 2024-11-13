@@ -70,6 +70,7 @@ func reinitialize():
 		if not unit:
 			continue
 		units[unit.cell] = unit
+		unit.connect("death", on_unit_death)
 		if unit is PlayerUnit:
 			friendlies[unit.cell] = unit
 			unit.connect("unit_state_change", on_unit_state_change)
@@ -237,7 +238,13 @@ func _on_cursor_moved(new_cell):
 	pass # Replace with function body.
 
 ##TODO remove unit from board on death
-func on_unit_death():
+func on_unit_death(unit):
+	print('this unit', unit)
+	units.erase(unit.cell)
+	if unit is PlayerUnit:
+		friendlies.erase(unit.cell)
+	elif unit is EnemyUnit:
+		enemies.erase(unit.cell)
 	pass
 
 func _on_cursor_deselect_pressed():
