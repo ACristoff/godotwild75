@@ -15,8 +15,12 @@ var _half_cell_size = cell_size / 2
 
 
 func calculate_mirror_position(cell):
-	print(cell)
-	return null
+	var mirrored_cell = Vector2(cell.x - 7, cell.y)
+	if mirrored_cell.x < 0:
+		mirrored_cell.x = 17 + mirrored_cell.x  
+		pass
+	#print(cell)
+	return mirrored_cell
 
 ## Returns the position of a cell's center in pixels.
 func calculate_map_position(grid_position: Vector2) -> Vector2:

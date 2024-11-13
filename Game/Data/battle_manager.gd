@@ -81,6 +81,9 @@ func reinitialize():
 				print(unit)
 				var spirit_miko_spawned = spirit_miko_scene.instantiate()
 				add_child(spirit_miko_spawned)
+				var spirit_coord = grid.calculate_mirror_position(unit.cell)
+				spirit_miko_spawned.global_position = grid.calculate_map_position(spirit_coord)
+				#prints(spirit_miko_spawned, unit.cell, spirit_coord)
 		if unit is EnemyUnit:
 			enemies[unit.cell] = unit
 	turn_manager()
@@ -235,6 +238,7 @@ func manage_attack(attack_cells, team_to_hit):
 	clear_active_unit()
 
 func _on_cursor_moved(new_cell):
+	print(new_cell)
 	if active_unit and active_unit.is_selected and active_unit.unit_state == PlayerUnit.unit_states.MOVE_THINK:
 		unit_path.draw(active_unit.cell, new_cell)
 	if active_unit and active_unit.is_selected and active_unit.unit_state == PlayerUnit.unit_states.ATTACK_ACTION_THINK:
