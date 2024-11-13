@@ -176,9 +176,17 @@ func _on_cursor_accept_pressed(cell):
 	if active_unit == null:
 		select_unit(cell)
 	elif active_unit.is_selected:
-		if active_unit.unit_state == PlayerUnit.unit_states.SELECTED && cell != active_unit.cell && units[cell] != active_unit:
+		if active_unit.unit_state == PlayerUnit.unit_states.SELECTED && cell != active_unit.cell:
 			deselect_unit()
 			clear_active_unit()
+			##There is a weird edge case I'm trying to take care of
+			##When clicking on a friendly unit
+			##I could engineer this better but we're halfway through the jam			
+			if units.has(cell):
+				if units[cell] != active_unit:
+					deselect_unit()
+					clear_active_unit()
+				pass
 			return
 		if active_unit.unit_state == PlayerUnit.unit_states.ATTACK_ACTION_THINK:
 			#TODO range check
