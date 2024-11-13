@@ -148,6 +148,8 @@ func select_unit(cell: Vector2):
 func deselect_unit():
 	if active_unit:
 		active_unit.is_selected = false
+		if active_unit is PlayerUnit:
+			active_unit.state_change(PlayerUnit.unit_states.IDLE)
 	attack_overlay.clear()
 	hit_overlay.kill_kids()
 	unit_path.stop()
@@ -190,8 +192,14 @@ func _on_cursor_accept_pressed(cell):
 			return
 		if active_unit.unit_state == PlayerUnit.unit_states.ATTACK_ACTION_THINK:
 			#TODO range check
+			var cells_in_range = get_attack_cells(active_unit, active_unit.current_attack)
 			# if range bad then deselect
 			var attack_origin = cell
+			if (!cells_in_range.has(attack_origin)):
+				deselect_unit()
+				clear_active_unit()
+				return
+				#pass
 			var attack_cells = []
 			
 			for to_hit_cell in current_attack.ATTACK_PATTERN:
@@ -227,6 +235,10 @@ func _on_cursor_moved(new_cell):
 		hit_overlay.position = move_to_pos
 		pass
 	pass # Replace with function body.
+
+##TODO remove unit from board on death
+func on_unit_death():
+	pass
 
 func _on_cursor_deselect_pressed():
 	if active_unit:
