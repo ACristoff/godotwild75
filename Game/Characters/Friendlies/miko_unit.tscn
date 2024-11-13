@@ -1,10 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://2r5lvg6715f"]
+[gd_scene load_steps=10 format=3 uid="uid://2nbe138odbl8"]
 
-[ext_resource type="PackedScene" uid="uid://cx4kwdcn8ymig" path="res://Game/Characters/player_unit.tscn" id="1_k1f0n"]
-[ext_resource type="Texture2D" uid="uid://dyq0tu7gqp7la" path="res://Assets/Characters/Friendly/Heiko.png" id="2_htbp3"]
-[ext_resource type="Script" path="res://Game/Characters/heiko_unit.gd" id="2_welh2"]
+[ext_resource type="PackedScene" uid="uid://cx4kwdcn8ymig" path="res://Game/Characters/Friendlies/player_unit.tscn" id="1_av5i1"]
+[ext_resource type="Script" path="res://Game/Characters/Friendlies/miko_unit.gd" id="2_5ylnv"]
+[ext_resource type="Texture2D" uid="uid://bpmvmcaiamrh5" path="res://Assets/Characters/Friendly/Miko.png" id="3_nhepp"]
 
-[sub_resource type="Animation" id="Animation_cly3v"]
+[sub_resource type="Animation" id="Animation_rjygj"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -19,7 +19,7 @@ tracks/0/keys = {
 "values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_lx6ip"]
+[sub_resource type="Animation" id="Animation_guu84"]
 resource_name = "idle_DOWN"
 length = 0.3
 loop_mode = 1
@@ -37,7 +37,7 @@ tracks/0/keys = {
 "values": [8, 9, 10]
 }
 
-[sub_resource type="Animation" id="Animation_yqryb"]
+[sub_resource type="Animation" id="Animation_lk0ph"]
 resource_name = "idle_LEFT"
 length = 0.3
 loop_mode = 1
@@ -52,10 +52,10 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [4, 5, 6]
+"values": [4, 6, 5]
 }
 
-[sub_resource type="Animation" id="Animation_2dkr8"]
+[sub_resource type="Animation" id="Animation_ahvj5"]
 resource_name = "idle_RIGHT"
 length = 0.3
 loop_mode = 1
@@ -70,10 +70,10 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [12, 13, 14]
+"values": [12, 14, 13]
 }
 
-[sub_resource type="Animation" id="Animation_d35w8"]
+[sub_resource type="Animation" id="Animation_yhhph"]
 resource_name = "idle_UP"
 length = 0.3
 loop_mode = 1
@@ -91,25 +91,25 @@ tracks/0/keys = {
 "values": [0, 1, 2]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_pl2rk"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_d0on5"]
 _data = {
-"RESET": SubResource("Animation_cly3v"),
-"idle_DOWN": SubResource("Animation_lx6ip"),
-"idle_LEFT": SubResource("Animation_yqryb"),
-"idle_RIGHT": SubResource("Animation_2dkr8"),
-"idle_UP": SubResource("Animation_d35w8")
+"RESET": SubResource("Animation_rjygj"),
+"idle_DOWN": SubResource("Animation_guu84"),
+"idle_LEFT": SubResource("Animation_lk0ph"),
+"idle_RIGHT": SubResource("Animation_ahvj5"),
+"idle_UP": SubResource("Animation_yhhph")
 }
 
-[node name="HeikoUnit" instance=ExtResource("1_k1f0n")]
-script = ExtResource("2_welh2")
-skin = ExtResource("2_htbp3")
+[node name="MikoUnit" instance=ExtResource("1_av5i1")]
+script = ExtResource("2_5ylnv")
+skin = ExtResource("3_nhepp")
 
 [node name="Sprite" parent="PathFollow2D" index="1"]
-texture = ExtResource("2_htbp3")
+texture = ExtResource("3_nhepp")
 
 [node name="AnimationPlayer" parent="." index="1"]
 libraries = {
-"": SubResource("AnimationLibrary_pl2rk")
+"": SubResource("AnimationLibrary_d0on5")
 }
 autoplay = "idle_UP"
 speed_scale = 0.5
