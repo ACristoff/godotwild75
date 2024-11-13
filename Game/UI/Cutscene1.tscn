@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://gf3gsbcweern"]
+[gd_scene load_steps=60 format=3 uid="uid://gf3gsbcweern"]
 
 [ext_resource type="Texture2D" uid="uid://67c1bv3fuim4" path="res://Assets/UserInterface/Menu/Staircase.png" id="1_hlg64"]
 [ext_resource type="Script" path="res://Game/UI/cutscene_1.gd" id="1_jqtqn"]
@@ -209,10 +209,10 @@ tracks/7/path = NodePath("../Transition:material:shader_parameter/scale")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(18, 19.5),
-"transitions": PackedFloat32Array(3.86374, 1),
+"times": PackedFloat32Array(0, 1.5, 18, 19.5),
+"transitions": PackedFloat32Array(0.392292, 1, 3.86374, 1),
 "update": 0,
-"values": [0.0, 1.0]
+"values": [1.0, 0.0, 0.0, 1.0]
 }
 
 [sub_resource type="Animation" id="Animation_ixshm"]
@@ -339,52 +339,8 @@ shader_parameter/noise = SubResource("NoiseTexture2D_283lw")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gthbg"]
 resource_local_to_scene = true
 shader = ExtResource("8_amo7s")
-shader_parameter/scale = 1.0
+shader_parameter/scale = 0.0
 shader_parameter/mask = ExtResource("9_2dcsm")
-
-[sub_resource type="Animation" id="Animation_q6inw"]
-resource_name = "Trans_In"
-length = 1.5
-step = 0.1
-
-[sub_resource type="Animation" id="Animation_w0waa"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
-}
-
-[sub_resource type="Animation" id="Animation_jrswo"]
-resource_name = "Trans_Out"
-length = 1.5
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.5),
-"transitions": PackedFloat32Array(3.86374, 1),
-"update": 0,
-"values": [0.0, 1.0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_yug34"]
-_data = {
-"RESET": SubResource("Animation_w0waa"),
-"Trans_In": SubResource("Animation_q6inw"),
-"Trans_Out": SubResource("Animation_jrswo")
-}
 
 [sub_resource type="Animation" id="Animation_bvau8"]
 length = 0.001
@@ -1090,12 +1046,6 @@ offset_top = 197.99
 offset_right = 572.893
 offset_bottom = 917.99
 rotation = -0.785398
-
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="Path2D/PathFollow2D/Camera2D/Transition"]
-libraries = {
-"": SubResource("AnimationLibrary_yug34")
-}
-autoplay = "Trans_In"
 
 [node name="KappaFullAnim2" type="Sprite2D" parent="Path2D/PathFollow2D/Camera2D"]
 z_index = -1
