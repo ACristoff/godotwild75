@@ -1,10 +1,11 @@
-[gd_scene load_steps=41 format=3 uid="uid://gf3gsbcweern"]
+[gd_scene load_steps=45 format=3 uid="uid://gf3gsbcweern"]
 
 [ext_resource type="Texture2D" uid="uid://67c1bv3fuim4" path="res://Assets/UserInterface/Menu/Staircase.png" id="1_hlg64"]
 [ext_resource type="Script" path="res://Game/UI/cutscene_1.gd" id="1_jqtqn"]
 [ext_resource type="Texture2D" uid="uid://1gsgwrxvici6" path="res://Assets/Environment/Objects/Foliage.png" id="2_5t8jd"]
 [ext_resource type="PackedScene" uid="uid://bat17sfqaplx7" path="res://Assets/Shaders/sakuratree.tscn" id="3_snj5q"]
 [ext_resource type="Texture2D" uid="uid://bxekefya4wylu" path="res://Assets/UserInterface/Menu/Mt.-Fuji-Snow-Cap-David-Hsu.jpg" id="3_wwa2p"]
+[ext_resource type="Texture2D" uid="uid://lf5ircidgcgc" path="res://Assets/Characters/Hostile/Kappa_full_anim.png" id="5_8e1ml"]
 [ext_resource type="Texture2D" uid="uid://bqbrmw5f2o2n8" path="res://Assets/Environment/Objects/Railing.png" id="5_qwmaq"]
 [ext_resource type="Texture2D" uid="uid://cp1i2rrme4saq" path="res://Assets/Environment/Objects/Petals.png" id="6_625x3"]
 
@@ -45,7 +46,46 @@ scale_max = 2.0
 color_ramp = SubResource("GradientTexture1D_2qn36")
 anim_offset_max = 1.0
 
-[sub_resource type="Shader" id="Shader_m5ee3"]
+[sub_resource type="Animation" id="Animation_bvau8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [20]
+}
+
+[sub_resource type="Animation" id="Animation_fd5n2"]
+resource_name = "kappa2"
+length = 0.8
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [20, 21, 22, 23, 24, 25, 26, 27]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_78au8"]
+_data = {
+"RESET": SubResource("Animation_bvau8"),
+"kappa2": SubResource("Animation_fd5n2")
+}
+
+[sub_resource type="Shader" id="Shader_8yfbj"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -82,7 +122,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nfi1e"]
 resource_local_to_scene = true
-shader = SubResource("Shader_m5ee3")
+shader = SubResource("Shader_8yfbj")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.05
 shader_parameter/maxStrength = 0.01
@@ -93,7 +133,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-[sub_resource type="Shader" id="Shader_miet5"]
+[sub_resource type="Shader" id="Shader_c7bfd"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -130,7 +170,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fy745"]
 resource_local_to_scene = true
-shader = SubResource("Shader_miet5")
+shader = SubResource("Shader_c7bfd")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.05
 shader_parameter/maxStrength = 0.01
@@ -141,7 +181,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-[sub_resource type="Shader" id="Shader_86sws"]
+[sub_resource type="Shader" id="Shader_i8c03"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -178,7 +218,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4xm05"]
 resource_local_to_scene = true
-shader = SubResource("Shader_86sws")
+shader = SubResource("Shader_i8c03")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.05
 shader_parameter/maxStrength = 0.01
@@ -189,7 +229,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-[sub_resource type="Shader" id="Shader_b6vft"]
+[sub_resource type="Shader" id="Shader_hyjod"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -226,7 +266,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qj476"]
 resource_local_to_scene = true
-shader = SubResource("Shader_b6vft")
+shader = SubResource("Shader_hyjod")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.05
 shader_parameter/maxStrength = 0.01
@@ -237,7 +277,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-[sub_resource type="Shader" id="Shader_o7514"]
+[sub_resource type="Shader" id="Shader_slvl7"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -274,7 +314,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ft47d"]
 resource_local_to_scene = true
-shader = SubResource("Shader_o7514")
+shader = SubResource("Shader_slvl7")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.05
 shader_parameter/maxStrength = 0.01
@@ -285,7 +325,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-[sub_resource type="Shader" id="Shader_xotpl"]
+[sub_resource type="Shader" id="Shader_ag45s"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -322,7 +362,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p7yye"]
 resource_local_to_scene = true
-shader = SubResource("Shader_xotpl")
+shader = SubResource("Shader_ag45s")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.05
 shader_parameter/maxStrength = 0.01
@@ -333,7 +373,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-[sub_resource type="Shader" id="Shader_w5kv8"]
+[sub_resource type="Shader" id="Shader_qtb3l"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -370,7 +410,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7y62h"]
 resource_local_to_scene = true
-shader = SubResource("Shader_w5kv8")
+shader = SubResource("Shader_qtb3l")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.05
 shader_parameter/maxStrength = 0.01
@@ -381,7 +421,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-[sub_resource type="Shader" id="Shader_1oh1y"]
+[sub_resource type="Shader" id="Shader_wxfjo"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -418,7 +458,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u2neq"]
 resource_local_to_scene = true
-shader = SubResource("Shader_1oh1y")
+shader = SubResource("Shader_wxfjo")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.05
 shader_parameter/maxStrength = 0.01
@@ -429,7 +469,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-[sub_resource type="Shader" id="Shader_qmn4i"]
+[sub_resource type="Shader" id="Shader_row4w"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -466,7 +506,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7jr2w"]
 resource_local_to_scene = true
-shader = SubResource("Shader_qmn4i")
+shader = SubResource("Shader_row4w")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.05
 shader_parameter/maxStrength = 0.01
@@ -477,7 +517,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-[sub_resource type="Shader" id="Shader_4i0y4"]
+[sub_resource type="Shader" id="Shader_tq2c8"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -514,7 +554,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5v8yx"]
 resource_local_to_scene = true
-shader = SubResource("Shader_4i0y4")
+shader = SubResource("Shader_tq2c8")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.05
 shader_parameter/maxStrength = 0.01
@@ -525,7 +565,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-[sub_resource type="Shader" id="Shader_mptoe"]
+[sub_resource type="Shader" id="Shader_minql"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -562,7 +602,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hxils"]
 resource_local_to_scene = true
-shader = SubResource("Shader_mptoe")
+shader = SubResource("Shader_minql")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.05
 shader_parameter/maxStrength = 0.01
@@ -573,7 +613,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-[sub_resource type="Shader" id="Shader_j1gqc"]
+[sub_resource type="Shader" id="Shader_ni5kf"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -610,7 +650,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_phnpd"]
 resource_local_to_scene = true
-shader = SubResource("Shader_j1gqc")
+shader = SubResource("Shader_ni5kf")
 shader_parameter/speed = 8.0
 shader_parameter/minStrength = 0.05
 shader_parameter/maxStrength = 0.01
@@ -671,6 +711,38 @@ amount = 200
 process_material = SubResource("ParticleProcessMaterial_sdqw3")
 texture = ExtResource("6_625x3")
 lifetime = 10.0
+
+[node name="KappaFullAnim2" type="Sprite2D" parent="Path2D/PathFollow2D/Camera2D"]
+z_index = 1
+position = Vector2(12.0208, 40.3054)
+scale = Vector2(4, 4)
+texture = ExtResource("5_8e1ml")
+hframes = 10
+vframes = 4
+frame = 20
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Path2D/PathFollow2D/Camera2D/KappaFullAnim2"]
+libraries = {
+"": SubResource("AnimationLibrary_78au8")
+}
+autoplay = "kappa2"
+speed_scale = 4.0
+
+[node name="KappaFullAnim3" type="Sprite2D" parent="Path2D/PathFollow2D/Camera2D"]
+z_index = 1
+position = Vector2(-84.1457, 40.3054)
+scale = Vector2(4, 4)
+texture = ExtResource("5_8e1ml")
+hframes = 10
+vframes = 4
+frame = 20
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Path2D/PathFollow2D/Camera2D/KappaFullAnim3"]
+libraries = {
+"": SubResource("AnimationLibrary_78au8")
+}
+autoplay = "kappa2"
+speed_scale = 4.0
 
 [node name="Node2D" type="Node2D" parent="Path2D/PathFollow2D"]
 position = Vector2(287.085, -31.1127)
