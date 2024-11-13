@@ -17,7 +17,7 @@ func play_music_level(music: AudioStreamMP3):
 	#_play_music(LevelMusic[level], -12)
 	pass
 
-func play_sfx(stream: AudioStream, volume = 0.0):
+func play_sfx(stream: AudioStreamMP3, volume = 0.0):
 	var fx_player = AudioStreamPlayer2D.new()
 	fx_player.stream = stream
 	fx_player.name = "FX_Player"
