@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bok8p3vdt2psj"]
+
+[ext_resource type="PackedScene" uid="uid://cx4kwdcn8ymig" path="res://Game/Characters/Friendlies/player_unit.tscn" id="1_m0gts"]
+[ext_resource type="Script" path="res://Game/Characters/Friendlies/spirit_miko_unit.gd" id="2_ptnpl"]
+
+[node name="SpiritMikoUnit" instance=ExtResource("1_m0gts")]
+script = ExtResource("2_ptnpl")
+grid = null
+skin = null
