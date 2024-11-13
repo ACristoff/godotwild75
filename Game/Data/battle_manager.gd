@@ -81,6 +81,15 @@ func reinitialize():
 				print(unit)
 				var spirit_miko_spawned = spirit_miko_scene.instantiate()
 				add_child(spirit_miko_spawned)
+				var spirit_coord = grid.calculate_mirror_position(unit.cell)
+				spirit_miko_spawned.position = grid.calculate_map_position(spirit_coord)
+				spirit_miko_spawned.cell = spirit_coord
+				units[spirit_miko_spawned.cell] = spirit_miko_spawned
+				friendlies[spirit_miko_spawned.cell] = spirit_miko_spawned
+				spirit_miko_spawned.connect("unit_state_change", on_unit_state_change)
+				spirit_miko_spawned.connect("death", on_unit_death)
+				spirit_miko_spawned.spawn_init("bluh")
+				#prints(spirit_miko_spawned, unit.cell, spirit_coord)
 		if unit is EnemyUnit:
 			enemies[unit.cell] = unit
 	turn_manager()
@@ -88,6 +97,7 @@ func reinitialize():
 func on_unit_state_change(state):
 	if state == PlayerUnit.unit_states.MOVE_THINK:
 		walkable_cells = get_walkable_cells(active_unit)
+		print("WALKABLE",walkable_cells)
 		unit_path.initialize(walkable_cells)
 	if state == PlayerUnit.unit_states.ATTACK_THINK:
 		#print("ATTACK THINK!")
@@ -235,8 +245,13 @@ func manage_attack(attack_cells, team_to_hit):
 	clear_active_unit()
 
 func _on_cursor_moved(new_cell):
+	print(new_cell)
 	if active_unit and active_unit.is_selected and active_unit.unit_state == PlayerUnit.unit_states.MOVE_THINK:
 		unit_path.draw(active_unit.cell, new_cell)
+		#unit_path.draw(Vector2(12,6), Vector2(12,5))
+		#unit_path.draw(Vector2(2,6), Vector2(2,5))
+		#prints("BUGGY", active_unit.cell, new_cell, active_unit.unit_state)
+		pass
 	if active_unit and active_unit.is_selected and active_unit.unit_state == PlayerUnit.unit_states.ATTACK_ACTION_THINK:
 		var move_to_pos = grid.calculate_map_position(new_cell)
 		#print(new_cell, move_to_pos)
