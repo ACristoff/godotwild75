@@ -156,10 +156,10 @@ func _on_cursor_accept_pressed(cell):
 	if active_unit == null:
 		select_unit(cell)
 	elif active_unit.is_selected:
-		if active_unit.unit_state == PlayerUnit.unit_states.SELECTED && cell != active_unit.cell:
+		if active_unit.unit_state == PlayerUnit.unit_states.SELECTED && cell != active_unit.cell && units[cell] != active_unit:
 			deselect_unit()
 			clear_active_unit()
-			pass
+			return
 		if active_unit.unit_state == PlayerUnit.unit_states.ATTACK_ACTION_THINK:
 			#TODO range check
 			# if range bad then deselect
