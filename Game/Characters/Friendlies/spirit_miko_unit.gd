@@ -8,8 +8,8 @@ func spawn_init(miko_data):
 	position = grid.calculate_map_position(cell)
 	pass
 
-#func _ready():
-	##"hello spirit world :)"
-	#
-	#pass
-	#
+func _ready():
+	super()
+	print("hello spirit world :)")
+	pass
+	

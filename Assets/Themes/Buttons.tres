@@ -1,19 +1,13 @@
-[gd_resource type="Theme" load_steps=9 format=3 uid="uid://b1i1vgp6mmqn5"]
-
-[ext_resource type="FontFile" uid="uid://itp65a2mwvyn" path="res://Assets/Fonts/ZinHenaBokuryu-RDF.otf" id="1_rpcrc"]
-[ext_resource type="Texture2D" uid="uid://b78cfd58h43t5" path="res://Assets/UserInterface/Gameplay/MoveIcon.png" id="2_577xg"]
-[ext_resource type="Texture2D" uid="uid://brdi28cpv8gdd" path="res://Assets/UserInterface/Menu/StyleBoxFlat.png" id="3_mw4g4"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://b1i1vgp6mmqn5"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_83mkn"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f545p"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vhgbn"]
-texture = ExtResource("3_mw4g4")
 modulate_color = Color(0.22, 0.22, 0.22, 0.509804)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fn2wk"]
-texture = ExtResource("3_mw4g4")
 modulate_color = Color(0, 0, 0, 0.509804)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qod0v"]
@@ -29,8 +23,8 @@ Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
 Button/colors/icon_normal_color = Color(1, 1, 1, 1)
 Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
 Button/font_sizes/font_size = 28
-Button/fonts/font = ExtResource("1_rpcrc")
-Button/icons/icon = ExtResource("2_577xg")
+Button/fonts/font = null
+Button/icons/icon = null
 Button/styles/disabled = SubResource("StyleBoxEmpty_83mkn")
 Button/styles/focus = SubResource("StyleBoxEmpty_f545p")
 Button/styles/hover = SubResource("StyleBoxTexture_vhgbn")

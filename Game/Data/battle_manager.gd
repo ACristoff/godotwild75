@@ -79,6 +79,7 @@ func reinitialize():
 			unit.connect("unit_state_change", on_unit_state_change)
 			if unit.is_in_group("miko"):
 				print(unit)
+				miko = unit
 				var spirit_miko_spawned = spirit_miko_scene.instantiate()
 				add_child(spirit_miko_spawned)
 				var spirit_coord = grid.calculate_mirror_position(unit.cell)
@@ -89,7 +90,8 @@ func reinitialize():
 				spirit_miko_spawned.connect("unit_state_change", on_unit_state_change)
 				spirit_miko_spawned.connect("death", on_unit_death)
 				spirit_miko_spawned.spawn_init("bluh")
-				#prints(spirit_miko_spawned, unit.cell, spirit_coord)
+				spirit_miko = spirit_miko_spawned
+				prints(spirit_miko, miko)
 		if unit is EnemyUnit:
 			enemies[unit.cell] = unit
 	turn_manager()
@@ -104,8 +106,6 @@ func on_unit_state_change(state):
 		#var attack_cells = get_attack_cells()
 		pass
 	if state == PlayerUnit.unit_states.ATTACK_ACTION_THINK:
-		#print("ATTACK PICKED, NOW CHOOSING")
-		#print(active_unit.current_attack)
 		prints('current', active_unit.current_attack)
 		current_attack = active_unit.current_attack
 		var attack_cells = get_attack_cells(active_unit, active_unit.current_attack)
@@ -201,7 +201,7 @@ func _on_cursor_accept_pressed(cell):
 			clear_active_unit()
 			##There is a weird edge case I'm trying to take care of
 			##When clicking on a friendly unit
-			##I could engineer this better but we're halfway through the jam			
+			##I could engineer this better but we're halfway through the jam
 			if units.has(cell):
 				if units[cell] != active_unit:
 					deselect_unit()
@@ -217,9 +217,7 @@ func _on_cursor_accept_pressed(cell):
 				deselect_unit()
 				clear_active_unit()
 				return
-				#pass
 			var attack_cells = []
-			
 			for to_hit_cell in current_attack.ATTACK_PATTERN:
 				var hit_cell = attack_origin + to_hit_cell
 				attack_cells.append(hit_cell)
@@ -236,7 +234,6 @@ func manage_attack(attack_cells, team_to_hit):
 			##TODO HIT THIS SHIT
 		else:
 			print("MISS", cell)
-	#print(attack_cells)
 	attack_overlay.clear()
 	active_unit.has_attacked = true
 	active_unit.state_change(PlayerUnit.unit_states.IDLE)
@@ -245,12 +242,8 @@ func manage_attack(attack_cells, team_to_hit):
 	clear_active_unit()
 
 func _on_cursor_moved(new_cell):
-	print(new_cell)
 	if active_unit and active_unit.is_selected and active_unit.unit_state == PlayerUnit.unit_states.MOVE_THINK:
 		unit_path.draw(active_unit.cell, new_cell)
-		#unit_path.draw(Vector2(12,6), Vector2(12,5))
-		#unit_path.draw(Vector2(2,6), Vector2(2,5))
-		#prints("BUGGY", active_unit.cell, new_cell, active_unit.unit_state)
 		pass
 	if active_unit and active_unit.is_selected and active_unit.unit_state == PlayerUnit.unit_states.ATTACK_ACTION_THINK:
 		var move_to_pos = grid.calculate_map_position(new_cell)
