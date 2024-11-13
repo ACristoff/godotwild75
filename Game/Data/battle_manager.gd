@@ -13,6 +13,7 @@ var friendlies := {}
 var active_unit: Unit
 var walkable_cells := []
 var is_player_turn: bool = true
+var current_attack = null
 
 @onready var attack_overlay = $AttackOverlay
 @onready var hit_overlay = $HitOverlay
@@ -23,6 +24,23 @@ var is_player_turn: bool = true
 func _ready():
 	reinitialize()
 	pass
+
+func _input(event):
+	#print(event.is_action("rotate"))
+	if active_unit:
+		if event.is_action_pressed("rotate"):
+			hit_overlay.rotate_all_squares()
+			mutate_attack(current_attack.ATTACK_PATTERN)
+			#print(current_attack, rotated_attack)
+			pass
+
+func mutate_attack(attack_pattern):
+	print("mutate here", attack_pattern)
+	var rotated = []
+	for vec in attack_pattern:
+		var rotated_vector = Vector2(-vec.y, vec.x)
+		rotated.append(rotated_vector)
+	current_attack.ATTACK_PATTERN = rotated
 
 ##Finds the next unit in a given team that has moves available
 func find_next_possible(team):
@@ -70,6 +88,8 @@ func on_unit_state_change(state):
 	if state == PlayerUnit.unit_states.ATTACK_ACTION_THINK:
 		#print("ATTACK PICKED, NOW CHOOSING")
 		#print(active_unit.current_attack)
+		prints('current', active_unit.current_attack)
+		current_attack = active_unit.current_attack
 		var attack_cells = get_attack_cells(active_unit, active_unit.current_attack)
 		attack_overlay.draw(attack_cells)
 		hit_overlay.make_squares(active_unit.current_attack)
@@ -165,7 +185,8 @@ func _on_cursor_accept_pressed(cell):
 			# if range bad then deselect
 			var attack_origin = cell
 			var attack_cells = []
-			for to_hit_cell in active_unit.current_attack.ATTACK_PATTERN:
+			
+			for to_hit_cell in current_attack.ATTACK_PATTERN:
 				var hit_cell = attack_origin + to_hit_cell
 				attack_cells.append(hit_cell)
 			##DO ATTACK
