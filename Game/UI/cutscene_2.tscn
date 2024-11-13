@@ -1,6 +1,7 @@
-[gd_scene load_steps=29 format=3 uid="uid://bo3muq21abh88"]
+[gd_scene load_steps=42 format=3 uid="uid://bo3muq21abh88"]
 
 [ext_resource type="PackedScene" uid="uid://gcdapkkqr808" path="res://Game/World/environment.tscn" id="1_hv48d"]
+[ext_resource type="Script" path="res://Game/UI/cutscene_2.gd" id="1_uymdx"]
 [ext_resource type="Texture2D" uid="uid://bpmvmcaiamrh5" path="res://Assets/Characters/Friendly/Miko.png" id="2_fvuus"]
 [ext_resource type="Texture2D" uid="uid://cl06vw6rxuxd" path="res://Assets/Effects/Particles/Dust.png" id="3_urhyx"]
 [ext_resource type="Texture2D" uid="uid://royyko1xocrw" path="res://Assets/Characters/Enemies/Kappa.png" id="4_5snxp"]
@@ -9,6 +10,11 @@
 [ext_resource type="Texture2D" uid="uid://ccfyifwmn653b" path="res://Assets/Environment/GridTileMap/Separator.png" id="7_belic"]
 [ext_resource type="Texture2D" uid="uid://k10sy15l0bhm" path="res://Assets/Characters/Friendly/MikoSpirit.png" id="8_lbwrc"]
 [ext_resource type="Shader" path="res://Assets/Shaders/shockwave.gdshader" id="9_4u75f"]
+[ext_resource type="PackedScene" uid="uid://b5wuajjdswd23" path="res://Assets/Effects/transition.tscn" id="10_a3sog"]
+[ext_resource type="Shader" path="res://Assets/Shaders/transition.gdshader" id="11_0v5r6"]
+[ext_resource type="AudioStream" uid="uid://cktu0tf4f7okq" path="res://Assets/Audio/UI/GUT PUNCH 4000.mp3" id="11_5u0io"]
+[ext_resource type="Texture2D" uid="uid://bjx2labdxfhtt" path="res://Assets/UserInterface/Menu/FlameTransition.png" id="12_068kd"]
+[ext_resource type="AudioStream" uid="uid://dd5m0qwua784c" path="res://Assets/Audio/UI/Soul_Suck.mp3" id="12_p5bgi"]
 
 [sub_resource type="Shader" id="Shader_iul0v"]
 resource_local_to_scene = true
@@ -250,10 +256,10 @@ tracks/9/path = NodePath("../Kappa3:position")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(6.9, 10, 10.1, 11),
+"times": PackedFloat32Array(6.9, 10, 10.1, 10.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(383, 284), Vector2(383, 407), Vector2(383, 407), Vector2(383, 527)]
+"values": [Vector2(383, 284), Vector2(383, 407), Vector2(383, 407), Vector2(383, 487)]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
@@ -262,10 +268,10 @@ tracks/10/path = NodePath("../Camera2D:position")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(0, 4.3, 4.4, 4.8, 5.4, 8.9, 10, 10.7, 11),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 4.3, 4.4, 4.8, 5.4, 8.9, 11),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(383, 643), Vector2(368, 676), Vector2(368, 623), Vector2(384, 528), Vector2(384, 517), Vector2(384, 517), Vector2(383, 550), Vector2(383, 550), Vector2(383, 657)]
+"values": [Vector2(357, 638), Vector2(368, 676), Vector2(368, 623), Vector2(384, 528), Vector2(384, 517), Vector2(384, 517), Vector2(383, 657)]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
@@ -290,6 +296,107 @@ tracks/12/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("../ColorRect:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 11),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("../WorldEnvironment:environment:glow_intensity")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(10.9, 11, 12),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.11, 8.0, 0.44]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("../WorldEnvironment:environment:glow_bloom")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(10.9, 11, 12),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.07, 1.0, 0.1]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("../Kappa3:visible")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(10.9, 11),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("../Kappa2:visible")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(10.9, 11),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("../Kappa:visible")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(10.9, 11),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/19/type = "method"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("..")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(10.7, 11.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"GutPunch"
+}, {
+"args": [],
+"method": &"Sparkle"
+}]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("../Camera2D/Transition:material:shader_parameter/scale")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(13.5, 15),
+"transitions": PackedFloat32Array(3.86374, 1),
+"update": 0,
+"values": [0.0, 1.0]
 }
 
 [sub_resource type="Animation" id="Animation_d6hia"]
@@ -450,6 +557,90 @@ tracks/12/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("../ColorRect:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("../WorldEnvironment:environment:glow_intensity")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.11]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("../WorldEnvironment:environment:glow_bloom")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.07]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("../Kappa3:visible")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("../Kappa2:visible")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("../Kappa:visible")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("../Camera2D/Transition:material:shader_parameter/scale")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k180t"]
 _data = {
@@ -589,13 +780,69 @@ _data = {
 "idleboss": SubResource("Animation_78fxs")
 }
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_gi85i"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rh4xx"]
+noise = SubResource("FastNoiseLite_gi85i")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5tn0e"]
 shader = ExtResource("9_4u75f")
-shader_parameter/global_position = Vector2(100, 100)
-shader_parameter/screen_size = Vector2(200, 200)
-shader_parameter/force = 6.702
-shader_parameter/size = 0.617
-shader_parameter/thickness = 0.228
+shader_parameter/frequency = 0.83
+shader_parameter/amplitude = 2.4
+shader_parameter/ripple_rate = 2.0
+shader_parameter/wave_amplitude = 0.03
+shader_parameter/wave_frequency = 10.91
+shader_parameter/noise = SubResource("NoiseTexture2D_rh4xx")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p0hva"]
+resource_local_to_scene = true
+shader = ExtResource("11_0v5r6")
+shader_parameter/scale = 1.0
+shader_parameter/mask = ExtResource("12_068kd")
+
+[sub_resource type="Animation" id="Animation_q6inw"]
+resource_name = "Trans_In"
+length = 1.5
+step = 0.1
+
+[sub_resource type="Animation" id="Animation_w0waa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_jrswo"]
+resource_name = "Trans_Out"
+length = 1.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(3.86374, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yug34"]
+_data = {
+"RESET": SubResource("Animation_w0waa"),
+"Trans_In": SubResource("Animation_q6inw"),
+"Trans_Out": SubResource("Animation_jrswo")
+}
 
 [sub_resource type="Gradient" id="Gradient_cjif1"]
 offsets = PackedFloat32Array(0.00740741, 1)
@@ -617,6 +864,7 @@ adjustment_contrast = 1.26
 adjustment_color_correction = SubResource("GradientTexture1D_7rm8t")
 
 [node name="Cutscene2" type="Node2D"]
+script = ExtResource("1_uymdx")
 
 [node name="Environment" parent="." instance=ExtResource("1_hv48d")]
 position = Vector2(764, 57)
@@ -638,11 +886,6 @@ position = Vector2(357, 757)
 scale = Vector2(2, 2)
 texture = ExtResource("2_fvuus")
 hframes = 16
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(383, 643)
-zoom = Vector2(2.5, 2.5)
-limit_bottom = 680
 
 [node name="Dust" type="Sprite2D" parent="."]
 modulate = Color(0.95, 0.732292, 0.4275, 0)
@@ -702,16 +945,6 @@ libraries = {
 autoplay = "idleboss"
 speed_scale = 0.5
 
-[node name="ColorRect" type="ColorRect" parent="."]
-material = SubResource("ShaderMaterial_5tn0e")
-offset_left = 186.0
-offset_top = 356.0
-offset_right = 511.0
-offset_bottom = 691.0
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_r6evb")
-
 [node name="MikoSpirit" type="Sprite2D" parent="."]
 visible = false
 z_index = 3
@@ -720,5 +953,43 @@ scale = Vector2(2, 2)
 texture = ExtResource("8_lbwrc")
 hframes = 16
 frame = 8
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_5tn0e")
+offset_left = 218.0
+offset_top = 621.0
+offset_right = 543.0
+offset_bottom = 956.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(383, 643)
+zoom = Vector2(2.5, 2.5)
+limit_bottom = 680
+
+[node name="Transition" parent="Camera2D" instance=ExtResource("10_a3sog")]
+z_index = 5
+material = SubResource("ShaderMaterial_p0hva")
+offset_left = -256.0
+offset_top = -246.0
+offset_right = 256.0
+offset_bottom = 42.0
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Camera2D/Transition"]
+libraries = {
+"": SubResource("AnimationLibrary_yug34")
+}
+autoplay = "Trans_In"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_r6evb")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_5u0io")
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_p5bgi")
+volume_db = 5.673
+
+[connection signal="animation_finished" from="CutsceneFinal" to="." method="_on_cutscene_final_animation_finished"]
 
 [editable path="Environment"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://gf3gsbcweern"]
+[gd_scene load_steps=64 format=3 uid="uid://gf3gsbcweern"]
 
 [ext_resource type="Texture2D" uid="uid://67c1bv3fuim4" path="res://Assets/UserInterface/Menu/Staircase.png" id="1_hlg64"]
 [ext_resource type="Script" path="res://Game/UI/cutscene_1.gd" id="1_jqtqn"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://b5wuajjdswd23" path="res://Assets/Effects/transition.tscn" id="7_0t3bk"]
 [ext_resource type="Shader" path="res://Assets/Shaders/transition.gdshader" id="8_amo7s"]
 [ext_resource type="Texture2D" uid="uid://bjx2labdxfhtt" path="res://Assets/UserInterface/Menu/FlameTransition.png" id="9_2dcsm"]
+[ext_resource type="Shader" path="res://Assets/Shaders/speed.gdshader" id="10_5royo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0l15r"]
 
@@ -319,6 +320,22 @@ _data = {
 "RESET": SubResource("Animation_ixshm")
 }
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_7os7l"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_283lw"]
+noise = SubResource("FastNoiseLite_7os7l")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_isbi7"]
+shader = ExtResource("10_5royo")
+shader_parameter/line_color_a = Color(1, 0.7, 0.935, 0.027451)
+shader_parameter/line_color_b = Color(0.89, 0.998167, 1, 0.129412)
+shader_parameter/back_color = Color(0.93, 0.93, 0.93, 0.27451)
+shader_parameter/line_threshold = 0.14
+shader_parameter/speed = 1.0
+shader_parameter/line_length = 200.0
+shader_parameter/angle = 0.0
+shader_parameter/noise = SubResource("NoiseTexture2D_283lw")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gthbg"]
 resource_local_to_scene = true
 shader = ExtResource("8_amo7s")
@@ -329,18 +346,6 @@ shader_parameter/mask = ExtResource("9_2dcsm")
 resource_name = "Trans_In"
 length = 1.5
 step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.5),
-"transitions": PackedFloat32Array(0.13308, 1),
-"update": 0,
-"values": [1.0, 0.0]
-}
 
 [sub_resource type="Animation" id="Animation_w0waa"]
 length = 0.001
@@ -357,10 +362,28 @@ tracks/0/keys = {
 "values": [1.0]
 }
 
+[sub_resource type="Animation" id="Animation_jrswo"]
+resource_name = "Trans_Out"
+length = 1.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(3.86374, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yug34"]
 _data = {
 "RESET": SubResource("Animation_w0waa"),
-"Trans_In": SubResource("Animation_q6inw")
+"Trans_In": SubResource("Animation_q6inw"),
+"Trans_Out": SubResource("Animation_jrswo")
 }
 
 [sub_resource type="Animation" id="Animation_bvau8"]
@@ -1051,6 +1074,14 @@ libraries = {
 "": SubResource("AnimationLibrary_4j0ke")
 }
 autoplay = "Miko"
+
+[node name="ColorRect2" type="ColorRect" parent="Path2D/PathFollow2D/Camera2D"]
+material = SubResource("ShaderMaterial_isbi7")
+offset_left = -752.0
+offset_top = -767.0
+offset_right = 1047.0
+offset_bottom = 756.0
+mouse_filter = 2
 
 [node name="Transition" parent="Path2D/PathFollow2D/Camera2D" instance=ExtResource("7_0t3bk")]
 material = SubResource("ShaderMaterial_gthbg")
