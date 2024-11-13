@@ -194,7 +194,7 @@ func _on_cursor_moved(new_cell):
 		unit_path.draw(active_unit.cell, new_cell)
 	if active_unit and active_unit.is_selected and active_unit.unit_state == PlayerUnit.unit_states.ATTACK_ACTION_THINK:
 		var move_to_pos = grid.calculate_map_position(new_cell)
-		print(new_cell, move_to_pos)
+		#print(new_cell, move_to_pos)
 		hit_overlay.position = move_to_pos
 		pass
 	pass # Replace with function body.
