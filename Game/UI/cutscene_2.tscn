@@ -589,6 +589,14 @@ _data = {
 "idleboss": SubResource("Animation_78fxs")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5tn0e"]
+shader = ExtResource("9_4u75f")
+shader_parameter/global_position = Vector2(100, 100)
+shader_parameter/screen_size = Vector2(200, 200)
+shader_parameter/force = 6.702
+shader_parameter/size = 0.617
+shader_parameter/thickness = 0.228
+
 [sub_resource type="Gradient" id="Gradient_cjif1"]
 offsets = PackedFloat32Array(0.00740741, 1)
 colors = PackedColorArray(0, 0.149333, 0.28, 0.309804, 1, 1, 1, 0.223529)
@@ -607,9 +615,6 @@ glow_hdr_luminance_cap = 38.95
 adjustment_enabled = true
 adjustment_contrast = 1.26
 adjustment_color_correction = SubResource("GradientTexture1D_7rm8t")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5tn0e"]
-shader = ExtResource("9_4u75f")
 
 [node name="Cutscene2" type="Node2D"]
 
@@ -697,6 +702,13 @@ libraries = {
 autoplay = "idleboss"
 speed_scale = 0.5
 
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_5tn0e")
+offset_left = 186.0
+offset_top = 356.0
+offset_right = 511.0
+offset_bottom = 691.0
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_r6evb")
 
@@ -708,11 +720,5 @@ scale = Vector2(2, 2)
 texture = ExtResource("8_lbwrc")
 hframes = 16
 frame = 8
-
-[node name="ColorRect" type="ColorRect" parent="."]
-material = SubResource("ShaderMaterial_5tn0e")
-offset_left = -325.0
-offset_top = 250.0
-offset_bottom = 585.0
 
 [editable path="Environment"]
