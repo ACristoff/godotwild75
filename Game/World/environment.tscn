@@ -2,10 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://cig0shmgu75ha" path="res://Assets/Environment/GridTileMap/TilemapGrid.png" id="1_vknam"]
 [ext_resource type="Shader" path="res://Assets/Shaders/wavyshader.gdshader" id="2_21iao"]
+[ext_resource type="Texture2D" uid="uid://j8umjy8ha03y" path="res://Assets/Environment/GridTileMap/BACKGROUND.png" id="2_kgti3"]
 [ext_resource type="Texture2D" uid="uid://dwuvoq82qclc3" path="res://Assets/Environment/GridTileMap/white.png" id="3_1h3k0"]
 [ext_resource type="Texture2D" uid="uid://c3lhkvhk1dngf" path="res://Assets/Environment/GridTileMap/Separator3.png" id="4_l0omh"]
 [ext_resource type="Texture2D" uid="uid://d30a3g32knlda" path="res://Assets/Environment/GridTileMap/Separator4.png" id="5_y62vi"]
-[ext_resource type="Texture2D" uid="uid://c6lb5afr1vfxf" path="res://Assets/Environment/GridTileMap/FULL_BACKGROUND.png" id="6_gr4fp"]
 [ext_resource type="PackedScene" uid="uid://domnit2msh3jg" path="res://Assets/Shaders/god_ray.tscn" id="6_sanjg"]
 [ext_resource type="PackedScene" uid="uid://uxh57d4b5bja" path="res://Assets/Shaders/smog.tscn" id="7_qpput"]
 [ext_resource type="PackedScene" uid="uid://cwgsd5xm65etm" path="res://Assets/Shaders/onibi_spawner.tscn" id="8_ny6nx"]
@@ -133,7 +133,7 @@ _data = {
 "wavy3": SubResource("Animation_phsm8")
 }
 
-[sub_resource type="Shader" id="Shader_u1epj"]
+[sub_resource type="Shader" id="Shader_v75xn"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 
@@ -239,7 +239,7 @@ void fragment()
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wb1fm"]
 resource_local_to_scene = true
-shader = SubResource("Shader_u1epj")
+shader = SubResource("Shader_v75xn")
 shader_parameter/angle = -0.3
 shader_parameter/position = -0.2
 shader_parameter/spread = 0.62
@@ -260,7 +260,7 @@ tile_set = SubResource("TileSet_i7mqe")
 
 [node name="FullBackground" type="Sprite2D" parent="."]
 position = Vector2(640, 357)
-texture = ExtResource("6_gr4fp")
+texture = ExtResource("2_kgti3")
 
 [node name="White" type="Sprite2D" parent="."]
 self_modulate = Color(1, 0.86, 0.993, 1)
