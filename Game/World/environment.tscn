@@ -133,7 +133,7 @@ _data = {
 "wavy3": SubResource("Animation_phsm8")
 }
 
-[sub_resource type="Shader" id="Shader_0dbx6"]
+[sub_resource type="Shader" id="Shader_yjfft"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 
@@ -239,7 +239,7 @@ void fragment()
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wb1fm"]
 resource_local_to_scene = true
-shader = SubResource("Shader_0dbx6")
+shader = SubResource("Shader_yjfft")
 shader_parameter/angle = -0.3
 shader_parameter/position = -0.2
 shader_parameter/spread = 0.62
