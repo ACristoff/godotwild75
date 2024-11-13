@@ -220,6 +220,9 @@ func _on_cursor_accept_pressed(cell):
 			for to_hit_cell in current_attack.ATTACK_PATTERN:
 				var hit_cell = attack_origin + to_hit_cell
 				attack_cells.append(hit_cell)
+			if active_unit == miko || active_unit == spirit_miko:
+				print("miko or spirit miko attacked!")
+				pass
 			##DO ATTACK
 			manage_attack(attack_cells, "ENEMY")
 		move_current_unit(cell)
