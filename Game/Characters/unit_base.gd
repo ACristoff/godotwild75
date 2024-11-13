@@ -7,6 +7,7 @@ extends Path2D
 
 ## Emitted when the unit reached the end of a path along which it was walking.
 signal walk_finished
+signal death
 
 @onready var _sprite: Sprite2D = $PathFollow2D/Sprite
 @onready var _anim_player: AnimationPlayer = $AnimationPlayer
@@ -114,7 +115,8 @@ func explode(pattern):
 
 #All the shit for dying
 func die():
-	print("unit dies")
+	print("unit fucking died")
+	death.emit(self)
 	#free the tile
 	#explode
 	#remove from turn order
