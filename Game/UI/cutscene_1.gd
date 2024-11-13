@@ -12,3 +12,8 @@ func _process(delta: float) -> void:
 	if $Path2D/PathFollow2D.progress_ratio < 1:
 		$Path2D/PathFollow2D.progress_ratio += delta/speed
 	pass
+
+
+func _on_custscene_2_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "Miko":
+		LevelManager.nextLevel()
