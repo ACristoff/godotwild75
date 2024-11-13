@@ -25,3 +25,15 @@ func play_sfx(stream: AudioStreamMP3, volume = 0.0):
 	
 	await fx_player.finished
 	fx_player.queue_free()
+
+
+func play_sfx_wav(stream: AudioStreamWAV, volume = 0.0):
+	var fx_player = AudioStreamPlayer2D.new()
+	fx_player.stream = stream
+	fx_player.name = "FX_Player"
+	fx_player.volume_db = volume
+	add_child(fx_player)
+	fx_player.play()
+	
+	await fx_player.finished
+	fx_player.queue_free()

@@ -29,16 +29,14 @@ func _ready():
 	pass
 
 func _input(event):
-	#print(event.is_action("rotate"))
 	if active_unit:
 		if event.is_action_pressed("rotate"):
 			hit_overlay.rotate_all_squares()
 			mutate_attack(current_attack.ATTACK_PATTERN)
-			#print(current_attack, rotated_attack)
 			pass
 
+#This rotates the attack pattern 90 degrees
 func mutate_attack(attack_pattern):
-	print("mutate here", attack_pattern)
 	var rotated = []
 	for vec in attack_pattern:
 		var rotated_vector = Vector2(-vec.y, vec.x)
@@ -77,8 +75,9 @@ func reinitialize():
 		if unit is PlayerUnit:
 			friendlies[unit.cell] = unit
 			unit.connect("unit_state_change", on_unit_state_change)
+			##Code for spawning and setting the spirit miko
+			##Spawning code will mirror a lot of the requirements here
 			if unit.is_in_group("miko"):
-				print(unit)
 				miko = unit
 				var spirit_miko_spawned = spirit_miko_scene.instantiate()
 				add_child(spirit_miko_spawned)
@@ -91,7 +90,11 @@ func reinitialize():
 				spirit_miko_spawned.connect("death", on_unit_death)
 				spirit_miko_spawned.spawn_init("bluh")
 				spirit_miko = spirit_miko_spawned
-				prints(spirit_miko, miko)
+				spirit_miko.attacks = unit.attacks
+				#Set references into each unit in case we need it
+				#I'm still engineering it so it may not even be necessary
+				spirit_miko.miko_ref = unit
+				unit.spirit_miko_ref = spirit_miko
 		if unit is EnemyUnit:
 			enemies[unit.cell] = unit
 	turn_manager()
@@ -99,7 +102,6 @@ func reinitialize():
 func on_unit_state_change(state):
 	if state == PlayerUnit.unit_states.MOVE_THINK:
 		walkable_cells = get_walkable_cells(active_unit)
-		print("WALKABLE",walkable_cells)
 		unit_path.initialize(walkable_cells)
 	if state == PlayerUnit.unit_states.ATTACK_THINK:
 		#print("ATTACK THINK!")
@@ -161,7 +163,6 @@ func select_unit(cell: Vector2):
 		return
 	active_unit = units[cell]
 	active_unit.is_selected = true
-	pass
 
 func deselect_unit():
 	if active_unit:
@@ -171,7 +172,6 @@ func deselect_unit():
 	attack_overlay.clear()
 	hit_overlay.kill_kids()
 	unit_path.stop()
-	pass
 
 func move_current_unit(new_cell: Vector2):
 	if is_occupied(new_cell) or not new_cell in walkable_cells:
@@ -206,7 +206,6 @@ func _on_cursor_accept_pressed(cell):
 				if units[cell] != active_unit:
 					deselect_unit()
 					clear_active_unit()
-				pass
 			return
 		if active_unit.unit_state == PlayerUnit.unit_states.ATTACK_ACTION_THINK:
 			#TODO range check
@@ -221,6 +220,9 @@ func _on_cursor_accept_pressed(cell):
 			for to_hit_cell in current_attack.ATTACK_PATTERN:
 				var hit_cell = attack_origin + to_hit_cell
 				attack_cells.append(hit_cell)
+			if active_unit == miko || active_unit == spirit_miko:
+				print("miko or spirit miko attacked!")
+				pass
 			##DO ATTACK
 			manage_attack(attack_cells, "ENEMY")
 		move_current_unit(cell)
@@ -244,26 +246,21 @@ func manage_attack(attack_cells, team_to_hit):
 func _on_cursor_moved(new_cell):
 	if active_unit and active_unit.is_selected and active_unit.unit_state == PlayerUnit.unit_states.MOVE_THINK:
 		unit_path.draw(active_unit.cell, new_cell)
-		pass
 	if active_unit and active_unit.is_selected and active_unit.unit_state == PlayerUnit.unit_states.ATTACK_ACTION_THINK:
 		var move_to_pos = grid.calculate_map_position(new_cell)
 		#print(new_cell, move_to_pos)
 		hit_overlay.position = move_to_pos
-		pass
-	pass # Replace with function body.
 
 ##TODO remove unit from board on death
 func on_unit_death(unit):
-	print('this unit', unit)
+	#print('this unit', unit)
 	units.erase(unit.cell)
 	if unit is PlayerUnit:
 		friendlies.erase(unit.cell)
 	elif unit is EnemyUnit:
 		enemies.erase(unit.cell)
-	pass
 
 func _on_cursor_deselect_pressed():
 	if active_unit:
 		deselect_unit()
 		clear_active_unit()
-	pass # Replace with function body.

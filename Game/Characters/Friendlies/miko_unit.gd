@@ -1,5 +1,7 @@
 extends PlayerUnit
 
+var spirit_miko_ref: PlayerUnit
+
 var miko_attacks = {
 	"Sword": {
 		"RANGE": 2,

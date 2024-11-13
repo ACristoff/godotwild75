@@ -4,6 +4,19 @@ extends Node2D
 @onready var MainMenu = $UI/MainMenu
 
 @onready var logosfx = preload("res://Assets/Audio/UI/BERET PARADE Cadence rev 2.mp3")
+
+@onready var bereparedosfx = [
+	preload("res://Assets/Audio/UI/b00/b01.wav"),
+	preload("res://Assets/Audio/UI/b00/b02.wav"),
+	preload("res://Assets/Audio/UI/b00/b03.wav"),
+	preload("res://Assets/Audio/UI/b00/b04.wav"),
+	preload("res://Assets/Audio/UI/b00/b05.wav"),
+	preload("res://Assets/Audio/UI/b00/b06.wav"),
+	preload("res://Assets/Audio/UI/b00/b07.wav"),
+	preload("res://Assets/Audio/UI/b00/b08.wav"),
+	preload("res://Assets/Audio/UI/b00/b09.wav"),
+]
+
 @onready var washsfx = preload("res://Assets/Audio/UI/Title Splash Screen Transition.mp3")
 @onready var titlebgm = preload("res://Assets/Audio/Music/MM Theme but again.mp3")
 @onready var sweepsfx = preload("res://Assets/Audio/UI/Sweep_3.mp3")
@@ -26,8 +39,11 @@ func _process(delta):
 func EnableClick():
 	click = true
 	
-func LogoSFX():
+func bereparedo():
 	AudioManager.play_sfx(logosfx, 1)
+func LogoSFX():
+	var random = randi_range(0,8)
+	AudioManager.play_sfx_wav(bereparedosfx[random], 1)
 func WashSFX():
 	AudioManager.play_sfx(washsfx, 1)
 func TitleMusic():

@@ -177,6 +177,7 @@ script = ExtResource("2_ptnpl")
 skin = ExtResource("3_tlqia")
 
 [node name="Sprite" parent="PathFollow2D" index="1"]
+texture = null
 frame = 8
 
 [node name="AnimationPlayer" parent="." index="1"]
