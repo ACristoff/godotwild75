@@ -1,0 +1,183 @@
+[gd_scene load_steps=10 format=3 uid="uid://sy0so0xas0lr"]
+
+[ext_resource type="Script" path="res://Assets/UserInterface/Gameplay/turn_order.gd" id="1_rxmga"]
+[ext_resource type="Texture2D" uid="uid://dpm3jqadrarhv" path="res://Assets/UserInterface/Gameplay/turnborder.png" id="1_xf82h"]
+[ext_resource type="Texture2D" uid="uid://gqi8gtq8ywxd" path="res://Assets/UserInterface/Gameplay/turnborderlabel.png" id="2_wxdsp"]
+[ext_resource type="FontFile" uid="uid://cyw64jny6507f" path="res://Assets/Fonts/ZeroGothic.otf" id="3_hmx28"]
+
+[sub_resource type="Animation" id="Animation_ch6jh"]
+resource_name = "Enemy"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Turnborderlabel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.170755, 1),
+"update": 0,
+"values": [Vector2(322, 360), Vector2(640, 360)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Turnborderlabel/Label:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Enemy Turn
+"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Turnborderlabel/Label:theme_override_font_sizes/font_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [20]
+}
+
+[sub_resource type="Animation" id="Animation_wpvgd"]
+resource_name = "Your"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Turnborderlabel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.170755, 1),
+"update": 0,
+"values": [Vector2(322, 360), Vector2(640, 360)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Turnborderlabel/Label:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Your Turn
+"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Turnborderlabel/Label:theme_override_font_sizes/font_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [24]
+}
+
+[sub_resource type="Animation" id="Animation_lr3nr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Turnborderlabel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(640, 360)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Turnborderlabel/Label:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Your Turn
+"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Turnborderlabel/Label:theme_override_font_sizes/font_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [24]
+}
+
+[sub_resource type="Animation" id="Animation_guyvl"]
+resource_name = "Switch"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Turnborderlabel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.189465, 1),
+"update": 0,
+"values": [Vector2(640, 360), Vector2(322, 360)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nivvq"]
+_data = {
+"Enemy": SubResource("Animation_ch6jh"),
+"RESET": SubResource("Animation_lr3nr"),
+"Switch": SubResource("Animation_guyvl"),
+"Your": SubResource("Animation_wpvgd")
+}
+
+[node name="TurnIndicator" type="Node2D"]
+script = ExtResource("1_rxmga")
+
+[node name="Turnborderlabel" type="Sprite2D" parent="."]
+position = Vector2(640, 360)
+scale = Vector2(2, 2)
+texture = ExtResource("2_wxdsp")
+
+[node name="Label" type="Label" parent="Turnborderlabel"]
+offset_left = -313.0
+offset_top = -173.0
+offset_right = -161.0
+offset_bottom = -141.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("3_hmx28")
+theme_override_font_sizes/font_size = 24
+text = "Your Turn
+"
+vertical_alignment = 1
+
+[node name="Turnborder" type="Sprite2D" parent="."]
+modulate = Color(0.537833, 0.53, 1, 1)
+position = Vector2(640, 360)
+scale = Vector2(2, 2)
+texture = ExtResource("1_xf82h")
+
+[node name="States" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nivvq")
+}
+
+[connection signal="animation_finished" from="States" to="." method="_on_states_animation_finished"]

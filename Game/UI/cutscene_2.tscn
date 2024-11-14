@@ -487,10 +487,10 @@ tracks/7/path = NodePath("../Kappa:position")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(6.5, 7.3),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 6.5, 7.3),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(400, 405), Vector2(511, 383)]
+"values": [Vector2(415, 420), Vector2(400, 405), Vector2(511, 383)]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
@@ -499,10 +499,10 @@ tracks/8/path = NodePath("../Kappa2:position")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(6.5, 7.3),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 6.5, 7.3),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(364, 405), Vector2(260, 382)]
+"values": [Vector2(351, 421), Vector2(364, 405), Vector2(260, 382)]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
@@ -511,7 +511,7 @@ tracks/9/path = NodePath("../Kappa3:position")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(6.9, 10, 10.1, 10.7),
+"times": PackedFloat32Array(6.9, 8.8, 10.1, 10.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(383, 284), Vector2(383, 407), Vector2(383, 407), Vector2(383, 487)]
@@ -944,10 +944,10 @@ limit_bottom = 680
 [node name="Transition" parent="." instance=ExtResource("10_a3sog")]
 z_index = 34
 material = SubResource("ShaderMaterial_p0hva")
-offset_left = -256.0
-offset_top = -144.0
-offset_right = 256.0
-offset_bottom = 144.0
+offset_left = 127.0
+offset_top = 513.0
+offset_right = 639.0
+offset_bottom = 801.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_r6evb")
