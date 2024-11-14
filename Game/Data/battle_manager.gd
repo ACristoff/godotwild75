@@ -183,10 +183,28 @@ func move_current_unit(new_cell: Vector2):
 	friendlies[new_cell] = active_unit
 	deselect_unit()
 	active_unit.walk_along(unit_path.current_path)
+	if active_unit == miko || active_unit == spirit_miko:
+		if active_unit == miko:
+			miko_walk(spirit_miko, unit_path.current_path)
+		else:
+			miko_walk(miko, unit_path.current_path)
 	await active_unit.walk_finished
 	active_unit.has_moved = true
 	clear_active_unit()
 	turn_manager()
+
+func miko_walk(miko_to_move, walk_vectors):
+	prints(miko_to_move, walk_vectors)
+	var new_path: PackedVector2Array
+	units.erase(miko_to_move.cell)
+	friendlies.erase(miko_to_move.cell)
+	for vec in walk_vectors:
+		var new_vec = grid.calculate_mirror_position(vec)
+		new_path.append(new_vec)
+	units[new_path[-1]] = miko_to_move
+	friendlies[new_path[-1]] = active_unit
+	miko_to_move.walk_along(new_path)
+	pass
 
 func clear_active_unit() -> void:
 	active_unit = null
@@ -264,9 +282,7 @@ func _on_cursor_moved(new_cell):
 		#print(new_cell, move_to_pos)
 		hit_overlay.position = move_to_pos
 
-##TODO remove unit from board on death
 func on_unit_death(unit):
-	#print('this unit', unit)
 	units.erase(unit.cell)
 	if unit is PlayerUnit:
 		friendlies.erase(unit.cell)
