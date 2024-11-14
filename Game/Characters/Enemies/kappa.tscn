@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://cy1ruko7jcspv"]
+
+[ext_resource type="PackedScene" uid="uid://cg34obo360a5w" path="res://Game/Characters/Enemies/enemy_base.tscn" id="1_gtxh3"]
+[ext_resource type="Script" path="res://Game/Characters/Enemies/kappa.gd" id="2_fu7w7"]
+
+[node name="Kappa" instance=ExtResource("1_gtxh3")]
+script = ExtResource("2_fu7w7")

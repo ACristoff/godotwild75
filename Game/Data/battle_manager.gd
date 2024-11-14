@@ -16,12 +16,14 @@ var friendlies := {}
 var active_unit: Unit
 var walkable_cells := []
 var is_player_turn: bool = true
+var is_enemy_turn: bool = false
 var current_attack = null
 
 @onready var attack_overlay = $AttackOverlay
 @onready var hit_overlay = $HitOverlay
 @onready var explosion_overlay = $ExplosionOverlay
 @onready var unit_path: UnitPath = $UnitPath
+@onready var turn_indicator = $TurnIndicator
 
 
 ##TODO organize functions
@@ -59,8 +61,15 @@ func turn_manager():
 		var next_unit = find_next_possible(friendlies)
 		if next_unit == null:
 			is_player_turn = false
+			is_enemy_turn = true
+			turn_indicator._SwitchingTurn()
 	else:
 		##TODO Do enemy turns here
+		var next_unit = find_next_possible(enemies)
+		if next_unit == null:
+			is_enemy_turn = false
+			is_player_turn = true
+			turn_indicator._SwitchingTurn()
 		pass
 	pass
 
