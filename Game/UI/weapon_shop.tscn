@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dsa7ourik4j04"]
+[gd_scene load_steps=30 format=3 uid="uid://dsa7ourik4j04"]
 
 [ext_resource type="Shader" path="res://Assets/Shaders/followmousecard.gdshader" id="1_dbsal"]
 [ext_resource type="Script" path="res://Game/UI/weapon_shop.gd" id="1_se77a"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://eyel554c0e4b" path="res://Assets/Weapons/OpenFan.png" id="5_2pmfo"]
 [ext_resource type="Texture2D" uid="uid://bpmvmcaiamrh5" path="res://Assets/Characters/Friendly/Miko.png" id="6_y4seu"]
 [ext_resource type="Texture2D" uid="uid://dyq0tu7gqp7la" path="res://Assets/Characters/Friendly/Heiko.png" id="7_2673r"]
+[ext_resource type="Texture2D" uid="uid://lh1fepsa4x6e" path="res://Assets/UserInterface/Menu/ButtonArrow.png" id="7_pb0y3"]
 [ext_resource type="Texture2D" uid="uid://tallelojr4iq" path="res://Assets/Effects/Particles/Onibi.png" id="8_rkkt7"]
 [ext_resource type="Texture2D" uid="uid://j4cqlw4tpk8b" path="res://Assets/Weapons/DaggerBlack.png" id="10_dkqhm"]
 [ext_resource type="Texture2D" uid="uid://cq7d6tugfcgel" path="res://Assets/Weapons/SamuraiBlack.png" id="12_v8inx"]
@@ -36,6 +37,21 @@ adjustment_brightness = 0.9
 adjustment_contrast = 1.1
 adjustment_color_correction = SubResource("GradientTexture1D_4ttco")
 
+[sub_resource type="Gradient" id="Gradient_7spl3"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pl5ws"]
+gradient = SubResource("Gradient_7spl3")
+fill = 1
+fill_from = Vector2(0.5, 0.508772)
+fill_to = Vector2(0.780702, 0.824561)
+
+[sub_resource type="Curve2D" id="Curve2D_iwnk7"]
+_data = {
+"points": PackedVector2Array(-60.564, 55.7768, 60.564, -55.7768, 296, 302, 1.07582, -44.5677, -1.07582, 44.5677, 985, 300, 4.48985, 37.0412, -4.48985, -37.0412, 296, 302)
+}
+point_count = 3
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1klnm"]
 shader = ExtResource("1_dbsal")
 shader_parameter/Line_Smoothness = 0.045
@@ -48,15 +64,6 @@ shader_parameter/Position = 0.0
 shader_parameter/Position_Min = 0.25
 shader_parameter/Position_Max = 0.5
 shader_parameter/Alpha = 0.862
-
-[sub_resource type="Gradient" id="Gradient_7spl3"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_pl5ws"]
-gradient = SubResource("Gradient_7spl3")
-fill = 1
-fill_from = Vector2(0.5, 0.508772)
-fill_to = Vector2(0.780702, 0.824561)
 
 [node name="WeaponShop" type="Node2D"]
 script = ExtResource("1_se77a")
@@ -148,6 +155,21 @@ theme_override_fonts/font = ExtResource("2_un46q")
 theme_override_font_sizes/font_size = 50
 text = ":"
 
+[node name="ButtonArrow" type="Sprite2D" parent="CanvasLayer"]
+visible = false
+modulate = Color(0.2948, 0.1072, 0.67, 1)
+position = Vector2(147, 342)
+scale = Vector2(2, 2)
+texture = ExtResource("7_pb0y3")
+
+[node name="ButtonArrow2" type="Sprite2D" parent="CanvasLayer"]
+visible = false
+modulate = Color(0.2948, 0.1072, 0.67, 1)
+position = Vector2(1149, 342)
+rotation = 3.14159
+scale = Vector2(2, 2)
+texture = ExtResource("7_pb0y3")
+
 [node name="Miko" type="Button" parent="."]
 self_modulate = Color(1, 1, 1, 0)
 offset_left = 40.0
@@ -174,45 +196,32 @@ position = Vector2(85, 665)
 [node name="mikoend" type="Marker2D" parent="."]
 position = Vector2(85, 645)
 
-[node name="Fan" type="TextureProgressBar" parent="."]
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(640, 360)
+scale = Vector2(6.46094, 6.46094)
+energy = 1.01
+texture = SubResource("GradientTexture2D_pl5ws")
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(0, 32)
+curve = SubResource("Curve2D_iwnk7")
+
+[node name="Pnt1" type="PathFollow2D" parent="Path2D"]
+position = Vector2(641.661, 331.603)
+progress = 1049.24
+rotates = false
+
+[node name="Dagger" type="TextureProgressBar" parent="Path2D/Pnt1"]
 clip_children = 2
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -117.0
-offset_top = 76.0
-offset_right = -85.0
-offset_bottom = 106.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(4, 4)
-pivot_offset = Vector2(16, 15)
-size_flags_horizontal = 4
-size_flags_vertical = 4
-fill_mode = 3
-texture_under = ExtResource("3_qv0y3")
-texture_progress = ExtResource("5_2pmfo")
-
-[node name="ColorRect" type="ColorRect" parent="Fan"]
-material = SubResource("ShaderMaterial_1klnm")
-layout_mode = 0
-offset_right = 32.0
-offset_bottom = 32.0
-pivot_offset = Vector2(16, 16)
-
-[node name="Dagger" type="TextureProgressBar" parent="."]
-clip_children = 2
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -113.0
-offset_top = 228.0
-offset_right = -81.0
-offset_bottom = 248.0
+offset_left = -16.0
+offset_top = -10.0
+offset_right = 16.0
+offset_bottom = 10.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(4, 4)
@@ -223,7 +232,7 @@ fill_mode = 3
 texture_under = ExtResource("10_dkqhm")
 texture_progress = ExtResource("2_j5240")
 
-[node name="ColorRect" type="ColorRect" parent="Dagger"]
+[node name="ColorRect" type="ColorRect" parent="Path2D/Pnt1/Dagger"]
 material = SubResource("ShaderMaterial_1klnm")
 layout_mode = 1
 anchors_preset = 15
@@ -233,142 +242,23 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(16, 16)
 
-[node name="Katana" type="TextureProgressBar" parent="."]
+[node name="Pnt2" type="PathFollow2D" parent="Path2D"]
+position = Vector2(441.705, 326.043)
+scale = Vector2(1, 1)
+progress = 1249.3
+rotates = false
+
+[node name="Trident" type="TextureProgressBar" parent="Path2D/Pnt2"]
 clip_children = 2
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -213.0
-offset_top = 241.0
-offset_right = -181.0
-offset_bottom = 288.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(4, 4)
-pivot_offset = Vector2(16, 24)
-size_flags_horizontal = 4
-size_flags_vertical = 4
-fill_mode = 3
-texture_under = ExtResource("12_v8inx")
-texture_progress = ExtResource("3_px7ts")
-
-[node name="ColorRect" type="ColorRect" parent="Katana"]
-material = SubResource("ShaderMaterial_1klnm")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(16, 16)
-
-[node name="Mace" type="TextureProgressBar" parent="."]
-clip_children = 2
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -107.0
-offset_top = 384.0
-offset_right = -75.0
-offset_bottom = 427.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(4, 4)
-pivot_offset = Vector2(16, 24)
-size_flags_horizontal = 4
-size_flags_vertical = 4
-fill_mode = 3
-texture_under = ExtResource("14_tfupd")
-texture_progress = ExtResource("4_00y55")
-
-[node name="ColorRect" type="ColorRect" parent="Mace"]
-material = SubResource("ShaderMaterial_1klnm")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(16, 16)
-metadata/_edit_use_anchors_ = true
-
-[node name="Bow" type="TextureProgressBar" parent="."]
-clip_children = 2
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -197.0
-offset_top = 473.0
-offset_right = -165.0
-offset_bottom = 521.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(4, 4)
-pivot_offset = Vector2(16, 24)
-size_flags_horizontal = 4
-size_flags_vertical = 4
-fill_mode = 3
-texture_under = ExtResource("16_eqbf6")
-texture_progress = ExtResource("17_efqft")
-
-[node name="ColorRect" type="ColorRect" parent="Bow"]
-material = SubResource("ShaderMaterial_1klnm")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(16, 16)
-
-[node name="Slingshot" type="TextureProgressBar" parent="."]
-clip_children = 2
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -92.0
-offset_top = 620.0
-offset_right = -60.0
-offset_bottom = 640.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(4, 4)
-pivot_offset = Vector2(16, 10)
-size_flags_horizontal = 4
-size_flags_vertical = 4
-fill_mode = 3
-texture_under = ExtResource("18_yjmxk")
-texture_progress = ExtResource("19_3o6d2")
-
-[node name="ColorRect" type="ColorRect" parent="Slingshot"]
-material = SubResource("ShaderMaterial_1klnm")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(16, 16)
-
-[node name="Trident" type="TextureProgressBar" parent="."]
-clip_children = 2
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -203.0
-offset_top = 720.0
-offset_right = -171.0
-offset_bottom = 768.0
+offset_left = -16.0
+offset_top = -24.0
+offset_right = 16.0
+offset_bottom = 24.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(4, 4)
@@ -379,7 +269,7 @@ fill_mode = 3
 texture_under = ExtResource("20_ajnaf")
 texture_progress = ExtResource("21_xh8ql")
 
-[node name="ColorRect" type="ColorRect" parent="Trident"]
+[node name="ColorRect" type="ColorRect" parent="Path2D/Pnt2/Trident"]
 material = SubResource("ShaderMaterial_1klnm")
 layout_mode = 1
 anchors_preset = 15
@@ -389,13 +279,191 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(16, 16)
 
-[node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(640, 360)
+[node name="Pnt3" type="PathFollow2D" parent="Path2D"]
+position = Vector2(342.62, 284.163)
+progress = 50.3636
+rotates = false
 
-[node name="PointLight2D" type="PointLight2D" parent="Marker2D"]
-scale = Vector2(6.46094, 6.46094)
-energy = 1.01
-texture = SubResource("GradientTexture2D_pl5ws")
+[node name="Bow" type="TextureProgressBar" parent="Path2D/Pnt3"]
+clip_children = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -24.0
+offset_right = 16.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+pivot_offset = Vector2(16, 24)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+fill_mode = 3
+texture_under = ExtResource("16_eqbf6")
+texture_progress = ExtResource("17_efqft")
+
+[node name="ColorRect" type="ColorRect" parent="Path2D/Pnt3/Bow"]
+material = SubResource("ShaderMaterial_1klnm")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(16, 16)
+
+[node name="Pnt4" type="PathFollow2D" parent="Path2D"]
+position = Vector2(541.544, 265.082)
+progress = 250.419
+rotates = false
+
+[node name="Mace" type="TextureProgressBar" parent="Path2D/Pnt4"]
+clip_children = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -21.5
+offset_right = 16.0
+offset_bottom = 21.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+pivot_offset = Vector2(16, 24)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+fill_mode = 3
+texture_under = ExtResource("14_tfupd")
+texture_progress = ExtResource("4_00y55")
+
+[node name="ColorRect" type="ColorRect" parent="Path2D/Pnt4/Mace"]
+material = SubResource("ShaderMaterial_1klnm")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(16, 16)
+
+[node name="Pnt5" type="PathFollow2D" parent="Path2D"]
+position = Vector2(741.568, 264.753)
+progress = 450.474
+rotates = false
+
+[node name="Katana" type="TextureProgressBar" parent="Path2D/Pnt5"]
+clip_children = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -23.5
+offset_right = 16.0
+offset_bottom = 23.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+pivot_offset = Vector2(16, 24)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+fill_mode = 3
+texture_under = ExtResource("12_v8inx")
+texture_progress = ExtResource("3_px7ts")
+
+[node name="ColorRect" type="ColorRect" parent="Path2D/Pnt5/Katana"]
+material = SubResource("ShaderMaterial_1klnm")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(16, 16)
+
+[node name="Pnt6" type="PathFollow2D" parent="Path2D"]
+position = Vector2(940.795, 281.216)
+progress = 650.529
+rotates = false
+
+[node name="Slingshot" type="TextureProgressBar" parent="Path2D/Pnt6"]
+clip_children = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -10.0
+offset_right = 16.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+pivot_offset = Vector2(16, 10)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+fill_mode = 3
+texture_under = ExtResource("18_yjmxk")
+texture_progress = ExtResource("19_3o6d2")
+
+[node name="ColorRect" type="ColorRect" parent="Path2D/Pnt6/Slingshot"]
+material = SubResource("ShaderMaterial_1klnm")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(16, 16)
+
+[node name="Pnt7" type="PathFollow2D" parent="Path2D"]
+position = Vector2(840.235, 326.877)
+progress = 850.585
+rotates = false
+
+[node name="Fan" type="TextureProgressBar" parent="Path2D/Pnt7"]
+clip_children = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -15.0
+offset_right = 16.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+pivot_offset = Vector2(16, 15)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+fill_mode = 3
+texture_under = ExtResource("3_qv0y3")
+texture_progress = ExtResource("5_2pmfo")
+
+[node name="ColorRect" type="ColorRect" parent="Path2D/Pnt7/Fan"]
+material = SubResource("ShaderMaterial_1klnm")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(16, 16)
 
 [connection signal="pressed" from="Miko" to="." method="_on_miko_pressed"]
 [connection signal="pressed" from="Heiko" to="." method="_on_heiko_pressed"]
