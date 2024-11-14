@@ -9,17 +9,6 @@ enum unit_states {IDLE, SELECTED, ATTACK_THINK, ATTACK_ACTION_THINK, MOVE_THINK,
 
 var unit_state = unit_states.IDLE
 
-var attacks = {
-	"BASE": {
-		"RANGE": 2,
-		"DAMAGE": 2,
-		"MOVE": Vector2(0,0),
-		"EXORCISM": false,
-		"BLAST_PATTERN": [],
-		"ATTACK_PATTERN": [Vector2(0,0)]
-	},
-}
-
 signal unit_state_change(state: unit_states)
 
 ## Toggles the "selected" animation on the unit.

@@ -41,7 +41,7 @@ _data = {
 "ants": SubResource("Animation_1gypa")
 }
 
-[node name="HitOverlayTile" type="Sprite2D"]
+[node name="HitOverlayTile" type="Sprite2D" groups=["hit"]]
 modulate = Color(1, 0, 0, 1)
 texture = ExtResource("1_54wrh")
 hframes = 9

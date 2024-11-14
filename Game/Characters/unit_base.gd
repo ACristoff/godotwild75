@@ -34,6 +34,17 @@ var current_direction = direction.UP
 
 @export var damage := 1
 
+var attacks = {
+	"BASE": {
+		"RANGE": 2,
+		"DAMAGE": 2,
+		"MOVE": Vector2(0,0),
+		"EXORCISM": false,
+		"BLAST_PATTERN": [],
+		"ATTACK_PATTERN": [Vector2(0,0)]
+	},
+}
+
 @export var skin: Texture:
 	set(value):
 		skin = value
@@ -74,6 +85,9 @@ func _ready() -> void:
 	if not Engine.is_editor_hint():
 		curve = Curve2D.new()
 
+func _init():
+	pass
+
 func walk(delta):
 	_path_follow.progress += move_speed * delta
 	if _path_follow.progress_ratio >= 1.0:
@@ -110,9 +124,9 @@ func _process(delta: float) -> void:
 	_anim_player.current_animation = new_anim
 	walk(delta)
 
-
-func explode(pattern):
-	print("boom, explosion pattern:", pattern)
+#
+#func explode(pattern):
+	#print("boom, explosion pattern:", pattern)
 
 #All the shit for dying
 func die():
@@ -121,7 +135,7 @@ func die():
 	#free the tile
 	#explode
 	#remove from turn order
-	explode([])
+	#explode([])
 	queue_free()
 	pass
 
