@@ -1,21 +1,26 @@
-[gd_scene load_steps=10 format=3 uid="uid://dsa7ourik4j04"]
+[gd_scene load_steps=28 format=3 uid="uid://dsa7ourik4j04"]
 
 [ext_resource type="Shader" path="res://Assets/Shaders/followmousecard.gdshader" id="1_dbsal"]
+[ext_resource type="Script" path="res://Game/UI/weapon_shop.gd" id="1_se77a"]
 [ext_resource type="Texture2D" uid="uid://1gsgwrxvici6" path="res://Assets/Environment/Objects/Foliage.png" id="1_wdm7q"]
+[ext_resource type="Texture2D" uid="uid://dbwgkki343cvo" path="res://Assets/Weapons/Dagger.png" id="2_j5240"]
+[ext_resource type="FontFile" uid="uid://cidju740k3qx7" path="res://Assets/Fonts/nagayama_kai08.otf" id="2_un46q"]
+[ext_resource type="Texture2D" uid="uid://cc2yhwvqcflo7" path="res://Assets/Weapons/SamuraiSword.png" id="3_px7ts"]
+[ext_resource type="Texture2D" uid="uid://b15cclvar3qt1" path="res://Assets/Weapons/FanBlack.png" id="3_qv0y3"]
+[ext_resource type="Texture2D" uid="uid://b8vew8f8hfj40" path="res://Assets/Weapons/Mace.png" id="4_00y55"]
 [ext_resource type="Texture2D" uid="uid://eyel554c0e4b" path="res://Assets/Weapons/OpenFan.png" id="5_2pmfo"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1klnm"]
-shader = ExtResource("1_dbsal")
-shader_parameter/Line_Smoothness = 0.045
-shader_parameter/Line_Width = 0.141
-shader_parameter/Brightness = 3.0
-shader_parameter/Rotation_deg = 30.0
-shader_parameter/Distortion = 1.28
-shader_parameter/Speed = 0.7
-shader_parameter/Position = 0.0
-shader_parameter/Position_Min = 0.25
-shader_parameter/Position_Max = 0.5
-shader_parameter/Alpha = 0.862
+[ext_resource type="Texture2D" uid="uid://bpmvmcaiamrh5" path="res://Assets/Characters/Friendly/Miko.png" id="6_y4seu"]
+[ext_resource type="Texture2D" uid="uid://dyq0tu7gqp7la" path="res://Assets/Characters/Friendly/Heiko.png" id="7_2673r"]
+[ext_resource type="Texture2D" uid="uid://tallelojr4iq" path="res://Assets/Effects/Particles/Onibi.png" id="8_rkkt7"]
+[ext_resource type="Texture2D" uid="uid://j4cqlw4tpk8b" path="res://Assets/Weapons/DaggerBlack.png" id="10_dkqhm"]
+[ext_resource type="Texture2D" uid="uid://cq7d6tugfcgel" path="res://Assets/Weapons/SamuraiBlack.png" id="12_v8inx"]
+[ext_resource type="Texture2D" uid="uid://fxuqi1s1qx4w" path="res://Assets/Weapons/MaceBlack.png" id="14_tfupd"]
+[ext_resource type="Texture2D" uid="uid://csa2aj1qkp6o2" path="res://Assets/Weapons/BowBlack.png" id="16_eqbf6"]
+[ext_resource type="Texture2D" uid="uid://oewo8j2hcp0v" path="res://Assets/Weapons/Bow.png" id="17_efqft"]
+[ext_resource type="Texture2D" uid="uid://c3ar0xamfgpt" path="res://Assets/Weapons/SlingshotBlack.png" id="18_yjmxk"]
+[ext_resource type="Texture2D" uid="uid://bxshba1kuoi85" path="res://Assets/Weapons/Slingshot.png" id="19_3o6d2"]
+[ext_resource type="Texture2D" uid="uid://dcons1gd0i0pj" path="res://Assets/Weapons/TridentBlack.png" id="20_ajnaf"]
+[ext_resource type="Texture2D" uid="uid://bs51qd7hyiqe4" path="res://Assets/Weapons/Trident.png" id="21_xh8ql"]
 
 [sub_resource type="Gradient" id="Gradient_sjpbg"]
 colors = PackedColorArray(0.1, 0, 0.0716667, 1, 0.68, 0.872, 1, 1)
@@ -31,6 +36,19 @@ adjustment_brightness = 0.9
 adjustment_contrast = 1.1
 adjustment_color_correction = SubResource("GradientTexture1D_4ttco")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1klnm"]
+shader = ExtResource("1_dbsal")
+shader_parameter/Line_Smoothness = 0.045
+shader_parameter/Line_Width = 0.141
+shader_parameter/Brightness = 3.0
+shader_parameter/Rotation_deg = 30.0
+shader_parameter/Distortion = 1.28
+shader_parameter/Speed = 0.7
+shader_parameter/Position = 0.0
+shader_parameter/Position_Min = 0.25
+shader_parameter/Position_Max = 0.5
+shader_parameter/Alpha = 0.862
+
 [sub_resource type="Gradient" id="Gradient_7spl3"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
@@ -40,38 +58,344 @@ fill = 1
 fill_from = Vector2(0.5, 0.508772)
 fill_to = Vector2(0.780702, 0.824561)
 
-[node name="Node2D" type="Node2D"]
+[node name="WeaponShop" type="Node2D"]
+script = ExtResource("1_se77a")
 
 [node name="Foliage" type="Sprite2D" parent="."]
-modulate = Color(0.1071, 0.108815, 0.21, 1)
+self_modulate = Color(0.105882, 0.109804, 0.211765, 1)
 position = Vector2(640, 360)
 scale = Vector2(4, 4)
 texture = ExtResource("1_wdm7q")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-clip_children = 2
-offset_left = 562.0
-offset_top = 271.0
-offset_right = 602.0
-offset_bottom = 319.0
-scale = Vector2(4, 4)
-texture = ExtResource("5_2pmfo")
-
-[node name="ColorRect" type="ColorRect" parent="TextureRect"]
-material = SubResource("ShaderMaterial_1klnm")
-layout_mode = 0
-offset_top = 17.0
-offset_right = 40.0
-offset_bottom = 48.0
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ppijv")
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(637, 398)
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.56025, 0.5025, 0.75, 1)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -288.5
+offset_right = 288.5
+offset_bottom = 86.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 35
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+texture_filter = 2
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_un46q")
+theme_override_font_sizes/font_size = 50
+text = "Select Your Weapon For"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 15
+
+[node name="Label2" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_un46q")
+theme_override_font_sizes/font_size = 50
+text = "- Miko -"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Miko" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(85, 665)
+scale = Vector2(4, 4)
+texture = ExtResource("6_y4seu")
+hframes = 16
+frame = 8
+
+[node name="Heiko" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(204, 665)
+scale = Vector2(4, 4)
+texture = ExtResource("7_2673r")
+hframes = 16
+frame = 8
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer"]
+offset_right = 120.0
+offset_bottom = 100.0
+theme_override_constants/margin_left = 35
+theme_override_constants/margin_top = 45
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer2"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/MarginContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("8_rkkt7")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_un46q")
+theme_override_font_sizes/font_size = 50
+text = ":"
+
+[node name="Miko" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 40.0
+offset_top = 553.0
+offset_right = 142.0
+offset_bottom = 720.0
+
+[node name="Heiko" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 150.0
+offset_top = 553.0
+offset_right = 254.0
+offset_bottom = 720.0
+
+[node name="heikostart" type="Marker2D" parent="."]
+position = Vector2(204, 665)
+
+[node name="heikoend" type="Marker2D" parent="."]
+position = Vector2(204, 625)
+
+[node name="mikostart" type="Marker2D" parent="."]
+position = Vector2(85, 665)
+
+[node name="mikoend" type="Marker2D" parent="."]
+position = Vector2(85, 645)
+
+[node name="Fan" type="TextureProgressBar" parent="."]
+clip_children = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -117.0
+offset_top = 76.0
+offset_right = -85.0
+offset_bottom = 106.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+pivot_offset = Vector2(16, 15)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+fill_mode = 3
+texture_under = ExtResource("3_qv0y3")
+texture_progress = ExtResource("5_2pmfo")
+
+[node name="ColorRect" type="ColorRect" parent="Fan"]
+material = SubResource("ShaderMaterial_1klnm")
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+pivot_offset = Vector2(16, 16)
+
+[node name="Dagger" type="TextureProgressBar" parent="."]
+clip_children = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -113.0
+offset_top = 228.0
+offset_right = -81.0
+offset_bottom = 248.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+pivot_offset = Vector2(16, 10)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+fill_mode = 3
+texture_under = ExtResource("10_dkqhm")
+texture_progress = ExtResource("2_j5240")
+
+[node name="ColorRect" type="ColorRect" parent="Dagger"]
+material = SubResource("ShaderMaterial_1klnm")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(16, 16)
+
+[node name="Katana" type="TextureProgressBar" parent="."]
+clip_children = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -213.0
+offset_top = 241.0
+offset_right = -181.0
+offset_bottom = 288.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+pivot_offset = Vector2(16, 24)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+fill_mode = 3
+texture_under = ExtResource("12_v8inx")
+texture_progress = ExtResource("3_px7ts")
+
+[node name="ColorRect" type="ColorRect" parent="Katana"]
+material = SubResource("ShaderMaterial_1klnm")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(16, 16)
+
+[node name="Mace" type="TextureProgressBar" parent="."]
+clip_children = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -107.0
+offset_top = 384.0
+offset_right = -75.0
+offset_bottom = 427.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+pivot_offset = Vector2(16, 24)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+fill_mode = 3
+texture_under = ExtResource("14_tfupd")
+texture_progress = ExtResource("4_00y55")
+
+[node name="ColorRect" type="ColorRect" parent="Mace"]
+material = SubResource("ShaderMaterial_1klnm")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(16, 16)
+metadata/_edit_use_anchors_ = true
+
+[node name="Bow" type="TextureProgressBar" parent="."]
+clip_children = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -197.0
+offset_top = 473.0
+offset_right = -165.0
+offset_bottom = 521.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+pivot_offset = Vector2(16, 24)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+fill_mode = 3
+texture_under = ExtResource("16_eqbf6")
+texture_progress = ExtResource("17_efqft")
+
+[node name="ColorRect" type="ColorRect" parent="Bow"]
+material = SubResource("ShaderMaterial_1klnm")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(16, 16)
+
+[node name="Slingshot" type="TextureProgressBar" parent="."]
+clip_children = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -92.0
+offset_top = 620.0
+offset_right = -60.0
+offset_bottom = 640.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+pivot_offset = Vector2(16, 10)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+fill_mode = 3
+texture_under = ExtResource("18_yjmxk")
+texture_progress = ExtResource("19_3o6d2")
+
+[node name="ColorRect" type="ColorRect" parent="Slingshot"]
+material = SubResource("ShaderMaterial_1klnm")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(16, 16)
+
+[node name="Trident" type="TextureProgressBar" parent="."]
+clip_children = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -203.0
+offset_top = 720.0
+offset_right = -171.0
+offset_bottom = 768.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+pivot_offset = Vector2(16, 24)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+fill_mode = 3
+texture_under = ExtResource("20_ajnaf")
+texture_progress = ExtResource("21_xh8ql")
+
+[node name="ColorRect" type="ColorRect" parent="Trident"]
+material = SubResource("ShaderMaterial_1klnm")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(16, 16)
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(640, 360)
+
+[node name="PointLight2D" type="PointLight2D" parent="Marker2D"]
 scale = Vector2(6.46094, 6.46094)
 energy = 1.01
 texture = SubResource("GradientTexture2D_pl5ws")
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.56025, 0.5025, 0.75, 1)
+[connection signal="pressed" from="Miko" to="." method="_on_miko_pressed"]
+[connection signal="pressed" from="Heiko" to="." method="_on_heiko_pressed"]
