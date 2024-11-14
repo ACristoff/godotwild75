@@ -176,6 +176,7 @@ func deselect_unit():
 func move_current_unit(new_cell: Vector2):
 	if is_occupied(new_cell) or not new_cell in walkable_cells:
 		return
+	var origin = active_unit.cell
 	units.erase(active_unit.cell)
 	units[new_cell] = active_unit
 	#TODO repeated code, refactor later
@@ -185,25 +186,33 @@ func move_current_unit(new_cell: Vector2):
 	active_unit.walk_along(unit_path.current_path)
 	if active_unit == miko || active_unit == spirit_miko:
 		if active_unit == miko:
-			miko_walk(spirit_miko, unit_path.current_path)
+			miko_walk(spirit_miko, unit_path.current_path, origin)
 		else:
-			miko_walk(miko, unit_path.current_path)
+			miko_walk(miko, unit_path.current_path, origin)
 	await active_unit.walk_finished
 	active_unit.has_moved = true
 	clear_active_unit()
 	turn_manager()
 
-func miko_walk(miko_to_move, walk_vectors):
-	prints(miko_to_move, walk_vectors)
+func miko_walk(miko_to_move, walk_vectors, origin):
 	var new_path: PackedVector2Array
 	units.erase(miko_to_move.cell)
 	friendlies.erase(miko_to_move.cell)
+	var offset := Vector2(0,0)
+	var last_acceptable_vec = miko_to_move.cell
+	var last_vec = origin
 	for vec in walk_vectors:
-		var new_vec = grid.calculate_mirror_position(vec)
-		new_path.append(new_vec)
+		var direction = vec - last_vec
+		var new_vec2 = last_acceptable_vec + direction
+		last_vec = vec
+		if units.has(new_vec2):
+			continue
+		last_acceptable_vec = new_vec2
+		new_path.append(new_vec2)
 	units[new_path[-1]] = miko_to_move
 	friendlies[new_path[-1]] = active_unit
 	miko_to_move.walk_along(new_path)
+	print(new_path)
 	pass
 
 func clear_active_unit() -> void:
