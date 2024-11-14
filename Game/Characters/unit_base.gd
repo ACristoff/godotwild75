@@ -110,9 +110,9 @@ func _process(delta: float) -> void:
 	_anim_player.current_animation = new_anim
 	walk(delta)
 
-
-func explode(pattern):
-	print("boom, explosion pattern:", pattern)
+#
+#func explode(pattern):
+	#print("boom, explosion pattern:", pattern)
 
 #All the shit for dying
 func die():
@@ -121,7 +121,7 @@ func die():
 	#free the tile
 	#explode
 	#remove from turn order
-	explode([])
+	#explode([])
 	queue_free()
 	pass
 

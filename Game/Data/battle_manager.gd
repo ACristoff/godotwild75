@@ -20,7 +20,9 @@ var current_attack = null
 
 @onready var attack_overlay = $AttackOverlay
 @onready var hit_overlay = $HitOverlay
+@onready var explosion_overlay = $ExplosionOverlay
 @onready var unit_path: UnitPath = $UnitPath
+
 
 ##TODO organize functions
 
@@ -97,6 +99,7 @@ func reinitialize():
 				unit.spirit_miko_ref = spirit_miko
 		if unit is EnemyUnit:
 			enemies[unit.cell] = unit
+	#print(enemies, friendlies, units)
 	turn_manager()
 
 func on_unit_state_change(state):
@@ -268,20 +271,37 @@ func _on_cursor_accept_pressed(cell):
 		move_current_unit(cell)
 
 func manage_attack(attack_cells, team_to_hit):
+	attack_overlay.clear()
 	for cell in attack_cells:
 		if units.has(cell):
-			print('HIT', units[cell])
+			#print('HIT', units[cell])
 			var unit = units[cell] as Unit
+			handle_exorcism(unit, current_attack)
 			units[cell].take_damage(1)
 			##TODO HIT THIS SHIT
 		else:
-			print("MISS", cell)
-	attack_overlay.clear()
+			#print("MISS", cell)
+			pass
 	active_unit.has_attacked = true
 	active_unit.state_change(PlayerUnit.unit_states.IDLE)
 	active_unit.finish_attack()
 	deselect_unit()
 	clear_active_unit()
+
+func handle_exorcism(unit, attack):
+	print(unit, attack)
+	var cells_to_blow = []
+	var mirrored_origin: Vector2 = grid.calculate_mirror_position(unit.cell)
+	#hit_overlay.position = Vector2(0,0)
+	explosion_overlay.position = grid.calculate_map_position(mirrored_origin)
+	#hit_overlay.blow_up_squares()
+	for vec in attack.BLAST_PATTERN:
+		print(vec)
+		var mirrored_vec = grid.calculate_mirror_position(vec + unit.cell)
+		cells_to_blow.append(mirrored_vec)
+	explosion_overlay.blow_up_squares(attack.BLAST_PATTERN)
+	print("mirrored", cells_to_blow)
+	pass
 
 func _on_cursor_moved(new_cell):
 	if active_unit and active_unit.is_selected and active_unit.unit_state == PlayerUnit.unit_states.MOVE_THINK:
@@ -292,6 +312,7 @@ func _on_cursor_moved(new_cell):
 		hit_overlay.position = move_to_pos
 
 func on_unit_death(unit):
+	
 	units.erase(unit.cell)
 	if unit is PlayerUnit:
 		friendlies.erase(unit.cell)
