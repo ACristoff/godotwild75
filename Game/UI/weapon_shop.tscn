@@ -1,0 +1,77 @@
+[gd_scene load_steps=10 format=3 uid="uid://dsa7ourik4j04"]
+
+[ext_resource type="Shader" path="res://Assets/Shaders/followmousecard.gdshader" id="1_dbsal"]
+[ext_resource type="Texture2D" uid="uid://1gsgwrxvici6" path="res://Assets/Environment/Objects/Foliage.png" id="1_wdm7q"]
+[ext_resource type="Texture2D" uid="uid://eyel554c0e4b" path="res://Assets/Weapons/OpenFan.png" id="5_2pmfo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1klnm"]
+shader = ExtResource("1_dbsal")
+shader_parameter/Line_Smoothness = 0.045
+shader_parameter/Line_Width = 0.141
+shader_parameter/Brightness = 3.0
+shader_parameter/Rotation_deg = 30.0
+shader_parameter/Distortion = 1.28
+shader_parameter/Speed = 0.7
+shader_parameter/Position = 0.0
+shader_parameter/Position_Min = 0.25
+shader_parameter/Position_Max = 0.5
+shader_parameter/Alpha = 0.862
+
+[sub_resource type="Gradient" id="Gradient_sjpbg"]
+colors = PackedColorArray(0.1, 0, 0.0716667, 1, 0.68, 0.872, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4ttco"]
+gradient = SubResource("Gradient_sjpbg")
+
+[sub_resource type="Environment" id="Environment_ppijv"]
+background_mode = 3
+glow_enabled = true
+glow_bloom = 0.08
+adjustment_brightness = 0.9
+adjustment_contrast = 1.1
+adjustment_color_correction = SubResource("GradientTexture1D_4ttco")
+
+[sub_resource type="Gradient" id="Gradient_7spl3"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pl5ws"]
+gradient = SubResource("Gradient_7spl3")
+fill = 1
+fill_from = Vector2(0.5, 0.508772)
+fill_to = Vector2(0.780702, 0.824561)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Foliage" type="Sprite2D" parent="."]
+modulate = Color(0.1071, 0.108815, 0.21, 1)
+position = Vector2(640, 360)
+scale = Vector2(4, 4)
+texture = ExtResource("1_wdm7q")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+clip_children = 2
+offset_left = 562.0
+offset_top = 271.0
+offset_right = 602.0
+offset_bottom = 319.0
+scale = Vector2(4, 4)
+texture = ExtResource("5_2pmfo")
+
+[node name="ColorRect" type="ColorRect" parent="TextureRect"]
+material = SubResource("ShaderMaterial_1klnm")
+layout_mode = 0
+offset_top = 17.0
+offset_right = 40.0
+offset_bottom = 48.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ppijv")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(637, 398)
+scale = Vector2(6.46094, 6.46094)
+energy = 1.01
+texture = SubResource("GradientTexture2D_pl5ws")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.56025, 0.5025, 0.75, 1)
