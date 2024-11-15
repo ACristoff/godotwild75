@@ -375,11 +375,18 @@ func on_unit_death(unit):
 		handle_exorcism(unit, current_attack)
 		#if grid.is_in_real_world(unit.cell):
 			#handle_exorcism(unit, current_attack)
+	else: 
+		print("Fail con!", unit)
 	units.erase(unit.cell)
 	if unit is PlayerUnit:
 		friendlies.erase(unit.cell)
 	elif unit is EnemyUnit:
 		enemies.erase(unit.cell)
+		check_for_win_con()
+
+func check_for_win_con():
+	if enemies.size() == 0 && ghost_accumulator.size() == 0:
+		print("A WINRAR IS YOU CON")
 
 func _on_cursor_deselect_pressed():
 	if active_unit:
