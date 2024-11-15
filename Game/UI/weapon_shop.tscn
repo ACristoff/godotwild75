@@ -291,6 +291,7 @@ texture_under = ExtResource("10_dkqhm")
 texture_progress = ExtResource("2_j5240")
 
 [node name="ColorRect" type="ColorRect" parent="Path2D/Pnt1/Dagger"]
+visible = false
 material = SubResource("ShaderMaterial_1klnm")
 layout_mode = 1
 anchors_preset = 15
@@ -339,6 +340,7 @@ texture_under = ExtResource("20_ajnaf")
 texture_progress = ExtResource("21_xh8ql")
 
 [node name="ColorRect" type="ColorRect" parent="Path2D/Pnt2/Trident"]
+visible = false
 material = SubResource("ShaderMaterial_1klnm")
 layout_mode = 1
 anchors_preset = 15
@@ -386,6 +388,7 @@ texture_under = ExtResource("16_eqbf6")
 texture_progress = ExtResource("17_efqft")
 
 [node name="ColorRect" type="ColorRect" parent="Path2D/Pnt3/Bow"]
+visible = false
 material = SubResource("ShaderMaterial_1klnm")
 layout_mode = 1
 anchors_preset = 15
@@ -433,6 +436,7 @@ texture_under = ExtResource("14_tfupd")
 texture_progress = ExtResource("4_00y55")
 
 [node name="ColorRect" type="ColorRect" parent="Path2D/Pnt4/Mace"]
+visible = false
 material = SubResource("ShaderMaterial_1klnm")
 layout_mode = 1
 anchors_preset = 15
@@ -480,6 +484,7 @@ texture_under = ExtResource("12_v8inx")
 texture_progress = ExtResource("3_px7ts")
 
 [node name="ColorRect" type="ColorRect" parent="Path2D/Pnt5/Katana"]
+visible = false
 material = SubResource("ShaderMaterial_1klnm")
 layout_mode = 1
 anchors_preset = 15
@@ -527,6 +532,7 @@ texture_under = ExtResource("18_yjmxk")
 texture_progress = ExtResource("19_3o6d2")
 
 [node name="ColorRect" type="ColorRect" parent="Path2D/Pnt6/Slingshot"]
+visible = false
 material = SubResource("ShaderMaterial_1klnm")
 layout_mode = 1
 anchors_preset = 15
@@ -575,6 +581,7 @@ texture_under = ExtResource("3_qv0y3")
 texture_progress = ExtResource("5_2pmfo")
 
 [node name="ColorRect" type="ColorRect" parent="Path2D/Pnt7/Fan"]
+visible = false
 material = SubResource("ShaderMaterial_1klnm")
 layout_mode = 1
 anchors_preset = 8

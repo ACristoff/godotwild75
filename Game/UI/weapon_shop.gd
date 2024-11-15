@@ -11,6 +11,12 @@ var frontIndicator = 0
 var arrows_disabled = false
 var WeaponName = ""
 var cost
+var type
+var gameManager
+var mikoEquip
+var heikoEquip
+
+signal confirm_weapon
 
 @onready var whosSelect = $CanvasLayer/MarginContainer/VBoxContainer/MarginContainer/Label2
 @onready var Value = $CanvasLayer/MarginContainer2/HBoxContainer/Label
@@ -321,6 +327,20 @@ func _refresh_buttons():
 	arrows_disabled = false
 	$CanvasLayer/ButtonArrow/TextureButton.disabled = false
 	$CanvasLayer/ButtonArrow2/TextureButton2.disabled = false
+	if type == 1:
+		pass
+	elif type == 2:
+		pass
+	elif type == 3:
+		pass
+	elif type == 4:
+		pass
+	elif type == 5:
+		pass
+	elif type == 6:
+		pass
+	elif type == 7:
+		pass
 
 func _on_texture_button_pressed() -> void:
 	frontIndicator -= 1
