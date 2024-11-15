@@ -13,7 +13,7 @@ func kill_kids():
 		square.queue_free()
 
 func blow_up_squares(vec_arr):
-	print(vec_arr)
+	#print(vec_arr)
 	for vec in vec_arr:
 		var new_explosion = exorcism_sprite.instantiate()
 		add_child(new_explosion)

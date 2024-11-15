@@ -312,21 +312,6 @@ func manage_attack(attack_cells, team_to_hit):
 	clear_active_unit()
 
 
-
-				#miko = unit
-				#var spirit_miko_spawned = spirit_miko_scene.instantiate()
-				#add_child(spirit_miko_spawned)
-				#var spirit_coord = grid.calculate_mirror_position(unit.cell)
-				#spirit_miko_spawned.position = grid.calculate_map_position(spirit_coord)
-				#spirit_miko_spawned.cell = spirit_coord
-				#units[spirit_miko_spawned.cell] = spirit_miko_spawned
-				#friendlies[spirit_miko_spawned.cell] = spirit_miko_spawned
-				#spirit_miko_spawned.connect("unit_state_change", on_unit_state_change)
-				#spirit_miko_spawned.connect("death", on_unit_death)
-				#spirit_miko_spawned.spawn_init("bluh")
-				#spirit_miko = spirit_miko_spawned
-				#spirit_miko.attacks = unit.attacks
-
 func spawn_ghost(unit, mirrored_origin):
 	#print("SPAWN HERE", unit, mirrored_origin)
 	var ghost_scene = load(unit)
