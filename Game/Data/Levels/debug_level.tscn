@@ -28,6 +28,7 @@ y_sort_origin = -1
 
 [node name="MikoUnit" parent="." instance=ExtResource("6_ichhw")]
 position = Vector2(346, 566)
+health = 0
 
 [node name="EnemyBase2" parent="." instance=ExtResource("6_xe3j1")]
 position = Vector2(358, 419)
@@ -37,6 +38,7 @@ position = Vector2(1059, 419)
 
 [node name="HeikoUnit" parent="." instance=ExtResource("7_2tvfr")]
 position = Vector2(226, 298)
+health = 0
 
 [node name="Cursor" parent="." instance=ExtResource("2_pogwr")]
 

@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnv0fgh85dryf"]
+
+[ext_resource type="PackedScene" uid="uid://cx4kwdcn8ymig" path="res://Game/Characters/Friendlies/player_unit.tscn" id="1_ymjot"]
+
+[node name="SpiritHeiko" instance=ExtResource("1_ymjot")]
