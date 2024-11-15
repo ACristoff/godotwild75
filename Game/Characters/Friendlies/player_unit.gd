@@ -80,7 +80,7 @@ func _on_action_select_move_selected():
 
 func _on_action_select_attack_chosen(attack):
 	current_attack = attacks[attack]
-	print('current attack selected', current_attack)
+	#print('current attack selected', current_attack)
 	state_change(unit_states.ATTACK_ACTION_THINK)
 	#action_select(false)
 	action_ui.close()

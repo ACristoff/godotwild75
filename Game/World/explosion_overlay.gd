@@ -10,6 +10,8 @@ func kill_kids():
 	var all_squares = get_children()
 	
 	for square in all_squares:
+		if square == kill_timer:
+			continue
 		square.queue_free()
 
 func blow_up_squares(vec_arr):

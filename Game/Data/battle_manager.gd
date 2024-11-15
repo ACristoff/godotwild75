@@ -283,7 +283,7 @@ func _on_cursor_accept_pressed(cell):
 			manage_attack(attack_cells, "ENEMY")
 			await get_tree().create_timer(0.4).timeout
 			if ghost_accumulator.size() > 0:
-				print("current ghosts", ghost_accumulator)
+				#print("current ghosts", ghost_accumulator)
 				##iterate and add ghosts here
 				for ghost in ghost_accumulator:
 					spawn_ghost(ghost[0], ghost[1])
@@ -316,7 +316,7 @@ func manage_attack(attack_cells, team_to_hit):
 
 
 func spawn_ghost(unit, mirrored_origin):
-	print("SPAWN HERE", unit, mirrored_origin)
+	#print("SPAWN HERE", unit, mirrored_origin)
 	var ghost_scene = load(unit)
 	var ghost = ghost_scene.instantiate()
 	add_child(ghost)
@@ -349,11 +349,11 @@ func handle_exorcism(unit, attack):
 		positions_to_blow.append(grid.calculate_map_position(mirrored_vec))
 		if units.has(mirrored_vec):
 			if grid.is_in_real_world(mirrored_vec) && !units[mirrored_vec].is_in_group("mikos"):
-				print("THIS BITCH", units[mirrored_vec], vec + unit.cell)
+				#print("THIS BITCH", units[mirrored_vec], vec + unit.cell)
 				ghost_accumulator.append([units[mirrored_vec].self_scene_path, vec + unit.cell])
 			units[mirrored_vec].take_damage(1)
 	explosion_overlay.blow_up_squares(positions_to_blow)
-	print(ghost_accumulator)
+	#print(ghost_accumulator)
 	pass
 
 func _on_cursor_moved(new_cell):
@@ -366,8 +366,9 @@ func _on_cursor_moved(new_cell):
 
 func on_unit_death(unit):
 	if !unit.is_in_group("mikos"):
-		print(unit)
-		handle_exorcism(unit, current_attack)
+		#print(unit)
+		if grid.is_in_real_world(unit.cell):
+			handle_exorcism(unit, current_attack)
 	units.erase(unit.cell)
 	if unit is PlayerUnit:
 		friendlies.erase(unit.cell)
