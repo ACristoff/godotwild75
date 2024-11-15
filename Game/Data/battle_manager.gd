@@ -308,11 +308,12 @@ func handle_exorcism(unit, attack):
 		#print(vec)
 		var mirrored_vec = grid.calculate_mirror_position(vec + unit.cell)
 		cells_to_blow.append(mirrored_vec)
+		if units.has(mirrored_vec):
+			#print('mirrored hit!', mirrored_vec)
+			units[mirrored_vec].take_damage(1)
+			pass
+		#print(mirrored_vec)
 	explosion_overlay.blow_up_squares(attack.BLAST_PATTERN)
-	##TODO EXORCISM BLAST V1
-	##Handle explosion damage here
-	##Maybe do a timer and then do damage?
-	##Loop through array, if units.has cell then damage unit
 	pass
 
 func _on_cursor_moved(new_cell):
