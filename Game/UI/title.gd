@@ -30,6 +30,7 @@ var click = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print(titlebgm)
 	pass # Replace with function body.
 
 
@@ -40,6 +41,7 @@ func EnableClick():
 	click = true
 	
 func bereparedo():
+	#print("HUH")
 	AudioManager.play_sfx(logosfx, 1)
 func LogoSFX():
 	var random = randi_range(0,8)
@@ -47,6 +49,7 @@ func LogoSFX():
 func WashSFX():
 	AudioManager.play_sfx(washsfx, 1)
 func TitleMusic():
+	print("pls")
 	AudioManager.play_sfx(titlebgm, 1)
 func SweepSFX():
 	$AudioStreamPlayer2D.play()
