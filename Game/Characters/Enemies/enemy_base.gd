@@ -2,11 +2,6 @@ extends Unit
 
 class_name EnemyUnit
 
-#We use this to spawn this enemy on the spirit world
-#Had to change this a string because it would consider it a circular ref
-#It's a little jank but who cares MAAAAAAN
-@export var self_scene_path: String
-
 #The enemy's targeted character; who the enemy is aiming to hit.
 var targetCharacter : PlayerUnit = null
 #All characters on screen

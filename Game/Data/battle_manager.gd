@@ -120,7 +120,7 @@ func on_unit_state_change(state):
 		#var attack_cells = get_attack_cells()
 		pass
 	if state == PlayerUnit.unit_states.ATTACK_ACTION_THINK:
-		prints('current', active_unit.current_attack)
+		#prints('current', active_unit.current_attack)
 		current_attack = active_unit.current_attack
 		var attack_cells = get_attack_cells(active_unit, active_unit.current_attack)
 		attack_overlay.draw(attack_cells)
@@ -224,7 +224,7 @@ func miko_walk(miko_to_move, walk_vectors, origin):
 	units[new_path[-1]] = miko_to_move
 	friendlies[new_path[-1]] = active_unit
 	miko_to_move.walk_along(new_path)
-	print(new_path)
+	#print(new_path)
 	pass
 
 func clear_active_unit() -> void:
@@ -266,14 +266,14 @@ func _on_cursor_accept_pressed(cell):
 				else:
 					mirrored_unit_cell = miko.cell
 				var mirror_origin = attack_origin - active_unit.cell
-				prints("relative is", mirror_origin, mirrored_unit_cell)
+				#prints("relative is", mirror_origin, mirrored_unit_cell)
 				for to_hit_cell in current_attack.ATTACK_PATTERN:
 					##Refactor this to work from alternate miko origin, then do an operation
 					var hit_cell = mirror_origin + to_hit_cell
 					hit_cell = hit_cell + mirrored_unit_cell
 					attack_cells.append(hit_cell)
 					pass
-				print("miko or spirit miko attacked!")
+				#print("miko or spirit miko attacked!")
 				pass
 			##DO ATTACK
 			manage_attack(attack_cells, "ENEMY")
@@ -281,24 +281,72 @@ func _on_cursor_accept_pressed(cell):
 
 func manage_attack(attack_cells, team_to_hit):
 	attack_overlay.clear()
+	var ghost_accumulator = []
 	for cell in attack_cells:
 		if units.has(cell):
 			#print('HIT', units[cell])
 			var unit = units[cell] as Unit
-			units[cell].take_damage(current_attack.DAMAGE)
+			handle_exorcism(unit, current_attack)
 			if grid.is_in_real_world(cell):
-				handle_exorcism(unit, current_attack)
+				if !unit.is_in_group("mikos"):
+					ghost_accumulator.append([
+						unit.self_scene_path, 
+						grid.calculate_mirror_position(cell)
+					])
+					pass
+			units[cell].take_damage(current_attack.DAMAGE)
 		else:
 			#print("MISS", cell)
 			pass
 	active_unit.has_attacked = true
 	active_unit.state_change(PlayerUnit.unit_states.IDLE)
 	active_unit.finish_attack()
+	if ghost_accumulator.size() > 0:
+		##iterate and add ghosts here
+		for ghost in ghost_accumulator:
+			spawn_ghost(ghost[0], ghost[1])
+			pass
+		#print(ghost_accumulator)
+		pass
 	deselect_unit()
 	clear_active_unit()
 
+
+
+				#miko = unit
+				#var spirit_miko_spawned = spirit_miko_scene.instantiate()
+				#add_child(spirit_miko_spawned)
+				#var spirit_coord = grid.calculate_mirror_position(unit.cell)
+				#spirit_miko_spawned.position = grid.calculate_map_position(spirit_coord)
+				#spirit_miko_spawned.cell = spirit_coord
+				#units[spirit_miko_spawned.cell] = spirit_miko_spawned
+				#friendlies[spirit_miko_spawned.cell] = spirit_miko_spawned
+				#spirit_miko_spawned.connect("unit_state_change", on_unit_state_change)
+				#spirit_miko_spawned.connect("death", on_unit_death)
+				#spirit_miko_spawned.spawn_init("bluh")
+				#spirit_miko = spirit_miko_spawned
+				#spirit_miko.attacks = unit.attacks
+
+func spawn_ghost(unit, mirrored_origin):
+	print("SPAWN HERE", unit, mirrored_origin)
+	var ghost_scene = load(unit)
+	var ghost = ghost_scene.instantiate()
+	add_child(ghost)
+	ghost.position = grid.calculate_map_position(mirrored_origin)
+	units[mirrored_origin] = ghost
+	if ghost.is_in_group("enemies"):
+		enemies[mirrored_origin] = ghost
+	elif ghost.is_in_group("player"):
+		friendlies[mirrored_origin] = ghost
+		ghost.connect("unit_state_change", on_unit_state_change)
+	ghost.connect("death", on_unit_death)
+	ghost.cell = mirrored_origin
+	##Initialization here maybe?
+	#print(ghost)
+	pass
+
 func handle_exorcism(unit, attack):
-	print(unit, attack)
+	#print(unit, attack)
 	var cells_to_blow = []
 	var mirrored_origin: Vector2 = grid.calculate_mirror_position(unit.cell)
 	#hit_overlay.position = Vector2(0,0)
@@ -325,7 +373,7 @@ func _on_cursor_moved(new_cell):
 		hit_overlay.position = move_to_pos
 
 func on_unit_death(unit):
-	
+	##TODO MOVE EXORCISM HERE
 	units.erase(unit.cell)
 	if unit is PlayerUnit:
 		friendlies.erase(unit.cell)

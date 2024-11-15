@@ -179,7 +179,7 @@ skin = ExtResource("3_nhepp")
 [node name="Sprite" parent="PathFollow2D" index="1"]
 texture = ExtResource("3_nhepp")
 
-[node name="AnimationPlayer" parent="." index="1"]
+[node name="AnimationPlayer" parent="." index="1" groups=["mikos"]]
 libraries = {
 "": SubResource("AnimationLibrary_d0on5")
 }

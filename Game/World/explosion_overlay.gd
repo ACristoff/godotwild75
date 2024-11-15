@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var exorcism_sprite = preload("res://Assets/Effects/deathblast.tscn")
+@onready var kill_timer = $KillKidsTimer
 
 #I'm being lazy by doing this
 var grid_size = 64
@@ -17,6 +18,10 @@ func blow_up_squares(vec_arr):
 		var new_explosion = exorcism_sprite.instantiate()
 		add_child(new_explosion)
 		new_explosion.position = vec * Vector2(grid_size, grid_size)
-	await get_tree().create_timer(1.0).timeout
-	kill_kids()
+	kill_timer.start()
 	pass
+
+
+func _on_kill_kids_timer_timeout():
+	kill_kids()
+	pass # Replace with function body.
