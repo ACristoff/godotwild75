@@ -156,9 +156,13 @@ func flood_fill(origin: Vector2, max_distance: int, ignore_dudes: bool):
 		if distance > max_distance:
 			continue
 		
+		
+		
 		array.append(current)
 		for direction in DIRECTIONS:
 			var coordinates: Vector2 = current + direction
+			if grid.is_in_border(coordinates):
+				continue
 			if is_occupied(coordinates) && ignore_dudes == false:
 				continue
 			if coordinates in array:

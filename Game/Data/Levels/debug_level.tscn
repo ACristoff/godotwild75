@@ -30,10 +30,10 @@ y_sort_origin = -1
 position = Vector2(346, 566)
 
 [node name="EnemyBase2" parent="." instance=ExtResource("6_xe3j1")]
-position = Vector2(358, 390)
+position = Vector2(358, 419)
 
 [node name="EnemyBase" parent="." instance=ExtResource("6_xe3j1")]
-position = Vector2(1000, 478)
+position = Vector2(1059, 419)
 
 [node name="HeikoUnit" parent="." instance=ExtResource("7_2tvfr")]
 position = Vector2(226, 298)
