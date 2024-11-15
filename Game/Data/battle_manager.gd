@@ -376,13 +376,17 @@ func on_unit_death(unit):
 		#if grid.is_in_real_world(unit.cell):
 			#handle_exorcism(unit, current_attack)
 	else: 
-		print("Fail con!", unit)
+		trigger_fail_con(unit)
 	units.erase(unit.cell)
 	if unit is PlayerUnit:
 		friendlies.erase(unit.cell)
 	elif unit is EnemyUnit:
 		enemies.erase(unit.cell)
 		check_for_win_con()
+
+func trigger_fail_con(miko):
+	print("FISSION MAILED", miko, "HAS DIED")
+	pass
 
 func check_for_win_con():
 	if enemies.size() == 0 && ghost_accumulator.size() == 0:
