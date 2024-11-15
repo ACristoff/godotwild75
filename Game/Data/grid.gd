@@ -13,6 +13,11 @@ extends Resource
 ## Half of ``cell_size``
 var _half_cell_size = cell_size / 2
 
+func is_in_real_world(cell: Vector2) -> bool:
+	var mirrored_cell = Vector2(cell.x - 9, cell.y)
+	if mirrored_cell.x < 0:
+		return true
+	return false
 
 func calculate_mirror_position(cell):
 	var mirrored_cell = Vector2(cell.x - 9, cell.y)

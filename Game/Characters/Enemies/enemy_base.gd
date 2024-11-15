@@ -2,6 +2,9 @@ extends Unit
 
 class_name EnemyUnit
 
+#We use this to spawn this enemy on the spirit world
+@export var self_scene: PackedScene
+
 #The enemy's targeted character; who the enemy is aiming to hit.
 var targetCharacter : PlayerUnit = null
 #All characters on screen
