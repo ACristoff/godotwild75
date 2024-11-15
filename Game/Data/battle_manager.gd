@@ -275,9 +275,16 @@ func _on_cursor_accept_pressed(cell):
 					attack_cells.append(hit_cell)
 					pass
 				#print("miko or spirit miko attacked!")
-				pass
 			##DO ATTACK
 			manage_attack(attack_cells, "ENEMY")
+			await get_tree().create_timer(0.4).timeout
+			if ghost_accumulator.size() > 0:
+				print("current ghosts", ghost_accumulator)
+				##iterate and add ghosts here
+				for ghost in ghost_accumulator:
+					spawn_ghost(ghost[0], ghost[1])
+					#ghost_accumulator.erase(ghost)
+				ghost_accumulator.clear()
 		move_current_unit(cell)
 
 func manage_attack(attack_cells, team_to_hit):
@@ -290,7 +297,7 @@ func manage_attack(attack_cells, team_to_hit):
 			if grid.is_in_real_world(cell):
 				if !unit.is_in_group("mikos"):
 					ghost_accumulator.append([
-						unit.self_scene_path, 
+						unit.self_scene_path,
 						grid.calculate_mirror_position(cell)
 					])
 			units[cell].take_damage(current_attack.DAMAGE)
@@ -300,19 +307,12 @@ func manage_attack(attack_cells, team_to_hit):
 	active_unit.has_attacked = true
 	active_unit.state_change(PlayerUnit.unit_states.IDLE)
 	active_unit.finish_attack()
-	if ghost_accumulator.size() > 0:
-		##iterate and add ghosts here
-		for ghost in ghost_accumulator:
-			spawn_ghost(ghost[0], ghost[1])
-			pass
-		ghost_accumulator.clear()
-		pass
 	deselect_unit()
 	clear_active_unit()
 
 
 func spawn_ghost(unit, mirrored_origin):
-	#print("SPAWN HERE", unit, mirrored_origin)
+	print("SPAWN HERE", unit, mirrored_origin)
 	var ghost_scene = load(unit)
 	var ghost = ghost_scene.instantiate()
 	add_child(ghost)
@@ -344,8 +344,12 @@ func handle_exorcism(unit, attack):
 		cells_to_blow.append(mirrored_vec)
 		positions_to_blow.append(grid.calculate_map_position(mirrored_vec))
 		if units.has(mirrored_vec):
+			if grid.is_in_real_world(mirrored_vec) && !units[mirrored_vec].is_in_group("mikos"):
+				print("THIS BITCH", units[mirrored_vec], vec + unit.cell)
+				ghost_accumulator.append([units[mirrored_vec].self_scene_path, vec + unit.cell])
 			units[mirrored_vec].take_damage(1)
 	explosion_overlay.blow_up_squares(positions_to_blow)
+	print(ghost_accumulator)
 	pass
 
 func _on_cursor_moved(new_cell):
@@ -357,7 +361,9 @@ func _on_cursor_moved(new_cell):
 		hit_overlay.position = move_to_pos
 
 func on_unit_death(unit):
-	handle_exorcism(unit, current_attack)
+	if !unit.is_in_group("mikos"):
+		print(unit)
+		handle_exorcism(unit, current_attack)
 	units.erase(unit.cell)
 	if unit is PlayerUnit:
 		friendlies.erase(unit.cell)

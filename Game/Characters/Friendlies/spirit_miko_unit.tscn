@@ -172,7 +172,7 @@ _data = {
 "idle_UP": SubResource("Animation_yxch1")
 }
 
-[node name="SpiritMikoUnit" instance=ExtResource("1_m0gts")]
+[node name="SpiritMikoUnit" groups=["mikos"] instance=ExtResource("1_m0gts")]
 script = ExtResource("2_ptnpl")
 skin = ExtResource("3_tlqia")
 

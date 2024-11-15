@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dskshrij31rv2"]
+[gd_scene load_steps=11 format=3 uid="uid://dskshrij31rv2"]
 
 [ext_resource type="Script" path="res://Game/Data/battle_manager.gd" id="1_uyhos"]
 [ext_resource type="PackedScene" uid="uid://gcdapkkqr808" path="res://Game/World/environment.tscn" id="2_p8do1"]
@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://2nbe138odbl8" path="res://Game/Characters/Friendlies/miko_unit.tscn" id="6_ichhw"]
 [ext_resource type="PackedScene" uid="uid://cg34obo360a5w" path="res://Game/Characters/Enemies/enemy_base.tscn" id="6_xe3j1"]
 [ext_resource type="PackedScene" uid="uid://2r5lvg6715f" path="res://Game/Characters/Friendlies/heiko_unit.tscn" id="7_2tvfr"]
-[ext_resource type="PackedScene" uid="uid://cy1ruko7jcspv" path="res://Game/Characters/Enemies/kappa.tscn" id="11_5sg10"]
 
 [node name="DebugLevel" type="Node2D"]
 y_sort_enabled = true
@@ -34,13 +33,10 @@ position = Vector2(346, 566)
 position = Vector2(358, 390)
 
 [node name="EnemyBase" parent="." instance=ExtResource("6_xe3j1")]
-position = Vector2(358, 335)
+position = Vector2(1000, 478)
 
 [node name="HeikoUnit" parent="." instance=ExtResource("7_2tvfr")]
 position = Vector2(226, 298)
-
-[node name="Kappa" parent="." instance=ExtResource("11_5sg10")]
-position = Vector2(998, 478)
 
 [node name="Cursor" parent="." instance=ExtResource("2_pogwr")]
 
