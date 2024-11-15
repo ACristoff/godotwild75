@@ -17,7 +17,8 @@ func blow_up_squares(vec_arr):
 	for vec in vec_arr:
 		var new_explosion = exorcism_sprite.instantiate()
 		add_child(new_explosion)
-		new_explosion.position = vec * Vector2(grid_size, grid_size)
+		#new_explosion.position = vec * Vector2(grid_size, grid_size)
+		new_explosion.position = vec 
 	kill_timer.start()
 	pass
 

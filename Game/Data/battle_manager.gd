@@ -10,6 +10,7 @@ const DIRECTIONS = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 var miko: PlayerUnit
 var spirit_miko: PlayerUnit
 
+var ghost_accumulator = []
 var units := {}
 var enemies := {}
 var friendlies := {}
@@ -281,19 +282,18 @@ func _on_cursor_accept_pressed(cell):
 
 func manage_attack(attack_cells, team_to_hit):
 	attack_overlay.clear()
-	var ghost_accumulator = []
+	#var ghost_accumulator = []
 	for cell in attack_cells:
 		if units.has(cell):
 			#print('HIT', units[cell])
 			var unit = units[cell] as Unit
-			handle_exorcism(unit, current_attack)
+			#handle_exorcism(unit, current_attack)
 			if grid.is_in_real_world(cell):
 				if !unit.is_in_group("mikos"):
 					ghost_accumulator.append([
 						unit.self_scene_path, 
 						grid.calculate_mirror_position(cell)
 					])
-					pass
 			units[cell].take_damage(current_attack.DAMAGE)
 		else:
 			#print("MISS", cell)
@@ -328,7 +328,7 @@ func manage_attack(attack_cells, team_to_hit):
 				#spirit_miko.attacks = unit.attacks
 
 func spawn_ghost(unit, mirrored_origin):
-	print("SPAWN HERE", unit, mirrored_origin)
+	#print("SPAWN HERE", unit, mirrored_origin)
 	var ghost_scene = load(unit)
 	var ghost = ghost_scene.instantiate()
 	add_child(ghost)
@@ -348,20 +348,19 @@ func spawn_ghost(unit, mirrored_origin):
 func handle_exorcism(unit, attack):
 	#print(unit, attack)
 	var cells_to_blow = []
+	var positions_to_blow = []
 	var mirrored_origin: Vector2 = grid.calculate_mirror_position(unit.cell)
 	#hit_overlay.position = Vector2(0,0)
-	explosion_overlay.position = grid.calculate_map_position(mirrored_origin)
+	#explosion_overlay.position = grid.calculate_map_position(mirrored_origin)
 	#hit_overlay.blow_up_squares()
 	for vec in attack.BLAST_PATTERN:
 		#print(vec)
 		var mirrored_vec = grid.calculate_mirror_position(vec + unit.cell)
 		cells_to_blow.append(mirrored_vec)
+		positions_to_blow.append(grid.calculate_map_position(mirrored_vec))
 		if units.has(mirrored_vec):
-			#print('mirrored hit!', mirrored_vec)
 			units[mirrored_vec].take_damage(1)
-			pass
-		#print(mirrored_vec)
-	explosion_overlay.blow_up_squares(attack.BLAST_PATTERN)
+	explosion_overlay.blow_up_squares(positions_to_blow)
 	pass
 
 func _on_cursor_moved(new_cell):
@@ -373,7 +372,7 @@ func _on_cursor_moved(new_cell):
 		hit_overlay.position = move_to_pos
 
 func on_unit_death(unit):
-	##TODO MOVE EXORCISM HERE
+	handle_exorcism(unit, current_attack)
 	units.erase(unit.cell)
 	if unit is PlayerUnit:
 		friendlies.erase(unit.cell)

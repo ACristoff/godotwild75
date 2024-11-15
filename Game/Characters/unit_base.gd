@@ -39,6 +39,8 @@ var current_direction = direction.UP
 
 @export var damage := 1
 
+var has_died := false
+
 var attacks = {
 	"BASE": {
 		"RANGE": 2,
@@ -136,7 +138,9 @@ func _process(delta: float) -> void:
 #All the shit for dying
 func die():
 	print("unit fucking died")
+	has_died = true
 	death.emit(self)
+	
 	#free the tile
 	#explode
 	#remove from turn order
@@ -146,10 +150,10 @@ func die():
 
 #All the stuff for taking damage
 func take_damage(damage):
-	health -= damage
-	if (health == 0):
-		die()
-		pass
+	if !has_died:
+		health -= damage
+		if (health == 0):
+			die()
 
 #All the stuff for attacking
 func attack(cells, damage):
