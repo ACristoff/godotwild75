@@ -93,6 +93,7 @@ _data = {
 
 [node name="EnemyBase" groups=["enemy"] instance=ExtResource("1_b7v2w")]
 script = ExtResource("2_5h661")
+self_scene_path = "res://Game/Characters/Enemies/enemy_base.tscn"
 skin = ExtResource("4_5ped2")
 
 [node name="Sprite" parent="PathFollow2D" index="1"]

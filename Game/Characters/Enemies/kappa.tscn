@@ -5,3 +5,4 @@
 
 [node name="Kappa" instance=ExtResource("1_gtxh3")]
 script = ExtResource("2_fu7w7")
+self_scene_path = "res://Game/Characters/Enemies/kappa.tscn"

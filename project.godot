@@ -32,6 +32,7 @@ enemy=""
 player=""
 miko=""
 hit=""
+mikos=""
 
 [input]
 

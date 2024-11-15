@@ -176,6 +176,8 @@ _data = {
 script = ExtResource("2_ptnpl")
 skin = ExtResource("3_tlqia")
 
+[node name="PathFollow2D" parent="." index="0" groups=["mikos"]]
+
 [node name="Sprite" parent="PathFollow2D" index="1"]
 texture = null
 frame = 8

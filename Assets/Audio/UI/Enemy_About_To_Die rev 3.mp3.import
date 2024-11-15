@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dym3htybjt2nu"
+path="res://.godot/imported/Enemy_About_To_Die rev 3.mp3-97489d81ef1131c44b9c4753f87b52f7.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/UI/Enemy_About_To_Die rev 3.mp3"
+dest_files=["res://.godot/imported/Enemy_About_To_Die rev 3.mp3-97489d81ef1131c44b9c4753f87b52f7.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

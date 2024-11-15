@@ -10,6 +10,7 @@ const DIRECTIONS = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 var miko: PlayerUnit
 var spirit_miko: PlayerUnit
 
+var ghost_accumulator = []
 var units := {}
 var enemies := {}
 var friendlies := {}
@@ -120,7 +121,7 @@ func on_unit_state_change(state):
 		#var attack_cells = get_attack_cells()
 		pass
 	if state == PlayerUnit.unit_states.ATTACK_ACTION_THINK:
-		prints('current', active_unit.current_attack)
+		#prints('current', active_unit.current_attack)
 		current_attack = active_unit.current_attack
 		var attack_cells = get_attack_cells(active_unit, active_unit.current_attack)
 		attack_overlay.draw(attack_cells)
@@ -224,7 +225,7 @@ func miko_walk(miko_to_move, walk_vectors, origin):
 	units[new_path[-1]] = miko_to_move
 	friendlies[new_path[-1]] = active_unit
 	miko_to_move.walk_along(new_path)
-	print(new_path)
+	#print(new_path)
 	pass
 
 func clear_active_unit() -> void:
@@ -266,14 +267,14 @@ func _on_cursor_accept_pressed(cell):
 				else:
 					mirrored_unit_cell = miko.cell
 				var mirror_origin = attack_origin - active_unit.cell
-				prints("relative is", mirror_origin, mirrored_unit_cell)
+				#prints("relative is", mirror_origin, mirrored_unit_cell)
 				for to_hit_cell in current_attack.ATTACK_PATTERN:
 					##Refactor this to work from alternate miko origin, then do an operation
 					var hit_cell = mirror_origin + to_hit_cell
 					hit_cell = hit_cell + mirrored_unit_cell
 					attack_cells.append(hit_cell)
 					pass
-				print("miko or spirit miko attacked!")
+				#print("miko or spirit miko attacked!")
 				pass
 			##DO ATTACK
 			manage_attack(attack_cells, "ENEMY")
@@ -285,31 +286,66 @@ func manage_attack(attack_cells, team_to_hit):
 		if units.has(cell):
 			#print('HIT', units[cell])
 			var unit = units[cell] as Unit
-			handle_exorcism(unit, current_attack)
-			units[cell].take_damage(1)
-			##TODO HIT THIS SHIT
+			#handle_exorcism(unit, current_attack)
+			if grid.is_in_real_world(cell):
+				if !unit.is_in_group("mikos"):
+					ghost_accumulator.append([
+						unit.self_scene_path, 
+						grid.calculate_mirror_position(cell)
+					])
+			units[cell].take_damage(current_attack.DAMAGE)
 		else:
 			#print("MISS", cell)
 			pass
 	active_unit.has_attacked = true
 	active_unit.state_change(PlayerUnit.unit_states.IDLE)
 	active_unit.finish_attack()
+	if ghost_accumulator.size() > 0:
+		##iterate and add ghosts here
+		for ghost in ghost_accumulator:
+			spawn_ghost(ghost[0], ghost[1])
+			pass
+		ghost_accumulator.clear()
+		pass
 	deselect_unit()
 	clear_active_unit()
 
+
+func spawn_ghost(unit, mirrored_origin):
+	#print("SPAWN HERE", unit, mirrored_origin)
+	var ghost_scene = load(unit)
+	var ghost = ghost_scene.instantiate()
+	add_child(ghost)
+	ghost.position = grid.calculate_map_position(mirrored_origin)
+	units[mirrored_origin] = ghost
+	if ghost.is_in_group("enemies"):
+		enemies[mirrored_origin] = ghost
+	elif ghost.is_in_group("player"):
+		friendlies[mirrored_origin] = ghost
+		ghost.connect("unit_state_change", on_unit_state_change)
+	ghost.connect("death", on_unit_death)
+	ghost.cell = mirrored_origin
+	
+	##Initialization here maybe?
+	#print(ghost)
+	pass
+
 func handle_exorcism(unit, attack):
-	print(unit, attack)
+	#print(unit, attack)
 	var cells_to_blow = []
+	var positions_to_blow = []
 	var mirrored_origin: Vector2 = grid.calculate_mirror_position(unit.cell)
 	#hit_overlay.position = Vector2(0,0)
-	explosion_overlay.position = grid.calculate_map_position(mirrored_origin)
+	#explosion_overlay.position = grid.calculate_map_position(mirrored_origin)
 	#hit_overlay.blow_up_squares()
 	for vec in attack.BLAST_PATTERN:
-		print(vec)
+		#print(vec)
 		var mirrored_vec = grid.calculate_mirror_position(vec + unit.cell)
 		cells_to_blow.append(mirrored_vec)
-	explosion_overlay.blow_up_squares(attack.BLAST_PATTERN)
-	print("mirrored", cells_to_blow)
+		positions_to_blow.append(grid.calculate_map_position(mirrored_vec))
+		if units.has(mirrored_vec):
+			units[mirrored_vec].take_damage(1)
+	explosion_overlay.blow_up_squares(positions_to_blow)
 	pass
 
 func _on_cursor_moved(new_cell):
@@ -321,7 +357,7 @@ func _on_cursor_moved(new_cell):
 		hit_overlay.position = move_to_pos
 
 func on_unit_death(unit):
-	
+	handle_exorcism(unit, current_attack)
 	units.erase(unit.cell)
 	if unit is PlayerUnit:
 		friendlies.erase(unit.cell)

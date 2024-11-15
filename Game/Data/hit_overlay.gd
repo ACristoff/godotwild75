@@ -2,8 +2,6 @@ extends Node2D
 
 @onready var square_sprite = preload("res://Game/UI/hit_overlay_tile.tscn")
 
-
-
 #I'm being lazy by doing this
 var grid_size = 64
 
@@ -27,11 +25,3 @@ func kill_kids():
 	
 	for square in all_squares:
 		square.queue_free()
-
-#func blow_up_squares(vec_arr):
-	#print(vec_arr)
-	#for vec in vec_arr:
-		#var new_explosion = exorcism_sprite.instantiate()
-		#add_child(new_explosion)
-		#new_explosion.position = vec * Vector2(grid_size, grid_size)
-	#pass

@@ -28,11 +28,18 @@ var current_direction = direction.UP
 ## Texture representing the unit.
 @export var max_health := 1
 
+#We use this to spawn this unit on the spirit world
+#Had to change this a string because it would consider it a circular ref
+#It's a little jank but who cares MAAAAAAN
+@export var self_scene_path: String
+
 @export var health: int:
 	set(value):
 		health = clamp(value, 0, max_health)
 
 @export var damage := 1
+
+var has_died := false
 
 var attacks = {
 	"BASE": {
@@ -131,7 +138,9 @@ func _process(delta: float) -> void:
 #All the shit for dying
 func die():
 	print("unit fucking died")
+	has_died = true
 	death.emit(self)
+	
 	#free the tile
 	#explode
 	#remove from turn order
@@ -141,10 +150,10 @@ func die():
 
 #All the stuff for taking damage
 func take_damage(damage):
-	health -= damage
-	if (health == 0):
-		die()
-		pass
+	if !has_died:
+		health -= damage
+		if (health == 0):
+			die()
 
 #All the stuff for attacking
 func attack(cells, damage):
