@@ -282,7 +282,6 @@ func _on_cursor_accept_pressed(cell):
 
 func manage_attack(attack_cells, team_to_hit):
 	attack_overlay.clear()
-	#var ghost_accumulator = []
 	for cell in attack_cells:
 		if units.has(cell):
 			#print('HIT', units[cell])
@@ -306,7 +305,7 @@ func manage_attack(attack_cells, team_to_hit):
 		for ghost in ghost_accumulator:
 			spawn_ghost(ghost[0], ghost[1])
 			pass
-		#print(ghost_accumulator)
+		ghost_accumulator.clear()
 		pass
 	deselect_unit()
 	clear_active_unit()
@@ -326,6 +325,7 @@ func spawn_ghost(unit, mirrored_origin):
 		ghost.connect("unit_state_change", on_unit_state_change)
 	ghost.connect("death", on_unit_death)
 	ghost.cell = mirrored_origin
+	
 	##Initialization here maybe?
 	#print(ghost)
 	pass
