@@ -30,9 +30,6 @@ var current_attack = null
 
 func _ready():
 	reinitialize()
-	##Test this out
-	print(grid.is_in_real_world(Vector2(4,5)))
-	print(grid.is_in_real_world(Vector2(13,5)))
 	pass
 
 func _input(event):
@@ -290,7 +287,6 @@ func manage_attack(attack_cells, team_to_hit):
 			var unit = units[cell] as Unit
 			units[cell].take_damage(current_attack.DAMAGE)
 			if grid.is_in_real_world(cell):
-				print('is in real world')
 				handle_exorcism(unit, current_attack)
 		else:
 			#print("MISS", cell)
@@ -313,8 +309,6 @@ func handle_exorcism(unit, attack):
 		var mirrored_vec = grid.calculate_mirror_position(vec + unit.cell)
 		cells_to_blow.append(mirrored_vec)
 	explosion_overlay.blow_up_squares(attack.BLAST_PATTERN)
-	#print("mirrored", cells_to_blow)
-	
 	##TODO EXORCISM BLAST V1
 	##Handle explosion damage here
 	##Maybe do a timer and then do damage?

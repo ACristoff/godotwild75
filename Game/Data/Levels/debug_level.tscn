@@ -32,19 +32,16 @@ position = Vector2(346, 566)
 
 [node name="EnemyBase2" parent="." instance=ExtResource("6_xe3j1")]
 position = Vector2(358, 390)
-self_scene = null
 
 [node name="EnemyBase" parent="." instance=ExtResource("6_xe3j1")]
-position = Vector2(262, 230)
-self_scene = null
+position = Vector2(992, 290)
 
 [node name="HeikoUnit" parent="." instance=ExtResource("7_2tvfr")]
 
-[node name="Cursor" parent="." instance=ExtResource("2_pogwr")]
-
 [node name="Kappa" parent="." instance=ExtResource("11_5sg10")]
 position = Vector2(414, 477)
-self_scene = null
+
+[node name="Cursor" parent="." instance=ExtResource("2_pogwr")]
 
 [connection signal="accept_pressed" from="Cursor" to="." method="_on_cursor_accept_pressed"]
 [connection signal="deselect_pressed" from="Cursor" to="." method="_on_cursor_deselect_pressed"]
