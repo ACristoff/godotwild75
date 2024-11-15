@@ -329,6 +329,7 @@ func spawn_ghost(unit, mirrored_origin):
 		ghost.connect("unit_state_change", on_unit_state_change)
 	ghost.connect("death", on_unit_death)
 	ghost.cell = mirrored_origin
+	print('am i dead', ghost.has_died)
 	
 	##Initialization here maybe?
 	#print(ghost)
@@ -348,10 +349,14 @@ func handle_exorcism(unit, attack):
 		cells_to_blow.append(mirrored_vec)
 		positions_to_blow.append(grid.calculate_map_position(mirrored_vec))
 		if units.has(mirrored_vec):
-			if grid.is_in_real_world(mirrored_vec) && !units[mirrored_vec].is_in_group("mikos"):
-				#print("THIS BITCH", units[mirrored_vec], vec + unit.cell)
-				ghost_accumulator.append([units[mirrored_vec].self_scene_path, vec + unit.cell])
-			units[mirrored_vec].take_damage(1)
+			if grid.is_in_real_world(units[mirrored_vec].cell) && !units[mirrored_vec].is_in_group("mikos"):
+				print("THIS BITCH", units[mirrored_vec], vec + unit.cell)
+				if !ghost_accumulator.has([units[mirrored_vec].self_scene_path, vec + unit.cell]):
+					ghost_accumulator.append([units[mirrored_vec].self_scene_path, vec + unit.cell])
+				units[mirrored_vec].take_damage(1)
+				print(ghost_accumulator)
+			else:
+				units[mirrored_vec].take_damage(1)
 	explosion_overlay.blow_up_squares(positions_to_blow)
 	#print(ghost_accumulator)
 	pass
@@ -367,8 +372,9 @@ func _on_cursor_moved(new_cell):
 func on_unit_death(unit):
 	if !unit.is_in_group("mikos"):
 		#print(unit)
-		if grid.is_in_real_world(unit.cell):
-			handle_exorcism(unit, current_attack)
+		handle_exorcism(unit, current_attack)
+		#if grid.is_in_real_world(unit.cell):
+			#handle_exorcism(unit, current_attack)
 	units.erase(unit.cell)
 	if unit is PlayerUnit:
 		friendlies.erase(unit.cell)
