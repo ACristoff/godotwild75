@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://gf3gsbcweern"]
+[gd_scene load_steps=61 format=3 uid="uid://gf3gsbcweern"]
 
 [ext_resource type="Texture2D" uid="uid://67c1bv3fuim4" path="res://Assets/UserInterface/Menu/Staircase.png" id="1_hlg64"]
 [ext_resource type="Script" path="res://Game/UI/cutscene_1.gd" id="1_jqtqn"]
@@ -13,6 +13,7 @@
 [ext_resource type="Shader" path="res://Assets/Shaders/transition.gdshader" id="8_amo7s"]
 [ext_resource type="Texture2D" uid="uid://bjx2labdxfhtt" path="res://Assets/UserInterface/Menu/FlameTransition.png" id="9_2dcsm"]
 [ext_resource type="Shader" path="res://Assets/Shaders/speed.gdshader" id="10_5royo"]
+[ext_resource type="AudioStream" uid="uid://4iv2athdrrg1" path="res://Assets/Audio/Music/Intro_Cutscene.mp3" id="11_s8hc8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0l15r"]
 
@@ -213,6 +214,20 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(0.392292, 1, 3.86374, 1),
 "update": 0,
 "values": [1.0, 0.0, 0.0, 1.0]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../../../..")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_song"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_ixshm"]
@@ -1078,6 +1093,11 @@ libraries = {
 }
 autoplay = "kappa2"
 speed_scale = 4.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Path2D/PathFollow2D/Camera2D"]
+position = Vector2(0, 255.973)
+rotation = -0.785398
+stream = ExtResource("11_s8hc8")
 
 [node name="Node2D" type="Node2D" parent="Path2D/PathFollow2D"]
 position = Vector2(287.085, -31.1127)

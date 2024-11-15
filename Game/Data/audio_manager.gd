@@ -1,9 +1,9 @@
-extends AudioStreamPlayer2D
+extends AudioStreamPlayer
 
 
 #const levelMusic = preload("res://assets/audio/psycho-logy.mp3")
 #@export var LevelMusic : Array[AudioStreamMP3]
-var current_music: AudioStreamPlayer2D
+var current_music: AudioStreamPlayer
 
 func _play_music(music: AudioStream, volume = 0.0):
 	stream = music
@@ -16,7 +16,7 @@ func play_music_level(music: AudioStreamMP3):
 	pass
 
 func play_sfx(stream: AudioStreamMP3, volume = 0.0):
-	var fx_player = AudioStreamPlayer2D.new()
+	var fx_player = AudioStreamPlayer.new()
 	fx_player.stream = stream
 	fx_player.name = "FX_Player"
 	fx_player.volume_db = volume
@@ -28,7 +28,7 @@ func play_sfx(stream: AudioStreamMP3, volume = 0.0):
 
 
 func play_sfx_wav(stream: AudioStreamWAV, volume = 0.0):
-	var fx_player = AudioStreamPlayer2D.new()
+	var fx_player = AudioStreamPlayer.new()
 	fx_player.stream = stream
 	fx_player.name = "FX_Player"
 	fx_player.volume_db = volume
