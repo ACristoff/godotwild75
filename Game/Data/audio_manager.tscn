@@ -4,3 +4,9 @@
 
 [node name="AudioManager" type="AudioStreamPlayer"]
 script = ExtResource("1_3cwos")
+
+[node name="FadeTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[connection signal="timeout" from="FadeTimer" to="." method="_on_fade_timer_timeout"]
