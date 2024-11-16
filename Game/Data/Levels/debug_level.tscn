@@ -28,12 +28,7 @@ y_sort_origin = -1
 [node name="ExplosionOverlay" parent="." instance=ExtResource("6_7sxww")]
 
 [node name="MikoUnit" parent="." instance=ExtResource("6_ichhw")]
-<<<<<<< Updated upstream
-position = Vector2(346, 566)
-health = 0
-=======
-position = Vector2(353, 560)
->>>>>>> Stashed changes
+position = Vector2(290, 425)
 
 [node name="EnemyBase2" parent="." instance=ExtResource("6_xe3j1")]
 position = Vector2(358, 419)
@@ -42,12 +37,7 @@ position = Vector2(358, 419)
 position = Vector2(1059, 419)
 
 [node name="HeikoUnit" parent="." instance=ExtResource("7_2tvfr")]
-<<<<<<< Updated upstream
-position = Vector2(226, 298)
-health = 0
-=======
-position = Vector2(95, 171)
->>>>>>> Stashed changes
+position = Vector2(227, 364)
 
 [node name="Cursor" parent="." instance=ExtResource("2_pogwr")]
 
