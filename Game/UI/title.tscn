@@ -1101,7 +1101,7 @@ _data = {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5j0b3"]
 
-[sub_resource type="Shader" id="Shader_cb5ms"]
+[sub_resource type="Shader" id="Shader_31dsi"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -1138,7 +1138,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xt8vo"]
 resource_local_to_scene = true
-shader = SubResource("Shader_cb5ms")
+shader = SubResource("Shader_31dsi")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.05
 shader_parameter/maxStrength = 0.01
@@ -1149,7 +1149,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-[sub_resource type="Shader" id="Shader_xdya5"]
+[sub_resource type="Shader" id="Shader_0rfbj"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -1186,7 +1186,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dvxt8"]
 resource_local_to_scene = true
-shader = SubResource("Shader_xdya5")
+shader = SubResource("Shader_0rfbj")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.061
 shader_parameter/maxStrength = 0.224
@@ -1730,7 +1730,7 @@ scale_max = 2.0
 color_ramp = SubResource("GradientTexture1D_ayymu")
 anim_offset_max = 1.0
 
-[sub_resource type="Shader" id="Shader_c484f"]
+[sub_resource type="Shader" id="Shader_2wr2m"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 uniform sampler2D mask;
@@ -1753,7 +1753,7 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yscm4"]
 resource_local_to_scene = true
-shader = SubResource("Shader_c484f")
+shader = SubResource("Shader_2wr2m")
 shader_parameter/scale = 0.0
 shader_parameter/mask = ExtResource("24_6mb7l")
 

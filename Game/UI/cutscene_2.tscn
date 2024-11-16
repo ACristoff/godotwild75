@@ -948,6 +948,7 @@ offset_left = 127.0
 offset_top = 513.0
 offset_right = 639.0
 offset_bottom = 801.0
+script = null
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_r6evb")
