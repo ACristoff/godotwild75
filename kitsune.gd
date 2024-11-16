@@ -1,10 +1,10 @@
 extends EnemyUnit
-class_name Kappa
+class_name Kitsune
 
 #Move Range = 2
 #HP = 2???
 
-var kappa_attacks = {
+var kitsune_attacks = {
 	"Water Cannon": {
 		"RANGE": 4,
 		"DAMAGE": 2,
@@ -21,14 +21,14 @@ func _ready():
 	super()
 	move_range = 2
 	set_process(true)
-	getTargetCharacter("Water Cannon")
+	getTargetCharacter()
 
 func _process(delta):
 	super(delta)
 
 func _init():
 	super()
-	attacks = kappa_attacks
+	attacks = kitsune_attacks
 
 func enemyBrain():
 	super()
@@ -38,7 +38,7 @@ func enemyBrain():
 		rangedAttack()
 	hasActed = true
 
-func getTargetCharacter(attackName: String):
+func getTargetCharacter():
 	#Target furthest character
 	var maxDistance = 0
 	var auxOnRange = false
@@ -46,7 +46,7 @@ func getTargetCharacter(attackName: String):
 		if ch.cell.x < 7:
 			var distance = abs(cell.x - ch.cell.x + ch.cell.y - cell.y)
 			#If character is on range of attack, that's the character I'm focusing on.
-			if distance <= attacks[attackName]["RANGE"]:
+			if distance <= attacks["Water Cannon"]["RANGE"]:
 				targetOnRange = true
 				auxOnRange = true
 			else:
