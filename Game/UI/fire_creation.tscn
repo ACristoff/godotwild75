@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwq8rbjouc53p"]
+
+[ext_resource type="Texture2D" uid="uid://cmg62e6eg5hsd" path="res://Assets/UserInterface/Menu/HealthbarBack.png" id="1_craai"]
+[ext_resource type="Texture2D" uid="uid://crsj1nc82vn3x" path="res://Assets/UserInterface/Menu/HealthbarBorder.png" id="2_ec3tb"]
+[ext_resource type="Texture2D" uid="uid://cuod2agt5d42e" path="res://Assets/UserInterface/Menu/HealthbarProgress.png" id="2_ht3mb"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -5.0
+offset_right = 32.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 50.0
+texture_under = ExtResource("1_craai")
+texture_progress = ExtResource("2_ec3tb")
+
+[node name="TextureProgressBar2" type="TextureProgressBar" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -5.0
+offset_right = 32.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_progress = ExtResource("2_ht3mb")

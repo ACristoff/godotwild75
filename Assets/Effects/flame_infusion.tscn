@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://c3y7ydk1a75nx"]
 
-[ext_resource type="Script" path="res://node_2d.gd" id="1_oxitk"]
+[ext_resource type="Script" path="res://onibi_flight_path.gd" id="1_oxitk"]
 [ext_resource type="Texture2D" uid="uid://cxv5b7d60qvm7" path="res://Assets/Effects/Particles/firelantern.png" id="2_mmofe"]
 [ext_resource type="Shader" path="res://Assets/Shaders/light.gdshader" id="2_nj8uj"]
 
