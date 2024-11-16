@@ -1,21 +1,94 @@
-[gd_scene load_steps=7 format=3 uid="uid://dudkvypcuepqu"]
+[gd_scene load_steps=9 format=3 uid="uid://dudkvypcuepqu"]
 
 [ext_resource type="PackedScene" uid="uid://cx4kwdcn8ymig" path="res://Game/Characters/Friendlies/player_unit.tscn" id="1_ymjot"]
+[ext_resource type="Texture2D" uid="uid://c4s0q7ybhh3x2" path="res://Assets/Characters/Friendly/HeikoSpirit.png" id="2_gk5s8"]
 
 [sub_resource type="Animation" id="Animation_r60cx"]
 resource_name = "idle_UP"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
 
 [sub_resource type="Animation" id="Animation_wo3l8"]
 resource_name = "idle_LEFT"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [4, 5, 6]
+}
 
 [sub_resource type="Animation" id="Animation_ep4l5"]
 resource_name = "idle_RIGHT"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [12, 13, 14]
+}
 
 [sub_resource type="Animation" id="Animation_jw8cl"]
 resource_name = "idle_DOWN"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [8, 9, 10]
+}
+
+[sub_resource type="Animation" id="Animation_vjb1l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_flse4"]
 _data = {
+"RESET": SubResource("Animation_vjb1l"),
 "idle_DOWN": SubResource("Animation_jw8cl"),
 "idle_LEFT": SubResource("Animation_wo3l8"),
 "idle_RIGHT": SubResource("Animation_ep4l5"),
@@ -23,6 +96,10 @@ _data = {
 }
 
 [node name="SpiritHeiko" instance=ExtResource("1_ymjot")]
+position = Vector2(0, 0)
+
+[node name="Sprite" parent="PathFollow2D" index="1"]
+texture = ExtResource("2_gk5s8")
 
 [node name="AnimationPlayer" parent="." index="1"]
 libraries = {
