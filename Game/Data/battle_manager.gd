@@ -129,7 +129,8 @@ func on_unit_state_change(state):
 		#prints('current', active_unit.current_attack)
 		current_attack = active_unit.current_attack
 		var attack_cells = get_attack_cells(active_unit, active_unit.current_attack)
-		attack_overlay.draw(attack_cells)
+		##TODO
+		#attack_overlay.draw(attack_cells)
 		hit_overlay.make_squares(active_unit.current_attack)
 	pass
 
@@ -143,7 +144,9 @@ func get_walkable_cells(unit: Unit) -> Array:
 
 func get_attack_cells(unit: PlayerUnit, attack):
 	##TODO Give flood fill the ability to use every tile in range
-	return flood_fill(unit.cell, attack.RANGE, true)
+	pass
+	#print("using this", current_attack)
+	#return flood_fill(unit.cell, attack.RANGE, true)
 
 func flood_fill(origin: Vector2, max_distance: int, ignore_dudes: bool):
 	var array = []

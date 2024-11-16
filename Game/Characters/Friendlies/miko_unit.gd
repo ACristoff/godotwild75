@@ -27,7 +27,7 @@ func _ready():
 			pass
 		#print(weapons[weapon].isSelected)
 		pass
-	#print(miko_attacks)
+	print(miko_attacks)
 	attacks = miko_attacks
 	
 
