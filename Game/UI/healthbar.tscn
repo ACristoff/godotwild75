@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://bcwqwifukfrt0"]
+[gd_scene load_steps=5 format=3 uid="uid://bcwqwifukfrt0"]
 
+[ext_resource type="Script" path="res://Game/UI/healthbar.gd" id="1_3bly3"]
 [ext_resource type="Texture2D" uid="uid://cmg62e6eg5hsd" path="res://Assets/UserInterface/Menu/HealthbarBack.png" id="1_u7i7q"]
 [ext_resource type="Texture2D" uid="uid://crsj1nc82vn3x" path="res://Assets/UserInterface/Menu/HealthbarBorder.png" id="2_xgdch"]
 [ext_resource type="Texture2D" uid="uid://cuod2agt5d42e" path="res://Assets/UserInterface/Menu/HealthbarProgress.png" id="3_o700w"]
 
-[node name="Node2D" type="Node2D"]
+[node name="HealthBar" type="Node2D"]
+script = ExtResource("1_3bly3")
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+[node name="Bottom" type="TextureProgressBar" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -22,7 +24,7 @@ value = 50.0
 texture_under = ExtResource("1_u7i7q")
 texture_progress = ExtResource("2_xgdch")
 
-[node name="TextureProgressBar2" type="TextureProgressBar" parent="."]
+[node name="Top" type="TextureProgressBar" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -34,4 +36,10 @@ offset_right = 32.0
 offset_bottom = 5.0
 grow_horizontal = 2
 grow_vertical = 2
+max_value = 99.0
+value = 99.0
 texture_progress = ExtResource("3_o700w")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-32, -5)
+zoom = Vector2(5, 5)
