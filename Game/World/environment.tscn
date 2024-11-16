@@ -133,7 +133,7 @@ _data = {
 "wavy3": SubResource("Animation_phsm8")
 }
 
-[sub_resource type="Shader" id="Shader_fa8e3"]
+[sub_resource type="Shader" id="Shader_ibkms"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 
@@ -239,7 +239,7 @@ void fragment()
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wb1fm"]
 resource_local_to_scene = true
-shader = SubResource("Shader_fa8e3")
+shader = SubResource("Shader_ibkms")
 shader_parameter/angle = -0.3
 shader_parameter/position = -0.2
 shader_parameter/spread = 0.62
@@ -418,7 +418,7 @@ shader_parameter/clouds_direction = 0.28
 shader_parameter/clouds_scale = 2.11
 shader_parameter/clouds_cutoff = 0.5
 shader_parameter/clouds_fuzziness = 0.0
-shader_parameter/clouds_color = Color(0.1022, 0.154517, 0.73, 1)
+shader_parameter/clouds_color = Color(0, 0.7, 1, 1)
 shader_parameter/edge_fade = 0.66
 shader_parameter/box_position_x = 0.5
 shader_parameter/box_position_y = 0.5

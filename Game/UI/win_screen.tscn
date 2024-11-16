@@ -1,7 +1,273 @@
-[gd_scene load_steps=3 format=3 uid="uid://cs3440ai1pjcf"]
+[gd_scene load_steps=24 format=3 uid="uid://cs3440ai1pjcf"]
 
 [ext_resource type="AudioStream" uid="uid://di05jk8lhdjj1" path="res://Assets/Audio/Music/MM_Victory Fanfare Rev 2.mp3" id="1_7jwwb"]
 [ext_resource type="Script" path="res://Game/UI/win_screen.gd" id="1_r8it0"]
+[ext_resource type="PackedScene" uid="uid://bat17sfqaplx7" path="res://Assets/Shaders/sakuratree.tscn" id="3_6tiwe"]
+[ext_resource type="Texture2D" uid="uid://lf5ircidgcgc" path="res://Assets/Characters/Hostile/Kappa_full_anim.png" id="3_dnshu"]
+[ext_resource type="Texture2D" uid="uid://1gsgwrxvici6" path="res://Assets/Environment/Objects/Foliage.png" id="3_u15a4"]
+[ext_resource type="PackedScene" uid="uid://uxh57d4b5bja" path="res://Assets/Shaders/smog.tscn" id="4_0e2fh"]
+[ext_resource type="Texture2D" uid="uid://dv5dd675uaayo" path="res://Assets/Characters/Friendly/MikoFlex.png" id="4_31du3"]
+[ext_resource type="Texture2D" uid="uid://6spl2drkii4x" path="res://Assets/UserInterface/Menu/Brush.png" id="5_auuqa"]
+[ext_resource type="Texture2D" uid="uid://mc1lvwhbh4" path="res://Assets/Environment/GridTileMap/perspectiveground.png" id="5_bpk8j"]
+[ext_resource type="FontFile" uid="uid://cidju740k3qx7" path="res://Assets/Fonts/nagayama_kai08.otf" id="6_8yj6i"]
+[ext_resource type="Shader" uid="uid://gpajhwkxfmty" path="res://Assets/Shaders/swayandblur.tres" id="8_7spx1"]
+[ext_resource type="Texture2D" uid="uid://bxg4ll16l8637" path="res://Assets/Environment/Objects/TrunkDark.png" id="9_f540x"]
+[ext_resource type="Texture2D" uid="uid://b1fcx6qi402lv" path="res://Assets/Environment/Objects/LeavesDark.png" id="10_ffq7q"]
+[ext_resource type="PackedScene" uid="uid://domnit2msh3jg" path="res://Assets/Shaders/god_ray.tscn" id="11_id2kl"]
+[ext_resource type="Shader" path="res://Assets/Shaders/godrays.gdshader" id="12_dflnj"]
+[ext_resource type="Theme" uid="uid://quv8ysasm6da" path="res://Assets/Themes/Buttons2.tres" id="16_8smij"]
+[ext_resource type="Texture2D" uid="uid://dtb7dx7u0jowt" path="res://Assets/UserInterface/Gameplay/GoldSelection.png" id="17_3aljm"]
+
+[sub_resource type="Shader" id="Shader_42gm5"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+render_mode blend_mix, unshaded;
+
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture;
+uniform float intensity : hint_range(0.0, 1.0) = 1.0;
+uniform sampler2D noise_texture : hint_default_white;
+uniform float use_custom_texture : hint_range(0.0, 1.0) = 0.0;
+uniform float clouds_speed : hint_range(0.0, 20.0, 0.01) = 2.0;
+uniform float clouds_direction : hint_range(-0.5, 0.5, 0.01) = 0.2;
+uniform float clouds_scale : hint_range(0.0, 4.0, 0.01) = 1.0;
+uniform float clouds_cutoff : hint_range(0.0, 1.0, 0.01) = 0.3;
+uniform float clouds_fuzziness : hint_range(0.0, 2.0, 0.01) = 0.5;
+uniform vec3 clouds_color : source_color = vec3(1.0, 1.0, 1.0);
+uniform float edge_fade : hint_range(0.0, 1.0, 0.01) = 0.15;
+
+// Separate float uniforms for box_position
+uniform float box_position_x : hint_range(0.0, 1.0) = 0.5; // X position
+uniform float box_position_y : hint_range(0.0, 1.0) = 0.5; // Y position
+uniform float box_size : hint_range(0.0, 1.0) = 0.2; // Size of the box
+
+uniform int PRIME_X = 501125221;
+uniform int PRIME_Y = 1136930381;
+
+float lerp(float a, float b, float t) {
+    return a + t * (b - a);
+}
+
+float cubic_lerp(float a, float b, float c, float d, float t) {
+    float p = d - c - (a - b);
+    return t * t * t * p + t * t * (a - b - p) + t * (c - a) + b;
+}
+
+float ping_pong(float t) {
+    t -= trunc(t * 0.5) * 2.0;
+    return t < 1.0 ? t : 2.0 - t;
+}
+
+int hash(int seed, int x_primed, int y_primed) {
+    return (seed ^ x_primed ^ y_primed) * 0x27d4eb2d;
+}
+
+float val_coord(int seed, int x_primed, int y_primed) {
+    int hash = hash(seed, x_primed, y_primed);
+    hash *= hash;
+    hash ^= hash << 19;
+    return float(hash) * (1.0 / 2147483648.0);
+}
+
+float single_value_cubic(int seed, float x, float y) {
+    int x1 = int(floor(x));
+    int y1 = int(floor(y));
+
+    float xs = x - float(x1);
+    float ys = y - float(y1);
+
+    x1 *= PRIME_X;
+    y1 *= PRIME_Y;
+    int x0 = x1 - PRIME_X;
+    int y0 = y1 - PRIME_Y;
+    int x2 = x1 + PRIME_X;
+    int y2 = y1 + PRIME_Y;
+    int x3 = x1 + (PRIME_X << 1);
+    int y3 = y1 + (PRIME_Y << 1);
+
+    return cubic_lerp(
+        cubic_lerp(val_coord(seed, x0, y0), val_coord(seed, x1, y0), val_coord(seed, x2, y0), val_coord(seed, x3, y0), xs),
+        cubic_lerp(val_coord(seed, x0, y1), val_coord(seed, x1, y1), val_coord(seed, x2, y1), val_coord(seed, x3, y1), xs),
+        cubic_lerp(val_coord(seed, x0, y2), val_coord(seed, x1, y2), val_coord(seed, x2, y2), val_coord(seed, x3, y2), xs),
+        cubic_lerp(val_coord(seed, x0, y3), val_coord(seed, x1, y3), val_coord(seed, x2, y3), val_coord(seed, x3, y3), xs),
+    ys) * (1.0 / (1.5 * 1.5));
+}
+
+const float FRACTAL_BOUNDING = 1.0 / 1.75;
+const int OCTAVES = 5;
+const float PING_PONG_STRENGTH = 2.0;
+const float WEIGHTED_STRENGTH = 0.0;
+const float GAIN = 0.5;
+const float LACUNARITY = 2.0;
+
+float gen_fractal_ping_pong(vec2 pos, int seed, float frequency) {
+    float x = pos.x * frequency;
+    float y = pos.y * frequency;
+    float sum = 0.0;
+    float amp = FRACTAL_BOUNDING;
+    for (int i = 0; i < OCTAVES; i++) {
+        float noise = ping_pong((single_value_cubic(seed++, x, y) + 1.0) * PING_PONG_STRENGTH);
+        sum += (noise - 0.5) * 2.0 * amp;
+        amp *= lerp(1.0, noise, WEIGHTED_STRENGTH);
+        x *= LACUNARITY;
+        y *= LACUNARITY;
+        amp *= GAIN;
+    }
+    return sum * 0.5 + 0.5;
+}
+
+float calculate_edge_fade(vec2 uv) {
+    vec2 fade = smoothstep(vec2(0.0), vec2(edge_fade), uv) *
+                smoothstep(vec2(0.0), vec2(edge_fade), 1.0 - uv);
+    return fade.x * fade.y;
+}
+
+vec4 overlay(vec4 base, vec4 blend) {
+    vec4 limit = step(0.5, base);
+    return mix(2.0 * base * blend, 1.0 - 2.0 * (1.0 - base) * (1.0 - blend), limit);
+}
+
+void fragment() {
+    // BLENDING render_mode
+    vec4 bg_color = texture(SCREEN_TEXTURE, SCREEN_UV);
+    COLOR.rgb = mix(COLOR, overlay(bg_color, COLOR), intensity).rgb;
+
+    // Get box position from separate floats
+    vec2 box_position = vec2(box_position_x, box_position_y);
+    float box_half_size = box_size * 0.5;
+
+    // Calculate if the current pixel is inside the box (masking out clouds inside the box)
+    bool inside_box = abs(UV.x - box_position.x) < box_half_size && abs(UV.y - box_position.y) < box_half_size;
+
+    // Initialize cloud density variable
+    float cloud_density = 0.0;
+
+    if (inside_box) {
+        // Set cloud density to 0 for pixels inside the box (this masks the clouds)
+        cloud_density = 0.0;
+    } else {
+        // Cloud drawing logic outside the box
+        vec2 base_uv = UV * clouds_scale;
+        float time = TIME * clouds_speed * 0.01;
+        float sin_x = sin(clouds_direction * PI * 2.0);
+        float cos_y = cos(clouds_direction * PI * 2.0);
+        vec2 clouds_movement = vec2(sin_x, cos_y) * time;
+
+        if (use_custom_texture > 0.5) {
+            cloud_density = texture(noise_texture, base_uv + clouds_movement).r;
+        } else {
+            float noise_top = gen_fractal_ping_pong((base_uv + clouds_movement), 0, 0.5);
+            float noise_middle = gen_fractal_ping_pong((base_uv + clouds_movement * 0.89), 1, 0.75);
+            float noise_bottom = gen_fractal_ping_pong((base_uv + clouds_movement * 0.79), 2, 1.0);
+
+            float noise_bottom_smooth = smoothstep(clouds_cutoff, clouds_cutoff + clouds_fuzziness, noise_bottom);
+            float noise_middle_smooth = smoothstep(clouds_cutoff, clouds_cutoff + clouds_fuzziness, noise_middle + noise_bottom_smooth * 0.2) * 1.1;
+            float noise_top_smooth = smoothstep(clouds_cutoff, clouds_cutoff + clouds_fuzziness, noise_top + noise_middle_smooth * 0.4) * 1.2;
+
+            cloud_density = clamp(noise_top_smooth + noise_middle_smooth + noise_bottom_smooth, 0.0, 1.0);
+        }
+    }
+
+    // Calculate edge fade for smooth transition
+    float edge_alpha = calculate_edge_fade(UV);
+    COLOR = vec4(clouds_color, cloud_density * edge_alpha);
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xnbmb"]
+resource_local_to_scene = true
+shader = SubResource("Shader_42gm5")
+shader_parameter/intensity = 1.0
+shader_parameter/use_custom_texture = 0.0
+shader_parameter/clouds_speed = 3.06
+shader_parameter/clouds_direction = 0.28
+shader_parameter/clouds_scale = 2.11
+shader_parameter/clouds_cutoff = 0.5
+shader_parameter/clouds_fuzziness = 0.0
+shader_parameter/clouds_color = Color(1, 1, 1, 1)
+shader_parameter/edge_fade = 0.18
+shader_parameter/box_position_x = 0.5
+shader_parameter/box_position_y = 0.5
+shader_parameter/box_size = 0.0
+shader_parameter/PRIME_X = 501125701
+shader_parameter/PRIME_Y = 1136930381
+
+[sub_resource type="Shader" id="Shader_ov0x0"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+// Wind settings.
+uniform float speed = 1.0;
+uniform float minStrength : hint_range(0.0, 1.0) = 0.05;
+uniform float maxStrength : hint_range(0.0, 1.0) = 0.01;
+uniform float strengthScale = 100.0;
+uniform float interval = 3.5;
+uniform float detail = 1.0;
+uniform float distortion : hint_range(0.0, 1.0);
+uniform float heightOffset : hint_range(0.0, 1.0);
+
+// With the offset value, you can if you want different moves for each asset. Just put a random value (1, 2, 3) in the editor. Don't forget to mark the material as unique if you use this
+uniform float offset = 0; 
+
+
+float getWind(vec2 vertex, vec2 uv, float time){
+    float diff = pow(maxStrength - minStrength, 2.0);
+    float strength = clamp(minStrength + diff + sin(time / interval) * diff, minStrength, maxStrength) * strengthScale;
+    float wind = (sin(time) + cos(time * detail)) * strength * max(0.0, (1.0-uv.y) - heightOffset);
+    
+    return wind; 
+}
+
+void vertex() {
+    vec4 pos = MODEL_MATRIX * vec4(0.0, 0.0, 0.0, 1.0);
+    float time = TIME * speed + offset;
+    //float time = TIME * speed + pos.x * pos.y  ; not working when moving...
+    VERTEX.x += getWind(VERTEX.xy, UV, time);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ir36b"]
+resource_local_to_scene = true
+shader = SubResource("Shader_ov0x0")
+shader_parameter/speed = 1.0
+shader_parameter/minStrength = 0.05
+shader_parameter/maxStrength = 0.01
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 1.0
+shader_parameter/distortion = null
+shader_parameter/heightOffset = null
+shader_parameter/offset = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_khlas"]
+resource_local_to_scene = true
+shader = ExtResource("12_dflnj")
+shader_parameter/angle = -0.3
+shader_parameter/position = -0.2
+shader_parameter/spread = 0.319
+shader_parameter/cutoff = 0.206
+shader_parameter/falloff = 0.689
+shader_parameter/edge_fade = 0.203
+shader_parameter/speed = 1.0
+shader_parameter/ray1_density = 8.0
+shader_parameter/ray2_density = 30.0
+shader_parameter/ray2_intensity = 0.311
+shader_parameter/color = Color(1, 0.984, 0.76, 0.8)
+shader_parameter/hdr = false
+shader_parameter/seed = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vsnry"]
+resource_local_to_scene = true
+shader = ExtResource("8_7spx1")
+shader_parameter/speed = 2.0
+shader_parameter/minStrength = 0.018
+shader_parameter/maxStrength = 0.0
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 1.0
+shader_parameter/distortion = 0.0
+shader_parameter/heightOffset = null
+shader_parameter/offset = 0.0
+shader_parameter/strength = 2
 
 [node name="Win" type="Node2D"]
 script = ExtResource("1_r8it0")
@@ -9,21 +275,278 @@ script = ExtResource("1_r8it0")
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("1_7jwwb")
 
-[node name="Onward" type="Button" parent="AudioStreamPlayer2D"]
-offset_left = 766.0
-offset_top = 541.0
-offset_right = 1237.0
-offset_bottom = 689.0
-theme_override_font_sizes/font_size = 50
-text = "Onward"
+[node name="Foliage" type="Sprite2D" parent="."]
+position = Vector2(652, 380)
+scale = Vector2(6, 6)
+texture = ExtResource("3_u15a4")
 
-[node name="Retry" type="Button" parent="AudioStreamPlayer2D"]
-offset_left = 65.0
-offset_top = 541.0
-offset_right = 536.0
-offset_bottom = 689.0
-theme_override_font_sizes/font_size = 50
-text = "Retry"
+[node name="smog" parent="." instance=ExtResource("4_0e2fh")]
+material = SubResource("ShaderMaterial_xnbmb")
 
-[connection signal="pressed" from="AudioStreamPlayer2D/Onward" to="." method="_on_onward_pressed"]
-[connection signal="pressed" from="AudioStreamPlayer2D/Retry" to="." method="_on_retry_pressed"]
+[node name="ColorRect" parent="smog" index="0"]
+offset_left = -550.0
+offset_top = -480.0
+offset_right = 1825.0
+offset_bottom = 331.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -42.0
+offset_top = 521.0
+offset_right = 1612.0
+offset_bottom = 826.0
+color = Color(0.0748, 0.20548, 0.22, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = -42.0
+offset_top = 221.0
+offset_right = 1612.0
+offset_bottom = 526.0
+color = Color(0.0628334, 0, 0.13, 1)
+
+[node name="TreesBG" type="Node2D" parent="."]
+position = Vector2(0, 70)
+
+[node name="Trunk9" parent="TreesBG" instance=ExtResource("3_6tiwe")]
+material = SubResource("ShaderMaterial_ir36b")
+position = Vector2(406, 283)
+scale = Vector2(3, 4)
+texture = ExtResource("9_f540x")
+
+[node name="Leaves2" parent="TreesBG/Trunk9" index="0"]
+texture = ExtResource("10_ffq7q")
+
+[node name="Trunk10" parent="TreesBG" instance=ExtResource("3_6tiwe")]
+material = SubResource("ShaderMaterial_ir36b")
+position = Vector2(916, 352)
+scale = Vector2(3, 4)
+texture = ExtResource("9_f540x")
+
+[node name="Leaves2" parent="TreesBG/Trunk10" index="0"]
+texture = ExtResource("10_ffq7q")
+
+[node name="Trunk11" parent="TreesBG" instance=ExtResource("3_6tiwe")]
+material = SubResource("ShaderMaterial_ir36b")
+position = Vector2(23, 344)
+scale = Vector2(3, 4)
+texture = ExtResource("9_f540x")
+
+[node name="Leaves2" parent="TreesBG/Trunk11" index="0"]
+texture = ExtResource("10_ffq7q")
+
+[node name="Trunk12" parent="TreesBG" instance=ExtResource("3_6tiwe")]
+material = SubResource("ShaderMaterial_ir36b")
+position = Vector2(1246, 305)
+scale = Vector2(3, 4)
+texture = ExtResource("9_f540x")
+
+[node name="Leaves2" parent="TreesBG/Trunk12" index="0"]
+texture = ExtResource("10_ffq7q")
+
+[node name="Trunk4" parent="TreesBG" instance=ExtResource("3_6tiwe")]
+material = SubResource("ShaderMaterial_ir36b")
+position = Vector2(253, 313)
+scale = Vector2(3, 3)
+
+[node name="Trunk5" parent="TreesBG" instance=ExtResource("3_6tiwe")]
+material = SubResource("ShaderMaterial_ir36b")
+position = Vector2(332, 294)
+scale = Vector2(3, 3)
+
+[node name="Trunk6" parent="TreesBG" instance=ExtResource("3_6tiwe")]
+material = SubResource("ShaderMaterial_ir36b")
+position = Vector2(560, 271)
+scale = Vector2(3, 3)
+
+[node name="Trunk7" parent="TreesBG" instance=ExtResource("3_6tiwe")]
+material = SubResource("ShaderMaterial_ir36b")
+position = Vector2(834, 273)
+scale = Vector2(3, 3)
+
+[node name="Trunk8" parent="TreesBG" instance=ExtResource("3_6tiwe")]
+material = SubResource("ShaderMaterial_ir36b")
+position = Vector2(1059, 267)
+scale = Vector2(3, 3)
+
+[node name="Trunk" parent="TreesBG" instance=ExtResource("3_6tiwe")]
+material = SubResource("ShaderMaterial_ir36b")
+position = Vector2(122, 306)
+
+[node name="Trunk2" parent="TreesBG" instance=ExtResource("3_6tiwe")]
+material = SubResource("ShaderMaterial_ir36b")
+position = Vector2(1423, 197)
+
+[node name="Trunk3" parent="TreesBG" instance=ExtResource("3_6tiwe")]
+material = SubResource("ShaderMaterial_ir36b")
+position = Vector2(1289, 304)
+scale = Vector2(3, 3)
+
+[node name="Perspectiveground" type="Sprite2D" parent="."]
+position = Vector2(682, 466)
+scale = Vector2(2, 2)
+texture = ExtResource("5_bpk8j")
+
+[node name="Brush" type="Sprite2D" parent="."]
+self_modulate = Color(0.627451, 0.141176, 0.141176, 1)
+position = Vector2(635, 210)
+texture = ExtResource("5_auuqa")
+
+[node name="Label" type="Label" parent="Brush"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -512.0
+offset_top = -147.0
+offset_right = -512.0
+offset_bottom = -147.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_8yj6i")
+theme_override_font_sizes/font_size = 200
+text = "Victory"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(596, 466)
+scale = Vector2(4, 4)
+
+[node name="KappaFullAnim" type="Sprite2D" parent="Node2D"]
+rotation = -1.4675
+texture = ExtResource("3_dnshu")
+hframes = 10
+vframes = 4
+
+[node name="KappaFullAnim2" type="Sprite2D" parent="Node2D"]
+position = Vector2(-0.5, 13.6667)
+rotation = 1.1446
+texture = ExtResource("3_dnshu")
+hframes = 10
+vframes = 4
+
+[node name="KappaFullAnim3" type="Sprite2D" parent="Node2D"]
+position = Vector2(25.3333, 6.49998)
+rotation = -1.02033
+texture = ExtResource("3_dnshu")
+hframes = 10
+vframes = 4
+
+[node name="KappaFullAnim4" type="Sprite2D" parent="Node2D"]
+position = Vector2(2.5, 27.8333)
+rotation = 0.853403
+texture = ExtResource("3_dnshu")
+hframes = 10
+vframes = 4
+
+[node name="KappaFullAnim5" type="Sprite2D" parent="Node2D"]
+position = Vector2(13.5, 42.8333)
+rotation = -2.83026
+texture = ExtResource("3_dnshu")
+hframes = 10
+vframes = 4
+
+[node name="KappaFullAnim6" type="Sprite2D" parent="Node2D"]
+position = Vector2(-31, 40)
+rotation = -1.93349
+texture = ExtResource("3_dnshu")
+hframes = 10
+vframes = 4
+
+[node name="KappaFullAnim7" type="Sprite2D" parent="Node2D"]
+position = Vector2(49.8334, 39.3333)
+rotation = 2.57258
+texture = ExtResource("3_dnshu")
+hframes = 10
+vframes = 4
+
+[node name="KappaFullAnim8" type="Sprite2D" parent="Node2D"]
+position = Vector2(12.8333, 17)
+rotation = -1.4675
+texture = ExtResource("3_dnshu")
+hframes = 10
+vframes = 4
+
+[node name="KappaFullAnim9" type="Sprite2D" parent="Node2D"]
+position = Vector2(22.5, 30.8333)
+rotation = -2.05619
+texture = ExtResource("3_dnshu")
+hframes = 10
+vframes = 4
+
+[node name="KappaFullAnim10" type="Sprite2D" parent="Node2D"]
+position = Vector2(-9.83334, 41.8333)
+rotation = -1.4675
+texture = ExtResource("3_dnshu")
+hframes = 10
+vframes = 4
+
+[node name="KappaFullAnim11" type="Sprite2D" parent="Node2D"]
+position = Vector2(37.1667, 40.8333)
+rotation = 1.51662
+scale = Vector2(1, 1)
+texture = ExtResource("3_dnshu")
+hframes = 10
+vframes = 4
+
+[node name="MikoFlex" type="Sprite2D" parent="Node2D"]
+position = Vector2(12.3333, -31.1667)
+texture = ExtResource("4_31du3")
+
+[node name="Node2D2" parent="." instance=ExtResource("11_id2kl")]
+material = SubResource("ShaderMaterial_khlas")
+position = Vector2(423, 20)
+
+[node name="ColorRect" parent="Node2D2" index="0"]
+offset_left = -246.0
+offset_top = -292.0
+offset_right = 616.0
+offset_bottom = 597.0
+
+[node name="Trunk2" parent="." instance=ExtResource("3_6tiwe")]
+material = SubResource("ShaderMaterial_vsnry")
+position = Vector2(1547, 154)
+scale = Vector2(6, 6)
+texture = ExtResource("9_f540x")
+
+[node name="Leaves2" parent="Trunk2" index="0"]
+texture = ExtResource("10_ffq7q")
+
+[node name="Onward" type="Button" parent="."]
+offset_left = 829.0
+offset_top = 436.0
+offset_right = 1163.0
+offset_bottom = 514.0
+theme = ExtResource("16_8smij")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 50
+text = "Next Level!"
+
+[node name="Retry" type="Button" parent="."]
+offset_left = 135.0
+offset_top = 426.0
+offset_right = 469.0
+offset_bottom = 504.0
+theme = ExtResource("16_8smij")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 50
+text = "Retry?"
+
+[node name="GoldSelection" type="Sprite2D" parent="."]
+position = Vector2(996, 475)
+scale = Vector2(3, 2)
+texture = ExtResource("17_3aljm")
+
+[node name="GoldSelection2" type="Sprite2D" parent="."]
+position = Vector2(302, 465)
+scale = Vector2(3, 2)
+texture = ExtResource("17_3aljm")
+
+[connection signal="pressed" from="Onward" to="." method="_on_onward_pressed"]
+[connection signal="pressed" from="Retry" to="." method="_on_retry_pressed"]
+
+[editable path="smog"]
+[editable path="TreesBG/Trunk9"]
+[editable path="TreesBG/Trunk10"]
+[editable path="TreesBG/Trunk11"]
+[editable path="TreesBG/Trunk12"]
+[editable path="Node2D2"]
+[editable path="Trunk2"]
