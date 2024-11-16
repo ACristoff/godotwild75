@@ -1048,6 +1048,7 @@ offset_left = -641.0
 offset_top = -443.0
 offset_right = 2075.0
 offset_bottom = 1056.0
+mouse_filter = 2
 color = Color(1, 0.55, 0, 1)
 
 [node name="smog" parent="." instance=ExtResource("3_j6ck3")]
@@ -1064,6 +1065,7 @@ offset_left = -42.0
 offset_top = 521.0
 offset_right = 1612.0
 offset_bottom = 826.0
+mouse_filter = 2
 color = Color(0.0748, 0.20548, 0.22, 1)
 
 [node name="ColorRect2" type="ColorRect" parent="."]
@@ -1071,6 +1073,7 @@ offset_left = -42.0
 offset_top = 221.0
 offset_right = 1612.0
 offset_bottom = 526.0
+mouse_filter = 2
 color = Color(0.0628334, 0, 0.13, 1)
 
 [node name="TreesBG" type="Node2D" parent="."]
