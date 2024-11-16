@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bcwqwifukfrt0"]
+[gd_scene load_steps=5 format=3 uid="uid://bpa4u7hs7lnpf"]
 
 [ext_resource type="Script" path="res://Game/UI/healthbar.gd" id="1_3bly3"]
 [ext_resource type="Texture2D" uid="uid://cmg62e6eg5hsd" path="res://Assets/UserInterface/Menu/HealthbarBack.png" id="1_u7i7q"]
@@ -20,7 +20,7 @@ offset_right = 32.0
 offset_bottom = 5.0
 grow_horizontal = 2
 grow_vertical = 2
-value = 50.0
+value = 99.0
 texture_under = ExtResource("1_u7i7q")
 texture_progress = ExtResource("2_xgdch")
 

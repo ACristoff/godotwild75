@@ -21,7 +21,6 @@ func _ready():
 	super()
 	move_range = 2
 	set_process(true)
-	getTargetCharacter("Water Cannon")
 
 func _process(delta):
 	super(delta)
@@ -32,6 +31,7 @@ func _init():
 
 func enemyBrain(boardState):
 	super(boardState)
+	getTargetCharacter("Water Cannon")
 	#Attack if able, if not move first.
 	move("Water Cannon")
 	if(targetOnRange):
@@ -43,7 +43,7 @@ func getTargetCharacter(attackName: String):
 	var auxOnRange = false
 	for ch in characterList:
 		if ch.cell.x < 7:
-			var distance = abs(cell.x - ch.cell.x + ch.cell.y - cell.y)
+			var distance = abs(cell.x - ch.cell.x) + abs(ch.cell.y - cell.y)
 			#If character is on range of attack, that's the character I'm focusing on.
 			if distance <= attacks[attackName]["RANGE"]:
 				targetOnRange = true
@@ -77,7 +77,7 @@ func move(attackName: String):
 			targetCharacter.cell + Vector2(attacks[attackName]["RANGE"] - n, n*-1),
 			targetCharacter.cell + Vector2((attacks[attackName]["RANGE"] - n)*-1, n*-1)
 		]
-		for i in range(0, 3):
+		for i in range(0, 4):
 			if (grid.is_within_bounds(cells[i]) and cells[i].x < 8):
 				var aux = abs((cell - cells[i]).length())
 				if aux <= move_range and aux >= maxDistance:
@@ -95,7 +95,7 @@ func move(attackName: String):
 				cell + Vector2(move_range - n, n*-1),
 				cell + Vector2((move_range - n)*-1, n*-1)
 			]
-			for i in range(0, 3):
+			for i in range(0, 4):
 				if (grid.is_within_bounds(cells[i]) and cells[i].x < 8):
 					var distanceToTarget = abs((cell - cells[i]).length())
 					var distanceToCharacter = abs((targetCharacter.cell - cells[i]).length())
