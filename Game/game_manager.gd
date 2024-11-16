@@ -7,28 +7,57 @@ var paused = false
 
 var weapon_data = {
 	"dagger": {
-		"state" : 'UNLOCKED',
-		"isSelected" : false
-	},
-	"fan": {
-		"state" : 'LOCKED'
-	},
-	"slingshot": {
-		"state" : 'LOCKED'
+		"state": 'UNLOCKED',
+		"isSelected": true,
+		"ATTACK_VECS": [Vector2(0, -1,), Vector2(0, -2)],
+		"BLAST_PATTERN": [Vector2(0,0), Vector2(0, -1), Vector2(-1, 0), Vector2(0, 1), Vector2(1, 0),],
 	},
 	"katana": {
-		"state" : 'LOCKED'
+		"state": 'LOCKED',
+		"isSelected": false,
+		"ATTACK_VECS": [Vector2(0, -1,), Vector2(0, -2), Vector2(0, -3)],
+		"BLAST_PATTERN": [Vector2(0,0), Vector2(0, -1), Vector2(-1, 0), Vector2(0, 1), Vector2(1, 0),],
+	},
+	"fan": {
+		"state": 'LOCKED',
+		"isSelected": false,
+		"ATTACK_VECS": [Vector2(0, -1,), Vector2(0, -2)],
+		"BLAST_PATTERN": [Vector2(0,0), Vector2(0, -1), Vector2(-1, 0), Vector2(0, 1), Vector2(1, 0),],
 	},
 	"mace": {
-		"state" : 'LOCKED'
+		"state": 'LOCKED',
+		"isSelected": false,
+		"ATTACK_VECS": [Vector2(0, -1,), Vector2(0, -2)],
+		"BLAST_PATTERN": [Vector2(0,0), Vector2(0, -1), Vector2(-1, 0), Vector2(0, 1), Vector2(1, 0),],
 	},
 	"bow": {
-		"state" : 'LOCKED'
+		"state": 'LOCKED',
+		"isSelected": false,
+		"ATTACK_VECS": [Vector2(0, -1,), Vector2(0, -2)],
+		"BLAST_PATTERN": [Vector2(0,0), Vector2(0, -1), Vector2(-1, 0), Vector2(0, 1), Vector2(1, 0),],
+	},
+	"slingshot": {
+		"state": 'LOCKED',
+		"isSelected": false,
+		"ATTACK_VECS": [Vector2(0, -1,), Vector2(0, -2)],
+		"BLAST_PATTERN": [Vector2(0,0), Vector2(0, -1), Vector2(-1, 0), Vector2(0, 1), Vector2(1, 0),],
 	},
 	"trident": {
-		"state" : 'LOCKED'
+		"state": 'LOCKED',
+		"isSelected": false,
+		"ATTACK_VECS": [Vector2(0, -1,), Vector2(0, -2)],
+		"BLAST_PATTERN": [Vector2(0,0), Vector2(0, -1), Vector2(-1, 0), Vector2(0, 1), Vector2(1, 0),],
 	}
 }
+
+	#"Sword": {
+		#"RANGE": 2,
+		#"DAMAGE": 2,
+		#"MOVE": Vector2(0,0),
+		#"EXORCISM": false,
+		#"BLAST_PATTERN": [Vector2(0,0), Vector2(0, -1), Vector2(-1, 0), Vector2(0, 1), Vector2(1, 0),],
+		#"ATTACK_PATTERN": [Vector2(0,0), Vector2(0, -1), Vector2(0, -2)]
+	#},
 
 func _ready():
 	#print(funcs["win"])

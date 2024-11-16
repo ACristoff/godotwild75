@@ -36,7 +36,7 @@ position = Vector2(358, 419)
 position = Vector2(993, 413)
 
 [node name="HeikoUnit" parent="." instance=ExtResource("7_2tvfr")]
-position = Vector2(227, 364)
+position = Vector2(284, 427)
 
 [node name="Cursor" parent="." instance=ExtResource("2_pogwr")]
 
