@@ -6,6 +6,9 @@ const DIRECTIONS = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 @export var grid: Resource = preload("res://Game/Data/grid.tres")
 @export var level_music: AudioStreamWAV
 
+@onready var win_screen = preload("res://Game/UI/win_screen.tscn")
+@onready var fail_screen = preload("res://Game/UI/lose_screen.tscn")
+
 @onready var spirit_miko_scene:  = preload("res://Game/Characters/Friendlies/spirit_miko_unit.tscn") 
 var miko: PlayerUnit
 var spirit_miko: PlayerUnit
@@ -51,7 +54,7 @@ func mutate_attack(attack_pattern):
 ##Finds the next unit in a given team that has moves available
 func find_next_possible(team):
 	for unit in team:
-		var current = units[unit] as PlayerUnit
+		var current = units[unit] as Unit
 		if !current.has_moved:
 			return current
 	return null
@@ -67,11 +70,13 @@ func turn_manager():
 	else:
 		##TODO Do enemy turns here
 		var next_unit = find_next_possible(enemies)
-		if next_unit == null:
-			is_enemy_turn = false
-			is_player_turn = true
-			turn_indicator._SwitchingTurn()
-		pass
+		while next_unit != null:
+			next_unit.enemyBrain(units)
+			next_unit.has_moved = true
+			next_unit = find_next_possible(enemies)
+		is_enemy_turn = false
+		is_player_turn = true
+		turn_indicator._SwitchingTurn()
 	pass
 
 ## Clears, and refills the `_units` dictionary with game objects that are on the board.
@@ -172,7 +177,7 @@ func flood_fill(origin: Vector2, max_distance: int, ignore_dudes: bool):
 			stack.append(coordinates)
 	return array
 
-func select_unit(cell: Vector2):	
+func select_unit(cell: Vector2):
 	#checks if the cell has a unit entry
 	if not units.has(cell):
 		return
@@ -386,11 +391,16 @@ func on_unit_death(unit):
 
 func trigger_fail_con(miko):
 	print("FISSION MAILED", miko, "HAS DIED")
+	var manager: GameManager = get_node("/root/GameManager")
+	manager.show_screen(fail_screen)
 	pass
 
 func check_for_win_con():
 	if enemies.size() == 0 && ghost_accumulator.size() == 0:
+		var manager: GameManager = get_node("/root/GameManager")
 		print("A WINRAR IS YOU CON")
+		manager.show_screen(win_screen)
+		#print()
 
 func _on_cursor_deselect_pressed():
 	if active_unit:

@@ -30,13 +30,12 @@ func _init():
 	super()
 	attacks = oni_attacks
 
-func enemyBrain():
-	super()
+func enemyBrain(boardState):
+	super(boardState)
 	#Attack if able, if not move first.
 	move("Club Strike")
 	if(targetOnRange):
 		meleeAttack()
-	hasActed = true
 
 func getTargetCharacter(attackName: String):
 	#Target closest character

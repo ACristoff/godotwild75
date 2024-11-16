@@ -25,7 +25,7 @@ func draw(cell_start: Vector2, cell_end: Vector2) -> void:
 		test_offset_path.append(new_vector)
 		pass
 	#print(current_path, test_offset_path)
-	set_cells_terrain_connect(test_offset_path, 0, 2, 0)
+	set_cells_terrain_connect(test_offset_path, 0, 3, 0)
 
 
 ## Stops drawing, clearing the drawn path and the `_pathfinder`.
