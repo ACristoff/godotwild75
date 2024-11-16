@@ -22,7 +22,7 @@ var current_direction = direction.UP
 ## Shared resource of type Grid, used to calculate map coordinates.
 @export var grid: Resource
 ## Distance to which the unit can walk in cells.
-@export var move_range := 6
+@export var move_range := 2
 ## The unit's move speed when it's moving along a path.
 @export var move_speed := 600.0
 ## Texture representing the unit.

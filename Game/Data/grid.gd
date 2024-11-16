@@ -19,6 +19,11 @@ func is_in_real_world(cell: Vector2) -> bool:
 		return true
 	return false
 
+func is_in_border(cell:Vector2) -> bool:
+	if cell.x >= 8 && cell.x <= 9:
+		return true
+	return false
+
 func calculate_mirror_position(cell):
 	var mirrored_cell = Vector2(cell.x - 9, cell.y)
 	if mirrored_cell.x < 0:

@@ -10,6 +10,8 @@ var hasActed = false
 
 @onready var battleManager : BattleManager = get_parent()
 
+
+
 func _ready():
 	super()
 	characterList = get_tree().get_nodes_in_group("player")
@@ -22,6 +24,7 @@ func _process(delta):
 
 func _init():
 	super()
+	health = 1
 
 func enemyBrain():
 	pass
