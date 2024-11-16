@@ -54,32 +54,32 @@ var pos7 = 0.858
 
 var weapon_dummy_data = {
 	"dagger": {
-		"state" : 'LOCKED',
-		"selected" : 'YES'
+		"state" : 'UNLOCKED',
+		"isSelected" : 'true'
 	},
 	"fan": {
 		"state" : 'LOCKED',
-		"selected" : 'NO'
+		"isSelected" : 'false'
 	},
 	"slingshot": {
 		"state" : 'LOCKED',
-		"selected" : 'NO'
+		"isSelected" : 'false'
 	},
 	"katana": {
 		"state" : 'LOCKED',
-		"selected" : 'NO'
+		"isSelected" : 'false'
 	},
 	"mace": {
 		"state" : 'LOCKED',
-		"selected" : 'NO'
+		"isSelected" : 'false'
 	},
 	"bow": {
 		"state" : 'LOCKED',
-		"selected" : 'NO'
+		"isSelected" : 'false'
 	},
 	"trident": {
 		"state" : 'LOCKED',
-		"selected" : 'NO'
+		"isSelected" : 'false'
 	}
 }
 
@@ -102,18 +102,32 @@ func _locker(currency: int, weapon_data) -> void:
 	for weapon in weapon_data:
 		if weapon_data[weapon].state == 'UNLOCKED' and weapon == "dagger":
 			unlock_dagger()
+			if weapon_data[weapon].isSelected == 'true':
+				select_dagger()
 		if weapon_data[weapon].state == 'UNLOCKED' and weapon == "fan":
 			unlock_fan()
+			if weapon_data[weapon].isSelected == 'true':
+				select_fan()
 		if weapon_data[weapon].state == 'UNLOCKED' and weapon == "slingshot":
 			unlock_slingshot()
+			if weapon_data[weapon].isSelected == 'true':
+				select_slingshot()
 		if weapon_data[weapon].state == 'UNLOCKED' and weapon == "katana":
 			unlock_katana()
+			if weapon_data[weapon].isSelected == 'true':
+				select_katana()
 		if weapon_data[weapon].state == 'UNLOCKED' and weapon == "mace":
 			unlock_mace()
+			if weapon_data[weapon].isSelected == 'true':
+				select_mace()
 		if weapon_data[weapon].state == 'UNLOCKED' and weapon == "bow":
 			unlock_bow()
+			if weapon_data[weapon].isSelected == 'true':
+				select_bow()
 		if weapon_data[weapon].state == 'UNLOCKED' and weapon == "trident":
 			unlock_trident()
+			if weapon_data[weapon].isSelected == 'true':
+				select_trident()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -418,6 +432,7 @@ func _on_heiko_pressed() -> void:
 	#slingshot.progress_ratio += .001
 	#fan.progress_ratio += .001
 func _refresh_buttons():
+	$CanvasLayer/BeginBattles.disabled = false
 	$AudioStreamPlayer2D.pitch_scale = .3
 	update_select()
 	accept = true
@@ -513,6 +528,7 @@ func _on_texture_button_2_pressed() -> void:
 			#$CanvasLayer/ButtonArrow/TextureButton.disabled = true
 			#$CanvasLayer/ButtonArrow2/TextureButton2.disabled = true
 func unlock_dagger():
+	
 	on_unlock.emit("dagger")
 	bought1 = true
 	update_select()
@@ -678,6 +694,7 @@ func update_select():
 func _on_infuse_pressed() -> void:
 	onibi_refund = 0
 	arrows_disabled = true
+	$CanvasLayer/BeginBattles.disabled = true
 	$CanvasLayer/ButtonArrow/TextureButton.disabled = true
 	$CanvasLayer/ButtonArrow2/TextureButton2.disabled = true
 	$CanvasLayer/Infuse.disabled = true
@@ -751,17 +768,37 @@ func _on_infuse_pressed() -> void:
 		update_visuals()
 		_refresh_buttons()
 
-
+func select_dagger():
+	chosen_weapon = ("dagger")
+	$CanvasLayer/Select/Label.text = ("Selected")
+func select_fan():
+	chosen_weapon = ("fan")
+	$CanvasLayer/Select2/Label.text = ("Selected")
+func select_slingshot():
+	chosen_weapon = ("slingshot")
+	$CanvasLayer/Select3/Label.text = ("Selected")
+func select_katana():
+	chosen_weapon = ("katana")
+	$CanvasLayer/Select4/Label.text = ("Selected")
+func select_mace():
+	chosen_weapon = ("mace")
+	$CanvasLayer/Select5/Label.text = ("Selected")
+func select_bow():
+	chosen_weapon = ("bow")
+	$CanvasLayer/Select6/Label.text = ("Selected")
+func select_trident():
+	chosen_weapon = ("mace")
+	$CanvasLayer/Select7/Label.text = ("Selected")
 
 func _on_select_toggled(toggled_on: bool) -> void:
 	if toggled_on == true:
-		chosen_weapon = ("dagger")
+		chosen_weapon = ("bow")
 		$CanvasLayer/Select/Label.text = ("Selected")
 	else:
 		$CanvasLayer/Select/Label.text = ("Select")
 func _on_select_2_toggled(toggled_on: bool) -> void:
 	if toggled_on == true:
-		chosen_weapon = ("fan")
+		chosen_weapon = ("trident")
 		$CanvasLayer/Select2/Label.text = ("Selected")
 	else:
 		$CanvasLayer/Select2/Label.text = ("Select")

@@ -18,7 +18,7 @@
 [ext_resource type="Theme" uid="uid://quv8ysasm6da" path="res://Assets/Themes/Buttons2.tres" id="16_8smij"]
 [ext_resource type="Texture2D" uid="uid://dtb7dx7u0jowt" path="res://Assets/UserInterface/Gameplay/GoldSelection.png" id="17_3aljm"]
 
-[sub_resource type="Shader" id="Shader_42gm5"]
+[sub_resource type="Shader" id="Shader_ymjdq"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix, unshaded;
@@ -174,7 +174,7 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xnbmb"]
 resource_local_to_scene = true
-shader = SubResource("Shader_42gm5")
+shader = SubResource("Shader_ymjdq")
 shader_parameter/intensity = 1.0
 shader_parameter/use_custom_texture = 0.0
 shader_parameter/clouds_speed = 3.06
@@ -190,7 +190,7 @@ shader_parameter/box_size = 0.0
 shader_parameter/PRIME_X = 501125701
 shader_parameter/PRIME_Y = 1136930381
 
-[sub_resource type="Shader" id="Shader_ov0x0"]
+[sub_resource type="Shader" id="Shader_q5pb2"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -227,7 +227,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ir36b"]
 resource_local_to_scene = true
-shader = SubResource("Shader_ov0x0")
+shader = SubResource("Shader_q5pb2")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.05
 shader_parameter/maxStrength = 0.01
