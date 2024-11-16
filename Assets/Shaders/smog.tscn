@@ -3,6 +3,7 @@
 [ext_resource type="Shader" path="res://Assets/Shaders/clouds.gdshader" id="1_ne2yd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_en568"]
+resource_local_to_scene = true
 shader = ExtResource("1_ne2yd")
 shader_parameter/intensity = 1.0
 shader_parameter/use_custom_texture = 0.0
