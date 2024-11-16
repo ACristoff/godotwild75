@@ -30,9 +30,12 @@ var click = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	lock_pause()
 	print(titlebgm)
 	pass # Replace with function body.
 
+func lock_pause():
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

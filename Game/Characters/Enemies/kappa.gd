@@ -30,13 +30,12 @@ func _init():
 	super()
 	attacks = kappa_attacks
 
-func enemyBrain():
-	super()
+func enemyBrain(boardState):
+	super(boardState)
 	#Attack if able, if not move first.
 	move("Water Cannon")
 	if(targetOnRange):
 		rangedAttack()
-	hasActed = true
 
 func getTargetCharacter(attackName: String):
 	#Target furthest character

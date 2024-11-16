@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://2r5lvg6715f" path="res://Game/Characters/Friendlies/heiko_unit.tscn" id="7_2tvfr"]
 [ext_resource type="PackedScene" uid="uid://cbrlucko4mhk" path="res://Game/Characters/Enemies/kitsune.tscn" id="11_x7u8q"]
 
-[node name="DebugLevel2" type="Node2D"]
+[node name="DebugLevel" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_uyhos")
 
