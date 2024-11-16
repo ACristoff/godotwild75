@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://c3y7ydk1a75nx"]
+
+[ext_resource type="Script" path="res://node_2d.gd" id="1_oxitk"]
+[ext_resource type="Texture2D" uid="uid://cxv5b7d60qvm7" path="res://Assets/Effects/Particles/firelantern.png" id="2_mmofe"]
+[ext_resource type="Shader" path="res://Assets/Shaders/light.gdshader" id="2_nj8uj"]
+
+[sub_resource type="Curve2D" id="Curve2D_vnuom"]
+resource_local_to_scene = true
+
+[sub_resource type="Gradient" id="Gradient_xjd60"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ieljw"]
+gradient = SubResource("Gradient_xjd60")
+fill = 1
+fill_from = Vector2(0.5, 0.515306)
+fill_to = Vector2(0.147959, 0.836735)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2bnta"]
+shader = ExtResource("2_nj8uj")
+shader_parameter/light_color = Vector3(56, 255, 255)
+shader_parameter/brightness = 0.553
+shader_parameter/attenuation_strength = 0.5
+shader_parameter/intensity = 0.362
+shader_parameter/max_brightness = 0.362
+shader_parameter/light_texture = SubResource("GradientTexture2D_ieljw")
+
+[node name="Node2D" type="Node2D" groups=["onibi"]]
+script = ExtResource("1_oxitk")
+
+[node name="FlameStart" type="Marker2D" parent="."]
+position = Vector2(84, 120)
+
+[node name="FlameEnd" type="Marker2D" parent="."]
+position = Vector2(640, 392)
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_vnuom")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+rotates = false
+
+[node name="Firelantern" type="Sprite2D" parent="Path2D/PathFollow2D"]
+scale = Vector2(4, 4)
+texture = ExtResource("2_mmofe")
+hframes = 5
+
+[node name="ColorRect" type="ColorRect" parent="Path2D/PathFollow2D/Firelantern"]
+material = SubResource("ShaderMaterial_2bnta")
+offset_left = -20.25
+offset_top = -19.0
+offset_right = 19.75
+offset_bottom = 21.0

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbrlucko4mhk"]
+
+[ext_resource type="PackedScene" uid="uid://cg34obo360a5w" path="res://Game/Characters/Enemies/enemy_base.tscn" id="1_6gvqk"]
+[ext_resource type="Script" path="res://kitsune.gd" id="2_swjbx"]
+
+[node name="Kitsune" instance=ExtResource("1_6gvqk")]
+script = ExtResource("2_swjbx")
+grid = null
+self_scene_path = ""
+skin = null
