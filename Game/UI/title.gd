@@ -53,7 +53,7 @@ func WashSFX():
 	AudioManager.play_sfx(washsfx, 1)
 func TitleMusic():
 	print("pls")
-	AudioManager.play_sfx(titlebgm, 1)
+	AudioManager._play_music(titlebgm, 1)
 func SweepSFX():
 	$AudioStreamPlayer2D.play()
 func Start_sweep():

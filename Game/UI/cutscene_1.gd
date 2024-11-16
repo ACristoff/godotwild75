@@ -8,7 +8,7 @@ func _ready() -> void:
 	pass
 
 func _song():
-	AudioManager.play_sfx(songo, 1)
+	AudioManager._play_music(songo, 1)
 	#$Path2D/PathFollow2D/Camera2D/AudioStreamPlayer2D.play()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

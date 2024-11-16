@@ -52,7 +52,7 @@ bg_color = Color(0.294118, 0.105882, 0.670588, 1)
 bg_color = Color(0.294118, 0.105882, 0.670588, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qfqiw"]
-bg_color = Color(0, 0.219608, 0.611765, 1)
+bg_color = Color(0.294118, 0.105882, 0.670588, 1)
 
 [sub_resource type="Gradient" id="Gradient_7spl3"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -233,6 +233,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_2k6bh")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ggthe")
 theme_override_styles/normal = SubResource("StyleBoxFlat_mb6lr")
 toggle_mode = true
+button_pressed = true
 button_group = ExtResource("9_5vr10")
 
 [node name="Label" type="Label" parent="CanvasLayer/Select"]
@@ -415,17 +416,18 @@ text = "Tanto"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="CanvasLayer"]
+[node name="BeginBattles" type="Button" parent="CanvasLayer"]
 offset_left = 1001.0
 offset_top = 589.0
 offset_right = 1253.0
 offset_bottom = 688.0
 theme = ExtResource("8_t6lys")
-theme_override_colors/font_color = Color(0, 0.0156863, 0.160784, 1)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_un46q")
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_qfqiw")
-text = "BATTLE"
+text = "BATTLE!"
 
 [node name="Miko" type="Button" parent="."]
 self_modulate = Color(1, 1, 1, 0)
@@ -851,7 +853,7 @@ volume_db = -12.291
 [connection signal="toggled" from="CanvasLayer/Select6" to="." method="_on_select_6_toggled"]
 [connection signal="pressed" from="CanvasLayer/Select7" to="." method="_on_select_7_pressed"]
 [connection signal="toggled" from="CanvasLayer/Select7" to="." method="_on_select_7_toggled"]
-[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/BeginBattles" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Miko" to="." method="_on_miko_pressed"]
 [connection signal="pressed" from="Heiko" to="." method="_on_heiko_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
