@@ -944,10 +944,10 @@ limit_bottom = 680
 [node name="Transition" parent="." instance=ExtResource("10_a3sog")]
 z_index = 34
 material = SubResource("ShaderMaterial_p0hva")
-offset_left = 127.0
-offset_top = 513.0
-offset_right = 639.0
-offset_bottom = 801.0
+offset_left = -256.0
+offset_top = -144.0
+offset_right = 256.0
+offset_bottom = 144.0
 script = null
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
