@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bw3bmgf2rmjrr"]
+
+[ext_resource type="PackedScene" uid="uid://cg34obo360a5w" path="res://Game/Characters/Enemies/enemy_base.tscn" id="1_fd6ws"]
+[ext_resource type="Script" path="res://Game/Characters/Enemies/boss_oni.gd" id="2_nxcf8"]
+
+[node name="BossOni" instance=ExtResource("1_fd6ws")]
+modulate = Color(0.0475577, 0.0475576, 0.0475576, 1)
+script = ExtResource("2_nxcf8")
+self_scene_path = ""
