@@ -46,8 +46,8 @@ func getTargetCharacter(attackName: String, boardState):
 	var auxOnRange = false
 	var auxCell = cell
 	#Loop through every cell in the grid (FUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
-	for x in range(0, 7):
-		for y in range(0, 7):
+	for x in range(0, 8):
+		for y in range(0, 8):
 			var auxAmount = 0
 			#Look at a certain cell in the grid
 			var target = Vector2(x, y)
@@ -84,7 +84,7 @@ func move(attackName: String):
 			targetCell + Vector2(attacks[attackName]["RANGE"] - n, n*-1),
 			targetCell + Vector2((attacks[attackName]["RANGE"] - n)*-1, n*-1)
 		]
-		for i in range(0, 3):
+		for i in range(0, 4):
 			if (grid.is_within_bounds(cells[i]) and cells[i].x < 8):
 				var aux = abs((cell - cells[i]).length())
 				if aux <= move_range and aux >= maxDistance:
@@ -102,7 +102,7 @@ func move(attackName: String):
 				cell + Vector2(move_range - n, n*-1),
 				cell + Vector2((move_range - n)*-1, n*-1)
 			]
-			for i in range(0, 3):
+			for i in range(0, 4):
 				if (grid.is_within_bounds(cells[i]) and cells[i].x < 8):
 					var distanceToTarget = abs((cell - cells[i]).length())
 					var distanceToCharacter = abs((targetCell - cells[i]).length())
