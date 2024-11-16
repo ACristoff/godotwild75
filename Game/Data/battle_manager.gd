@@ -303,7 +303,7 @@ func manage_attack(attack_cells, team_to_hit):
 			#print('HIT', units[cell])
 			var unit = units[cell] as Unit
 			#handle_exorcism(unit, current_attack)
-			if grid.is_in_real_world(cell):
+			if grid.is_in_real_world(cell) && units[cell].health <= current_attack.DAMAGE:
 				if !unit.is_in_group("mikos"):
 					ghost_accumulator.append([
 						unit.self_scene_path,

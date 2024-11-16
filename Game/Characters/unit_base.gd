@@ -12,6 +12,7 @@ signal death
 @onready var _sprite: Sprite2D = $PathFollow2D/Sprite
 @onready var _anim_player: AnimationPlayer = $AnimationPlayer
 @onready var _path_follow: PathFollow2D = $PathFollow2D
+@onready var health_bar = $HealthBar
 
 #const VECTOR_DIRECTIONS = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 enum direction {UP, DOWN, LEFT, RIGHT}
@@ -26,7 +27,7 @@ var current_direction = direction.UP
 ## The unit's move speed when it's moving along a path.
 @export var move_speed := 600.0
 ## Texture representing the unit.
-@export var max_health := 1
+@export var max_health := 3
 
 #We use this to spawn this unit on the spirit world
 #Had to change this a string because it would consider it a circular ref
@@ -89,6 +90,7 @@ func _ready() -> void:
 
 	# We create the curve resource here because creating it in the editor prevents us from
 	# moving the unit.
+	health = max_health
 	if not Engine.is_editor_hint():
 		curve = Curve2D.new()
 
@@ -150,6 +152,7 @@ func die():
 
 #All the stuff for taking damage
 func take_damage(damage):
+	health_bar._take_damage(damage, max_health)
 	if !has_died:
 		health -= damage
 		if (health == 0):
