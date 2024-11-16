@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/Weapon_Shop.mp3-40e064da3f5ccbe1661f8cd6aa9c5
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

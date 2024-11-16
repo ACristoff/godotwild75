@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://dsa7ourik4j04"]
+[gd_scene load_steps=39 format=3 uid="uid://dsa7ourik4j04"]
 
 [ext_resource type="Shader" path="res://Assets/Shaders/followmousecard.gdshader" id="1_dbsal"]
 [ext_resource type="Script" path="res://Game/UI/weapon_shop.gd" id="1_se77a"]
@@ -26,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://dcons1gd0i0pj" path="res://Assets/Weapons/TridentBlack.png" id="20_ajnaf"]
 [ext_resource type="Texture2D" uid="uid://bs51qd7hyiqe4" path="res://Assets/Weapons/Trident.png" id="21_xh8ql"]
 [ext_resource type="AudioStream" uid="uid://cktu0tf4f7okq" path="res://Assets/Audio/UI/GUT PUNCH 4000.mp3" id="26_gdjpn"]
+[ext_resource type="AudioStream" uid="uid://cnd4ransgudc6" path="res://Assets/Audio/Music/Weapon_Shop.mp3" id="27_23a2o"]
 
 [sub_resource type="Gradient" id="Gradient_sjpbg"]
 colors = PackedColorArray(0.1, 0, 0.0716667, 1, 0.68, 0.872, 1, 1)
@@ -828,6 +829,10 @@ position = Vector2(640, 392)
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("26_gdjpn")
 pitch_scale = 0.3
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("27_23a2o")
+volume_db = -12.291
 
 [connection signal="pressed" from="CanvasLayer/ButtonArrow/TextureButton" to="." method="_on_texture_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/ButtonArrow2/TextureButton2" to="." method="_on_texture_button_2_pressed"]

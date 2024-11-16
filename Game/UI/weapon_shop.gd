@@ -77,6 +77,7 @@ var weapon_dummy_data = {
 }
 
 func _ready() -> void:
+	$AudioStreamPlayer2D2.play()
 	_locker(1000, weapon_dummy_data)
 	#onibi = 10000
 	_miko()
