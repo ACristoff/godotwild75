@@ -6,13 +6,13 @@ signal attack_chosen
 
 var vertical_offset = 40
 
-func new_button(attack_text, attack_key ):
+func new_button(attack_text, attack_obj ):
 	var attack_count = get_children().size()
 	var new_button_inst = attack_button.instantiate()
 	self.add_child(new_button_inst)
 	new_button_inst.text = attack_text
-	new_button_inst.attack_key = attack_key
-	new_button_inst.connect("pressed", emit_chosen.bind(attack_key))
+	new_button_inst.attack_key = attack_obj.weapon_name
+	new_button_inst.connect("pressed", emit_chosen.bind(attack_obj.weapon_name))
 	
 	#print(attack_count, attack_count * vertical_offset)
 	new_button_inst.position.y = attack_count * vertical_offset
@@ -21,27 +21,3 @@ func new_button(attack_text, attack_key ):
 func emit_chosen(attack_key):
 	attack_chosen.emit(attack_key)
 	pass
-
-var weapon_data = {
-	"dagger": {
-		"state" : 'UNLOCKED'
-	},
-	"fan": {
-		"state" : 'LOCKED'
-	},
-	"slingshot": {
-		"state" : 'LOCKED'
-	},
-	"katana": {
-		"state" : 'LOCKED'
-	},
-	"mace": {
-		"state" : 'LOCKED'
-	},
-	"bow": {
-		"state" : 'LOCKED'
-	},
-	"trident": {
-		"state" : 'LOCKED'
-	}
-}
