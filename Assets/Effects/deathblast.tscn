@@ -176,7 +176,7 @@ speed_scale = 2.0
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_5wf76")
 emitting = false
-amount = 10
+amount = 5
 process_material = SubResource("ParticleProcessMaterial_hpjko")
 texture = ExtResource("5_iwe1p")
 lifetime = 2.0
