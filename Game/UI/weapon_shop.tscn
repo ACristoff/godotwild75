@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dsa7ourik4j04"]
+[gd_scene load_steps=37 format=3 uid="uid://dsa7ourik4j04"]
 
 [ext_resource type="Shader" path="res://Assets/Shaders/followmousecard.gdshader" id="1_dbsal"]
 [ext_resource type="Script" path="res://Game/UI/weapon_shop.gd" id="1_se77a"]
@@ -14,6 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://lh1fepsa4x6e" path="res://Assets/UserInterface/Menu/ButtonArrow.png" id="7_pb0y3"]
 [ext_resource type="Texture2D" uid="uid://tallelojr4iq" path="res://Assets/Effects/Particles/Onibi.png" id="8_rkkt7"]
 [ext_resource type="Theme" uid="uid://b1i1vgp6mmqn5" path="res://Assets/Themes/Buttons.tres" id="8_t6lys"]
+[ext_resource type="ButtonGroup" uid="uid://c1m1ti5edo31g" path="res://Game/Data/weapon_shop_buttons/new_button_group.tres" id="9_5vr10"]
+[ext_resource type="Theme" uid="uid://bkbjf0fj24slc" path="res://Assets/Themes/WeaponShop.tres" id="9_v7ggj"]
 [ext_resource type="Texture2D" uid="uid://j4cqlw4tpk8b" path="res://Assets/Weapons/DaggerBlack.png" id="10_dkqhm"]
 [ext_resource type="Texture2D" uid="uid://cq7d6tugfcgel" path="res://Assets/Weapons/SamuraiBlack.png" id="12_v8inx"]
 [ext_resource type="Texture2D" uid="uid://fxuqi1s1qx4w" path="res://Assets/Weapons/MaceBlack.png" id="14_tfupd"]
@@ -40,6 +42,9 @@ adjustment_color_correction = SubResource("GradientTexture1D_4ttco")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2k6bh"]
 bg_color = Color(0.2112, 0.0768, 0.48, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ggthe"]
+bg_color = Color(0.294118, 0.105882, 0.670588, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mb6lr"]
 bg_color = Color(0.294118, 0.105882, 0.670588, 1)
@@ -71,6 +76,9 @@ shader_parameter/Position = 0.0
 shader_parameter/Position_Min = 0.25
 shader_parameter/Position_Max = 0.5
 shader_parameter/Alpha = 0.862
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qfqiw"]
+bg_color = Color(0.19, 0.0019, 0.0019, 1)
 
 [node name="WeaponShop" type="Node2D"]
 script = ExtResource("1_se77a")
@@ -109,7 +117,7 @@ size_flags_horizontal = 4
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("2_un46q")
 theme_override_font_sizes/font_size = 50
-text = "Select Your Weapon For"
+text = "Select Your Weapon"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -117,15 +125,8 @@ vertical_alignment = 1
 layout_mode = 2
 theme_override_constants/margin_top = 15
 
-[node name="Label2" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/MarginContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_un46q")
-theme_override_font_sizes/font_size = 50
-text = "- Miko -"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Miko" type="Sprite2D" parent="CanvasLayer"]
+visible = false
 position = Vector2(85, 665)
 scale = Vector2(4, 4)
 texture = ExtResource("6_y4seu")
@@ -133,6 +134,7 @@ hframes = 16
 frame = 8
 
 [node name="Heiko" type="Sprite2D" parent="CanvasLayer"]
+visible = false
 position = Vector2(204, 665)
 scale = Vector2(4, 4)
 texture = ExtResource("7_2673r")
@@ -195,16 +197,17 @@ offset_bottom = -32.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Button" type="Button" parent="CanvasLayer"]
+[node name="Infuse" type="Button" parent="CanvasLayer"]
 offset_left = 551.0
 offset_top = 591.0
 offset_right = 730.0
 offset_bottom = 654.0
 theme = ExtResource("8_t6lys")
 theme_override_styles/hover = SubResource("StyleBoxFlat_2k6bh")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ggthe")
 theme_override_styles/normal = SubResource("StyleBoxFlat_mb6lr")
 
-[node name="Label" type="Label" parent="CanvasLayer/Button"]
+[node name="Label" type="Label" parent="CanvasLayer/Infuse"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -214,6 +217,188 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_un46q")
 theme_override_font_sizes/font_size = 47
 text = "Infuse"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Select" type="Button" parent="CanvasLayer"]
+visible = false
+offset_left = 551.0
+offset_top = 591.0
+offset_right = 730.0
+offset_bottom = 654.0
+theme = ExtResource("9_v7ggj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2k6bh")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ggthe")
+theme_override_styles/normal = SubResource("StyleBoxFlat_mb6lr")
+toggle_mode = true
+button_group = ExtResource("9_5vr10")
+
+[node name="Label" type="Label" parent="CanvasLayer/Select"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_un46q")
+theme_override_font_sizes/font_size = 47
+text = "Select"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Select2" type="Button" parent="CanvasLayer"]
+visible = false
+offset_left = 551.0
+offset_top = 591.0
+offset_right = 730.0
+offset_bottom = 654.0
+theme = ExtResource("8_t6lys")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2k6bh")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ggthe")
+theme_override_styles/normal = SubResource("StyleBoxFlat_mb6lr")
+toggle_mode = true
+button_group = ExtResource("9_5vr10")
+
+[node name="Label" type="Label" parent="CanvasLayer/Select2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_un46q")
+theme_override_font_sizes/font_size = 47
+text = "Select"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Select3" type="Button" parent="CanvasLayer"]
+visible = false
+offset_left = 551.0
+offset_top = 591.0
+offset_right = 730.0
+offset_bottom = 654.0
+theme = ExtResource("8_t6lys")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2k6bh")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ggthe")
+theme_override_styles/normal = SubResource("StyleBoxFlat_mb6lr")
+toggle_mode = true
+button_group = ExtResource("9_5vr10")
+
+[node name="Label" type="Label" parent="CanvasLayer/Select3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_un46q")
+theme_override_font_sizes/font_size = 47
+text = "Select"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Select4" type="Button" parent="CanvasLayer"]
+visible = false
+offset_left = 551.0
+offset_top = 591.0
+offset_right = 730.0
+offset_bottom = 654.0
+theme = ExtResource("8_t6lys")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2k6bh")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ggthe")
+theme_override_styles/normal = SubResource("StyleBoxFlat_mb6lr")
+toggle_mode = true
+button_group = ExtResource("9_5vr10")
+
+[node name="Label" type="Label" parent="CanvasLayer/Select4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_un46q")
+theme_override_font_sizes/font_size = 47
+text = "Select"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Select5" type="Button" parent="CanvasLayer"]
+visible = false
+offset_left = 551.0
+offset_top = 591.0
+offset_right = 730.0
+offset_bottom = 654.0
+theme = ExtResource("8_t6lys")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2k6bh")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ggthe")
+theme_override_styles/normal = SubResource("StyleBoxFlat_mb6lr")
+toggle_mode = true
+button_group = ExtResource("9_5vr10")
+
+[node name="Label" type="Label" parent="CanvasLayer/Select5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_un46q")
+theme_override_font_sizes/font_size = 47
+text = "Select"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Select6" type="Button" parent="CanvasLayer"]
+visible = false
+offset_left = 551.0
+offset_top = 591.0
+offset_right = 730.0
+offset_bottom = 654.0
+theme = ExtResource("8_t6lys")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2k6bh")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ggthe")
+theme_override_styles/normal = SubResource("StyleBoxFlat_mb6lr")
+toggle_mode = true
+button_group = ExtResource("9_5vr10")
+
+[node name="Label" type="Label" parent="CanvasLayer/Select6"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_un46q")
+theme_override_font_sizes/font_size = 47
+text = "Select"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Select7" type="Button" parent="CanvasLayer"]
+visible = false
+offset_left = 551.0
+offset_top = 591.0
+offset_right = 730.0
+offset_bottom = 654.0
+theme = ExtResource("8_t6lys")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2k6bh")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ggthe")
+theme_override_styles/normal = SubResource("StyleBoxFlat_mb6lr")
+toggle_mode = true
+button_group = ExtResource("9_5vr10")
+
+[node name="Label" type="Label" parent="CanvasLayer/Select7"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_un46q")
+theme_override_font_sizes/font_size = 47
+text = "Select"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -286,12 +471,12 @@ scale = Vector2(4, 4)
 pivot_offset = Vector2(16, 10)
 size_flags_horizontal = 4
 size_flags_vertical = 4
+max_value = 50.0
 fill_mode = 3
 texture_under = ExtResource("10_dkqhm")
 texture_progress = ExtResource("2_j5240")
 
 [node name="ColorRect" type="ColorRect" parent="Path2D/Pnt1/Dagger"]
-visible = false
 material = SubResource("ShaderMaterial_1klnm")
 layout_mode = 1
 anchors_preset = 15
@@ -313,8 +498,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Pnt2" type="PathFollow2D" parent="Path2D"]
-position = Vector2(401.58, 329.305)
-scale = Vector2(1, 1)
+position = Vector2(401.581, 329.305)
 progress = 240.704
 rotates = false
 
@@ -335,6 +519,7 @@ scale = Vector2(4, 4)
 pivot_offset = Vector2(16, 24)
 size_flags_horizontal = 4
 size_flags_vertical = 4
+max_value = 888.0
 fill_mode = 3
 texture_under = ExtResource("20_ajnaf")
 texture_progress = ExtResource("21_xh8ql")
@@ -351,9 +536,10 @@ grow_vertical = 2
 pivot_offset = Vector2(16, 16)
 
 [node name="Cost" type="Label" parent="Path2D/Pnt2"]
+visible = false
 offset_left = -34.5804
 offset_top = -127.305
-offset_right = 27.4196
+offset_right = 33.4196
 offset_bottom = -97.3052
 theme_override_fonts/font = ExtResource("2_un46q")
 theme_override_font_sizes/font_size = 25
@@ -362,7 +548,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Pnt3" type="PathFollow2D" parent="Path2D"]
-position = Vector2(284.831, 225.783)
+position = Vector2(284.83, 225.783)
 progress = 481.408
 rotates = false
 
@@ -383,6 +569,7 @@ scale = Vector2(4, 4)
 pivot_offset = Vector2(16, 24)
 size_flags_horizontal = 4
 size_flags_vertical = 4
+max_value = 520.0
 fill_mode = 3
 texture_under = ExtResource("16_eqbf6")
 texture_progress = ExtResource("17_efqft")
@@ -399,9 +586,10 @@ grow_vertical = 2
 pivot_offset = Vector2(16, 16)
 
 [node name="Cost" type="Label" parent="Path2D/Pnt3"]
+visible = false
 offset_left = -35.0001
 offset_top = -129.0
-offset_right = 26.9999
+offset_right = 32.9999
 offset_bottom = -98.9999
 theme_override_fonts/font = ExtResource("2_un46q")
 theme_override_font_sizes/font_size = 25
@@ -410,7 +598,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Pnt4" type="PathFollow2D" parent="Path2D"]
-position = Vector2(520.79, 180.747)
+position = Vector2(520.789, 180.747)
 progress = 722.112
 rotates = false
 
@@ -431,6 +619,7 @@ scale = Vector2(4, 4)
 pivot_offset = Vector2(16, 24)
 size_flags_horizontal = 4
 size_flags_vertical = 4
+max_value = 400.0
 fill_mode = 3
 texture_under = ExtResource("14_tfupd")
 texture_progress = ExtResource("4_00y55")
@@ -447,6 +636,7 @@ grow_vertical = 2
 pivot_offset = Vector2(16, 16)
 
 [node name="Cost" type="Label" parent="Path2D/Pnt4"]
+visible = false
 offset_left = -35.0001
 offset_top = -127.0
 offset_right = 26.9999
@@ -479,6 +669,7 @@ scale = Vector2(4, 4)
 pivot_offset = Vector2(16, 24)
 size_flags_horizontal = 4
 size_flags_vertical = 4
+max_value = 240.0
 fill_mode = 3
 texture_under = ExtResource("12_v8inx")
 texture_progress = ExtResource("3_px7ts")
@@ -495,6 +686,7 @@ grow_vertical = 2
 pivot_offset = Vector2(16, 16)
 
 [node name="Cost" type="Label" parent="Path2D/Pnt5"]
+visible = false
 offset_left = -35.0001
 offset_top = -131.0
 offset_right = 26.9999
@@ -506,7 +698,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Pnt6" type="PathFollow2D" parent="Path2D"]
-position = Vector2(996.742, 226.373)
+position = Vector2(996.741, 226.373)
 progress = 1203.52
 rotates = false
 
@@ -543,6 +735,7 @@ grow_vertical = 2
 pivot_offset = Vector2(16, 16)
 
 [node name="Cost" type="Label" parent="Path2D/Pnt6"]
+visible = false
 offset_left = -35.0001
 offset_top = -91.9999
 offset_right = 26.9999
@@ -555,7 +748,7 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Pnt7" type="PathFollow2D" parent="Path2D"]
-position = Vector2(876.772, 329.654)
+position = Vector2(876.777, 329.653)
 progress = 1444.22
 rotates = false
 
@@ -576,6 +769,7 @@ scale = Vector2(4, 4)
 pivot_offset = Vector2(16, 15)
 size_flags_horizontal = 4
 size_flags_vertical = 4
+max_value = 80.0
 fill_mode = 3
 texture_under = ExtResource("3_qv0y3")
 texture_progress = ExtResource("5_2pmfo")
@@ -598,6 +792,7 @@ grow_vertical = 2
 pivot_offset = Vector2(16, 16)
 
 [node name="Cost" type="Label" parent="Path2D/Pnt7"]
+visible = false
 offset_left = -35.0001
 offset_top = -91.9999
 offset_right = 26.9999
@@ -611,8 +806,42 @@ vertical_alignment = 1
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.001
 
+[node name="FlameStart" type="Marker2D" parent="."]
+position = Vector2(84, 120)
+
+[node name="FlameEnd" type="Marker2D" parent="."]
+position = Vector2(640, 392)
+
+[node name="Button" type="Button" parent="."]
+offset_left = 1001.0
+offset_top = 589.0
+offset_right = 1253.0
+offset_bottom = 688.0
+theme = ExtResource("8_t6lys")
+theme_override_colors/font_color = Color(0.97, 0.646667, 0.194, 1)
+theme_override_fonts/font = ExtResource("2_un46q")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_qfqiw")
+text = "BATTLE"
+
 [connection signal="pressed" from="CanvasLayer/ButtonArrow/TextureButton" to="." method="_on_texture_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/ButtonArrow2/TextureButton2" to="." method="_on_texture_button_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/Infuse" to="." method="_on_infuse_pressed"]
+[connection signal="pressed" from="CanvasLayer/Select" to="." method="_on_select_pressed"]
+[connection signal="toggled" from="CanvasLayer/Select" to="." method="_on_select_toggled"]
+[connection signal="pressed" from="CanvasLayer/Select2" to="." method="_on_select_2_pressed"]
+[connection signal="toggled" from="CanvasLayer/Select2" to="." method="_on_select_2_toggled"]
+[connection signal="pressed" from="CanvasLayer/Select3" to="." method="_on_select_3_pressed"]
+[connection signal="toggled" from="CanvasLayer/Select3" to="." method="_on_select_3_toggled"]
+[connection signal="pressed" from="CanvasLayer/Select4" to="." method="_on_select_4_pressed"]
+[connection signal="toggled" from="CanvasLayer/Select4" to="." method="_on_select_4_toggled"]
+[connection signal="pressed" from="CanvasLayer/Select5" to="." method="_on_select_5_pressed"]
+[connection signal="toggled" from="CanvasLayer/Select5" to="." method="_on_select_5_toggled"]
+[connection signal="pressed" from="CanvasLayer/Select6" to="." method="_on_select_6_pressed"]
+[connection signal="toggled" from="CanvasLayer/Select6" to="." method="_on_select_6_toggled"]
+[connection signal="pressed" from="CanvasLayer/Select7" to="." method="_on_select_7_pressed"]
+[connection signal="toggled" from="CanvasLayer/Select7" to="." method="_on_select_7_toggled"]
 [connection signal="pressed" from="Miko" to="." method="_on_miko_pressed"]
 [connection signal="pressed" from="Heiko" to="." method="_on_heiko_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
