@@ -15,6 +15,7 @@
 [node name="DebugLevel" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_uyhos")
+grid = null
 
 [node name="Environment" parent="." instance=ExtResource("2_p8do1")]
 

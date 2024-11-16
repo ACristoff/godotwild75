@@ -54,7 +54,7 @@ func mutate_attack(attack_pattern):
 ##Finds the next unit in a given team that has moves available
 func find_next_possible(team):
 	for unit in team:
-		var current = units[unit] as PlayerUnit
+		var current = units[unit] as Unit
 		if !current.has_moved:
 			return current
 	return null
@@ -70,12 +70,13 @@ func turn_manager():
 	else:
 		##TODO Do enemy turns here
 		var next_unit = find_next_possible(enemies)
-		next_unit.enemyBrain(units)
-		if next_unit == null:
-			is_enemy_turn = false
-			is_player_turn = true
-			turn_indicator._SwitchingTurn()
-		pass
+		while next_unit != null:
+			next_unit.enemyBrain(units)
+			next_unit.has_moved = true
+			next_unit = find_next_possible(enemies)
+		is_enemy_turn = false
+		is_player_turn = true
+		turn_indicator._SwitchingTurn()
 	pass
 
 ## Clears, and refills the `_units` dictionary with game objects that are on the board.
@@ -176,7 +177,7 @@ func flood_fill(origin: Vector2, max_distance: int, ignore_dudes: bool):
 			stack.append(coordinates)
 	return array
 
-func select_unit(cell: Vector2):	
+func select_unit(cell: Vector2):
 	#checks if the cell has a unit entry
 	if not units.has(cell):
 		return

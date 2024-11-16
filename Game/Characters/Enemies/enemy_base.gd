@@ -6,11 +6,7 @@ class_name EnemyUnit
 var targetCharacter : PlayerUnit = null
 #All characters on screen
 var characterList
-var hasActed = false
-
-@onready var battleManager : BattleManager = get_parent()
-
-
+var has_moved = false
 
 func _ready():
 	super()
@@ -19,12 +15,13 @@ func _ready():
 	
 func _process(delta):
 	super(delta)
-	if true and !hasActed:
-		enemyBrain()
+	##TODO: CHANGE TRUE TO IS ENEMY TURN!!
+	if true and !has_moved:
+		has_moved = true
 
 func _init():
 	super()
 	health = 1
 
-func enemyBrain():
+func enemyBrain(boardState):
 	pass
