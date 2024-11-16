@@ -5,23 +5,25 @@ class_name Kitsune
 #HP = 2???
 
 var kitsune_attacks = {
-	"Water Cannon": {
-		"RANGE": 4,
+	"Spirit Flame": {
+		"RANGE": 3,
 		"DAMAGE": 2,
 		"MOVE": Vector2(0,0),
 		"EXORCISM": false,
 		"BLAST_PATTERN": [],
-		"ATTACK_PATTERN": [Vector2(0,0)]
+		"ATTACK_PATTERN": [Vector2(0,0), Vector2(0, -1), Vector2(-1, 0), Vector2(0, 1), Vector2(1, 0),]
 	},
 }
 
+#Targets a cell, not a character
+var targetCell = Vector2.ZERO
 var targetOnRange = false
 
 func _ready():
 	super()
 	move_range = 2
 	set_process(true)
-	getTargetCharacter()
+	getTargetCharacter("Spirit Flame")
 
 func _process(delta):
 	super(delta)
@@ -33,30 +35,36 @@ func _init():
 func enemyBrain():
 	super()
 	#Attack if able, if not move first.
-	move("Water Cannon")
+	move("Spirit Flame")
 	if(targetOnRange):
 		rangedAttack()
 	hasActed = true
 
-func getTargetCharacter():
-	#Target furthest character
-	var maxDistance = 0
+func getTargetCharacter(attackName: String):
+	#Target most amount of characters in AoE range
+	var characterAmount = 0
+	var minDistance = 1000
 	var auxOnRange = false
-	for ch in characterList:
-		if ch.cell.x < 7:
-			var distance = abs(cell.x - ch.cell.x + ch.cell.y - cell.y)
-			#If character is on range of attack, that's the character I'm focusing on.
-			if distance <= attacks["Water Cannon"]["RANGE"]:
-				targetOnRange = true
-				auxOnRange = true
-			else:
-				targetOnRange = false
-			#If there's another character with a greater distance and on range, change targets there.
-			#If there's no character on range, target furthest character.
-			if (distance > maxDistance and targetOnRange) or (!targetOnRange and !auxOnRange):
-				maxDistance = distance
-				targetCharacter = ch
-	targetOnRange = auxOnRange
+	#Loop through every cell in the grid (FUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+	for x in range(0, 7):
+		for y in range(0, 7):
+			var target = Vector2(x, y)
+			var cells = []
+			for i in attacks[attackName]["ATTACK_PATTERN"]:
+				cells.append(attacks[attackName]["ATTACK_PATTERN"][i])
+			pass
+			#var distance = abs(cell.x - ch.cell.x + ch.cell.y - cell.y)
+			##If character is on range of attack, that's the character I'm focusing on.
+			#if distance <= attacks[attackName]["RANGE"]:
+				#targetOnRange = true
+				#targetCharacter = ch
+				#minDistance = distance
+			#else:
+				#targetOnRange = false
+			##If there's no character on range of attack, target closest.
+			#if (distance < minDistance):
+				#minDistance = distance
+				#targetCharacter = ch
 	
 func rangedAttack():
 	print("attacking")
