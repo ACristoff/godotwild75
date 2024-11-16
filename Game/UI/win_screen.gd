@@ -1,6 +1,7 @@
 extends Node2D
 
-
+signal itemshop
+signal retry
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$AudioStreamPlayer2D.play()
@@ -12,9 +13,8 @@ func _process(delta: float) -> void:
 
 
 func _on_onward_pressed() -> void:
-	LevelManager.nextLevel()
+	itemshop.emit()
 
 
 func _on_retry_pressed() -> void:
-	#start this level
-	pass
+	retry.emit()
