@@ -21,3 +21,27 @@ func new_button(attack_text, attack_key ):
 func emit_chosen(attack_key):
 	attack_chosen.emit(attack_key)
 	pass
+
+var weapon_data = {
+	"dagger": {
+		"state" : 'UNLOCKED'
+	},
+	"fan": {
+		"state" : 'LOCKED'
+	},
+	"slingshot": {
+		"state" : 'LOCKED'
+	},
+	"katana": {
+		"state" : 'LOCKED'
+	},
+	"mace": {
+		"state" : 'LOCKED'
+	},
+	"bow": {
+		"state" : 'LOCKED'
+	},
+	"trident": {
+		"state" : 'LOCKED'
+	}
+}
