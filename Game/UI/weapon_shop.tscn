@@ -52,7 +52,7 @@ bg_color = Color(0.294118, 0.105882, 0.670588, 1)
 bg_color = Color(0.294118, 0.105882, 0.670588, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qfqiw"]
-bg_color = Color(0, 0.219608, 0.611765, 1)
+bg_color = Color(0.294118, 0.105882, 0.670588, 1)
 
 [sub_resource type="Gradient" id="Gradient_7spl3"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -233,6 +233,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_2k6bh")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ggthe")
 theme_override_styles/normal = SubResource("StyleBoxFlat_mb6lr")
 toggle_mode = true
+button_pressed = true
 button_group = ExtResource("9_5vr10")
 
 [node name="Label" type="Label" parent="CanvasLayer/Select"]
@@ -421,11 +422,11 @@ offset_top = 589.0
 offset_right = 1253.0
 offset_bottom = 688.0
 theme = ExtResource("8_t6lys")
-theme_override_colors/font_color = Color(0, 0.0156863, 0.160784, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_un46q")
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_qfqiw")
-text = "BATTLE"
+text = "BATTLE!"
 
 [node name="Miko" type="Button" parent="."]
 self_modulate = Color(1, 1, 1, 0)

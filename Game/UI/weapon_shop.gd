@@ -54,25 +54,32 @@ var pos7 = 0.858
 
 var weapon_dummy_data = {
 	"dagger": {
-		"state" : 'LOCKED'
+		"state" : 'LOCKED',
+		"selected" : 'YES'
 	},
 	"fan": {
-		"state" : 'LOCKED'
+		"state" : 'LOCKED',
+		"selected" : 'NO'
 	},
 	"slingshot": {
-		"state" : 'LOCKED'
+		"state" : 'LOCKED',
+		"selected" : 'NO'
 	},
 	"katana": {
-		"state" : 'LOCKED'
+		"state" : 'LOCKED',
+		"selected" : 'NO'
 	},
 	"mace": {
-		"state" : 'LOCKED'
+		"state" : 'LOCKED',
+		"selected" : 'NO'
 	},
 	"bow": {
-		"state" : 'LOCKED'
+		"state" : 'LOCKED',
+		"selected" : 'NO'
 	},
 	"trident": {
-		"state" : 'LOCKED'
+		"state" : 'LOCKED',
+		"selected" : 'NO'
 	}
 }
 
