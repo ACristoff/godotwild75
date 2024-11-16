@@ -31,6 +31,7 @@ var bought7 = false
 var chosen_weapon = ""
 
 signal confirm_weapon
+signal on_unlock
 
 @onready var whosSelect = $CanvasLayer/MarginContainer/VBoxContainer/MarginContainer/Label2
 @onready var Value = $CanvasLayer/MarginContainer2/HBoxContainer/Label
@@ -53,28 +54,27 @@ var pos7 = 0.858
 
 var weapon_dummy_data = {
 	"dagger": {
-		"state" : 'UNLOCKED'
+		"state" : 'LOCKED'
 	},
 	"fan": {
-		"state" : 'UNLOCKED'
+		"state" : 'LOCKED'
 	},
 	"slingshot": {
-		"state" : 'UNLOCKED'
+		"state" : 'LOCKED'
 	},
 	"katana": {
-		"state" : 'UNLOCKED'
+		"state" : 'LOCKED'
 	},
 	"mace": {
-		"state" : 'UNLOCKED'
+		"state" : 'LOCKED'
 	},
 	"bow": {
-		"state" : 'UNLOCKED'
+		"state" : 'LOCKED'
 	},
 	"trident": {
-		"state" : 'UNLOCKED'
+		"state" : 'LOCKED'
 	}
 }
-
 
 func _ready() -> void:
 	_locker(1000, weapon_dummy_data)
@@ -410,6 +410,7 @@ func _on_heiko_pressed() -> void:
 	#slingshot.progress_ratio += .001
 	#fan.progress_ratio += .001
 func _refresh_buttons():
+	$AudioStreamPlayer2D.pitch_scale = .3
 	update_select()
 	accept = true
 	loop_break = false
@@ -504,6 +505,7 @@ func _on_texture_button_2_pressed() -> void:
 			#$CanvasLayer/ButtonArrow/TextureButton.disabled = true
 			#$CanvasLayer/ButtonArrow2/TextureButton2.disabled = true
 func unlock_dagger():
+	on_unlock.emit("dagger")
 	bought1 = true
 	update_select()
 	_refresh_buttons()
@@ -512,6 +514,7 @@ func unlock_dagger():
 	loop_break = true
 	$Path2D/Pnt1/Dagger.value = 50
 func unlock_fan():
+	on_unlock.emit("fan")
 	bought2 = true
 	update_select()
 	_refresh_buttons()
@@ -520,6 +523,7 @@ func unlock_fan():
 	loop_break = true
 	$Path2D/Pnt7/Fan.value = 80
 func unlock_slingshot():
+	on_unlock.emit("slingshot")
 	bought3 = true
 	update_select()
 	_refresh_buttons()
@@ -528,6 +532,7 @@ func unlock_slingshot():
 	loop_break = true
 	$Path2D/Pnt6/Slingshot.value = 100
 func unlock_katana():
+	on_unlock.emit("katana")
 	bought4 = true
 	update_select()
 	_refresh_buttons()
@@ -536,6 +541,7 @@ func unlock_katana():
 	loop_break = true
 	$Path2D/Pnt5/Katana.value = 240
 func unlock_mace():
+	on_unlock.emit("mace")
 	bought5 = true
 	update_select()
 	_refresh_buttons()
@@ -544,6 +550,7 @@ func unlock_mace():
 	loop_break = true
 	$Path2D/Pnt4/Mace.value = 400
 func unlock_bow():
+	on_unlock.emit("bow")
 	bought6 = true
 	update_select()
 	_refresh_buttons()
@@ -552,6 +559,7 @@ func unlock_bow():
 	loop_break = true
 	$Path2D/Pnt3/Bow.value = 520
 func unlock_trident():
+	on_unlock.emit("trident")
 	bought7 = true
 	update_select()
 	_refresh_buttons()
@@ -561,6 +569,8 @@ func unlock_trident():
 	$Path2D/Pnt2/Trident.value = 888
 func fill_selection():
 	fill_price += 1
+	$AudioStreamPlayer2D.play()
+	$AudioStreamPlayer2D.pitch_scale += .005
 	update_visuals()
 func update_visuals():
 	if accept == true:
@@ -669,6 +679,7 @@ func _on_infuse_pressed() -> void:
 				if onibi != 0:
 					print(onibi_refund)
 					onibi -= 1
+					#$AudioStreamPlayer2D.pitch_scale += .5
 					onibi_refund += 1
 					await(get_tree().create_timer(frequency).timeout)
 					#print("hi")
@@ -682,7 +693,7 @@ func _on_infuse_pressed() -> void:
 					break
 			else:
 				break
-		#_refresh_buttons()
+			#$AudioStreamPlayer2D.pitch_scale = .3
 	elif onibi > cost:
 		for i in cost:
 			if loop_break == false:
@@ -690,6 +701,7 @@ func _on_infuse_pressed() -> void:
 					print(onibi_refund)
 					onibi -= 1
 					onibi_refund += 1
+					#$AudioStreamPlayer2D.pitch_scale += .5
 					await(get_tree().create_timer(frequency).timeout)
 					#print("hi")
 					var FLAME = flame.instantiate()
@@ -702,7 +714,7 @@ func _on_infuse_pressed() -> void:
 					break
 			else:
 				break
-		#_refresh_buttons()
+			#$AudioStreamPlayer2D.pitch_scale = .3
 	elif onibi < cost:
 		for i in onibi:
 			if loop_break == false:
@@ -727,6 +739,7 @@ func _on_infuse_pressed() -> void:
 			onibi_to_be_killed.queue_free()
 		onibi = onibi_refund
 		fill_price = 0
+		#$AudioStreamPlayer2D.pitch_scale = .3
 		update_visuals()
 		_refresh_buttons()
 
@@ -777,7 +790,9 @@ func _on_select_7_toggled(toggled_on: bool) -> void:
 
 
 func _on_button_pressed() -> void:
-	pass # Replace with function body.
+	_confirmed()
+	LevelManager.nextLevel()
+	
 	
 func _confirmed():
 	confirm_weapon.emit(chosen_weapon)
