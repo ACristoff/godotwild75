@@ -1,5 +1,30 @@
-[gd_scene load_steps=2 format=3 uid="uid://bnv0fgh85dryf"]
+[gd_scene load_steps=7 format=3 uid="uid://dudkvypcuepqu"]
 
 [ext_resource type="PackedScene" uid="uid://cx4kwdcn8ymig" path="res://Game/Characters/Friendlies/player_unit.tscn" id="1_ymjot"]
 
+[sub_resource type="Animation" id="Animation_r60cx"]
+resource_name = "idle_UP"
+
+[sub_resource type="Animation" id="Animation_wo3l8"]
+resource_name = "idle_LEFT"
+
+[sub_resource type="Animation" id="Animation_ep4l5"]
+resource_name = "idle_RIGHT"
+
+[sub_resource type="Animation" id="Animation_jw8cl"]
+resource_name = "idle_DOWN"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_flse4"]
+_data = {
+"idle_DOWN": SubResource("Animation_jw8cl"),
+"idle_LEFT": SubResource("Animation_wo3l8"),
+"idle_RIGHT": SubResource("Animation_ep4l5"),
+"idle_UP": SubResource("Animation_r60cx")
+}
+
 [node name="SpiritHeiko" instance=ExtResource("1_ymjot")]
+
+[node name="AnimationPlayer" parent="." index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_flse4")
+}
