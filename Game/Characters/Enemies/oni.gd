@@ -8,7 +8,7 @@ var oni_attacks = {
 	"Club Strike": {
 		"RANGE": 1,
 		"DAMAGE": 3,
-		"ATTACK_PATTERN": [Vector2(0,0)]
+		"ATTACK_VECS": [Vector2(0,0)]
 	},
 }
 

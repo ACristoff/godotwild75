@@ -5,7 +5,7 @@ var tanuki_attacks = {
 	"Ball Toss": {
 		"RANGE": 3,
 		"DAMAGE": 1,
-		"ATTACK_PATTERN": [Vector2(0,0)]
+		"ATTACK_VECS": [Vector2(0,0)]
 	},
 }
 

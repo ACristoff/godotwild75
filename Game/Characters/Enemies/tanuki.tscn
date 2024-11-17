@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://dum5u6tcatqu7"]
+[gd_scene load_steps=3 format=3 uid="uid://dfdi4uw2mg150"]
 
 [ext_resource type="PackedScene" uid="uid://cg34obo360a5w" path="res://Game/Characters/Enemies/enemy_base.tscn" id="1_umwdn"]
 [ext_resource type="Script" path="res://Game/Characters/Enemies/tanuki.gd" id="2_daeit"]
@@ -6,8 +6,5 @@
 [node name="Tanuki" instance=ExtResource("1_umwdn")]
 script = ExtResource("2_daeit")
 max_health = 3
-self_scene_path = ""
+self_scene_path = "res://Game/Characters/Enemies/kitsune.tscn"
 health = 0
-
-[node name="HealthBar" parent="." index="2"]
-position = Vector2(1, -67)

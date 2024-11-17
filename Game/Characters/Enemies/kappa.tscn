@@ -53,6 +53,3 @@ libraries = {
 "": SubResource("AnimationLibrary_akc3o")
 }
 autoplay = "Kappa"
-
-[node name="HealthBar" parent="." index="2"]
-position = Vector2(0, -71)

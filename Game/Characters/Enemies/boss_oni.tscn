@@ -6,5 +6,5 @@
 [node name="BossOni" instance=ExtResource("1_fd6ws")]
 script = ExtResource("2_nxcf8")
 max_health = 3
-self_scene_path = ""
+self_scene_path = "D:/Nico/Proyectos/GODOT/GodotWild75/Game/Characters/Enemies/boss_oni.tscn"
 health = 0

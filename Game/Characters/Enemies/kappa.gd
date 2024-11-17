@@ -8,7 +8,7 @@ var kappa_attacks = {
 	"Water Cannon": {
 		"RANGE": 4,
 		"DAMAGE": 2,
-		"ATTACK_PATTERN": [Vector2(0,0)]
+		"ATTACK_VECS": [Vector2(0,0)]
 	},
 }
 

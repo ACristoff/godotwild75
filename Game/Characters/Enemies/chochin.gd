@@ -8,7 +8,7 @@ var chochin_attacks = {
 	"Flamethrower": {
 		"RANGE": 2,
 		"DAMAGE": 2,
-		"ATTACK_PATTERN": [Vector2(0,0), Vector2(0, 1)]
+		"ATTACK_VECS": [Vector2(0,0), Vector2(0, 1)]
 	},
 }
 
@@ -48,7 +48,7 @@ func getTargetCharacter(attackName: String, boardState):
 			var auxAmount = 0
 			#Look at a certain cell in the grid
 			var target = Vector2(x, y)
-			var cells = attacks[attackName]["ATTACK_PATTERN"]
+			var cells = attacks[attackName]["ATTACK_VECS"]
 			#Check all surrounding cells (for the AoE effect)
 			for c in cells:
 				var lookin = Vector2(x, y) + c

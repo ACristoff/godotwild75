@@ -105,6 +105,7 @@ func reinitialize():
 		if unit is PlayerUnit:
 			friendlies[unit.cell] = unit
 			unit.connect("unit_state_change", on_unit_state_change)
+			unit.connect("turnEnded", _on_turn_ended)
 			##Code for spawning and setting the spirit miko
 			##Spawning code will mirror a lot of the requirements here
 			if unit.is_in_group("miko"):
@@ -260,7 +261,6 @@ func deselect_unit():
 	attack_overlay.clear()
 	hit_overlay.kill_kids()
 	unit_path.stop()
-	current_rotation = "up"
 
 func move_current_unit(new_cell: Vector2):
 	if is_occupied(new_cell) or not new_cell in walkable_cells:
@@ -279,9 +279,7 @@ func move_current_unit(new_cell: Vector2):
 		else:
 			miko_walk(miko, unit_path.current_path, origin)
 	await active_unit.walk_finished
-	active_unit.has_moved = true
 	clear_active_unit()
-	turn_manager()
 
 func miko_walk(miko_to_move, walk_vectors, origin):
 	var new_path: PackedVector2Array
@@ -464,3 +462,6 @@ func _on_cursor_deselect_pressed():
 		AudioManager.play_sfx(deselect_sound, 1)
 		deselect_unit()
 		clear_active_unit()
+		
+func _on_turn_ended():
+	turn_manager()

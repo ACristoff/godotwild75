@@ -1,8 +1,23 @@
-[gd_scene load_steps=7 format=3 uid="uid://c7jhfoocdh6d6"]
+[gd_scene load_steps=7 format=3 uid="uid://p7hcn583iptc"]
 
 [ext_resource type="PackedScene" uid="uid://cg34obo360a5w" path="res://Game/Characters/Enemies/enemy_base.tscn" id="1_mfn4k"]
 [ext_resource type="Script" path="res://Game/Characters/Enemies/tengu.gd" id="2_xn5yj"]
 [ext_resource type="Texture2D" uid="uid://ddc5qgpoykcvd" path="res://Assets/Characters/Enemies/Tengu.png" id="3_2pslt"]
+
+[sub_resource type="Animation" id="Animation_y67qb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_ef1om"]
 resource_name = "Tengu"
@@ -22,21 +37,6 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
 
-[sub_resource type="Animation" id="Animation_y67qb"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PathFollow2D/Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6n7yw"]
 _data = {
 "RESET": SubResource("Animation_y67qb"),
@@ -46,7 +46,7 @@ _data = {
 [node name="Tengu" instance=ExtResource("1_mfn4k")]
 script = ExtResource("2_xn5yj")
 max_health = 3
-self_scene_path = ""
+self_scene_path = "D:/Nico/Proyectos/GODOT/GodotWild75/Game/Characters/Enemies/tengu.tscn"
 health = 0
 skin = ExtResource("3_2pslt")
 
@@ -60,6 +60,3 @@ libraries = {
 "": SubResource("AnimationLibrary_6n7yw")
 }
 autoplay = "Tengu"
-
-[node name="HealthBar" parent="." index="2"]
-position = Vector2(0, -74)

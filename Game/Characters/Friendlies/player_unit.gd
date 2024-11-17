@@ -25,8 +25,12 @@ var is_selected := false:
 			#_anim_player.play("idle")
 
 var has_moved = false
+
+var has_walked = false
 var has_attacked = false
 var current_attack = null
+
+signal turnEnded
 
 #Action select
 #Spawn the action select
@@ -60,11 +64,15 @@ func state_change(state):
 
 func finish_walk():
 	super()
+	has_walked = true
+	checkTurnEnded()
 	state_change(unit_states.IDLE)
 	action_ui.disable_move()
 	pass
 
 func finish_attack():
+	has_attacked = true
+	checkTurnEnded()
 	action_ui.disable_attack()
 
 func _on_action_select_attack_selected():
@@ -85,3 +93,8 @@ func _on_action_select_attack_chosen(attack):
 	#action_select(false)
 	action_ui.close()
 	pass # Replace with function body.
+
+func checkTurnEnded():
+	if has_attacked and has_walked:
+		has_moved = true
+		turnEnded.emit()

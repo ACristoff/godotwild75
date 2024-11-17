@@ -50,7 +50,7 @@ func doAttack(attackName: String):
 	var attack = attacks[attackName]
 	var attack_cells = battleManager.get_attack_cells(self, attack)
 	#battleManager.attack_overlay.draw(attack_cells)
-	battleManager.hit_overlay.make_squares(attack)
+	battleManager.hit_overlay.make_squares(attack["ATTACK_VECS"])
 	battleManager.hit_overlay.position = grid.calculate_map_position(cell)
 	#Give it a second
 	await get_tree().create_timer(1).timeout
@@ -60,7 +60,7 @@ func doAttack(attackName: String):
 		pass
 	#If the enemy targets a Cell (AoE attacks)
 	else:
-		for c in attack["ATTACK_PATTERN"]:
+		for c in attack["ATTACK_VECS"]:
 			var lookin = targetCell + c
 			#Register amount of characters in that AoE
 			if boardState.has(lookin) and boardState[lookin] is PlayerUnit:
