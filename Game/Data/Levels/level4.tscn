@@ -31,7 +31,7 @@ y_sort_origin = -1
 [node name="ExplosionOverlay" parent="." instance=ExtResource("6_x8n3n")]
 
 [node name="MikoUnit" parent="." instance=ExtResource("7_ibl75")]
-position = Vector2(545, 356)
+position = Vector2(481, 548)
 max_health = 3
 
 [node name="HeikoUnit" parent="." instance=ExtResource("9_6ue6m")]

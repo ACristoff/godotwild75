@@ -94,7 +94,7 @@ func move(attackName: String):
 				cell + Vector2((move_range - n)*-1, n*-1)
 			]
 			for i in range(0, 4):
-				if grid.is_within_bounds(cells[i]) and ((cells[i].x < 8 and !isSpirit) or (cells[i].x > 9 and isSpirit)):
+				if grid.is_within_bounds(cells[i]) and walkable_cells.has(cells[i]) and ((cells[i].x < 8 and !isSpirit) or (cells[i].x > 9 and isSpirit)):
 					var distanceToTarget = abs((cell - cells[i]).length())
 					var distanceToCharacter = abs((targetCharacter.cell - cells[i]).length())
 					if distanceToTarget <= move_range and distanceToCharacter <= closestDistance:

@@ -22,6 +22,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_jw8cl"]
 resource_name = "idle_DOWN"
 length = 0.3
+loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -39,6 +40,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_wo3l8"]
 resource_name = "idle_LEFT"
 length = 0.3
+loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -56,6 +58,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_ep4l5"]
 resource_name = "idle_RIGHT"
 length = 0.3
+loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -73,6 +76,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_r60cx"]
 resource_name = "idle_UP"
 length = 0.3
+loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
