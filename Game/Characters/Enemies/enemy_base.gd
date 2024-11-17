@@ -15,7 +15,6 @@ signal walkadoodledoo
 var has_moved = false
 var boardState
 var isSpirit = false
-var onibiDrop = 0
 
 @onready var unit_path_scene = preload("res://Game/Data/unit_path.tscn")
 var unitPath : UnitPath

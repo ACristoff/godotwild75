@@ -17,8 +17,6 @@ var targetOnRange = false
 func _ready():
 	super()
 	move_range = 2
-	max_health = 2
-	onibiDrop = 10
 	set_process(true)
 
 func _process(delta):

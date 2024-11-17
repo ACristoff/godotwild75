@@ -15,7 +15,6 @@ func _init():
 func _ready():
 	super()
 	max_health = 10
-	move_range = 4
 	var manager: GameManager = get_node("/root/GameManager")
 	#print(manager.weapon_data.has(true))
 	var weapons = manager.weapon_data
