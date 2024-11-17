@@ -427,6 +427,7 @@ func spawn_ghost(unit, mirrored_origin):
 	elif ghost.is_in_group("player"):
 		friendlies[mirrored_origin] = ghost
 		ghost.connect("unit_state_change", on_unit_state_change)
+		ghost.has_moved = false
 	ghost.connect("death", on_unit_death)
 	ghost.cell = mirrored_origin
 	pass

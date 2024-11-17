@@ -49,7 +49,7 @@ position = Vector2(419, 486)
 position = Vector2(284, 294)
 
 [node name="Tanuki2" parent="." instance=ExtResource("13_fhyij")]
-position = Vector2(929, 413)
+position = Vector2(989, 417)
 
 [connection signal="accept_pressed" from="Cursor" to="." method="_on_cursor_accept_pressed"]
 [connection signal="deselect_pressed" from="Cursor" to="." method="_on_cursor_deselect_pressed"]
