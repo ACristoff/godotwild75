@@ -13,6 +13,7 @@ func _process(delta: float) -> void:
 
 
 func _on_retry_pressed() -> void:
+	LevelManager.switchScene(LevelManager.previous_level_index)
 	retry.emit()
 
 
