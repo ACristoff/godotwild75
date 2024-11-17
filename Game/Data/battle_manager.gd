@@ -73,6 +73,10 @@ func find_next_possible(team):
 
 func turn_manager():
 	if is_player_turn:
+		#For the skip turn action
+		if active_unit != null and active_unit.has_moved:
+			deselect_unit()
+			clear_active_unit()
 		#Check if all units are exhausted
 		var next_unit = find_next_possible(friendlies)
 		if next_unit == null:
