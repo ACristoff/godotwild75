@@ -92,13 +92,20 @@ func turn_manager():
 			is_enemy_turn = false
 			is_player_turn = true
 			turn_indicator._SwitchingTurn()
-			for fren  in friendlies:
-				var newfren = fren as PlayerUnit
-				fren.has_attacked = false
-				fren.has_moved = false
-				pass
+			for fren in friendlies:
+				#print('FRIEND HERE',friendlies[fren])
+				var newfren = friendlies[fren] as PlayerUnit
+				newfren.has_attacked = false
+				newfren.has_moved = false
+				newfren.enable_buttons()
+				print(newfren, newfren.has_attacked, newfren.has_moved)
+				#pass
 	pass
 
+#var has_moved = false
+#
+#var has_walked = false
+#var has_attacked = false
 
 
 ## Clears, and refills the `_units` dictionary with game objects that are on the board.

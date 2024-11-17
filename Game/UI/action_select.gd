@@ -28,6 +28,10 @@ func disable_move():
 func disable_attack():
 	attack.disabled = true
 
+func enable_both():
+	attack.disabled = false
+	move.disabled = false
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass

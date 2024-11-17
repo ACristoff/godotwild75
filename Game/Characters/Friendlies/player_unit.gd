@@ -32,6 +32,10 @@ var current_attack = null
 
 signal turnEnded
 
+func enable_buttons():
+	action_ui.enable_both()
+	pass
+
 #Action select
 #Spawn the action select
 #Despawn the action select
