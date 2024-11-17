@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://tnfgi7easr7a"]
+
+[ext_resource type="PackedScene" uid="uid://c0vnt11umxslf" path="res://Game/Data/attack_overlay.tscn" id="1_joq2e"]
+[ext_resource type="Script" path="res://explosion_view_overlay.gd" id="2_sfojy"]
+
+[node name="ExplosionViewOverlay" instance=ExtResource("1_joq2e")]
+modulate = Color(0.83, 0.27888, 0.1411, 0.352941)
+script = ExtResource("2_sfojy")
