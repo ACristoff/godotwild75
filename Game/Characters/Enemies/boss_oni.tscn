@@ -1,19 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://bw3bmgf2rmjrr"]
+[gd_scene load_steps=4 format=3 uid="uid://bw3bmgf2rmjrr"]
 
 [ext_resource type="PackedScene" uid="uid://cg34obo360a5w" path="res://Game/Characters/Enemies/enemy_base.tscn" id="1_fd6ws"]
 [ext_resource type="Script" path="res://Game/Characters/Enemies/boss_oni.gd" id="2_nxcf8"]
+[ext_resource type="Texture2D" uid="uid://t6gfsx4aorgp" path="res://Assets/Characters/Enemies/Big Oni.png" id="3_8tlvy"]
 
 [node name="BossOni" instance=ExtResource("1_fd6ws")]
 script = ExtResource("2_nxcf8")
-move_range = 3
-max_health = 3
 self_scene_path = "res://Game/Characters/Enemies/boss_oni.tscn"
-health = 0
+skin = ExtResource("3_8tlvy")
 
 [node name="Shadow" parent="PathFollow2D" index="0"]
 modulate = Color(1, 1, 1, 1)
 scale = Vector2(1, 1)
 texture = null
+
+[node name="Sprite" parent="PathFollow2D" index="1"]
+texture = ExtResource("3_8tlvy")
+hframes = 1
+vframes = 1
 
 [node name="HealthBar" parent="PathFollow2D" index="2"]
 position = Vector2(0, 0)

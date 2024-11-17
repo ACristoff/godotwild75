@@ -7,12 +7,12 @@ class_name BossOni
 var oni_attacks = {
 	"Club Strike": {
 		"RANGE": 1,
-		"DAMAGE": 3,
+		"DAMAGE": 2,
 		"ATTACK_VECS": [Vector2(0,0), Vector2(-1,0), Vector2(1,0)]
 	},
 	"Club Smash": {
 		"RANGE": 1,
-		"DAMAGE": 5,
+		"DAMAGE": 4,
 		"ATTACK_VECS": [Vector2(0,0)]
 	},
 }
