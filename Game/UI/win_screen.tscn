@@ -16,11 +16,7 @@
 [ext_resource type="Theme" uid="uid://2kj2sgp8odd4" path="res://Assets/Themes/Buttons2.tres" id="16_8smij"]
 [ext_resource type="Texture2D" uid="uid://dtb7dx7u0jowt" path="res://Assets/UserInterface/Gameplay/GoldSelection.png" id="17_3aljm"]
 
-<<<<<<< Updated upstream
-[sub_resource type="Shader" id="Shader_m44tc"]
-=======
-[sub_resource type="Shader" id="Shader_anovn"]
->>>>>>> Stashed changes
+[sub_resource type="Shader" id="Shader_gaue3"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix, unshaded;
@@ -176,11 +172,7 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ie14d"]
 resource_local_to_scene = true
-<<<<<<< Updated upstream
-shader = SubResource("Shader_m44tc")
-=======
-shader = SubResource("Shader_anovn")
->>>>>>> Stashed changes
+shader = SubResource("Shader_gaue3")
 shader_parameter/intensity = 1.0
 shader_parameter/use_custom_texture = 0.0
 shader_parameter/clouds_speed = 3.06
@@ -196,11 +188,7 @@ shader_parameter/box_size = 0.0
 shader_parameter/PRIME_X = 501125701
 shader_parameter/PRIME_Y = 1136930381
 
-<<<<<<< Updated upstream
-[sub_resource type="Shader" id="Shader_otbcu"]
-=======
-[sub_resource type="Shader" id="Shader_bo81l"]
->>>>>>> Stashed changes
+[sub_resource type="Shader" id="Shader_8trh3"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -237,11 +225,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ir36b"]
 resource_local_to_scene = true
-<<<<<<< Updated upstream
-shader = SubResource("Shader_otbcu")
-=======
-shader = SubResource("Shader_bo81l")
->>>>>>> Stashed changes
+shader = SubResource("Shader_8trh3")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.05
 shader_parameter/maxStrength = 0.01
@@ -252,11 +236,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-<<<<<<< Updated upstream
-[sub_resource type="Shader" id="Shader_0g6pp"]
-=======
-[sub_resource type="Shader" id="Shader_f48qh"]
->>>>>>> Stashed changes
+[sub_resource type="Shader" id="Shader_kbgfo"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -293,11 +273,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4jenk"]
 resource_local_to_scene = true
-<<<<<<< Updated upstream
-shader = SubResource("Shader_0g6pp")
-=======
-shader = SubResource("Shader_f48qh")
->>>>>>> Stashed changes
+shader = SubResource("Shader_kbgfo")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.05
 shader_parameter/maxStrength = 0.01
@@ -308,11 +284,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-<<<<<<< Updated upstream
-[sub_resource type="Shader" id="Shader_gup45"]
-=======
-[sub_resource type="Shader" id="Shader_40wjt"]
->>>>>>> Stashed changes
+[sub_resource type="Shader" id="Shader_oh2ck"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -349,11 +321,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c1xpr"]
 resource_local_to_scene = true
-<<<<<<< Updated upstream
-shader = SubResource("Shader_gup45")
-=======
-shader = SubResource("Shader_40wjt")
->>>>>>> Stashed changes
+shader = SubResource("Shader_oh2ck")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.05
 shader_parameter/maxStrength = 0.01
@@ -364,11 +332,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-<<<<<<< Updated upstream
-[sub_resource type="Shader" id="Shader_qbjwc"]
-=======
-[sub_resource type="Shader" id="Shader_u37pq"]
->>>>>>> Stashed changes
+[sub_resource type="Shader" id="Shader_j5q4e"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -405,11 +369,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_krhiw"]
 resource_local_to_scene = true
-<<<<<<< Updated upstream
-shader = SubResource("Shader_qbjwc")
-=======
-shader = SubResource("Shader_u37pq")
->>>>>>> Stashed changes
+shader = SubResource("Shader_j5q4e")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.05
 shader_parameter/maxStrength = 0.01
@@ -420,11 +380,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-<<<<<<< Updated upstream
-[sub_resource type="Shader" id="Shader_eyd02"]
-=======
-[sub_resource type="Shader" id="Shader_xx6fy"]
->>>>>>> Stashed changes
+[sub_resource type="Shader" id="Shader_a4jub"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -461,11 +417,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6dq03"]
 resource_local_to_scene = true
-<<<<<<< Updated upstream
-shader = SubResource("Shader_eyd02")
-=======
-shader = SubResource("Shader_xx6fy")
->>>>>>> Stashed changes
+shader = SubResource("Shader_a4jub")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.05
 shader_parameter/maxStrength = 0.01
@@ -476,11 +428,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-<<<<<<< Updated upstream
-[sub_resource type="Shader" id="Shader_bi4wk"]
-=======
-[sub_resource type="Shader" id="Shader_gxuy5"]
->>>>>>> Stashed changes
+[sub_resource type="Shader" id="Shader_ty55h"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -517,11 +465,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n5kxq"]
 resource_local_to_scene = true
-<<<<<<< Updated upstream
-shader = SubResource("Shader_bi4wk")
-=======
-shader = SubResource("Shader_gxuy5")
->>>>>>> Stashed changes
+shader = SubResource("Shader_ty55h")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.05
 shader_parameter/maxStrength = 0.01
@@ -532,11 +476,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-<<<<<<< Updated upstream
-[sub_resource type="Shader" id="Shader_pisqa"]
-=======
-[sub_resource type="Shader" id="Shader_8gh54"]
->>>>>>> Stashed changes
+[sub_resource type="Shader" id="Shader_2vsnp"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -573,11 +513,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qh0ug"]
 resource_local_to_scene = true
-<<<<<<< Updated upstream
-shader = SubResource("Shader_pisqa")
-=======
-shader = SubResource("Shader_8gh54")
->>>>>>> Stashed changes
+shader = SubResource("Shader_2vsnp")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.05
 shader_parameter/maxStrength = 0.01
@@ -588,11 +524,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-<<<<<<< Updated upstream
-[sub_resource type="Shader" id="Shader_iqx1s"]
-=======
-[sub_resource type="Shader" id="Shader_y76ms"]
->>>>>>> Stashed changes
+[sub_resource type="Shader" id="Shader_35p7i"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -629,11 +561,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kxbk2"]
 resource_local_to_scene = true
-<<<<<<< Updated upstream
-shader = SubResource("Shader_iqx1s")
-=======
-shader = SubResource("Shader_y76ms")
->>>>>>> Stashed changes
+shader = SubResource("Shader_35p7i")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.05
 shader_parameter/maxStrength = 0.01
@@ -644,11 +572,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-<<<<<<< Updated upstream
-[sub_resource type="Shader" id="Shader_2m0a6"]
-=======
-[sub_resource type="Shader" id="Shader_yt5f4"]
->>>>>>> Stashed changes
+[sub_resource type="Shader" id="Shader_5o4st"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -685,11 +609,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4h4wr"]
 resource_local_to_scene = true
-<<<<<<< Updated upstream
-shader = SubResource("Shader_2m0a6")
-=======
-shader = SubResource("Shader_yt5f4")
->>>>>>> Stashed changes
+shader = SubResource("Shader_5o4st")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.05
 shader_parameter/maxStrength = 0.01
@@ -700,11 +620,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-<<<<<<< Updated upstream
-[sub_resource type="Shader" id="Shader_gyoge"]
-=======
-[sub_resource type="Shader" id="Shader_31ajc"]
->>>>>>> Stashed changes
+[sub_resource type="Shader" id="Shader_wchi6"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -741,11 +657,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eyw5o"]
 resource_local_to_scene = true
-<<<<<<< Updated upstream
-shader = SubResource("Shader_gyoge")
-=======
-shader = SubResource("Shader_31ajc")
->>>>>>> Stashed changes
+shader = SubResource("Shader_wchi6")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.05
 shader_parameter/maxStrength = 0.01
@@ -756,11 +668,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-<<<<<<< Updated upstream
-[sub_resource type="Shader" id="Shader_ep7ly"]
-=======
-[sub_resource type="Shader" id="Shader_xd42i"]
->>>>>>> Stashed changes
+[sub_resource type="Shader" id="Shader_s1bg4"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -797,11 +705,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bmm1q"]
 resource_local_to_scene = true
-<<<<<<< Updated upstream
-shader = SubResource("Shader_ep7ly")
-=======
-shader = SubResource("Shader_xd42i")
->>>>>>> Stashed changes
+shader = SubResource("Shader_s1bg4")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.05
 shader_parameter/maxStrength = 0.01
@@ -812,11 +716,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-<<<<<<< Updated upstream
-[sub_resource type="Shader" id="Shader_8a6tp"]
-=======
-[sub_resource type="Shader" id="Shader_wd5i2"]
->>>>>>> Stashed changes
+[sub_resource type="Shader" id="Shader_o2aje"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -853,11 +753,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_318e4"]
 resource_local_to_scene = true
-<<<<<<< Updated upstream
-shader = SubResource("Shader_8a6tp")
-=======
-shader = SubResource("Shader_wd5i2")
->>>>>>> Stashed changes
+shader = SubResource("Shader_o2aje")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.05
 shader_parameter/maxStrength = 0.01
@@ -868,11 +764,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-<<<<<<< Updated upstream
-[sub_resource type="Shader" id="Shader_iue3g"]
-=======
-[sub_resource type="Shader" id="Shader_r1wlv"]
->>>>>>> Stashed changes
+[sub_resource type="Shader" id="Shader_h154m"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 
@@ -978,11 +870,7 @@ void fragment()
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_khlas"]
 resource_local_to_scene = true
-<<<<<<< Updated upstream
-shader = SubResource("Shader_iue3g")
-=======
-shader = SubResource("Shader_r1wlv")
->>>>>>> Stashed changes
+shader = SubResource("Shader_h154m")
 shader_parameter/angle = -0.3
 shader_parameter/position = -0.2
 shader_parameter/spread = 0.319
@@ -997,11 +885,7 @@ shader_parameter/color = Color(1, 0.984, 0.76, 0.8)
 shader_parameter/hdr = false
 shader_parameter/seed = 5.0
 
-<<<<<<< Updated upstream
-[sub_resource type="Shader" id="Shader_wq0sv"]
-=======
-[sub_resource type="Shader" id="Shader_e5dab"]
->>>>>>> Stashed changes
+[sub_resource type="Shader" id="Shader_7lws0"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -1071,11 +955,7 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vsnry"]
 resource_local_to_scene = true
-<<<<<<< Updated upstream
-shader = SubResource("Shader_wq0sv")
-=======
-shader = SubResource("Shader_e5dab")
->>>>>>> Stashed changes
+shader = SubResource("Shader_7lws0")
 shader_parameter/speed = 2.0
 shader_parameter/minStrength = 0.018
 shader_parameter/maxStrength = 0.0
