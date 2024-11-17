@@ -3,6 +3,7 @@ extends Node2D
 @export var level_list : Array[PackedScene] = [null]
 @export var enable_manager = true
 
+var previous_level_index = 0
 var curr_level_index = 0
 
 var current_scene : Node2D = null
@@ -35,10 +36,10 @@ func _input(event):
 		if event.is_action_pressed("debug_prev_level"):
 			prevLevel()
 
-func switchScene(level):
+func switchScene(level: int):
 	call_deferred("changeLevel", level)
 
-func changeLevel(level):
+func changeLevel(level: int):
 	current_scene.free()
 	var s = load(level_list[level].resource_path)
 	current_scene = s.instantiate()
@@ -47,12 +48,14 @@ func changeLevel(level):
 
 func nextLevel():
 	if curr_level_index < level_list.size() - 1:
+		previous_level_index = curr_level_index
 		curr_level_index += 1
 		switchScene(curr_level_index)
 	pass
 	
 func prevLevel():
 	if curr_level_index > 0:
+		previous_level_index = curr_level_index
 		curr_level_index -= 1
 		switchScene(curr_level_index)
 	pass

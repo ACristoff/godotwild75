@@ -35,7 +35,9 @@ func enemyBrain(boardState):
 	#Attack if able, if not move first.
 	move("Water Cannon")
 	if(targetOnRange):
-		rangedAttack()
+		doAttack("Water Cannon")
+		pass
+	endTurn()
 
 func getTargetCharacter(attackName: String):
 	#Target furthest character
@@ -56,10 +58,6 @@ func getTargetCharacter(attackName: String):
 				maxDistance = distance
 				targetCharacter = ch
 	targetOnRange = auxOnRange
-	
-func rangedAttack():
-	print("attacking")
-	pass
 	
 func move(attackName: String):
 	#Move to the closest grid point where the attack reaches (max range on the attack)
@@ -104,4 +102,7 @@ func move(attackName: String):
 						targetPoint = cells[i]
 						maxDistance = distanceToTarget
 						closestDistance = distanceToCharacter
-	walk_along([cell, targetPoint])
+	if cell == targetPoint:
+		walk_along([cell])
+	else:
+		walk_along([cell, targetPoint])

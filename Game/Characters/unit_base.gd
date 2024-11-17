@@ -27,7 +27,7 @@ var current_direction = direction.UP
 ## The unit's move speed when it's moving along a path.
 @export var move_speed := 600.0
 ## Texture representing the unit.
-@export var max_health := 3
+@export var max_health := 1000
 
 #We use this to spawn this unit on the spirit world
 #Had to change this a string because it would consider it a circular ref

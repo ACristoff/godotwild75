@@ -23,8 +23,6 @@ var oni_attacks = {
 	},
 }
 
-#Targets a cell, not a character
-var targetCell = Vector2.ZERO
 var targetOnRange = false
 
 func _ready():
@@ -47,7 +45,9 @@ func enemyBrain(boardState):
 	#Attack if able, if not move first.
 	move(attack, singleTarget)
 	if(targetOnRange):
-		meleeAttack()
+		doAttack(attack)
+		pass
+	endTurn()
 
 func chooseAttack():
 	#If there's more than one character to target, use AoE
@@ -98,10 +98,6 @@ func getTargetCharacter(attackName: String, boardState):
 					minDistance = distance
 					targetCharacter = ch
 					targetCell = ch.cell
-	
-func meleeAttack():
-	print("attacking")
-	pass
 	
 func move(attackName: String, singleTarget: bool):
 	#Move to the closest grid point where the attack reaches (max range on the attack)
@@ -164,4 +160,7 @@ func move(attackName: String, singleTarget: bool):
 						targetPoint = cells[i]
 						minDistance = distanceToTarget
 						closestDistance = distanceToCharacter
-	walk_along([cell, targetPoint])
+	if cell == targetPoint:
+		walk_along([cell])
+	else:
+		walk_along([cell, targetPoint])

@@ -70,13 +70,14 @@ func turn_manager():
 	else:
 		##TODO Do enemy turns here
 		var next_unit = find_next_possible(enemies)
-		while next_unit != null:
+		if next_unit != null:
 			next_unit.enemyBrain(units)
 			next_unit.has_moved = true
 			next_unit = find_next_possible(enemies)
-		is_enemy_turn = false
-		is_player_turn = true
-		turn_indicator._SwitchingTurn()
+		else:
+			is_enemy_turn = false
+			is_player_turn = true
+			turn_indicator._SwitchingTurn()
 	pass
 
 ## Clears, and refills the `_units` dictionary with game objects that are on the board.
@@ -141,7 +142,7 @@ func is_occupied(cell: Vector2) -> bool:
 func get_walkable_cells(unit: Unit) -> Array:
 	return flood_fill(unit.cell, unit.move_range, false)
 
-func get_attack_cells(unit: PlayerUnit, attack):
+func get_attack_cells(unit: Unit, attack):
 	##TODO Give flood fill the ability to use every tile in range
 	return flood_fill(unit.cell, attack.RANGE, true)
 
