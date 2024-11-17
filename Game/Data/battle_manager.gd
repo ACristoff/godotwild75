@@ -53,6 +53,7 @@ func _input(event):
 				else:
 					current_rotation = rotations[rotations.find(current_rotation) + 1]
 				hit_overlay.make_squares(current_attack.ATTACK_VECS[current_rotation])
+				check_for_explosions(current_attack.ATTACK_VECS[current_rotation])
 
 #This rotates the attack pattern 90 degrees
 func mutate_attack(attack_pattern):
@@ -188,7 +189,21 @@ func on_unit_state_change(state):
 	pass
 
 func check_for_explosions(vectors):
-	print(vectors, "THESE ARE MY CHECK VECTORS")
+	var nathan_explosion = []
+	explosion_view_overlay.clear()
+	for vec in vectors:
+		if units.has(vec):
+			if units[vec].health  <= current_attack.DAMAGE:
+				prints("cummy wummy", units[vec], vec)
+				for ex_vec in current_attack.BLAST_PATTERN:
+					print(ex_vec)
+					var adjusted = ex_vec + units[vec].cell
+					var mirrored = grid.calculate_mirror_position(adjusted)
+					nathan_explosion.append(mirrored)
+					pass
+	print(vectors, "THESE ARE MY CHECK VECTORS", "THIS IS MY BENIS :-DD", nathan_explosion)
+	
+	explosion_view_overlay.draw(nathan_explosion)
 	pass
 
 ## Returns `true` if the cell is occupied by a unit.
@@ -294,6 +309,7 @@ func deselect_unit():
 	attack_overlay.clear()
 	hit_overlay.kill_kids()
 	unit_path.stop()
+	explosion_view_overlay.clear()
 	current_rotation = "up"
 
 func move_current_unit(new_cell: Vector2):

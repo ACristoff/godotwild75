@@ -11,6 +11,7 @@ func spawn_init(miko_data):
 func _ready():
 	super()
 	max_health = 10
+	move_range = 4
 	#print("hello spirit world :)")
 	pass
 	
