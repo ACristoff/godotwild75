@@ -17,9 +17,13 @@ z_index = 100
 position = Vector2(-158, -119)
 script = ExtResource("1_7o3yn")
 
-[node name="move" type="Button" parent="."]
-offset_right = 111.0
-offset_bottom = 39.0
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="move" type="Button" parent="CanvasLayer"]
+offset_left = -158.0
+offset_top = -119.0
+offset_right = -47.0
+offset_bottom = -80.0
 theme = ExtResource("2_t8em4")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_colors/icon_disabled_color = Color(0.3486, 0.37478, 0.42, 1)
@@ -30,10 +34,11 @@ theme_override_styles/disabled = SubResource("StyleBoxTexture_uotxp")
 text = "Move"
 expand_icon = true
 
-[node name="attack" type="Button" parent="."]
-offset_top = 49.0
-offset_right = 111.0
-offset_bottom = 88.0
+[node name="attack" type="Button" parent="CanvasLayer"]
+offset_left = -158.0
+offset_top = -70.0
+offset_right = -43.0
+offset_bottom = -31.0
 theme = ExtResource("2_t8em4")
 theme_override_colors/font_hover_pressed_color = Color(0.776471, 0.168627, 0.168627, 1)
 theme_override_colors/font_hover_color = Color(0.94, 0.368167, 0.2538, 1)
@@ -48,10 +53,11 @@ text = "Attack"
 icon = ExtResource("3_p6aa5")
 expand_icon = true
 
-[node name="skip" type="Button" parent="."]
-offset_top = 98.0
-offset_right = 115.0
-offset_bottom = 137.0
+[node name="skip" type="Button" parent="CanvasLayer"]
+offset_left = -158.0
+offset_top = -21.0
+offset_right = -43.0
+offset_bottom = 18.0
 theme = ExtResource("2_t8em4")
 theme_override_colors/font_hover_pressed_color = Color(0.0656515, 0.496933, 0.500173, 1)
 theme_override_colors/font_hover_color = Color(0.268018, 0.651819, 0.617826, 1)
@@ -65,23 +71,25 @@ theme_override_font_sizes/font_size = 38
 text = "Skip"
 expand_icon = true
 
-[node name="GoldSelection" type="Sprite2D" parent="."]
-position = Vector2(-3.8147e-06, -1.90735e-06)
+[node name="GoldSelection" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(-158, -119)
 scale = Vector2(0.995868, 0.989796)
 texture = ExtResource("4_yrgo7")
 offset = Vector2(55.4793, 19.9536)
 
-[node name="switch_sound" type="AudioStreamPlayer2D" parent="."]
+[node name="switch_sound" type="AudioStreamPlayer2D" parent="CanvasLayer"]
+position = Vector2(-158, -119)
 stream = ExtResource("6_e26pf")
 
-[node name="select_sound" type="AudioStreamPlayer2D" parent="."]
+[node name="select_sound" type="AudioStreamPlayer2D" parent="CanvasLayer"]
+position = Vector2(-158, -119)
 stream = ExtResource("7_6uk4x")
 volume_db = -0.99
 pitch_scale = 0.77
 
-[connection signal="mouse_entered" from="move" to="." method="_on_move_mouse_entered"]
-[connection signal="pressed" from="move" to="." method="_on_move_pressed"]
-[connection signal="mouse_entered" from="attack" to="." method="_on_attack_mouse_entered"]
-[connection signal="pressed" from="attack" to="." method="_on_attack_pressed"]
-[connection signal="mouse_entered" from="skip" to="." method="_on_attack_mouse_entered"]
-[connection signal="pressed" from="skip" to="." method="_on_skip_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/move" to="." method="_on_move_mouse_entered"]
+[connection signal="pressed" from="CanvasLayer/move" to="." method="_on_move_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/attack" to="." method="_on_attack_mouse_entered"]
+[connection signal="pressed" from="CanvasLayer/attack" to="." method="_on_attack_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/skip" to="." method="_on_skip_mouse_entered"]
+[connection signal="pressed" from="CanvasLayer/skip" to="." method="_on_skip_pressed"]
