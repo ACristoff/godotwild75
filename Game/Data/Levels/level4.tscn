@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://csrd0kdlkj77t"]
+[gd_scene load_steps=13 format=3 uid="uid://csrd0kdlkj77t"]
 
 [ext_resource type="Script" path="res://Game/Data/battle_manager.gd" id="1_3trxe"]
 [ext_resource type="PackedScene" uid="uid://gcdapkkqr808" path="res://Game/World/environment.tscn" id="2_q64jh"]
@@ -7,11 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://c0vnt11umxslf" path="res://Game/Data/attack_overlay.tscn" id="5_4ekqh"]
 [ext_resource type="PackedScene" uid="uid://bjjre3i3xvkhl" path="res://Game/World/explosion_overlay.tscn" id="6_x8n3n"]
 [ext_resource type="PackedScene" uid="uid://2nbe138odbl8" path="res://Game/Characters/Friendlies/miko_unit.tscn" id="7_ibl75"]
-[ext_resource type="PackedScene" uid="uid://cg34obo360a5w" path="res://Game/Characters/Enemies/enemy_base.tscn" id="8_d045o"]
 [ext_resource type="PackedScene" uid="uid://2r5lvg6715f" path="res://Game/Characters/Friendlies/heiko_unit.tscn" id="9_6ue6m"]
+[ext_resource type="PackedScene" uid="uid://cy1ruko7jcspv" path="res://Game/Characters/Enemies/kappa.tscn" id="10_6xf8y"]
 [ext_resource type="PackedScene" uid="uid://d1rww8eno83bs" path="res://Game/Data/Cursor/cursor.tscn" id="10_rpdvm"]
+[ext_resource type="PackedScene" uid="uid://c7jhfoocdh6d6" path="res://Game/Characters/Enemies/tengu.tscn" id="11_slvbi"]
+[ext_resource type="PackedScene" uid="uid://cdrtmig8f1yom" path="res://Assets/UserInterface/Gameplay/turn_order.tscn" id="12_f1a83"]
 
-[node name="DebugLevel2" type="Node2D"]
+[node name="DebugLevel3" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_3trxe")
 
@@ -27,19 +29,34 @@ y_sort_origin = -1
 [node name="ExplosionOverlay" parent="." instance=ExtResource("6_x8n3n")]
 
 [node name="MikoUnit" parent="." instance=ExtResource("7_ibl75")]
-position = Vector2(290, 425)
+position = Vector2(482, 548)
 max_health = 3
-
-[node name="EnemyBase2" parent="." instance=ExtResource("8_d045o")]
-position = Vector2(358, 419)
-max_health = 3
-health = 0
 
 [node name="HeikoUnit" parent="." instance=ExtResource("9_6ue6m")]
-position = Vector2(227, 364)
+position = Vector2(96, 170)
 max_health = 3
 
 [node name="Cursor" parent="." instance=ExtResource("10_rpdvm")]
+
+[node name="Kappa" parent="." instance=ExtResource("10_6xf8y")]
+position = Vector2(291, 359)
+
+[node name="Kappa2" parent="." instance=ExtResource("10_6xf8y")]
+position = Vector2(350, 415)
+
+[node name="Kappa3" parent="." instance=ExtResource("10_6xf8y")]
+position = Vector2(801, 542)
+
+[node name="Tengu" parent="." instance=ExtResource("11_slvbi")]
+position = Vector2(96, 609)
+
+[node name="Tengu3" parent="." instance=ExtResource("11_slvbi")]
+position = Vector2(993, 356)
+
+[node name="Tengu2" parent="." instance=ExtResource("11_slvbi")]
+position = Vector2(542, 162)
+
+[node name="TurnIndicator" parent="." instance=ExtResource("12_f1a83")]
 
 [connection signal="accept_pressed" from="Cursor" to="." method="_on_cursor_accept_pressed"]
 [connection signal="deselect_pressed" from="Cursor" to="." method="_on_cursor_deselect_pressed"]
