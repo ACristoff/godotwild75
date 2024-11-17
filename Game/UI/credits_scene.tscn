@@ -15,7 +15,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ptk8p"]
 
-[sub_resource type="Shader" id="Shader_ytixm"]
+[sub_resource type="Shader" id="Shader_karrw"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -52,7 +52,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vlutf"]
 resource_local_to_scene = true
-shader = SubResource("Shader_ytixm")
+shader = SubResource("Shader_karrw")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.05
 shader_parameter/maxStrength = 0.01
@@ -63,7 +63,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-[sub_resource type="Shader" id="Shader_ws7pu"]
+[sub_resource type="Shader" id="Shader_6y4r5"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -100,7 +100,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6y4pw"]
 resource_local_to_scene = true
-shader = SubResource("Shader_ws7pu")
+shader = SubResource("Shader_6y4r5")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.061
 shader_parameter/maxStrength = 0.224
@@ -497,7 +497,7 @@ _data = {
 "sweep_stop": SubResource("Animation_v0bd1")
 }
 
-[sub_resource type="Shader" id="Shader_u6s6j"]
+[sub_resource type="Shader" id="Shader_3tbyh"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 
@@ -603,7 +603,7 @@ void fragment()
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2ejdf"]
 resource_local_to_scene = true
-shader = SubResource("Shader_u6s6j")
+shader = SubResource("Shader_3tbyh")
 shader_parameter/angle = -0.3
 shader_parameter/position = -0.2
 shader_parameter/spread = 0.32
@@ -664,6 +664,21 @@ scale_max = 2.0
 color_ramp = SubResource("GradientTexture1D_ayymu")
 anim_offset_max = 1.0
 
+[sub_resource type="Animation" id="Animation_0sppm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_ejxf2"]
 resource_name = "ending"
 length = 4.0
@@ -678,21 +693,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 6.06287, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_0sppm"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w75g4"]
@@ -797,7 +797,7 @@ Alex Cristoffanini
 Adam Hatton
 Caleb Azlin
 Jere
-Christopher"
+Nicolás Kumike"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 1
