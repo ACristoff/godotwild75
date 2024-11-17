@@ -46,10 +46,10 @@ position = Vector2(419, 486)
 [node name="TurnIndicator" parent="." instance=ExtResource("11_a1r12")]
 
 [node name="Tanuki" parent="." instance=ExtResource("13_fhyij")]
-position = Vector2(482, 221)
+position = Vector2(284, 294)
 
 [node name="Tanuki2" parent="." instance=ExtResource("13_fhyij")]
-position = Vector2(929, 349)
+position = Vector2(929, 413)
 
 [connection signal="accept_pressed" from="Cursor" to="." method="_on_cursor_accept_pressed"]
 [connection signal="deselect_pressed" from="Cursor" to="." method="_on_cursor_deselect_pressed"]
