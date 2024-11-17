@@ -364,6 +364,7 @@ func _on_cursor_accept_pressed(cell):
 					spawn_ghost(ghost[0], ghost[1])
 					#ghost_accumulator.erase(ghost)
 				ghost_accumulator.clear()
+			check_for_win_con()
 		move_current_unit(cell)
 
 func manage_attack(attack_cells, team_to_hit):
@@ -444,6 +445,7 @@ func on_unit_death(unit):
 	if unit is PlayerUnit:
 		friendlies.erase(unit.cell)
 	elif unit is EnemyUnit:
+		print('unit dead')
 		enemies.erase(unit.cell)
 		check_for_win_con()
 
@@ -452,6 +454,7 @@ func trigger_fail_con(miko):
 	pass
 
 func check_for_win_con():
+	print(enemies, ghost_accumulator)
 	if enemies.size() == 0 && ghost_accumulator.size() == 0:
 		LevelManager.switchScene(LevelManager.getLevelIndex("win_screen"))
 
