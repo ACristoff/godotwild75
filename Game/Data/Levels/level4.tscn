@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://i5jwws41qqfv" path="res://Game/Characters/Enemies/chochin.tscn" id="12_rmwuj"]
 [ext_resource type="PackedScene" uid="uid://dfdi4uw2mg150" path="res://Game/Characters/Enemies/tanuki.tscn" id="13_btpp5"]
 
-[node name="DebugLevel4" type="Node2D"]
+[node name="DebugLevel6" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_3trxe")
 level_music = ExtResource("2_mttl6")

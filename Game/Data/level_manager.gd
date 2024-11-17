@@ -54,6 +54,8 @@ func nextLevel():
 	if curr_level_index < level_list.size() - 1:
 		previous_level_index = curr_level_index
 		curr_level_index += 1
+		if curr_level_index == 8:
+			switchScene(getLevelIndex("win_final"))
 		switchScene(curr_level_index)
 	pass
 	

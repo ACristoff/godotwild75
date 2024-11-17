@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dum5u6tcatqu7"]
+[gd_scene load_steps=7 format=3 uid="uid://dfdi4uw2mg150"]
 
 [ext_resource type="PackedScene" uid="uid://cg34obo360a5w" path="res://Game/Characters/Enemies/enemy_base.tscn" id="1_umwdn"]
 [ext_resource type="Script" path="res://Game/Characters/Enemies/tanuki.gd" id="2_daeit"]

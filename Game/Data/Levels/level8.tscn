@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://p7hcn583iptc" path="res://Game/Characters/Enemies/tengu.tscn" id="12_1eijf"]
 [ext_resource type="PackedScene" uid="uid://bw6nuo3guy6ab" path="res://Game/Characters/Enemies/oni.tscn" id="13_vcjk0"]
 
-[node name="DebugLevel5" type="Node2D"]
+[node name="DebugLevel6" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_v7tlb")
 level_music = ExtResource("2_of3ld")
