@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://d1rww8eno83bs" path="res://Game/Data/Cursor/cursor.tscn" id="10_yf1bv"]
 [ext_resource type="PackedScene" uid="uid://cdrtmig8f1yom" path="res://Assets/UserInterface/Gameplay/turn_order.tscn" id="11_6y8dt"]
 
-[node name="DebugLevel2" type="Node2D"]
+[node name="DebugLevel3" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_flrec")
 level_music = ExtResource("2_36soo")

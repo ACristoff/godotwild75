@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cbkbafpcpa5df"]
+[gd_scene load_steps=13 format=3 uid="uid://dilwiq4hgvtwf"]
 
 [ext_resource type="Script" path="res://Game/Data/battle_manager.gd" id="1_iackr"]
 [ext_resource type="AudioStream" uid="uid://d2nf8piqbmkn0" path="res://Assets/Audio/Music/MM_BOSS_BATTLE.mp3" id="2_00enm"]
@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://d1rww8eno83bs" path="res://Game/Data/Cursor/cursor.tscn" id="10_u1bi5"]
 [ext_resource type="PackedScene" uid="uid://cdrtmig8f1yom" path="res://Assets/UserInterface/Gameplay/turn_order.tscn" id="11_ifwkw"]
 
-[node name="DebugLevel2" type="Node2D"]
+[node name="DebugLevel3" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_iackr")
 level_music = ExtResource("2_00enm")

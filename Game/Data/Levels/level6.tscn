@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dkkvanimg6u6w"]
+[gd_scene load_steps=13 format=3 uid="uid://527ymuml82gh"]
 
 [ext_resource type="Script" path="res://Game/Data/battle_manager.gd" id="1_v5s7l"]
 [ext_resource type="AudioStream" uid="uid://box2onfca6raa" path="res://Assets/Audio/Music/MM_Battle_Theme_2.mp3" id="2_1nhkf"]
