@@ -10,6 +10,8 @@ var targetCell : Vector2 = Vector2.ZERO
 #All characters on screen
 var characterList
 
+signal walkadoodledoo
+
 var has_moved = false
 var boardState
 var isSpirit = false
@@ -32,6 +34,12 @@ func _init():
 func enemyBrain(state):
 	characterList = get_tree().get_nodes_in_group("player")
 	boardState = state
+
+func walk_along(path):
+	super(path)
+	print("this is my path ese", path)
+	walkadoodledoo.emit(path, self)
+	
 
 func endTurn():
 	unitPath.stop()

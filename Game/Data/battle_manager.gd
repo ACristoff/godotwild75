@@ -141,7 +141,18 @@ func reinitialize():
 				
 		if unit is EnemyUnit:
 			enemies[unit.cell] = unit
+			unit.connect("walkadoodledoo", on_enemy_finished_walk)
 	turn_manager()
+
+func on_enemy_finished_walk(path, enemy):
+	print(path[0], enemies[path[0]])
+	enemies.erase(path[0]) 
+	units.erase(path[0])
+	
+	enemies[path[-1]] = enemy
+	units[path[-1]] = enemy
+	print(enemies, units)
+	pass
 
 func on_unit_state_change(state):
 	if state == PlayerUnit.unit_states.MOVE_THINK:
