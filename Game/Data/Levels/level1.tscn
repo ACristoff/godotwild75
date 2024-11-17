@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://c0vnt11umxslf" path="res://Game/Data/attack_overlay.tscn" id="5_4klxc"]
 [ext_resource type="PackedScene" uid="uid://bjjre3i3xvkhl" path="res://Game/World/explosion_overlay.tscn" id="6_gq7gj"]
 [ext_resource type="PackedScene" uid="uid://2nbe138odbl8" path="res://Game/Characters/Friendlies/miko_unit.tscn" id="7_7fcl0"]
-[ext_resource type="PackedScene" uid="uid://cg34obo360a5w" path="res://Game/Characters/Enemies/enemy_base.tscn" id="8_hg17j"]
 [ext_resource type="PackedScene" uid="uid://2r5lvg6715f" path="res://Game/Characters/Friendlies/heiko_unit.tscn" id="9_eruft"]
+[ext_resource type="PackedScene" uid="uid://cy1ruko7jcspv" path="res://Game/Characters/Enemies/kappa.tscn" id="10_p8hfk"]
 [ext_resource type="PackedScene" uid="uid://d1rww8eno83bs" path="res://Game/Data/Cursor/cursor.tscn" id="10_yf1bv"]
 
 [node name="DebugLevel2" type="Node2D"]
@@ -27,19 +27,23 @@ y_sort_origin = -1
 [node name="ExplosionOverlay" parent="." instance=ExtResource("6_gq7gj")]
 
 [node name="MikoUnit" parent="." instance=ExtResource("7_7fcl0")]
-position = Vector2(290, 425)
+position = Vector2(356, 560)
 max_health = 3
-
-[node name="EnemyBase2" parent="." instance=ExtResource("8_hg17j")]
-position = Vector2(358, 419)
-max_health = 3
-health = 0
 
 [node name="HeikoUnit" parent="." instance=ExtResource("9_eruft")]
-position = Vector2(227, 364)
+position = Vector2(285, 565)
 max_health = 3
 
 [node name="Cursor" parent="." instance=ExtResource("10_yf1bv")]
+
+[node name="Kappa" parent="." instance=ExtResource("10_p8hfk")]
+position = Vector2(353, 231)
+
+[node name="Kappa2" parent="." instance=ExtResource("10_p8hfk")]
+position = Vector2(287, 232)
+
+[node name="Kappa3" parent="." instance=ExtResource("10_p8hfk")]
+position = Vector2(999, 234)
 
 [connection signal="accept_pressed" from="Cursor" to="." method="_on_cursor_accept_pressed"]
 [connection signal="deselect_pressed" from="Cursor" to="." method="_on_cursor_deselect_pressed"]
