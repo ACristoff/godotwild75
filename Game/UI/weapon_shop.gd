@@ -805,49 +805,49 @@ func select_trident():
 
 func _on_select_toggled(toggled_on: bool) -> void:
 	if toggled_on == true:
-		chosen_weapon = ("dagger")
+		chosen_weapon = ("Dagger")
 		$CanvasLayer/Select/Label.text = ("Selected")
 		AudioManager.play_sfx(daggersound, 1)
 	else:
 		$CanvasLayer/Select/Label.text = ("Select")
 func _on_select_2_toggled(toggled_on: bool) -> void:
 	if toggled_on == true:
-		chosen_weapon = ("fan")
+		chosen_weapon = ("Fan")
 		$CanvasLayer/Select2/Label.text = ("Selected")
 		AudioManager.play_sfx(fansound, 1)
 	else:
 		$CanvasLayer/Select2/Label.text = ("Select")
 func _on_select_3_toggled(toggled_on: bool) -> void:
 	if toggled_on == true:
-		chosen_weapon = ("slingshot")
+		chosen_weapon = ("Slingshot")
 		$CanvasLayer/Select3/Label.text = ("Selected")
 		AudioManager.play_sfx(slingshotsound, 1)
 	else:
 		$CanvasLayer/Select3/Label.text = ("Select")
 func _on_select_4_toggled(toggled_on: bool) -> void:
 	if toggled_on == true:
-		chosen_weapon = ("katana")
+		chosen_weapon = ("Katana")
 		$CanvasLayer/Select4/Label.text = ("Selected")
 		AudioManager.play_sfx(katanasound, 1)
 	else:
 		$CanvasLayer/Select4/Label.text = ("Select")
 func _on_select_5_toggled(toggled_on: bool) -> void:
 	if toggled_on == true:
-		chosen_weapon = ("mace")
+		chosen_weapon = ("Mace")
 		$CanvasLayer/Select5/Label.text = ("Selected")
 		AudioManager.play_sfx(macesound, 1)
 	else:
 		$CanvasLayer/Select5/Label.text = ("Select")
 func _on_select_6_toggled(toggled_on: bool) -> void:
 	if toggled_on == true:
-		chosen_weapon = ("bow")
+		chosen_weapon = ("Bow")
 		$CanvasLayer/Select6/Label.text = ("Selected")
 		AudioManager.play_sfx(bowsound, 1)
 	else:
 		$CanvasLayer/Select6/Label.text = ("Select")
 func _on_select_7_toggled(toggled_on: bool) -> void:
 	if toggled_on == true:
-		chosen_weapon = ("trident")
+		chosen_weapon = ("Trident")
 		$CanvasLayer/Select7/Label.text = ("Selected")
 		AudioManager.play_sfx(tridentsound, 1)
 	else:
@@ -861,4 +861,7 @@ func _on_button_pressed() -> void:
 
 func _confirmed():
 	confirm_weapon.emit(chosen_weapon)
+	var manager: GameManager = get_node("/root/GameManager")
+	manager.weapon_data[chosen_weapon].isSelected = true
+	print()
 	pass
