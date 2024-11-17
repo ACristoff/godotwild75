@@ -31,6 +31,7 @@ var current_rotation = "up"
 @onready var attack_overlay = $AttackOverlay
 @onready var hit_overlay = $HitOverlay
 @onready var explosion_overlay = $ExplosionOverlay
+@onready var explosion_view_overlay = $ExplosionViewOverlay
 @onready var unit_path: UnitPath = $UnitPath
 @onready var turn_indicator = $TurnIndicator
 
@@ -182,7 +183,12 @@ func on_unit_state_change(state):
 				pass
 		attack_overlay.draw(all_cells)
 		hit_overlay.make_squares(attack_cells["up"])
+		check_for_explosions(attack_cells["up"])
 		current_attack.ATTACK_VECS = attack_cells
+	pass
+
+func check_for_explosions(vectors):
+	print(vectors, "THESE ARE MY CHECK VECTORS")
 	pass
 
 ## Returns `true` if the cell is occupied by a unit.
@@ -257,9 +263,6 @@ func flood_fill(origin: Vector2, max_distance: int, ignore_dudes: bool):
 		var distance = int(difference.x + difference.y)
 		if distance > max_distance:
 			continue
-		
-		
-		
 		array.append(current)
 		for direction in DIRECTIONS:
 			var coordinates: Vector2 = current + direction
