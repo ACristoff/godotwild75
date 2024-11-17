@@ -408,7 +408,7 @@ func manage_attack(attack_cells, team_to_hit):
 						grid.calculate_mirror_position(cell)
 					])
 			units[cell].take_damage(current_attack.DAMAGE)
-			prints(units[cell].health,  current_attack.DAMAGE)
+			#prints(units[cell].health,  current_attack.DAMAGE)
 		else:
 			#print("MISS", cell)
 			pass
@@ -472,19 +472,19 @@ func on_unit_death(unit):
 		handle_exorcism(unit, current_attack)
 		#if grid.is_in_real_world(unit.cell):
 			#handle_exorcism(unit, current_attack)
-	else: 
+	else:
 		trigger_fail_con(unit)
 	units.erase(unit.cell)
 	if unit is PlayerUnit:
 		friendlies.erase(unit.cell)
 	elif unit is EnemyUnit:
 		LevelManager.onibi += unit.onibiDrop
-		
 		print('unit dead')
 		enemies.erase(unit.cell)
 		check_for_win_con()
 
 func trigger_fail_con(miko):
+	await get_tree().create_timer(1).timeout
 	LevelManager.switchScene(LevelManager.getLevelIndex("lose_screen"))
 	pass
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c1d0oar5ypne4"]
+[gd_scene load_steps=13 format=3 uid="uid://ccuom3pkruybm"]
 
 [ext_resource type="Script" path="res://Game/Data/battle_manager.gd" id="1_flrec"]
 [ext_resource type="PackedScene" uid="uid://gcdapkkqr808" path="res://Game/World/environment.tscn" id="2_3b1cx"]
@@ -46,7 +46,7 @@ position = Vector2(352, 352)
 position = Vector2(286, 357)
 
 [node name="Kappa3" parent="." instance=ExtResource("10_p8hfk")]
-position = Vector2(999, 234)
+position = Vector2(992, 294)
 
 [node name="TurnIndicator" parent="." instance=ExtResource("11_6y8dt")]
 
