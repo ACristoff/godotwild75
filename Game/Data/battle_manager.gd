@@ -418,23 +418,25 @@ func spawn_ghost(unit, mirrored_origin):
 	pass
 
 func handle_exorcism(unit, attack):
-	#print(unit, attack)
-	var cells_to_blow = []
+	
+	#var cells_to_blow = []
 	var positions_to_blow = []
 	var mirrored_origin: Vector2 = grid.calculate_mirror_position(unit.cell)
 	#hit_overlay.position = Vector2(0,0)
 	#explosion_overlay.position = grid.calculate_map_position(mirrored_origin)
 	for vec in attack.BLAST_PATTERN:
+		print(vec)
 		var mirrored_vec = grid.calculate_mirror_position(vec + unit.cell)
-		cells_to_blow.append(mirrored_vec)
+		#cells_to_blow.append(mirrored_vec)
 		positions_to_blow.append(grid.calculate_map_position(mirrored_vec))
 		if units.has(mirrored_vec):
 			if grid.is_in_real_world(units[mirrored_vec].cell) && !units[mirrored_vec].is_in_group("mikos"):
 				if !ghost_accumulator.has([units[mirrored_vec].self_scene_path, vec + unit.cell]):
 					ghost_accumulator.append([units[mirrored_vec].self_scene_path, vec + unit.cell])
-				units[mirrored_vec].take_damage(1)
+				units[mirrored_vec].take_damage(5)
 			else:
-				units[mirrored_vec].take_damage(1)
+				units[mirrored_vec].take_damage(5)
+	prints(unit, attack, unit.cell, positions_to_blow)
 	explosion_overlay.blow_up_squares(positions_to_blow)
 	pass
 

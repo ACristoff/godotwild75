@@ -7,7 +7,13 @@ var heiko_attacks = [
 		"DAMAGE": 1,
 		"MOVE": Vector2(0,0),
 		"EXORCISM": false,
-		"BLAST_PATTERN": [],
+		"BLAST_PATTERN": [
+			Vector2(0,0),
+			Vector2(1, -1),
+			Vector2(-1, -1),
+			Vector2(-1 ,1),
+			Vector2(1 ,1)
+		],
 		"ATTACK_VECS": [Vector2(0,-1)]
 	},
 ]
