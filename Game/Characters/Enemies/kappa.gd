@@ -75,7 +75,7 @@ func move(attackName: String):
 			targetCharacter.cell + Vector2((attacks[attackName]["RANGE"] - n)*-1, n*-1)
 		]
 		for i in range(0, 4):
-			if (grid.is_within_bounds(cells[i]) and cells[i].x < 8):
+			if (grid.is_within_bounds(cells[i]) and cells[i].x < 8 and !boardState.has(cells[i])):
 				var aux = abs((cell - cells[i]).length())
 				if aux <= move_range and aux >= maxDistance:
 					#Cell within move range and max attack range

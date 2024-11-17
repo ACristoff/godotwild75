@@ -4,9 +4,11 @@ extends Node2D
 signal attack_selected
 signal attack_chosen
 signal move_selected
+signal skip_selected
 
 @onready var move = $move
 @onready var attack = $attack
+@onready var skip = $skip
 
 @onready var attack_menu = preload("res://Game/UI/attack_select.tscn")
 
@@ -78,3 +80,11 @@ func _on_attack_pressed() -> void:
 func _on_attack_chosen(attack):
 	attacking(attack)
 	pass
+
+func _on_skip_pressed():
+	disable_attack()
+	disable_move()
+	skip.disabled = true
+	skip_selected.emit()
+	$select_sound.play()
+	close()
