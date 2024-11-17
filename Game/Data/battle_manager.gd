@@ -93,7 +93,7 @@ func turn_manager():
 			is_player_turn = true
 			turn_indicator._SwitchingTurn()
 			for fren in friendlies:
-				#print('FRIEND HERE',friendlies[fren])
+				print('FRIEND HERE',friendlies)
 				var newfren = friendlies[fren] as PlayerUnit
 				newfren.has_attacked = false
 				newfren.has_moved = false
@@ -143,9 +143,10 @@ func reinitialize():
 				#I'm still engineering it so it may not even be necessary
 				spirit_miko.miko_ref = unit
 				unit.spirit_miko_ref = spirit_miko
+				
 		if unit is EnemyUnit:
 			enemies[unit.cell] = unit
-	#print(enemies, friendlies, units)
+	print(enemies, friendlies, units)
 	turn_manager()
 
 func on_unit_state_change(state):
@@ -315,9 +316,10 @@ func miko_walk(miko_to_move, walk_vectors, origin):
 		last_acceptable_vec = new_vec2
 		new_path.append(new_vec2)
 	units[new_path[-1]] = miko_to_move
-	friendlies[new_path[-1]] = active_unit
+	friendlies[new_path[-1]] = miko_to_move
 	miko_to_move.walk_along(new_path)
 	#print(new_path)
+	print(friendlies, units, "TESSSSST")
 	pass
 
 func clear_active_unit() -> void:
