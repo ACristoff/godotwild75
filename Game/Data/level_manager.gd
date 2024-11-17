@@ -46,6 +46,7 @@ func changeLevel(level: int):
 	current_scene = s.instantiate()
 	add_child(current_scene)
 	get_tree().current_scene = current_scene
+	
 
 func nextLevel():
 	if curr_level_index < level_list.size() - 1:

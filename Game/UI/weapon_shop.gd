@@ -62,7 +62,7 @@ var pos7 = 0.858
 var weapon_dummy_data = {
 	"dagger": {
 		"state" : 'UNLOCKED',
-		"isSelected" : 'true'
+		"isSelected" : true
 	},
 	"fan": {
 		"state" : 'LOCKED',
@@ -92,8 +92,14 @@ var weapon_dummy_data = {
 
 func _ready() -> void:
 	$AudioStreamPlayer2D2.play()
-	_locker(1000, weapon_dummy_data)
+	var manager: GameManager = get_node("/root/GameManager")
+	#print(manager.weapon_data, weapon_dummy_data)
+	
+	_locker(1000, manager.weapon_data)
 	#onibi = 10000
+	
+	#print(manager)
+	
 	_miko()
 	var tween = create_tween()
 	tween.tween_property(dagger, "progress_ratio", pos1, 0)
@@ -107,33 +113,33 @@ func _ready() -> void:
 func _locker(currency: int, weapon_data) -> void:
 	onibi = currency
 	for weapon in weapon_data:
-		if weapon_data[weapon].state == 'UNLOCKED' and weapon == "dagger":
+		if weapon_data[weapon].state == 'UNLOCKED' and weapon == "Dagger":
 			unlock_dagger()
-			if weapon_data[weapon].isSelected == 'true':
+			if weapon_data[weapon].isSelected == true:
 				select_dagger()
-		if weapon_data[weapon].state == 'UNLOCKED' and weapon == "fan":
+		if weapon_data[weapon].state == 'UNLOCKED' and weapon == "Fan":
 			unlock_fan()
-			if weapon_data[weapon].isSelected == 'true':
+			if weapon_data[weapon].isSelected == true:
 				select_fan()
-		if weapon_data[weapon].state == 'UNLOCKED' and weapon == "slingshot":
+		if weapon_data[weapon].state == 'UNLOCKED' and weapon == "Slingshot":
 			unlock_slingshot()
-			if weapon_data[weapon].isSelected == 'true':
+			if weapon_data[weapon].isSelected == true:
 				select_slingshot()
-		if weapon_data[weapon].state == 'UNLOCKED' and weapon == "katana":
+		if weapon_data[weapon].state == 'UNLOCKED' and weapon == "Katana":
 			unlock_katana()
-			if weapon_data[weapon].isSelected == 'true':
+			if weapon_data[weapon].isSelected == true:
 				select_katana()
-		if weapon_data[weapon].state == 'UNLOCKED' and weapon == "mace":
+		if weapon_data[weapon].state == 'UNLOCKED' and weapon == "Mace":
 			unlock_mace()
-			if weapon_data[weapon].isSelected == 'true':
+			if weapon_data[weapon].isSelected == true:
 				select_mace()
-		if weapon_data[weapon].state == 'UNLOCKED' and weapon == "bow":
+		if weapon_data[weapon].state == 'UNLOCKED' and weapon == "Bow":
 			unlock_bow()
-			if weapon_data[weapon].isSelected == 'true':
+			if weapon_data[weapon].isSelected == true:
 				select_bow()
-		if weapon_data[weapon].state == 'UNLOCKED' and weapon == "trident":
+		if weapon_data[weapon].state == 'UNLOCKED' and weapon == "Trident":
 			unlock_trident()
-			if weapon_data[weapon].isSelected == 'true':
+			if weapon_data[weapon].isSelected == true:
 				select_trident()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -851,8 +857,8 @@ func _on_select_7_toggled(toggled_on: bool) -> void:
 func _on_button_pressed() -> void:
 	_confirmed()
 	LevelManager.nextLevel()
-	
-	
+
+
 func _confirmed():
 	confirm_weapon.emit(chosen_weapon)
 	pass

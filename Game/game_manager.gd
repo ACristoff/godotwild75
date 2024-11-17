@@ -5,10 +5,12 @@ class_name GameManager
 @onready var pause_menu = $PauseMenu
 var paused = false
 
+var onibi = 0
+
 var weapon_data = {
 	"Dagger": {
 		"weapon_name": "Dagger",
-		"state": 'LOCKED',
+		"state": 'UNLOCKED',
 		"isSelected": true,
 		"DAMAGE": 2,
 		"ATTACK_VECS": [Vector2(0, -1,), Vector2(0, -2)],
@@ -57,7 +59,7 @@ var weapon_data = {
 	},
 	"Mace": {
 		"weapon_name": "Mace",
-		"state": 'UNLOCKED',
+		"state": 'LOCKED',
 		"isSelected": false,
 		"DAMAGE": 2,
 		"ATTACK_VECS": [Vector2(0, -3), Vector2(1, -4), Vector2(-1, -4), Vector2(-1, -4), Vector2(1, -2), Vector2(-1, -2)],

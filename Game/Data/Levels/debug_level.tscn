@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bjjre3i3xvkhl" path="res://Game/World/explosion_overlay.tscn" id="6_7sxww"]
 [ext_resource type="PackedScene" uid="uid://2nbe138odbl8" path="res://Game/Characters/Friendlies/miko_unit.tscn" id="6_ichhw"]
 [ext_resource type="PackedScene" uid="uid://2r5lvg6715f" path="res://Game/Characters/Friendlies/heiko_unit.tscn" id="7_2tvfr"]
-[ext_resource type="PackedScene" uid="uid://cr072ggffpayq" path="res://Game/Characters/Enemies/oni.tscn" id="11_xtgi6"]
+[ext_resource type="PackedScene" uid="uid://bw6nuo3guy6ab" path="res://Game/Characters/Enemies/oni.tscn" id="11_xtgi6"]
 [ext_resource type="PackedScene" uid="uid://cdrtmig8f1yom" path="res://Assets/UserInterface/Gameplay/turn_order.tscn" id="12_xr5h4"]
 
 [node name="DebugLevel3" type="Node2D"]

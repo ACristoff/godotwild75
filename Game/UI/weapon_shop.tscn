@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://tallelojr4iq" path="res://Assets/Effects/Particles/Onibi.png" id="8_rkkt7"]
 [ext_resource type="Theme" uid="uid://b1i1vgp6mmqn5" path="res://Assets/Themes/Buttons.tres" id="8_t6lys"]
 [ext_resource type="ButtonGroup" uid="uid://c1m1ti5edo31g" path="res://Game/Data/weapon_shop_buttons/new_button_group.tres" id="9_5vr10"]
-[ext_resource type="Theme" uid="uid://bkbjf0fj24slc" path="res://Assets/Themes/WeaponShop.tres" id="9_v7ggj"]
+[ext_resource type="Theme" uid="uid://dkdggiddwns8c" path="res://Assets/Themes/WeaponShop.tres" id="9_v7ggj"]
 [ext_resource type="Texture2D" uid="uid://j4cqlw4tpk8b" path="res://Assets/Weapons/DaggerBlack.png" id="10_dkqhm"]
 [ext_resource type="Texture2D" uid="uid://cq7d6tugfcgel" path="res://Assets/Weapons/SamuraiBlack.png" id="12_v8inx"]
 [ext_resource type="Texture2D" uid="uid://fxuqi1s1qx4w" path="res://Assets/Weapons/MaceBlack.png" id="14_tfupd"]
