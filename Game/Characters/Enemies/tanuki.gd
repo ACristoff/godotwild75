@@ -64,6 +64,8 @@ func move(attackName: String):
 	#Distance to furthest point from character
 	var closestDistance = 0
 	var auxMove = false
+	var walkable_cells = battleManager.get_walkable_cells(self)
+	
 	for n in range(attacks[attackName]["RANGE"] + 1):
 		var cells = [
 			targetCharacter.cell + Vector2(attacks[attackName]["RANGE"] - n, n),
@@ -72,7 +74,7 @@ func move(attackName: String):
 			targetCharacter.cell + Vector2((attacks[attackName]["RANGE"] - n)*-1, n*-1)
 		]
 		for i in range(0, 4):
-			if grid.is_within_bounds(cells[i]) and ((cells[i].x < 8 and !isSpirit) or (cells[i].x > 9 and isSpirit)):
+			if grid.is_within_bounds(cells[i]) and walkable_cells.has(cells[i]) and ((cells[i].x < 8 and !isSpirit) or (cells[i].x > 9 and isSpirit)):
 				var aux = abs((cell - cells[i]).length())
 				if aux <= move_range and aux >= maxDistance:
 					#Cell within move range and max attack range
@@ -101,6 +103,6 @@ func move(attackName: String):
 	if cell == targetPoint:
 		walk_along([cell])
 	else:
-		unitPath.initialize(battleManager.get_walkable_cells(self))
+		unitPath.initialize(walkable_cells)
 		unitPath.draw(cell, targetPoint)
 		walk_along(unitPath.current_path)

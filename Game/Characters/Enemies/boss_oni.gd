@@ -108,6 +108,8 @@ func move(attackName: String, singleTarget: bool):
 	#Distance to closest point from character
 	var closestDistance = 1000
 	var auxMove = false
+	var walkable_cells = battleManager.get_walkable_cells(self)
+	
 	if !singleTarget:
 		for n in range(attacks[attackName]["RANGE"] + 1):
 			var cells = [
@@ -117,7 +119,7 @@ func move(attackName: String, singleTarget: bool):
 				targetCell + Vector2((attacks[attackName]["RANGE"] - n)*-1, n*-1)
 			]
 			for i in range(0, 4):
-				if grid.is_within_bounds(cells[i]) and ((cells[i].x < 8 and !isSpirit) or (cells[i].x > 9 and isSpirit)):
+				if grid.is_within_bounds(cells[i]) and walkable_cells.has(cells[i]) and ((cells[i].x < 8 and !isSpirit) or (cells[i].x > 9 and isSpirit)):
 					var aux = abs((cell - cells[i]).length())
 					if aux <= move_range and aux <= minDistance:
 						#Cell within move range and max attack range
@@ -134,7 +136,7 @@ func move(attackName: String, singleTarget: bool):
 				targetCharacter.cell + Vector2((attacks[attackName]["RANGE"] - n)*-1, n*-1)
 			]
 			for i in range(0, 4):
-				if grid.is_within_bounds(cells[i]) and ((cells[i].x < 8 and !isSpirit) or (cells[i].x > 9 and isSpirit)):
+				if grid.is_within_bounds(cells[i]) and walkable_cells.has(cells[i]) and ((cells[i].x < 8 and !isSpirit) or (cells[i].x > 9 and isSpirit)):
 					var distanceToTarget = abs((cell - cells[i]).length())
 					if distanceToTarget <= move_range and distanceToTarget <= minDistance:
 						#Cell within move range and max attack range
@@ -152,7 +154,7 @@ func move(attackName: String, singleTarget: bool):
 				cell + Vector2((move_range - n)*-1, n*-1)
 			]
 			for i in range(0, 4):
-				if grid.is_within_bounds(cells[i]) and ((cells[i].x < 8 and !isSpirit) or (cells[i].x > 9 and isSpirit)):
+				if grid.is_within_bounds(cells[i]) and walkable_cells.has(cells[i]) and ((cells[i].x < 8 and !isSpirit) or (cells[i].x > 9 and isSpirit)):
 					var distanceToTarget = abs((cell - cells[i]).length())
 					var distanceToCharacter = abs((targetCell - cells[i]).length())
 					if distanceToTarget <= move_range and distanceToCharacter <= closestDistance:
@@ -163,6 +165,6 @@ func move(attackName: String, singleTarget: bool):
 	if cell == targetPoint:
 		walk_along([cell])
 	else:
-		unitPath.initialize(battleManager.get_walkable_cells(self))
+		unitPath.initialize(walkable_cells)
 		unitPath.draw(cell, targetPoint)
 		walk_along(unitPath.current_path)
