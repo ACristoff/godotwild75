@@ -10,6 +10,7 @@ func spawn_init(miko_data):
 
 func _ready():
 	super()
+	
 	#print("hello spirit world :)")
 	pass
 	
