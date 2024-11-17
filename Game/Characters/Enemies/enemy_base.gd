@@ -9,13 +9,18 @@ var targetCell : Vector2 = Vector2.ZERO
 @onready var battleManager : BattleManager = get_parent()
 #All characters on screen
 var characterList
+
 var has_moved = false
 var boardState
 
+@onready var unit_path_scene = preload("res://Game/Data/unit_path.tscn")
+var unitPath : UnitPath
+
 func _ready():
 	super()
+	unitPath = unit_path_scene.instantiate()
+	add_child(unitPath)
 	characterList = get_tree().get_nodes_in_group("player")
-	pass
 	
 func _process(delta):
 	super(delta)
@@ -26,13 +31,12 @@ func _init():
 
 func enemyBrain(state):
 	boardState = state
-	pass
 
 func endTurn():
+	unitPath.stop()
 	has_moved = true
 	await get_tree().create_timer(2).timeout
 	battleManager.turn_manager()
-	pass
 
 func doAttack(attackName: String):
 	var cell : Vector2

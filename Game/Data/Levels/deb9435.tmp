@@ -30,11 +30,11 @@ y_sort_origin = -1
 
 [node name="MikoUnit" parent="." instance=ExtResource("6_ichhw")]
 position = Vector2(285, 305)
-max_health = 3
+max_health = 1000
 
 [node name="HeikoUnit" parent="." instance=ExtResource("7_2tvfr")]
 position = Vector2(421, 308)
-max_health = 3
+max_health = 1000
 
 [node name="Cursor" parent="." instance=ExtResource("2_pogwr")]
 
@@ -43,11 +43,9 @@ position = Vector2(0, 1)
 
 [node name="Oni" parent="." instance=ExtResource("11_xtgi6")]
 position = Vector2(480, 486)
-max_health = 3
 
 [node name="Kitsune" parent="." instance=ExtResource("11_x7u8q")]
 position = Vector2(354, 417)
-max_health = 3
 
 [connection signal="accept_pressed" from="Cursor" to="." method="_on_cursor_accept_pressed"]
 [connection signal="deselect_pressed" from="Cursor" to="." method="_on_cursor_deselect_pressed"]

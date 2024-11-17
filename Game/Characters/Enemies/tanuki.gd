@@ -1,12 +1,12 @@
 extends EnemyUnit
-class_name Oni
+class_name Tanuki
 
-#Move Range = 2
+#Move Range = 4
 #HP = 2???
 
-var oni_attacks = {
-	"Club Strike": {
-		"RANGE": 1,
+var kappa_attacks = {
+	"Water Cannon": {
+		"RANGE": 4,
 		"DAMAGE": 2,
 		"MOVE": Vector2(0,0),
 		"EXORCISM": false,
@@ -27,21 +27,21 @@ func _process(delta):
 
 func _init():
 	super()
-	attacks = oni_attacks
+	attacks = kappa_attacks
 
 func enemyBrain(boardState):
 	super(boardState)
-	getTargetCharacter("Club Strike")
+	getTargetCharacter("Water Cannon")
 	#Attack if able, if not move first.
-	move("Club Strike")
+	move("Water Cannon")
 	if(targetOnRange):
-		doAttack("Club Strike")
+		doAttack("Water Cannon")
 		pass
 	endTurn()
 
 func getTargetCharacter(attackName: String):
-	#Target closest character
-	var minDistance = 1000
+	#Target furthest character
+	var maxDistance = 0
 	var auxOnRange = false
 	for ch in characterList:
 		if ch.cell.x < 7:
@@ -49,23 +49,24 @@ func getTargetCharacter(attackName: String):
 			#If character is on range of attack, that's the character I'm focusing on.
 			if distance <= attacks[attackName]["RANGE"]:
 				targetOnRange = true
-				targetCharacter = ch
-				minDistance = distance
+				auxOnRange = true
 			else:
 				targetOnRange = false
-			#If there's no character on range of attack, target closest.
-			if (distance < minDistance):
-				minDistance = distance
+			#If there's another character with a greater distance and on range, change targets there.
+			#If there's no character on range, target furthest character.
+			if (distance > maxDistance and targetOnRange) or (!targetOnRange and !auxOnRange):
+				maxDistance = distance
 				targetCharacter = ch
+	targetOnRange = auxOnRange
 	
 func move(attackName: String):
 	#Move to the closest grid point where the attack reaches (max range on the attack)
 	#If enemy is already on best point, don't move.
 	var targetPoint = cell
 	#Distance to character
-	var minDistance = 1000
-	#Distance to closest point to character
-	var closestDistance = 1000
+	var maxDistance = 0
+	#Distance to furthest point from character
+	var closestDistance = 0
 	var auxMove = false
 	for n in range(attacks[attackName]["RANGE"] + 1):
 		var cells = [
@@ -76,14 +77,14 @@ func move(attackName: String):
 		]
 		for i in range(0, 4):
 			if (grid.is_within_bounds(cells[i]) and cells[i].x < 8):
-				var distanceToTarget = abs((cell - cells[i]).length())
-				if distanceToTarget <= move_range and distanceToTarget <= minDistance:
+				var aux = abs((cell - cells[i]).length())
+				if aux <= move_range and aux >= maxDistance:
 					#Cell within move range and max attack range
 					targetPoint = cells[i]
-					minDistance = distanceToTarget
+					maxDistance = aux
 					auxMove = true
 					targetOnRange = true
-	#If no ideal cell was found, move closer to the target
+	#If no ideal cell was found, move closer to the target (as far away as possible)
 	if(!auxMove):
 		for n in range(move_range):
 			var cells = [
@@ -96,10 +97,10 @@ func move(attackName: String):
 				if (grid.is_within_bounds(cells[i]) and cells[i].x < 8):
 					var distanceToTarget = abs((cell - cells[i]).length())
 					var distanceToCharacter = abs((targetCharacter.cell - cells[i]).length())
-					if distanceToTarget <= move_range and distanceToCharacter <= closestDistance:
-						#Cell within move range and closest to the character
+					if distanceToTarget <= move_range and distanceToCharacter >= closestDistance:
+						#Cell within move range and closer to the character
 						targetPoint = cells[i]
-						minDistance = distanceToTarget
+						maxDistance = distanceToTarget
 						closestDistance = distanceToCharacter
 	if cell == targetPoint:
 		walk_along([cell])

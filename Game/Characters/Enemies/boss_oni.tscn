@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bw3bmgf2rmjrr"]
+[gd_scene load_steps=4 format=3 uid="uid://bw3bmgf2rmjrr"]
 
 [ext_resource type="PackedScene" uid="uid://cg34obo360a5w" path="res://Game/Characters/Enemies/enemy_base.tscn" id="1_fd6ws"]
 [ext_resource type="Script" path="res://Game/Characters/Enemies/boss_oni.gd" id="2_nxcf8"]
+[ext_resource type="PackedScene" uid="uid://d0wvn2340i1oa" path="res://Game/UI/healthbar.tscn" id="3_llvy2"]
 
 [node name="BossOni" instance=ExtResource("1_fd6ws")]
 modulate = Color(0.0475577, 0.0475576, 0.0475576, 1)
@@ -9,3 +10,5 @@ script = ExtResource("2_nxcf8")
 max_health = 3
 self_scene_path = ""
 health = 0
+
+[node name="HealthBar" parent="." index="2" instance=ExtResource("3_llvy2")]
