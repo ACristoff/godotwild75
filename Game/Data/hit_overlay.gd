@@ -12,6 +12,9 @@ func _ready():
 
 func make_squares(attack):
 	kill_kids()
+	##TODO
+	#var pattern = Vector2(0,0)
+	#print(attack)
 	var pattern = attack
 	
 	for vec in pattern:

@@ -30,11 +30,11 @@ y_sort_origin = -1
 
 [node name="MikoUnit" parent="." instance=ExtResource("6_ichhw")]
 position = Vector2(285, 305)
-max_health = 3
+max_health = 1000
 
 [node name="HeikoUnit" parent="." instance=ExtResource("7_2tvfr")]
 position = Vector2(421, 308)
-max_health = 3
+max_health = 1000
 
 [node name="Cursor" parent="." instance=ExtResource("2_pogwr")]
 

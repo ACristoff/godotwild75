@@ -163,4 +163,6 @@ func move(attackName: String, singleTarget: bool):
 	if cell == targetPoint:
 		walk_along([cell])
 	else:
-		walk_along([cell, targetPoint])
+		unitPath.initialize(battleManager.get_walkable_cells(self))
+		unitPath.draw(cell, targetPoint)
+		walk_along(unitPath.current_path)

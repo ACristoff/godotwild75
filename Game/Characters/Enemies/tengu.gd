@@ -1,13 +1,13 @@
 extends EnemyUnit
-class_name Oni
+class_name Tengu
 
-#Move Range = 2
+#Move Range = 4
 #HP = 2???
 
-var oni_attacks = {
-	"Club Strike": {
+var tengu_attacks = {
+	"Karate Chop": {
 		"RANGE": 1,
-		"DAMAGE": 2,
+		"DAMAGE": 1,
 		"MOVE": Vector2(0,0),
 		"EXORCISM": false,
 		"BLAST_PATTERN": [],
@@ -19,7 +19,7 @@ var targetOnRange = false
 
 func _ready():
 	super()
-	move_range = 2
+	move_range = 4
 	set_process(true)
 
 func _process(delta):
@@ -27,15 +27,15 @@ func _process(delta):
 
 func _init():
 	super()
-	attacks = oni_attacks
+	attacks = tengu_attacks
 
 func enemyBrain(boardState):
 	super(boardState)
-	getTargetCharacter("Club Strike")
+	getTargetCharacter("Karate Chop")
 	#Attack if able, if not move first.
-	move("Club Strike")
+	move("Karate Chop")
 	if(targetOnRange):
-		doAttack("Club Strike")
+		doAttack("Karate Chop")
 		pass
 	endTurn()
 
