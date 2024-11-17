@@ -175,6 +175,8 @@ func on_unit_state_change(state):
 		#var attack_cells = get_attack_cells()
 		pass
 	if state == PlayerUnit.unit_states.ATTACK_ACTION_THINK:
+		var move_to_pos = grid.calculate_map_position(Vector2(0,0))
+		hit_overlay.position = move_to_pos
 		current_attack = active_unit.current_attack.duplicate()
 		var attack_cells = get_attack_cells(active_unit, active_unit.current_attack)
 		var all_cells = []
