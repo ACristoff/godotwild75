@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://dsa7ourik4j04"]
+[gd_scene load_steps=43 format=3 uid="uid://dsa7ourik4j04"]
 
 [ext_resource type="Shader" path="res://Assets/Shaders/followmousecard.gdshader" id="1_dbsal"]
 [ext_resource type="Script" path="res://Game/UI/weapon_shop.gd" id="1_se77a"]
@@ -17,7 +17,10 @@
 [ext_resource type="ButtonGroup" uid="uid://c1m1ti5edo31g" path="res://Game/Data/weapon_shop_buttons/new_button_group.tres" id="9_5vr10"]
 [ext_resource type="Theme" uid="uid://dkdggiddwns8c" path="res://Assets/Themes/WeaponShop.tres" id="9_v7ggj"]
 [ext_resource type="Texture2D" uid="uid://j4cqlw4tpk8b" path="res://Assets/Weapons/DaggerBlack.png" id="10_dkqhm"]
+[ext_resource type="PackedScene" uid="uid://b5wuajjdswd23" path="res://Assets/Effects/transition.tscn" id="11_qetd6"]
+[ext_resource type="Shader" path="res://Assets/Shaders/transition.gdshader" id="12_opnas"]
 [ext_resource type="Texture2D" uid="uid://cq7d6tugfcgel" path="res://Assets/Weapons/SamuraiBlack.png" id="12_v8inx"]
+[ext_resource type="Texture2D" uid="uid://bjx2labdxfhtt" path="res://Assets/UserInterface/Menu/FlameTransition.png" id="13_dl7fu"]
 [ext_resource type="Texture2D" uid="uid://fxuqi1s1qx4w" path="res://Assets/Weapons/MaceBlack.png" id="14_tfupd"]
 [ext_resource type="Texture2D" uid="uid://csa2aj1qkp6o2" path="res://Assets/Weapons/BowBlack.png" id="16_eqbf6"]
 [ext_resource type="Texture2D" uid="uid://oewo8j2hcp0v" path="res://Assets/Weapons/Bow.png" id="17_efqft"]
@@ -53,6 +56,12 @@ bg_color = Color(0.294118, 0.105882, 0.670588, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qfqiw"]
 bg_color = Color(0.294118, 0.105882, 0.670588, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5bg1m"]
+resource_local_to_scene = true
+shader = ExtResource("12_opnas")
+shader_parameter/scale = 0.0
+shader_parameter/mask = ExtResource("13_dl7fu")
 
 [sub_resource type="Gradient" id="Gradient_7spl3"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -428,6 +437,11 @@ theme_override_fonts/font = ExtResource("2_un46q")
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_qfqiw")
 text = "BATTLE!"
+
+[node name="Transition" parent="CanvasLayer" instance=ExtResource("11_qetd6")]
+material = SubResource("ShaderMaterial_5bg1m")
+size_flags_horizontal = 6
+is_on = true
 
 [node name="Miko" type="Button" parent="."]
 self_modulate = Color(1, 1, 1, 0)

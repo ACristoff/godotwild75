@@ -44,6 +44,9 @@ max_health = 3
 [node name="Kappa12" parent="." instance=ExtResource("10_hc8do")]
 position = Vector2(352, 610)
 
+[node name="Kappa13" parent="." instance=ExtResource("10_hc8do")]
+position = Vector2(1120, 226)
+
 [node name="TurnIndicator" parent="." instance=ExtResource("11_cru58")]
 
 [node name="Chochin" parent="." instance=ExtResource("13_t0jx7")]
@@ -51,9 +54,6 @@ position = Vector2(221, 414)
 
 [node name="Chochin3" parent="." instance=ExtResource("13_t0jx7")]
 position = Vector2(802, 540)
-
-[node name="Chochin4" parent="." instance=ExtResource("13_t0jx7")]
-position = Vector2(1122, 221)
 
 [node name="Tanuki" parent="." instance=ExtResource("15_pidby")]
 position = Vector2(160, 231)
