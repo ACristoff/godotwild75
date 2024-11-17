@@ -43,7 +43,12 @@ func getTargetCharacter(attackName: String, boardState):
 	var auxOnRange = false
 	var auxCell = cell
 	#Loop through every cell in the grid (FUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
-	for x in range(0, 8):
+	var start = 0
+	var end = 8
+	if isSpirit:
+		start = 10
+		end = 18
+	for x in range(start, end):
 		for y in range(0, 8):
 			var auxAmount = 0
 			#Look at a certain cell in the grid
@@ -78,7 +83,7 @@ func move(attackName: String):
 			targetCell + Vector2((attacks[attackName]["RANGE"] - n)*-1, n*-1)
 		]
 		for i in range(0, 4):
-			if (grid.is_within_bounds(cells[i]) and cells[i].x < 8):
+			if grid.is_within_bounds(cells[i]) and ((cells[i].x < 8 and !isSpirit) or (cells[i].x > 9 and isSpirit)):
 				var aux = abs((cell - cells[i]).length())
 				if aux <= move_range and aux >= maxDistance:
 					#Cell within move range and max attack range
@@ -96,7 +101,7 @@ func move(attackName: String):
 				cell + Vector2((move_range - n)*-1, n*-1)
 			]
 			for i in range(0, 4):
-				if (grid.is_within_bounds(cells[i]) and cells[i].x < 8):
+				if grid.is_within_bounds(cells[i]) and ((cells[i].x < 8 and !isSpirit) or (cells[i].x > 9 and isSpirit)):
 					var distanceToTarget = abs((cell - cells[i]).length())
 					var distanceToCharacter = abs((targetCell - cells[i]).length())
 					if distanceToTarget <= move_range and distanceToCharacter <= closestDistance:

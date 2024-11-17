@@ -77,8 +77,9 @@ func turn_manager():
 		var next_unit = find_next_possible(friendlies)
 		if next_unit == null:
 			is_player_turn = false
-			is_enemy_turn = true
 			turn_indicator._SwitchingTurn()
+			await get_tree().create_timer(1).timeout
+			is_enemy_turn = true
 			turn_manager()
 	else:
 		##TODO Do enemy turns here
@@ -91,7 +92,6 @@ func turn_manager():
 			is_enemy_turn = false
 			is_player_turn = true
 			turn_indicator._SwitchingTurn()
-			turn_manager()
 	pass
 
 ## Clears, and refills the `_units` dictionary with game objects that are on the board.
@@ -392,8 +392,9 @@ func spawn_ghost(unit, mirrored_origin):
 	add_child(ghost)
 	ghost.position = grid.calculate_map_position(mirrored_origin)
 	units[mirrored_origin] = ghost
-	if ghost.is_in_group("enemies"):
+	if ghost.is_in_group("enemy"):
 		enemies[mirrored_origin] = ghost
+		ghost.isSpirit = true
 	elif ghost.is_in_group("player"):
 		friendlies[mirrored_origin] = ghost
 		ghost.connect("unit_state_change", on_unit_state_change)
@@ -448,16 +449,18 @@ func on_unit_death(unit):
 		check_for_win_con()
 
 func trigger_fail_con(miko):
-	print("FISSION MAILED", miko, "HAS DIED")
-	var manager: GameManager = get_node("/root/GameManager")
-	manager.show_screen(fail_screen)
+	#print("FISSION MAILED", miko, "HAS DIED")
+	#var manager: GameManager = get_node("/root/GameManager")
+	#manager.show_screen(fail_screen)
+	LevelManager.switchScene(LevelManager.getLevelIndex("lose_screen"))
 	pass
 
 func check_for_win_con():
 	if enemies.size() == 0 && ghost_accumulator.size() == 0:
-		var manager: GameManager = get_node("/root/GameManager")
-		print("A WINRAR IS YOU CON")
-		manager.show_screen(win_screen)
+		LevelManager.switchScene(LevelManager.getLevelIndex("win_screen"))
+		#var manager: GameManager = get_node("/root/GameManager")
+		#print("A WINRAR IS YOU CON")
+		#manager.show_screen(win_screen)
 		#print()
 
 func _on_cursor_deselect_pressed():

@@ -19,3 +19,7 @@ func _on_retry_pressed() -> void:
 
 func _on_onward_2_pressed() -> void:
 	lvlselect.emit()
+
+
+func _on_retry_2_pressed():
+	pass # Replace with function body.

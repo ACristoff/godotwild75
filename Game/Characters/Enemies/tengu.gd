@@ -42,7 +42,7 @@ func getTargetCharacter(attackName: String):
 	var minDistance = 1000
 	var auxOnRange = false
 	for ch in characterList:
-		if ch.cell.x < 7:
+		if (ch.cell.x <= 7 and !isSpirit) or (ch.cell.x >= 10 and isSpirit):
 			var distance = abs(cell.x - ch.cell.x) + abs(ch.cell.y - cell.y)
 			#If character is on range of attack, that's the character I'm focusing on.
 			if distance <= attacks[attackName]["RANGE"]:
@@ -73,7 +73,7 @@ func move(attackName: String):
 			targetCharacter.cell + Vector2((attacks[attackName]["RANGE"] - n)*-1, n*-1)
 		]
 		for i in range(0, 4):
-			if (grid.is_within_bounds(cells[i]) and cells[i].x < 8):
+			if grid.is_within_bounds(cells[i]) and ((cells[i].x < 8 and !isSpirit) or (cells[i].x > 9 and isSpirit)):
 				var distanceToTarget = abs((cell - cells[i]).length())
 				if distanceToTarget <= move_range and distanceToTarget <= minDistance:
 					#Cell within move range and max attack range
@@ -91,7 +91,7 @@ func move(attackName: String):
 				cell + Vector2((move_range - n)*-1, n*-1)
 			]
 			for i in range(0, 4):
-				if (grid.is_within_bounds(cells[i]) and cells[i].x < 8):
+				if grid.is_within_bounds(cells[i]) and ((cells[i].x < 8 and !isSpirit) or (cells[i].x > 9 and isSpirit)):
 					var distanceToTarget = abs((cell - cells[i]).length())
 					var distanceToCharacter = abs((targetCharacter.cell - cells[i]).length())
 					if distanceToTarget <= move_range and distanceToCharacter <= closestDistance:

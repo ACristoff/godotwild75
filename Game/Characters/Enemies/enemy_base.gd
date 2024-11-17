@@ -12,6 +12,7 @@ var characterList
 
 var has_moved = false
 var boardState
+var isSpirit = false
 
 @onready var unit_path_scene = preload("res://Game/Data/unit_path.tscn")
 var unitPath : UnitPath
