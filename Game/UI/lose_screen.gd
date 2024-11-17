@@ -2,9 +2,12 @@ extends Node2D
 
 signal retry
 signal lvlselect
+
+@onready var losesongo = preload("res://Assets/Audio/Music/MM_Defeat.mp3")
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$AudioStreamPlayer2D.play()
+	AudioManager._play_music(losesongo, -6)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

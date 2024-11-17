@@ -1,8 +1,9 @@
 extends Node2D
 
+@onready var winsongo = preload("res://Assets/Audio/Music/MM_Victory Fanfare Rev 2.mp3")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$AudioStreamPlayer2D.play()
+	AudioManager._play_music(winsongo, -6)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
