@@ -175,6 +175,8 @@ func on_unit_state_change(state):
 		#var attack_cells = get_attack_cells()
 		pass
 	if state == PlayerUnit.unit_states.ATTACK_ACTION_THINK:
+		var move_to_pos = grid.calculate_map_position(Vector2(0,0))
+		hit_overlay.position = move_to_pos
 		current_attack = active_unit.current_attack.duplicate()
 		var attack_cells = get_attack_cells(active_unit, active_unit.current_attack)
 		var all_cells = []
@@ -188,21 +190,23 @@ func on_unit_state_change(state):
 		current_attack.ATTACK_VECS = attack_cells
 	pass
 
+var enemies_given_blowies = {
+		
+	}
+
 func check_for_explosions(vectors):
 	var nathan_explosion = []
 	explosion_view_overlay.clear()
 	for vec in vectors:
 		if units.has(vec):
-			if units[vec].health  <= current_attack.DAMAGE:
+			if units[vec].health <= current_attack.DAMAGE :
 				prints("cummy wummy", units[vec], vec)
 				for ex_vec in current_attack.BLAST_PATTERN:
 					print(ex_vec)
 					var adjusted = ex_vec + units[vec].cell
 					var mirrored = grid.calculate_mirror_position(adjusted)
 					nathan_explosion.append(mirrored)
-					pass
 	print(vectors, "THESE ARE MY CHECK VECTORS", "THIS IS MY BENIS :-DD", nathan_explosion)
-	
 	explosion_view_overlay.draw(nathan_explosion)
 	pass
 
@@ -300,6 +304,7 @@ func select_unit(cell: Vector2):
 		return
 	active_unit = units[cell]
 	active_unit.is_selected = true
+	hit_overlay.position = grid.calculate_map_position(cell)
 
 func deselect_unit():
 	if active_unit:
