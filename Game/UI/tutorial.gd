@@ -85,7 +85,7 @@ func _process(delta: float) -> void:
 		$"letsago!".visible = true
 		$restart.visible = true
 	elif tutorial == 17:
-		pass
+		bodytext.text = "I see those Kappa from before. Lets put what you learnt into action!"
 
 
 func _on_next_panel_pressed() -> void:
@@ -102,6 +102,7 @@ func _on_undo_pressed() -> void:
 
 
 func _on_letsago_pressed() -> void:
+	$ColorRect.mouse_filter = 2
 	$"letsago!".visible = false
 	$restart.visible = false
 	tutorial = 1
