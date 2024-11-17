@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://c0jt35tedkwl"]
+[gd_scene load_steps=26 format=3 uid="uid://c0jt35tedkwl"]
 
 [ext_resource type="Script" path="res://Game/UI/tutorial.gd" id="1_731gq"]
 [ext_resource type="PackedScene" uid="uid://gcdapkkqr808" path="res://Game/World/environment.tscn" id="2_i40h2"]
@@ -10,93 +10,28 @@
 [ext_resource type="Texture2D" uid="uid://cfe2oyh8ea6bt" path="res://Assets/Screenshots/Screenshot 2024-11-16 185528.png" id="9_tvq63"]
 [ext_resource type="Texture2D" uid="uid://lh1fepsa4x6e" path="res://Assets/UserInterface/Menu/ButtonArrow.png" id="10_akub1"]
 [ext_resource type="Texture2D" uid="uid://dtb7dx7u0jowt" path="res://Assets/UserInterface/Gameplay/GoldSelection.png" id="11_3pkkw"]
-[ext_resource type="Shader" uid="uid://buw3cbhbnvd0l" path="res://Assets/Shaders/swayandblur.tres" id="11_mu11w"]
 [ext_resource type="Texture2D" uid="uid://btvp8us8w222b" path="res://Assets/Screenshots/Screenshot 2024-11-16 184818.png" id="12_ue5bk"]
 [ext_resource type="Texture2D" uid="uid://b7gckxeelmr51" path="res://Assets/Screenshots/Screenshot 2024-11-16 184835.png" id="13_jsb3t"]
 [ext_resource type="Texture2D" uid="uid://crd4vj6w6n6bl" path="res://Assets/Screenshots/Screenshot 2024-11-16 190156.png" id="14_pkxks"]
 [ext_resource type="Texture2D" uid="uid://d76httmgjy6q" path="res://Assets/Screenshots/Screenshot 2024-11-16 184727.png" id="15_jpgsj"]
 [ext_resource type="Texture2D" uid="uid://bq22jcytg2ufj" path="res://Assets/Screenshots/Screenshot 2024-11-16 190211.png" id="16_ikygv"]
+[ext_resource type="Texture2D" uid="uid://dyq0tu7gqp7la" path="res://Assets/Characters/Friendly/Heiko.png" id="17_0ns28"]
 [ext_resource type="Texture2D" uid="uid://bkg0nn8201v60" path="res://Assets/Screenshots/Screenshot 2024-11-16 184701.png" id="17_g81qk"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_libmq"]
-shader = ExtResource("11_mu11w")
-shader_parameter/blur_radius = 1.0
-shader_parameter/blur_amount = 3.021
-shader_parameter/blur_inner = 0.0
-shader_parameter/blur_outer = 0.0
+[ext_resource type="Texture2D" uid="uid://bpmvmcaiamrh5" path="res://Assets/Characters/Friendly/Miko.png" id="18_08nff"]
+[ext_resource type="Texture2D" uid="uid://k10sy15l0bhm" path="res://Assets/Characters/Friendly/MikoSpirit.png" id="19_8rqvs"]
 
 [sub_resource type="Animation" id="Animation_3gx12"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:material:shader_parameter/blur_radius")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("TextureRect:material:shader_parameter/blur_amount")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [3.021]
-}
 
 [sub_resource type="Animation" id="Animation_wr4c1"]
 resource_name = "TutorialFade"
 length = 0.1
 step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:material:shader_parameter/blur_radius")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("TextureRect:material:shader_parameter/blur_amount")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [3.021, 0.0]
-}
 
 [sub_resource type="Animation" id="Animation_fpkbe"]
 resource_name = "TutorialFadeIN"
 length = 0.1
 step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:material:shader_parameter/blur_amount")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 3.021]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k4ryi"]
 _data = {
@@ -114,18 +49,6 @@ bg_color = Color(0.0901961, 0.0901961, 0.0901961, 0.478431)
 [node name="Tutorial" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_731gq")
-
-[node name="TextureRect" type="ColorRect" parent="."]
-z_index = 10
-material = SubResource("ShaderMaterial_libmq")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 1280.0
-offset_bottom = 720.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
 
 [node name="Environment" parent="." instance=ExtResource("2_i40h2")]
 
@@ -416,6 +339,27 @@ offset_bottom = 338.0
 theme = ExtResource("6_eu3y2")
 theme_override_fonts/font = ExtResource("5_eupe1")
 text = "I'm Ready."
+
+[node name="Heiko" type="Sprite2D" parent="."]
+position = Vector2(480, 323)
+scale = Vector2(2, 2)
+texture = ExtResource("17_0ns28")
+hframes = 16
+frame = 12
+
+[node name="Miko" type="Sprite2D" parent="."]
+position = Vector2(545, 327)
+scale = Vector2(2, 2)
+texture = ExtResource("18_08nff")
+hframes = 16
+frame = 5
+
+[node name="MikoSpirit" type="Sprite2D" parent="."]
+position = Vector2(732, 329)
+scale = Vector2(2, 2)
+texture = ExtResource("19_8rqvs")
+hframes = 16
+frame = 12
 
 [connection signal="pressed" from="NextPanel" to="." method="_on_next_panel_pressed"]
 [connection signal="pressed" from="Undo2" to="." method="_on_undo_pressed"]

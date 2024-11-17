@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://2r5lvg6715f" path="res://Game/Characters/Friendlies/heiko_unit.tscn" id="9_6ue6m"]
 [ext_resource type="PackedScene" uid="uid://cy1ruko7jcspv" path="res://Game/Characters/Enemies/kappa.tscn" id="10_6xf8y"]
 [ext_resource type="PackedScene" uid="uid://d1rww8eno83bs" path="res://Game/Data/Cursor/cursor.tscn" id="10_rpdvm"]
-[ext_resource type="PackedScene" uid="uid://c7jhfoocdh6d6" path="res://Game/Characters/Enemies/tengu.tscn" id="11_slvbi"]
+[ext_resource type="PackedScene" uid="uid://p7hcn583iptc" path="res://Game/Characters/Enemies/tengu.tscn" id="11_slvbi"]
 [ext_resource type="PackedScene" uid="uid://cdrtmig8f1yom" path="res://Assets/UserInterface/Gameplay/turn_order.tscn" id="12_f1a83"]
 
 [node name="DebugLevel4" type="Node2D"]

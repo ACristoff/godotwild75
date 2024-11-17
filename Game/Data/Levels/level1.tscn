@@ -28,11 +28,11 @@ y_sort_origin = -1
 [node name="ExplosionOverlay" parent="." instance=ExtResource("6_gq7gj")]
 
 [node name="MikoUnit" parent="." instance=ExtResource("7_7fcl0")]
-position = Vector2(549, 359)
+position = Vector2(350, 550)
 max_health = 3
 
 [node name="HeikoUnit" parent="." instance=ExtResource("9_eruft")]
-position = Vector2(100, 353)
+position = Vector2(288, 550)
 max_health = 3
 
 [node name="Cursor" parent="." instance=ExtResource("10_yf1bv")]
