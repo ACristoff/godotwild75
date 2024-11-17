@@ -48,7 +48,7 @@ var weapon_data = {
 		"state": 'LOCKED',
 		"isSelected": false,
 		"DAMAGE": 2,
-		"ATTACK_VECS": [Vector2(0, -1,), Vector2(-1, -1), Vector2(1, -2), Vector2(-1, -2), Vector2(1, -2)],
+		"ATTACK_VECS": [Vector2(0, -1,), Vector2(-1, -1), Vector2(1, -2), Vector2(-1, -2), Vector2(1, -2), Vector2(1, -1)],
 		"BLAST_PATTERN": [            Vector2(0,-1),
 			Vector2(0, -2),
 			Vector2(0, -3),
