@@ -8,6 +8,7 @@ const DIRECTIONS = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 
 @onready var win_screen = preload("res://Game/UI/win_screen.tscn")
 @onready var fail_screen = preload("res://Game/UI/lose_screen.tscn")
+@onready var deselect_sound = preload("res://Assets/Audio/UI/Menu_Back.mp3")
 
 @onready var spirit_miko_scene:  = preload("res://Game/Characters/Friendlies/spirit_miko_unit.tscn") 
 var miko: PlayerUnit
@@ -38,10 +39,11 @@ func _ready():
 
 func _input(event):
 	if active_unit:
-		if event.is_action_pressed("rotate"):
-			hit_overlay.rotate_all_squares()
-			mutate_attack(current_attack.ATTACK_PATTERN)
-			pass
+		if active_unit.unit_state == PlayerUnit.unit_states.ATTACK_ACTION_THINK:
+			if event.is_action_pressed("rotate"):
+				#hit_overlay.rotate_all_squares()
+				#mutate_attack(current_attack.ATTACK_PATTERN)
+				pass
 
 #This rotates the attack pattern 90 degrees
 func mutate_attack(attack_pattern):
@@ -144,6 +146,7 @@ func get_walkable_cells(unit: Unit) -> Array:
 
 func get_attack_cells(unit: PlayerUnit, attack):
 	##TODO Give flood fill the ability to use every tile in range
+	
 	pass
 	#print("using this", current_attack)
 	#return flood_fill(unit.cell, attack.RANGE, true)
@@ -407,5 +410,6 @@ func check_for_win_con():
 
 func _on_cursor_deselect_pressed():
 	if active_unit:
+		AudioManager.play_sfx(deselect_sound, 1)
 		deselect_unit()
 		clear_active_unit()
