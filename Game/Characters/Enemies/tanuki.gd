@@ -15,6 +15,7 @@ func _ready():
 	super()
 	move_range = 3
 	max_health = 2
+	onibiDrop = 10
 	set_process(true)
 
 func _process(delta):
