@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://7svoiv3k6b8h"]
+[gd_scene load_steps=3 format=3 uid="uid://7svoiv3k6b8h"]
 
 [ext_resource type="Script" path="res://Game/Data/hit_overlay.gd" id="1_adhdm"]
+[ext_resource type="Resource" uid="uid://utpajlyrymk" path="res://Game/Data/grid.tres" id="2_vky4i"]
 
 [node name="HitOverlay" type="Node2D"]
 script = ExtResource("1_adhdm")
+grid = ExtResource("2_vky4i")

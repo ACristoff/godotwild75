@@ -1,15 +1,20 @@
 extends Node2D
 
 @onready var square_sprite = preload("res://Game/UI/hit_overlay_tile.tscn")
+@export var grid: Grid
 
 #I'm being lazy by doing this
 var grid_size = 64
 
+func _ready():
+	var move_to_pos = grid.calculate_map_position(Vector2(0,0))
+	position = move_to_pos
+
 func make_squares(attack):
-	#print(attack,"TEST")
-	#var pattern = attack.ATTACK_PATTERN
+	kill_kids()
+	var pattern = attack
 	##TODO
-	var pattern = Vector2(0,0)
+	#var pattern = Vector2(0,0)
 	
 	for vec in pattern:
 		#print(vec)

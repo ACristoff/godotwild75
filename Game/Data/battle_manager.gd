@@ -23,6 +23,8 @@ var walkable_cells := []
 var is_player_turn: bool = true
 var is_enemy_turn: bool = false
 var current_attack = null
+var rotations = ["up", "right", "down", "left"]
+var current_rotation = "up"
 
 @onready var attack_overlay = $AttackOverlay
 @onready var hit_overlay = $HitOverlay
@@ -37,13 +39,18 @@ func _ready():
 	reinitialize()
 	pass
 
+##could be fixed but fuck man
 func _input(event):
 	if active_unit:
 		if active_unit.unit_state == PlayerUnit.unit_states.ATTACK_ACTION_THINK:
 			if event.is_action_pressed("rotate"):
-				#hit_overlay.rotate_all_squares()
-				#mutate_attack(current_attack.ATTACK_PATTERN)
-				pass
+				if rotations.find(current_rotation) + 1 == 4:
+					current_rotation = rotations[0]
+				else:
+					current_rotation = rotations[rotations.find(current_rotation) + 1]
+				#print(current_rotation, "THE CURRENT ATTACK",  current_attack)
+				
+				hit_overlay.make_squares(current_attack.ATTACK_VECS[current_rotation])
 
 #This rotates the attack pattern 90 degrees
 func mutate_attack(attack_pattern):
@@ -51,7 +58,8 @@ func mutate_attack(attack_pattern):
 	for vec in attack_pattern:
 		var rotated_vector = Vector2(-vec.y, vec.x)
 		rotated.append(rotated_vector)
-	current_attack.ATTACK_PATTERN = rotated
+	return rotated
+
 
 ##Finds the next unit in a given team that has moves available
 func find_next_possible(team):
@@ -125,16 +133,21 @@ func on_unit_state_change(state):
 		walkable_cells = get_walkable_cells(active_unit)
 		unit_path.initialize(walkable_cells)
 	if state == PlayerUnit.unit_states.ATTACK_THINK:
-		#print("ATTACK THINK!")
 		#var attack_cells = get_attack_cells()
 		pass
 	if state == PlayerUnit.unit_states.ATTACK_ACTION_THINK:
 		#prints('current', active_unit.current_attack)
 		current_attack = active_unit.current_attack
 		var attack_cells = get_attack_cells(active_unit, active_unit.current_attack)
-		##TODO
-		#attack_overlay.draw(attack_cells)
-		hit_overlay.make_squares(active_unit.current_attack)
+		var all_cells = []
+		for arr in attack_cells:
+			for vec in attack_cells[arr]:
+				all_cells.append(vec)
+				pass
+		attack_overlay.draw(all_cells)
+		#print(all_cells)
+		hit_overlay.make_squares(attack_cells["up"])
+		current_attack.ATTACK_VECS = attack_cells
 	pass
 
 ## Returns `true` if the cell is occupied by a unit.
@@ -146,11 +159,56 @@ func get_walkable_cells(unit: Unit) -> Array:
 	return flood_fill(unit.cell, unit.move_range, false)
 
 func get_attack_cells(unit: Unit, attack):
-	##TODO Give flood fill the ability to use every tile in range
+	##REFACTOR THIS
+	#print(attack.ATTACK_VECS)
+	var new_vectors = {
+		"up": [],
+		"right": [],
+		"down": [],
+		"left": [],
+	}
+	var direcs = 3
 	
-	pass
-	#print("using this", current_attack)
-	#return flood_fill(unit.cell, attack.RANGE, true)
+	for vec in attack.ATTACK_VECS:
+		var adjusted_vec = vec + unit.cell
+		if grid.is_in_border(adjusted_vec) || !grid.is_within_bounds(adjusted_vec):
+			continue
+		new_vectors.up.append(adjusted_vec)
+
+	##This is going to be super fucking jank but we're on the final night
+	for i in direcs:
+		if i == 0:
+			var rotated = mutate_attack(attack.ATTACK_VECS)
+			var right = []
+			for vec in rotated:
+				var adjusted_vec = vec + unit.cell
+				if grid.is_in_border(adjusted_vec) || !grid.is_within_bounds(adjusted_vec):
+					continue
+				right.append(adjusted_vec)
+			new_vectors.right = right
+		if i == 1:
+			var rotated = mutate_attack(mutate_attack(attack.ATTACK_VECS))
+			var down = []
+			for vec in rotated:
+				var adjusted_vec = vec + unit.cell
+				if grid.is_in_border(adjusted_vec) || !grid.is_within_bounds(adjusted_vec):
+					continue
+				down.append(adjusted_vec)
+			new_vectors.down = down
+		if i == 2:
+			var rotated = mutate_attack(mutate_attack(mutate_attack(attack.ATTACK_VECS)))
+			var left = []
+			for vec in rotated:
+				var adjusted_vec = vec + unit.cell
+				if grid.is_in_border(adjusted_vec) || !grid.is_within_bounds(adjusted_vec):
+					continue
+				left.append(adjusted_vec)
+			new_vectors.left = left
+		#prints(right, down , left)
+	#print(new_vectors)
+	return new_vectors
+
+
 
 func flood_fill(origin: Vector2, max_distance: int, ignore_dudes: bool):
 	var array = []
@@ -264,33 +322,29 @@ func _on_cursor_accept_pressed(cell):
 					clear_active_unit()
 			return
 		if active_unit.unit_state == PlayerUnit.unit_states.ATTACK_ACTION_THINK:
-			#TODO range check
-			var cells_in_range = get_attack_cells(active_unit, active_unit.current_attack)
-			# if range bad then deselect
-			var attack_origin = cell
-			if (!cells_in_range.has(attack_origin)):
+			var cells_in_range = current_attack.ATTACK_VECS[current_rotation]
+			## if range bad then deselect
+			
+			if (!cells_in_range.has(cell)):
 				deselect_unit()
 				clear_active_unit()
 				return
-			var attack_cells = []
-			for to_hit_cell in current_attack.ATTACK_PATTERN:
-				var hit_cell = attack_origin + to_hit_cell
-				attack_cells.append(hit_cell)
+			var attack_cells = cells_in_range
 			if active_unit == miko || active_unit == spirit_miko:
 				var mirrored_unit_cell = null
 				if active_unit == miko:
 					mirrored_unit_cell = spirit_miko.cell
 				else:
 					mirrored_unit_cell = miko.cell
-				var mirror_origin = attack_origin - active_unit.cell
-				#prints("relative is", mirror_origin, mirrored_unit_cell)
-				for to_hit_cell in current_attack.ATTACK_PATTERN:
-					##Refactor this to work from alternate miko origin, then do an operation
-					var hit_cell = mirror_origin + to_hit_cell
-					hit_cell = hit_cell + mirrored_unit_cell
-					attack_cells.append(hit_cell)
-					pass
-				#print("miko or spirit miko attacked!")
+				#var mirror_origin = attack_origin - active_unit.cell
+				##prints("relative is", mirror_origin, mirrored_unit_cell)
+				#for to_hit_cell in current_attack.ATTACK_VECS:
+					###Refactor this to work from alternate miko origin, then do an operation
+					#var hit_cell = mirror_origin + to_hit_cell
+					#hit_cell = hit_cell + mirrored_unit_cell
+					#attack_cells.append(hit_cell)
+					#pass
+				##print("miko or spirit miko attacked!")
 			##DO ATTACK
 			manage_attack(attack_cells, "ENEMY")
 			await get_tree().create_timer(0.4).timeout
@@ -341,10 +395,6 @@ func spawn_ghost(unit, mirrored_origin):
 		ghost.connect("unit_state_change", on_unit_state_change)
 	ghost.connect("death", on_unit_death)
 	ghost.cell = mirrored_origin
-	print('am i dead', ghost.has_died)
-	
-	##Initialization here maybe?
-	#print(ghost)
 	pass
 
 func handle_exorcism(unit, attack):
@@ -354,7 +404,6 @@ func handle_exorcism(unit, attack):
 	var mirrored_origin: Vector2 = grid.calculate_mirror_position(unit.cell)
 	#hit_overlay.position = Vector2(0,0)
 	#explosion_overlay.position = grid.calculate_map_position(mirrored_origin)
-	#hit_overlay.blow_up_squares()
 	for vec in attack.BLAST_PATTERN:
 		#print(vec)
 		var mirrored_vec = grid.calculate_mirror_position(vec + unit.cell)
@@ -362,24 +411,22 @@ func handle_exorcism(unit, attack):
 		positions_to_blow.append(grid.calculate_map_position(mirrored_vec))
 		if units.has(mirrored_vec):
 			if grid.is_in_real_world(units[mirrored_vec].cell) && !units[mirrored_vec].is_in_group("mikos"):
-				print("THIS BITCH", units[mirrored_vec], vec + unit.cell)
+				#print("THIS BITCH", units[mirrored_vec], vec + unit.cell)
 				if !ghost_accumulator.has([units[mirrored_vec].self_scene_path, vec + unit.cell]):
 					ghost_accumulator.append([units[mirrored_vec].self_scene_path, vec + unit.cell])
 				units[mirrored_vec].take_damage(1)
-				print(ghost_accumulator)
+				#print(ghost_accumulator)
 			else:
 				units[mirrored_vec].take_damage(1)
 	explosion_overlay.blow_up_squares(positions_to_blow)
-	#print(ghost_accumulator)
 	pass
 
 func _on_cursor_moved(new_cell):
 	if active_unit and active_unit.is_selected and active_unit.unit_state == PlayerUnit.unit_states.MOVE_THINK:
 		unit_path.draw(active_unit.cell, new_cell)
-	if active_unit and active_unit.is_selected and active_unit.unit_state == PlayerUnit.unit_states.ATTACK_ACTION_THINK:
-		var move_to_pos = grid.calculate_map_position(new_cell)
-		#print(new_cell, move_to_pos)
-		hit_overlay.position = move_to_pos
+	#if active_unit and active_unit.is_selected and active_unit.unit_state == PlayerUnit.unit_states.ATTACK_ACTION_THINK:
+		#var move_to_pos = grid.calculate_map_position(Vector2(0,0))
+		#hit_overlay.position = move_to_pos
 
 func on_unit_death(unit):
 	if !unit.is_in_group("mikos"):
