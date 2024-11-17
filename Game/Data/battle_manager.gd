@@ -6,8 +6,8 @@ const DIRECTIONS = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 @export var grid: Resource = preload("res://Game/Data/grid.tres")
 @export var level_music: AudioStreamWAV
 
-@onready var win_screen = preload("res://Game/UI/win_screen.tscn")
-@onready var fail_screen = preload("res://Game/UI/lose_screen.tscn")
+#@onready var win_screen = preload("res://Game/UI/win_screen.tscn")
+#@onready var fail_screen = preload("res://Game/UI/lose_screen.tscn")
 
 @onready var spirit_miko_scene:  = preload("res://Game/Characters/Friendlies/spirit_miko_unit.tscn") 
 var miko: PlayerUnit
@@ -392,15 +392,17 @@ func on_unit_death(unit):
 
 func trigger_fail_con(miko):
 	print("FISSION MAILED", miko, "HAS DIED")
-	var manager: GameManager = get_node("/root/GameManager")
-	manager.show_screen(fail_screen)
+	#var manager: GameManager = get_node("/root/GameManager")
+	#manager.show_screen(fail_screen)
+	LevelManager.switchScene(LevelManager.getLevelIndex("lose_screen"))
 	pass
 
 func check_for_win_con():
 	if enemies.size() == 0 && ghost_accumulator.size() == 0:
-		var manager: GameManager = get_node("/root/GameManager")
+		#var manager: GameManager = get_node("/root/GameManager")
 		print("A WINRAR IS YOU CON")
-		manager.show_screen(win_screen)
+		#manager.show_screen(win_screen)
+		LevelManager.switchScene(LevelManager.getLevelIndex("win_screen"))
 		#print()
 
 func _on_cursor_deselect_pressed():

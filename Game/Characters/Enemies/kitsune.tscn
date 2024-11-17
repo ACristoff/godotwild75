@@ -6,6 +6,6 @@
 [node name="Kitsune" instance=ExtResource("1_6gvqk")]
 modulate = Color(1, 0, 1, 1)
 script = ExtResource("2_swjbx")
-max_health = 1000
+max_health = 3
 self_scene_path = ""
 health = 0

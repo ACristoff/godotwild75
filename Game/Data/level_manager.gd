@@ -60,3 +60,11 @@ func prevLevel():
 		curr_level_index -= 1
 		switchScene(curr_level_index)
 	pass
+	
+func getLevelIndex(name: String):
+	for i in level_list.size() + 1:
+		var aux = level_list[i].resource_path
+		aux = aux.substr(aux.find(name), name.length())
+		if aux == name:
+			return i
+	return 0
