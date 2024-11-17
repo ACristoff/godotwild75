@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://c0vnt11umxslf" path="res://Game/Data/attack_overlay.tscn" id="5_3se1g"]
 [ext_resource type="PackedScene" uid="uid://bjjre3i3xvkhl" path="res://Game/World/explosion_overlay.tscn" id="6_b3v4n"]
 [ext_resource type="PackedScene" uid="uid://2nbe138odbl8" path="res://Game/Characters/Friendlies/miko_unit.tscn" id="7_ia3d2"]
-[ext_resource type="PackedScene" uid="uid://cg34obo360a5w" path="res://Game/Characters/Enemies/enemy_base.tscn" id="8_s0xj4"]
 [ext_resource type="PackedScene" uid="uid://2r5lvg6715f" path="res://Game/Characters/Friendlies/heiko_unit.tscn" id="9_vgcdo"]
+[ext_resource type="PackedScene" uid="uid://cy1ruko7jcspv" path="res://Game/Characters/Enemies/kappa.tscn" id="10_hc8do"]
 [ext_resource type="PackedScene" uid="uid://d1rww8eno83bs" path="res://Game/Data/Cursor/cursor.tscn" id="10_q81mo"]
 
 [node name="DebugLevel2" type="Node2D"]
@@ -27,19 +27,50 @@ y_sort_origin = -1
 [node name="ExplosionOverlay" parent="." instance=ExtResource("6_b3v4n")]
 
 [node name="MikoUnit" parent="." instance=ExtResource("7_ia3d2")]
-position = Vector2(290, 425)
+position = Vector2(541, 425)
 max_health = 3
-
-[node name="EnemyBase2" parent="." instance=ExtResource("8_s0xj4")]
-position = Vector2(358, 419)
-max_health = 3
-health = 0
 
 [node name="HeikoUnit" parent="." instance=ExtResource("9_vgcdo")]
-position = Vector2(227, 364)
+position = Vector2(541, 361)
 max_health = 3
 
 [node name="Cursor" parent="." instance=ExtResource("10_q81mo")]
+
+[node name="Kappa" parent="." instance=ExtResource("10_hc8do")]
+position = Vector2(545, 167)
+
+[node name="Kappa2" parent="." instance=ExtResource("10_hc8do")]
+position = Vector2(1126, 167)
+
+[node name="Kappa3" parent="." instance=ExtResource("10_hc8do")]
+position = Vector2(416, 166)
+
+[node name="Kappa4" parent="." instance=ExtResource("10_hc8do")]
+position = Vector2(995, 163)
+
+[node name="Kappa5" parent="." instance=ExtResource("10_hc8do")]
+position = Vector2(285, 166)
+
+[node name="Kappa6" parent="." instance=ExtResource("10_hc8do")]
+position = Vector2(863, 165)
+
+[node name="Kappa7" parent="." instance=ExtResource("10_hc8do")]
+position = Vector2(163, 166)
+
+[node name="Kappa8" parent="." instance=ExtResource("10_hc8do")]
+position = Vector2(735, 171)
+
+[node name="Kappa9" parent="." instance=ExtResource("10_hc8do")]
+position = Vector2(99, 230)
+
+[node name="Kappa10" parent="." instance=ExtResource("10_hc8do")]
+position = Vector2(737, 293)
+
+[node name="Kappa11" parent="." instance=ExtResource("10_hc8do")]
+position = Vector2(738, 413)
+
+[node name="Kappa12" parent="." instance=ExtResource("10_hc8do")]
+position = Vector2(95, 356)
 
 [connection signal="accept_pressed" from="Cursor" to="." method="_on_cursor_accept_pressed"]
 [connection signal="deselect_pressed" from="Cursor" to="." method="_on_cursor_deselect_pressed"]
