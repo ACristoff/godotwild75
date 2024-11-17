@@ -35,9 +35,11 @@ func _process(delta: float) -> void:
 func render_attacks(attacks):
 	var menu = attack_menu.instantiate()
 	attack.add_child(menu)
+	print(attacks)
 	for attack_to_render in attacks:
-		var current = attacks[attack_to_render]
-		var new_attack_text = str(attack_to_render)
+		#print(attack_to_render.weapon_name)
+		var current = attack_to_render
+		var new_attack_text = str(attack_to_render.weapon_name)
 		menu.new_button(new_attack_text, attack_to_render)
 		menu.connect('attack_chosen', _on_attack_chosen)
 	pass

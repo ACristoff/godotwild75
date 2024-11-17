@@ -6,17 +6,37 @@ class_name GameManager
 var paused = false
 
 var weapon_data = {
-	"dagger": {
+	"Dagger": {
+		"weapon_name": "Dagger",
 		"state": 'UNLOCKED',
 		"isSelected": true,
 		"ATTACK_VECS": [Vector2(0, -1,), Vector2(0, -2)],
-		"BLAST_PATTERN": [Vector2(0,0), Vector2(0, -1), Vector2(-1, 0), Vector2(0, 1), Vector2(1, 0),],
+		"BLAST_PATTERN": [
+			Vector2(0,0),
+			Vector2(1, -1),
+			Vector2(-1, -1),
+			Vector2(-1 ,1),
+			Vector2(1 ,1)
+		],
 	},
-	"katana": {
+	"Katana": {
 		"state": 'LOCKED',
 		"isSelected": false,
 		"ATTACK_VECS": [Vector2(0, -1,), Vector2(0, -2), Vector2(0, -3)],
-		"BLAST_PATTERN": [Vector2(0,0), Vector2(0, -1), Vector2(-1, 0), Vector2(0, 1), Vector2(1, 0),],
+		"BLAST_PATTERN": [
+			Vector2(0,0),
+			Vector2(0, -1),
+			Vector2(0, -2),
+			Vector2(0, -3),
+			Vector2(1, -1),
+			Vector2(-1, -1),
+			Vector2(1, 0),
+			Vector2(2, 0),
+			Vector2(-1, 0),
+			Vector2(-2, 0),
+			Vector2(1, 1),
+			Vector2(-1, 1),
+		],
 	},
 	"fan": {
 		"state": 'LOCKED',
@@ -49,15 +69,6 @@ var weapon_data = {
 		"BLAST_PATTERN": [Vector2(0,0), Vector2(0, -1), Vector2(-1, 0), Vector2(0, 1), Vector2(1, 0),],
 	}
 }
-
-	#"Sword": {
-		#"RANGE": 2,
-		#"DAMAGE": 2,
-		#"MOVE": Vector2(0,0),
-		#"EXORCISM": false,
-		#"BLAST_PATTERN": [Vector2(0,0), Vector2(0, -1), Vector2(-1, 0), Vector2(0, 1), Vector2(1, 0),],
-		#"ATTACK_PATTERN": [Vector2(0,0), Vector2(0, -1), Vector2(0, -2)]
-	#},
 
 func _ready():
 	#print(funcs["win"])

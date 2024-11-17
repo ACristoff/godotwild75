@@ -6,8 +6,10 @@ extends Node2D
 var grid_size = 64
 
 func make_squares(attack):
-	#print(attack)
-	var pattern = attack.ATTACK_PATTERN
+	#print(attack,"TEST")
+	#var pattern = attack.ATTACK_PATTERN
+	##TODO
+	var pattern = Vector2(0,0)
 	
 	for vec in pattern:
 		#print(vec)

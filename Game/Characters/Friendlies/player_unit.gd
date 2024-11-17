@@ -79,7 +79,7 @@ func _on_action_select_move_selected():
 	pass # Replace with function body.
 
 func _on_action_select_attack_chosen(attack):
-	current_attack = attacks[attack]
+	current_attack = attack
 	#print('current attack selected', current_attack)
 	state_change(unit_states.ATTACK_ACTION_THINK)
 	#action_select(false)
