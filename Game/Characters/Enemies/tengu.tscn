@@ -46,7 +46,7 @@ _data = {
 [node name="Tengu" instance=ExtResource("1_mfn4k")]
 script = ExtResource("2_xn5yj")
 max_health = 3
-self_scene_path = "D:/Nico/Proyectos/GODOT/GodotWild75/Game/Characters/Enemies/tengu.tscn"
+self_scene_path = "res://Game/Characters/Enemies/tengu.tscn"
 health = 0
 skin = ExtResource("3_2pslt")
 
