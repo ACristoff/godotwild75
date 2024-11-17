@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://h82fnyvkcffl"]
+[gd_scene load_steps=11 format=3 uid="uid://b0kvthnkkup5c"]
 
 [ext_resource type="Script" path="res://Game/Data/battle_manager.gd" id="1_m2jb0"]
 [ext_resource type="PackedScene" uid="uid://gcdapkkqr808" path="res://Game/World/environment.tscn" id="2_o5vvv"]
@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cy1ruko7jcspv" path="res://Game/Characters/Enemies/kappa.tscn" id="10_hc8do"]
 [ext_resource type="PackedScene" uid="uid://d1rww8eno83bs" path="res://Game/Data/Cursor/cursor.tscn" id="10_q81mo"]
 
-[node name="DebugLevel3" type="Node2D"]
+[node name="DebugLevel4" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_m2jb0")
 
@@ -28,49 +28,63 @@ y_sort_origin = -1
 
 [node name="MikoUnit" parent="." instance=ExtResource("7_ia3d2")]
 position = Vector2(541, 425)
+move_range = 3
 max_health = 3
 
 [node name="HeikoUnit" parent="." instance=ExtResource("9_vgcdo")]
 position = Vector2(541, 361)
+move_range = 3
 max_health = 3
 
 [node name="Cursor" parent="." instance=ExtResource("10_q81mo")]
 
 [node name="Kappa" parent="." instance=ExtResource("10_hc8do")]
 position = Vector2(545, 167)
+move_range = 3
 
 [node name="Kappa2" parent="." instance=ExtResource("10_hc8do")]
 position = Vector2(1126, 167)
+move_range = 3
 
 [node name="Kappa3" parent="." instance=ExtResource("10_hc8do")]
 position = Vector2(416, 166)
+move_range = 3
 
 [node name="Kappa4" parent="." instance=ExtResource("10_hc8do")]
 position = Vector2(995, 163)
+move_range = 3
 
 [node name="Kappa5" parent="." instance=ExtResource("10_hc8do")]
 position = Vector2(285, 166)
+move_range = 3
 
 [node name="Kappa6" parent="." instance=ExtResource("10_hc8do")]
 position = Vector2(863, 165)
+move_range = 3
 
 [node name="Kappa7" parent="." instance=ExtResource("10_hc8do")]
 position = Vector2(163, 166)
+move_range = 3
 
 [node name="Kappa8" parent="." instance=ExtResource("10_hc8do")]
 position = Vector2(735, 171)
+move_range = 3
 
 [node name="Kappa9" parent="." instance=ExtResource("10_hc8do")]
 position = Vector2(99, 230)
+move_range = 3
 
 [node name="Kappa10" parent="." instance=ExtResource("10_hc8do")]
 position = Vector2(737, 293)
+move_range = 3
 
 [node name="Kappa11" parent="." instance=ExtResource("10_hc8do")]
 position = Vector2(738, 413)
+move_range = 3
 
 [node name="Kappa12" parent="." instance=ExtResource("10_hc8do")]
 position = Vector2(95, 356)
+move_range = 3
 
 [connection signal="accept_pressed" from="Cursor" to="." method="_on_cursor_accept_pressed"]
 [connection signal="deselect_pressed" from="Cursor" to="." method="_on_cursor_deselect_pressed"]

@@ -23,6 +23,8 @@ func _ready():
 	super()
 	unitPath = unit_path_scene.instantiate()
 	add_child(unitPath)
+	if cell.x >= 10:
+		isSpirit = true
 	
 func _process(delta):
 	walk(delta)
@@ -37,9 +39,10 @@ func enemyBrain(state):
 
 func walk_along(path):
 	super(path)
-	print("this is my path ese", path)
+	#print("this is my path ese", path)
 	walkadoodledoo.emit(path, self)
-	cell = path[-1]
+	var aux = path[-1]
+	cell = aux
 
 func endTurn():
 	unitPath.stop()

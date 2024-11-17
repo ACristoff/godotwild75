@@ -62,9 +62,10 @@ func mutate_attack(attack_pattern):
 ##Finds the next unit in a given team that has moves available
 func find_next_possible(team):
 	for unit in team:
-		var current = units[unit] as Unit
-		if !current.has_moved:
-			return current
+		if units[unit] != null:
+			var current = units[unit] as Unit
+			if !current.has_moved:
+				return current
 	return null
 
 func turn_manager():
@@ -76,6 +77,9 @@ func turn_manager():
 			turn_indicator._SwitchingTurn()
 			await get_tree().create_timer(1).timeout
 			is_enemy_turn = true
+			for enemy in enemies:
+				if enemies[enemy] != null:
+					enemies[enemy].has_moved = false
 			turn_manager()
 	else:
 		##TODO Do enemy turns here
@@ -387,7 +391,7 @@ func _on_cursor_accept_pressed(cell):
 func manage_attack(attack_cells, team_to_hit):
 	attack_overlay.clear()
 	for cell in attack_cells:
-		if units.has(cell):
+		if units.has(cell) and units[cell] != null:
 			var unit = units[cell] as Unit
 			#handle_exorcism(unit, current_attack)
 			if grid.is_in_real_world(cell) && units[cell].health <= current_attack.DAMAGE:
