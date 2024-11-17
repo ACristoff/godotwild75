@@ -25,7 +25,6 @@ var is_selected := false:
 			#_anim_player.play("idle")
 
 var has_moved = false
-
 var has_walked = false
 var has_attacked = false
 var current_attack = null

@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://dudkvypcuepqu"]
+[gd_scene load_steps=10 format=3 uid="uid://dudkvypcuepqu"]
 
 [ext_resource type="PackedScene" uid="uid://cx4kwdcn8ymig" path="res://Game/Characters/Friendlies/player_unit.tscn" id="1_ymjot"]
+[ext_resource type="Script" path="res://Game/Characters/Friendlies/spirit_heiko.gd" id="2_0je4r"]
 [ext_resource type="Texture2D" uid="uid://c4s0q7ybhh3x2" path="res://Assets/Characters/Friendly/HeikoSpirit.png" id="2_gk5s8"]
 
 [sub_resource type="Animation" id="Animation_vjb1l"]
@@ -97,19 +98,12 @@ _data = {
 
 [node name="SpiritHeiko" instance=ExtResource("1_ymjot")]
 position = Vector2(0, 0)
+script = ExtResource("2_0je4r")
 max_health = 10
 health = 10
 
-[node name="Shadow" parent="PathFollow2D" index="0"]
-modulate = Color(1, 1, 1, 1)
-scale = Vector2(1, 1)
-texture = null
-
 [node name="Sprite" parent="PathFollow2D" index="1"]
 texture = ExtResource("2_gk5s8")
-
-[node name="HealthBar" parent="PathFollow2D" index="2"]
-position = Vector2(0, 0)
 
 [node name="AnimationPlayer" parent="." index="1"]
 libraries = {
