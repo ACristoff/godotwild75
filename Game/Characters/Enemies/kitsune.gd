@@ -25,7 +25,7 @@ func _init():
 	super()
 	attacks = kitsune_attacks
 	move_range = 2
-	max_health = 3
+	max_health = 2
 	onibiDrop = 30
 
 func enemyBrain(boardState):

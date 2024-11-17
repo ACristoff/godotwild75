@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dilwiq4hgvtwf"]
+[gd_scene load_steps=20 format=3 uid="uid://dilwiq4hgvtwf"]
 
 [ext_resource type="Script" path="res://Game/Data/battle_manager.gd" id="1_iackr"]
 [ext_resource type="AudioStream" uid="uid://d2nf8piqbmkn0" path="res://Assets/Audio/Music/MM_BOSS_BATTLE.mp3" id="2_00enm"]
@@ -15,6 +15,10 @@
 [ext_resource type="PackedScene" uid="uid://cdrtmig8f1yom" path="res://Assets/UserInterface/Gameplay/turn_order.tscn" id="11_ifwkw"]
 [ext_resource type="PackedScene" uid="uid://cbrlucko4mhk" path="res://Game/Characters/Enemies/kitsune.tscn" id="13_bglqq"]
 [ext_resource type="PackedScene" uid="uid://p7hcn583iptc" path="res://Game/Characters/Enemies/tengu.tscn" id="14_x5jbk"]
+[ext_resource type="PackedScene" uid="uid://cy1ruko7jcspv" path="res://Game/Characters/Enemies/kappa.tscn" id="16_gj8yw"]
+[ext_resource type="PackedScene" uid="uid://i5jwws41qqfv" path="res://Game/Characters/Enemies/chochin.tscn" id="17_1vlbr"]
+[ext_resource type="PackedScene" uid="uid://dfdi4uw2mg150" path="res://Game/Characters/Enemies/tanuki.tscn" id="18_saiiv"]
+[ext_resource type="PackedScene" uid="uid://bw6nuo3guy6ab" path="res://Game/Characters/Enemies/oni.tscn" id="19_13wn4"]
 
 [node name="DebugLevel4" type="Node2D"]
 y_sort_enabled = true
@@ -24,7 +28,7 @@ level_music = ExtResource("2_00enm")
 [node name="Environment" parent="." instance=ExtResource("2_uvba7")]
 
 [node name="BossOni" parent="Environment" instance=ExtResource("4_sak4i")]
-position = Vector2(992, 161)
+position = Vector2(350, 157)
 
 [node name="UnitPath" parent="." instance=ExtResource("3_a47fk")]
 y_sort_origin = -1
@@ -38,11 +42,11 @@ y_sort_origin = -1
 [node name="ExplosionOverlay" parent="." instance=ExtResource("6_22ehg")]
 
 [node name="MikoUnit" parent="." instance=ExtResource("7_32m1p")]
-position = Vector2(351, 612)
+position = Vector2(348, 555)
 max_health = 3
 
 [node name="HeikoUnit" parent="." instance=ExtResource("9_wcieg")]
-position = Vector2(355, 422)
+position = Vector2(348, 480)
 max_health = 3
 
 [node name="Cursor" parent="." instance=ExtResource("10_u1bi5")]
@@ -56,13 +60,37 @@ position = Vector2(481, 169)
 position = Vector2(349, 232)
 
 [node name="Kitsune3" parent="." instance=ExtResource("13_bglqq")]
-position = Vector2(227, 167)
+position = Vector2(227, 171)
 
 [node name="Tengu" parent="." instance=ExtResource("14_x5jbk")]
-position = Vector2(538, 612)
+position = Vector2(536, 548)
 
 [node name="Tengu2" parent="." instance=ExtResource("14_x5jbk")]
-position = Vector2(155, 616)
+position = Vector2(154, 554)
+
+[node name="Kappa" parent="." instance=ExtResource("16_gj8yw")]
+position = Vector2(729, 484)
+
+[node name="Kappa2" parent="." instance=ExtResource("16_gj8yw")]
+position = Vector2(1114, 483)
+
+[node name="Chochin" parent="." instance=ExtResource("17_1vlbr")]
+position = Vector2(796, 164)
+
+[node name="Chochin2" parent="." instance=ExtResource("17_1vlbr")]
+position = Vector2(1182, 163)
+
+[node name="Tanuki" parent="." instance=ExtResource("18_saiiv")]
+position = Vector2(733, 613)
+
+[node name="Tanuki2" parent="." instance=ExtResource("18_saiiv")]
+position = Vector2(1121, 613)
+
+[node name="Oni" parent="." instance=ExtResource("19_13wn4")]
+position = Vector2(1059, 227)
+
+[node name="Oni2" parent="." instance=ExtResource("19_13wn4")]
+position = Vector2(933, 223)
 
 [connection signal="accept_pressed" from="Cursor" to="." method="_on_cursor_accept_pressed"]
 [connection signal="deselect_pressed" from="Cursor" to="." method="_on_cursor_deselect_pressed"]

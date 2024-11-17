@@ -7,7 +7,7 @@ class_name Oni
 var oni_attacks = {
 	"Club Strike": {
 		"RANGE": 1,
-		"DAMAGE": 3,
+		"DAMAGE": 2,
 		"ATTACK_VECS": [Vector2(0,0)]
 	},
 }
