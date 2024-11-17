@@ -48,7 +48,6 @@ func _input(event):
 					current_rotation = rotations[0]
 				else:
 					current_rotation = rotations[rotations.find(current_rotation) + 1]
-				
 				hit_overlay.make_squares(current_attack.ATTACK_VECS[current_rotation])
 
 #This rotates the attack pattern 90 degrees
@@ -94,6 +93,8 @@ func turn_manager():
 				newfren.has_attacked = false
 				newfren.has_moved = false
 				newfren.enable_buttons()
+			var move_to_pos = grid.calculate_map_position(Vector2(0,0))
+			hit_overlay.position = move_to_pos
 	pass
 
 #var has_moved = false
