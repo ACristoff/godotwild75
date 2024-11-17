@@ -48,11 +48,8 @@ func _input(event):
 					current_rotation = rotations[0]
 				else:
 					current_rotation = rotations[rotations.find(current_rotation) + 1]
-				#print(current_rotation, "THE CURRENT ATTACK",  current_attack)
 				
 				hit_overlay.make_squares(current_attack.ATTACK_VECS[current_rotation])
-				#current_attack = "FUCK DUMB SHIT"
-				#prints(current_attack, active_unit.current_attack, "BLKU")
 
 #This rotates the attack pattern 90 degrees
 func mutate_attack(attack_pattern):
@@ -93,13 +90,10 @@ func turn_manager():
 			is_player_turn = true
 			turn_indicator._SwitchingTurn()
 			for fren in friendlies:
-				print('FRIEND HERE',friendlies)
 				var newfren = friendlies[fren] as PlayerUnit
 				newfren.has_attacked = false
 				newfren.has_moved = false
 				newfren.enable_buttons()
-				print(newfren, newfren.has_attacked, newfren.has_moved)
-				#pass
 	pass
 
 #var has_moved = false
@@ -146,7 +140,6 @@ func reinitialize():
 				
 		if unit is EnemyUnit:
 			enemies[unit.cell] = unit
-	print(enemies, friendlies, units)
 	turn_manager()
 
 func on_unit_state_change(state):
@@ -157,7 +150,6 @@ func on_unit_state_change(state):
 		#var attack_cells = get_attack_cells()
 		pass
 	if state == PlayerUnit.unit_states.ATTACK_ACTION_THINK:
-		prints('current', active_unit.current_attack, current_attack, active_unit)
 		current_attack = active_unit.current_attack.duplicate()
 		var attack_cells = get_attack_cells(active_unit, active_unit.current_attack)
 		var all_cells = []
@@ -180,7 +172,6 @@ func get_walkable_cells(unit: Unit) -> Array:
 
 func get_attack_cells(unit: Unit, attack):
 	##REFACTOR THIS
-	#print(attack.ATTACK_VECS)
 	var new_vectors = {
 		"up": [],
 		"right": [],
@@ -224,8 +215,6 @@ func get_attack_cells(unit: Unit, attack):
 					continue
 				left.append(adjusted_vec)
 			new_vectors.left = left
-		#prints(right, down , left)
-	#print(new_vectors)
 	return new_vectors
 
 
@@ -318,8 +307,6 @@ func miko_walk(miko_to_move, walk_vectors, origin):
 	units[new_path[-1]] = miko_to_move
 	friendlies[new_path[-1]] = miko_to_move
 	miko_to_move.walk_along(new_path)
-	#print(new_path)
-	print(friendlies, units, "TESSSSST")
 	pass
 
 func clear_active_unit() -> void:
@@ -382,7 +369,6 @@ func manage_attack(attack_cells, team_to_hit):
 	attack_overlay.clear()
 	for cell in attack_cells:
 		if units.has(cell):
-			#print('HIT', units[cell])
 			var unit = units[cell] as Unit
 			#handle_exorcism(unit, current_attack)
 			if grid.is_in_real_world(cell) && units[cell].health <= current_attack.DAMAGE:
@@ -403,7 +389,6 @@ func manage_attack(attack_cells, team_to_hit):
 
 
 func spawn_ghost(unit, mirrored_origin):
-	#print("SPAWN HERE", unit, mirrored_origin)
 	var ghost_scene = load(unit)
 	var ghost = ghost_scene.instantiate()
 	add_child(ghost)
@@ -427,17 +412,14 @@ func handle_exorcism(unit, attack):
 	#hit_overlay.position = Vector2(0,0)
 	#explosion_overlay.position = grid.calculate_map_position(mirrored_origin)
 	for vec in attack.BLAST_PATTERN:
-		#print(vec)
 		var mirrored_vec = grid.calculate_mirror_position(vec + unit.cell)
 		cells_to_blow.append(mirrored_vec)
 		positions_to_blow.append(grid.calculate_map_position(mirrored_vec))
 		if units.has(mirrored_vec):
 			if grid.is_in_real_world(units[mirrored_vec].cell) && !units[mirrored_vec].is_in_group("mikos"):
-				#print("THIS BITCH", units[mirrored_vec], vec + unit.cell)
 				if !ghost_accumulator.has([units[mirrored_vec].self_scene_path, vec + unit.cell]):
 					ghost_accumulator.append([units[mirrored_vec].self_scene_path, vec + unit.cell])
 				units[mirrored_vec].take_damage(1)
-				#print(ghost_accumulator)
 			else:
 				units[mirrored_vec].take_damage(1)
 	explosion_overlay.blow_up_squares(positions_to_blow)
@@ -452,7 +434,6 @@ func _on_cursor_moved(new_cell):
 
 func on_unit_death(unit):
 	if !unit.is_in_group("mikos"):
-		#print(unit)
 		handle_exorcism(unit, current_attack)
 		#if grid.is_in_real_world(unit.cell):
 			#handle_exorcism(unit, current_attack)
@@ -466,19 +447,12 @@ func on_unit_death(unit):
 		check_for_win_con()
 
 func trigger_fail_con(miko):
-	#print("FISSION MAILED", miko, "HAS DIED")
-	#var manager: GameManager = get_node("/root/GameManager")
-	#manager.show_screen(fail_screen)
 	LevelManager.switchScene(LevelManager.getLevelIndex("lose_screen"))
 	pass
 
 func check_for_win_con():
 	if enemies.size() == 0 && ghost_accumulator.size() == 0:
 		LevelManager.switchScene(LevelManager.getLevelIndex("win_screen"))
-		#var manager: GameManager = get_node("/root/GameManager")
-		#print("A WINRAR IS YOU CON")
-		#manager.show_screen(win_screen)
-		#print()
 
 func _on_cursor_deselect_pressed():
 	if active_unit:
