@@ -1,10 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://i5jwws41qqfv"]
+[gd_scene load_steps=4 format=3 uid="uid://i5jwws41qqfv"]
 
 [ext_resource type="PackedScene" uid="uid://cg34obo360a5w" path="res://Game/Characters/Enemies/enemy_base.tscn" id="1_ms2u7"]
 [ext_resource type="Script" path="res://Game/Characters/Enemies/chochin.gd" id="2_evmvf"]
+[ext_resource type="Texture2D" uid="uid://c5npn6rmlkev3" path="res://Assets/Characters/Enemies/Chochin.png" id="3_btycu"]
 
 [node name="Chochin" instance=ExtResource("1_ms2u7")]
 script = ExtResource("2_evmvf")
 max_health = 3
 self_scene_path = ""
 health = 0
+skin = ExtResource("3_btycu")
+
+[node name="Sprite" parent="PathFollow2D" index="1"]
+texture = ExtResource("3_btycu")
+hframes = 8
+vframes = 1

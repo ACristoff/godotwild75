@@ -137,7 +137,7 @@ func on_unit_state_change(state):
 		pass
 	if state == PlayerUnit.unit_states.ATTACK_ACTION_THINK:
 		#prints('current', active_unit.current_attack)
-		current_attack = active_unit.current_attack
+		current_attack = active_unit.current_attack.duplicate()
 		var attack_cells = get_attack_cells(active_unit, active_unit.current_attack)
 		var all_cells = []
 		for arr in attack_cells:

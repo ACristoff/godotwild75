@@ -8,9 +8,6 @@ var kappa_attacks = {
 	"Water Cannon": {
 		"RANGE": 4,
 		"DAMAGE": 2,
-		"MOVE": Vector2(0,0),
-		"EXORCISM": false,
-		"BLAST_PATTERN": [],
 		"ATTACK_PATTERN": [Vector2(0,0)]
 	},
 }
@@ -20,6 +17,7 @@ var targetOnRange = false
 func _ready():
 	super()
 	move_range = 2
+	max_health = 2
 	set_process(true)
 
 func _process(delta):

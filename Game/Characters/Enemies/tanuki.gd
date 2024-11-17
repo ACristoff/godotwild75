@@ -1,16 +1,10 @@
 extends EnemyUnit
 class_name Tanuki
 
-#Move Range = 4
-#HP = 2???
-
-var kappa_attacks = {
-	"Water Cannon": {
-		"RANGE": 4,
-		"DAMAGE": 2,
-		"MOVE": Vector2(0,0),
-		"EXORCISM": false,
-		"BLAST_PATTERN": [],
+var tanuki_attacks = {
+	"Ball Toss": {
+		"RANGE": 3,
+		"DAMAGE": 1,
 		"ATTACK_PATTERN": [Vector2(0,0)]
 	},
 }
@@ -19,7 +13,8 @@ var targetOnRange = false
 
 func _ready():
 	super()
-	move_range = 2
+	move_range = 3
+	max_health = 2
 	set_process(true)
 
 func _process(delta):
@@ -27,15 +22,15 @@ func _process(delta):
 
 func _init():
 	super()
-	attacks = kappa_attacks
+	attacks = tanuki_attacks
 
 func enemyBrain(boardState):
 	super(boardState)
-	getTargetCharacter("Water Cannon")
+	getTargetCharacter("Ball Toss")
 	#Attack if able, if not move first.
-	move("Water Cannon")
+	move("Ball Toss")
 	if(targetOnRange):
-		doAttack("Water Cannon")
+		doAttack("Ball Toss")
 		pass
 	endTurn()
 

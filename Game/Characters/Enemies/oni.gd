@@ -7,10 +7,7 @@ class_name Oni
 var oni_attacks = {
 	"Club Strike": {
 		"RANGE": 1,
-		"DAMAGE": 2,
-		"MOVE": Vector2(0,0),
-		"EXORCISM": false,
-		"BLAST_PATTERN": [],
+		"DAMAGE": 3,
 		"ATTACK_PATTERN": [Vector2(0,0)]
 	},
 }
@@ -20,6 +17,7 @@ var targetOnRange = false
 func _ready():
 	super()
 	move_range = 2
+	max_health = 4
 	set_process(true)
 
 func _process(delta):

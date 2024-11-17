@@ -7,18 +7,12 @@ class_name BossOni
 var oni_attacks = {
 	"Club Strike": {
 		"RANGE": 1,
-		"DAMAGE": 5,
-		"MOVE": Vector2(0,0),
-		"EXORCISM": false,
-		"BLAST_PATTERN": [],
+		"DAMAGE": 3,
 		"ATTACK_PATTERN": [Vector2(0,0), Vector2(-1,0), Vector2(1,0)]
 	},
 	"Club Smash": {
 		"RANGE": 1,
-		"DAMAGE": 10,
-		"MOVE": Vector2(0,0),
-		"EXORCISM": false,
-		"BLAST_PATTERN": [],
+		"DAMAGE": 5,
 		"ATTACK_PATTERN": [Vector2(0,0)]
 	},
 }
@@ -28,6 +22,7 @@ var targetOnRange = false
 func _ready():
 	super()
 	move_range = 2
+	max_health = 10
 	set_process(true)
 
 func _process(delta):
