@@ -37,7 +37,7 @@ func render_attacks(attacks):
 	attack.add_child(menu)
 	#print(attacks)
 	for attack_to_render in attacks:
-		#print(attack_to_render.weapon_name)
+		print(attack_to_render,"BEEBOOBEEEBOOBEEBOO")
 		var current = attack_to_render
 		var new_attack_text = str(attack_to_render.weapon_name)
 		menu.new_button(new_attack_text, attack_to_render)
