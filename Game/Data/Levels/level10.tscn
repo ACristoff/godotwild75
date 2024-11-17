@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dilwiq4hgvtwf"]
+[gd_scene load_steps=16 format=3 uid="uid://dilwiq4hgvtwf"]
 
 [ext_resource type="Script" path="res://Game/Data/battle_manager.gd" id="1_iackr"]
 [ext_resource type="AudioStream" uid="uid://d2nf8piqbmkn0" path="res://Assets/Audio/Music/MM_BOSS_BATTLE.mp3" id="2_00enm"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c0vnt11umxslf" path="res://Game/Data/attack_overlay.tscn" id="5_lcvtp"]
 [ext_resource type="PackedScene" uid="uid://bjjre3i3xvkhl" path="res://Game/World/explosion_overlay.tscn" id="6_22ehg"]
 [ext_resource type="PackedScene" uid="uid://2nbe138odbl8" path="res://Game/Characters/Friendlies/miko_unit.tscn" id="7_32m1p"]
+[ext_resource type="PackedScene" path="res://Game/Data/explosion_view_overlay.tscn" id="8_nynrn"]
 [ext_resource type="PackedScene" uid="uid://2r5lvg6715f" path="res://Game/Characters/Friendlies/heiko_unit.tscn" id="9_wcieg"]
 [ext_resource type="PackedScene" uid="uid://d1rww8eno83bs" path="res://Game/Data/Cursor/cursor.tscn" id="10_u1bi5"]
 [ext_resource type="PackedScene" uid="uid://cdrtmig8f1yom" path="res://Assets/UserInterface/Gameplay/turn_order.tscn" id="11_ifwkw"]
@@ -31,6 +32,8 @@ y_sort_origin = -1
 [node name="HitOverlay" parent="." instance=ExtResource("4_f1c82")]
 
 [node name="AttackOverlay" parent="." instance=ExtResource("5_lcvtp")]
+
+[node name="ExplosionViewOverlay" parent="." instance=ExtResource("8_nynrn")]
 
 [node name="ExplosionOverlay" parent="." instance=ExtResource("6_22ehg")]
 
