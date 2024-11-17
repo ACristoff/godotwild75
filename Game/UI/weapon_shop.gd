@@ -792,25 +792,25 @@ func _on_infuse_pressed() -> void:
 		_refresh_buttons()
 
 func select_dagger():
-	chosen_weapon = ("dagger")
+	chosen_weapon = ("Dagger")
 	$CanvasLayer/Select/Label.text = ("Selected")
 func select_fan():
-	chosen_weapon = ("fan")
+	chosen_weapon = ("Fan")
 	$CanvasLayer/Select2/Label.text = ("Selected")
 func select_slingshot():
-	chosen_weapon = ("slingshot")
+	chosen_weapon = ("Slingshot")
 	$CanvasLayer/Select3/Label.text = ("Selected")
 func select_katana():
-	chosen_weapon = ("katana")
+	chosen_weapon = ("Katana")
 	$CanvasLayer/Select4/Label.text = ("Selected")
 func select_mace():
-	chosen_weapon = ("mace")
+	chosen_weapon = ("Mace")
 	$CanvasLayer/Select5/Label.text = ("Selected")
 func select_bow():
-	chosen_weapon = ("bow")
+	chosen_weapon = ("Bow")
 	$CanvasLayer/Select6/Label.text = ("Selected")
 func select_trident():
-	chosen_weapon = ("mace")
+	chosen_weapon = ("Mace")
 	$CanvasLayer/Select7/Label.text = ("Selected")
 
 func _on_select_toggled(toggled_on: bool) -> void:

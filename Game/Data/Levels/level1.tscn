@@ -46,7 +46,7 @@ position = Vector2(352, 352)
 position = Vector2(286, 357)
 
 [node name="Kappa3" parent="." instance=ExtResource("10_p8hfk")]
-position = Vector2(992, 294)
+position = Vector2(925, 300)
 
 [node name="TurnIndicator" parent="." instance=ExtResource("11_6y8dt")]
 

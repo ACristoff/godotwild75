@@ -30,6 +30,7 @@ func _init():
 
 func enemyBrain(boardState):
 	super(boardState)
+	await get_tree().create_timer(1).timeout
 	getTargetCharacter("Club Strike")
 	#Attack if able, if not move first.
 	move("Club Strike")

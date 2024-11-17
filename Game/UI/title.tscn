@@ -1100,7 +1100,7 @@ _data = {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5j0b3"]
 
-[sub_resource type="Shader" id="Shader_xq2qd"]
+[sub_resource type="Shader" id="Shader_6shqg"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -1137,7 +1137,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xt8vo"]
 resource_local_to_scene = true
-shader = SubResource("Shader_xq2qd")
+shader = SubResource("Shader_6shqg")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.05
 shader_parameter/maxStrength = 0.01
@@ -1148,7 +1148,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-[sub_resource type="Shader" id="Shader_3ov7r"]
+[sub_resource type="Shader" id="Shader_qqp8w"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -1185,7 +1185,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dvxt8"]
 resource_local_to_scene = true
-shader = SubResource("Shader_3ov7r")
+shader = SubResource("Shader_qqp8w")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.061
 shader_parameter/maxStrength = 0.224
@@ -1582,7 +1582,7 @@ _data = {
 "sweep_stop": SubResource("Animation_v0bd1")
 }
 
-[sub_resource type="Shader" id="Shader_b8c5o"]
+[sub_resource type="Shader" id="Shader_pqx2j"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 
@@ -1688,7 +1688,7 @@ void fragment()
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2ec88"]
 resource_local_to_scene = true
-shader = SubResource("Shader_b8c5o")
+shader = SubResource("Shader_pqx2j")
 shader_parameter/angle = -0.3
 shader_parameter/position = -0.2
 shader_parameter/spread = 0.32
@@ -1827,7 +1827,7 @@ scale_max = 2.0
 color_ramp = SubResource("GradientTexture1D_yqpo3")
 anim_offset_max = 1.0
 
-[sub_resource type="Shader" id="Shader_1c20f"]
+[sub_resource type="Shader" id="Shader_ak7wp"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 uniform sampler2D mask;
@@ -1850,7 +1850,7 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yscm4"]
 resource_local_to_scene = true
-shader = SubResource("Shader_1c20f")
+shader = SubResource("Shader_ak7wp")
 shader_parameter/scale = 0.0
 shader_parameter/mask = ExtResource("24_6mb7l")
 
@@ -2132,8 +2132,8 @@ offset_bottom = 720.0
 [connection signal="pressed" from="UI/MainMenu/HFlowContainer/ExitGame" to="." method="_on_exit_game_pressed"]
 [connection signal="pressed" from="UI/Settings/HFlowContainer/Fullscreen" to="." method="_on_fullscreen_pressed"]
 [connection signal="pressed" from="UI/Settings/HFlowContainer/Back" to="." method="_on_back_pressed"]
-[connection signal="pressed" from="SFXbutt" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="SFXbutt" to="." method="_on_sf_xbutt_pressed"]
+[connection signal="pressed" from="SFXbutt" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="BGMbutt" to="." method="_on_bg_mbutt_pressed"]
 
 [editable path="Node2D"]
