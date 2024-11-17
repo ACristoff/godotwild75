@@ -109,3 +109,4 @@ texture = ExtResource("2_gk5s8")
 libraries = {
 "": SubResource("AnimationLibrary_flse4")
 }
+autoplay = "idle_DOWN"
