@@ -16,7 +16,7 @@
 [ext_resource type="Theme" uid="uid://2kj2sgp8odd4" path="res://Assets/Themes/Buttons2.tres" id="16_8smij"]
 [ext_resource type="Texture2D" uid="uid://dtb7dx7u0jowt" path="res://Assets/UserInterface/Gameplay/GoldSelection.png" id="17_3aljm"]
 
-[sub_resource type="Shader" id="Shader_047v6"]
+[sub_resource type="Shader" id="Shader_m44tc"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix, unshaded;
@@ -172,7 +172,7 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ie14d"]
 resource_local_to_scene = true
-shader = SubResource("Shader_047v6")
+shader = SubResource("Shader_m44tc")
 shader_parameter/intensity = 1.0
 shader_parameter/use_custom_texture = 0.0
 shader_parameter/clouds_speed = 3.06
@@ -188,7 +188,7 @@ shader_parameter/box_size = 0.0
 shader_parameter/PRIME_X = 501125701
 shader_parameter/PRIME_Y = 1136930381
 
-[sub_resource type="Shader" id="Shader_48tjk"]
+[sub_resource type="Shader" id="Shader_otbcu"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -225,7 +225,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ir36b"]
 resource_local_to_scene = true
-shader = SubResource("Shader_48tjk")
+shader = SubResource("Shader_otbcu")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.05
 shader_parameter/maxStrength = 0.01
@@ -236,7 +236,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-[sub_resource type="Shader" id="Shader_1w2mx"]
+[sub_resource type="Shader" id="Shader_0g6pp"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -273,7 +273,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4jenk"]
 resource_local_to_scene = true
-shader = SubResource("Shader_1w2mx")
+shader = SubResource("Shader_0g6pp")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.05
 shader_parameter/maxStrength = 0.01
@@ -284,7 +284,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-[sub_resource type="Shader" id="Shader_5k32i"]
+[sub_resource type="Shader" id="Shader_gup45"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -321,7 +321,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c1xpr"]
 resource_local_to_scene = true
-shader = SubResource("Shader_5k32i")
+shader = SubResource("Shader_gup45")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.05
 shader_parameter/maxStrength = 0.01
@@ -332,7 +332,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-[sub_resource type="Shader" id="Shader_b4gkn"]
+[sub_resource type="Shader" id="Shader_qbjwc"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -369,7 +369,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_krhiw"]
 resource_local_to_scene = true
-shader = SubResource("Shader_b4gkn")
+shader = SubResource("Shader_qbjwc")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.05
 shader_parameter/maxStrength = 0.01
@@ -380,7 +380,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-[sub_resource type="Shader" id="Shader_twpda"]
+[sub_resource type="Shader" id="Shader_eyd02"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -417,7 +417,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6dq03"]
 resource_local_to_scene = true
-shader = SubResource("Shader_twpda")
+shader = SubResource("Shader_eyd02")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.05
 shader_parameter/maxStrength = 0.01
@@ -428,7 +428,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-[sub_resource type="Shader" id="Shader_jeihs"]
+[sub_resource type="Shader" id="Shader_bi4wk"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -465,7 +465,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n5kxq"]
 resource_local_to_scene = true
-shader = SubResource("Shader_jeihs")
+shader = SubResource("Shader_bi4wk")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.05
 shader_parameter/maxStrength = 0.01
@@ -476,7 +476,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-[sub_resource type="Shader" id="Shader_iboaj"]
+[sub_resource type="Shader" id="Shader_pisqa"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -513,7 +513,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qh0ug"]
 resource_local_to_scene = true
-shader = SubResource("Shader_iboaj")
+shader = SubResource("Shader_pisqa")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.05
 shader_parameter/maxStrength = 0.01
@@ -524,7 +524,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-[sub_resource type="Shader" id="Shader_x5g7o"]
+[sub_resource type="Shader" id="Shader_iqx1s"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -561,7 +561,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kxbk2"]
 resource_local_to_scene = true
-shader = SubResource("Shader_x5g7o")
+shader = SubResource("Shader_iqx1s")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.05
 shader_parameter/maxStrength = 0.01
@@ -572,7 +572,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-[sub_resource type="Shader" id="Shader_jfcwc"]
+[sub_resource type="Shader" id="Shader_2m0a6"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -609,7 +609,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4h4wr"]
 resource_local_to_scene = true
-shader = SubResource("Shader_jfcwc")
+shader = SubResource("Shader_2m0a6")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.05
 shader_parameter/maxStrength = 0.01
@@ -620,7 +620,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-[sub_resource type="Shader" id="Shader_nokqe"]
+[sub_resource type="Shader" id="Shader_gyoge"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -657,7 +657,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eyw5o"]
 resource_local_to_scene = true
-shader = SubResource("Shader_nokqe")
+shader = SubResource("Shader_gyoge")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.05
 shader_parameter/maxStrength = 0.01
@@ -668,7 +668,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-[sub_resource type="Shader" id="Shader_svtxj"]
+[sub_resource type="Shader" id="Shader_ep7ly"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -705,7 +705,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bmm1q"]
 resource_local_to_scene = true
-shader = SubResource("Shader_svtxj")
+shader = SubResource("Shader_ep7ly")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.05
 shader_parameter/maxStrength = 0.01
@@ -716,7 +716,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-[sub_resource type="Shader" id="Shader_xlo0s"]
+[sub_resource type="Shader" id="Shader_8a6tp"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -753,7 +753,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_318e4"]
 resource_local_to_scene = true
-shader = SubResource("Shader_xlo0s")
+shader = SubResource("Shader_8a6tp")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.05
 shader_parameter/maxStrength = 0.01
@@ -764,7 +764,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-[sub_resource type="Shader" id="Shader_qwihk"]
+[sub_resource type="Shader" id="Shader_iue3g"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 
@@ -870,7 +870,7 @@ void fragment()
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_khlas"]
 resource_local_to_scene = true
-shader = SubResource("Shader_qwihk")
+shader = SubResource("Shader_iue3g")
 shader_parameter/angle = -0.3
 shader_parameter/position = -0.2
 shader_parameter/spread = 0.319
@@ -885,7 +885,7 @@ shader_parameter/color = Color(1, 0.984, 0.76, 0.8)
 shader_parameter/hdr = false
 shader_parameter/seed = 5.0
 
-[sub_resource type="Shader" id="Shader_2hrhe"]
+[sub_resource type="Shader" id="Shader_wq0sv"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -955,7 +955,7 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vsnry"]
 resource_local_to_scene = true
-shader = SubResource("Shader_2hrhe")
+shader = SubResource("Shader_wq0sv")
 shader_parameter/speed = 2.0
 shader_parameter/minStrength = 0.018
 shader_parameter/maxStrength = 0.0
