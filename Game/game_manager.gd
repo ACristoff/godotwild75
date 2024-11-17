@@ -9,7 +9,7 @@ var weapon_data = {
 	"Dagger": {
 		"weapon_name": "Dagger",
 		"state": 'LOCKED',
-		"isSelected": false,
+		"isSelected": true,
 		"DAMAGE": 2,
 		"ATTACK_VECS": [Vector2(0, -1,), Vector2(0, -2)],
 		"BLAST_PATTERN": [
@@ -141,7 +141,7 @@ var weapon_data = {
 	"Trident": {
 		"weapon_name": "Trident",
 		"state": 'LOCKED',
-		"isSelected": true,
+		"isSelected": false,
 		"DAMAGE": 2,
 		"ATTACK_VECS": [Vector2(0, -1,), Vector2(0, -2), Vector2(0, -3), Vector2(0, -4), Vector2(-1, -2), Vector2(1, -2)],
 		"BLAST_PATTERN": [

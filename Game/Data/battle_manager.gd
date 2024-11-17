@@ -328,6 +328,7 @@ func _on_cursor_accept_pressed(cell):
 			if (!cells_in_range.has(cell)):
 				deselect_unit()
 				clear_active_unit()
+				
 				return
 			var attack_cells = cells_in_range
 			if active_unit == miko || active_unit == spirit_miko:

@@ -35,7 +35,7 @@ func _process(delta: float) -> void:
 func render_attacks(attacks):
 	var menu = attack_menu.instantiate()
 	attack.add_child(menu)
-	print(attacks)
+	#print(attacks)
 	for attack_to_render in attacks:
 		#print(attack_to_render.weapon_name)
 		var current = attack_to_render
