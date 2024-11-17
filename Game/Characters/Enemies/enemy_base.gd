@@ -23,7 +23,7 @@ func _ready():
 	characterList = get_tree().get_nodes_in_group("player")
 	
 func _process(delta):
-	super(delta)
+	walk(delta)
 
 func _init():
 	super()
