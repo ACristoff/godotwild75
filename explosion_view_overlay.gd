@@ -1,6 +1,6 @@
 extends TileMapLayer
 
-class_name AttackOverlay
+class_name ExplosionViewOverlay
 
 var cell_offset = Vector2(1, 2)
 

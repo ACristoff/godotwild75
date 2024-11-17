@@ -31,6 +31,7 @@ var current_rotation = "up"
 @onready var attack_overlay = $AttackOverlay
 @onready var hit_overlay = $HitOverlay
 @onready var explosion_overlay = $ExplosionOverlay
+@onready var explosion_view_overlay = $ExplosionViewOverlay
 @onready var unit_path: UnitPath = $UnitPath
 @onready var turn_indicator = $TurnIndicator
 
@@ -187,6 +188,7 @@ func on_unit_state_change(state):
 	pass
 
 func check_for_explosions(vectors):
+	print(vectors, "THESE ARE MY CHECK VECTORS")
 	pass
 
 ## Returns `true` if the cell is occupied by a unit.
