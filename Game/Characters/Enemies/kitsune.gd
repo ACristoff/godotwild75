@@ -14,9 +14,6 @@ var kitsune_attacks = {
 		"ATTACK_PATTERN": [Vector2(0,0), Vector2(0, -1), Vector2(-1, 0), Vector2(0, 1), Vector2(1, 0),]
 	},
 }
-
-#Targets a cell, not a character
-var targetCell = Vector2.ZERO
 var targetOnRange = false
 
 func _ready():
@@ -37,7 +34,9 @@ func enemyBrain(boardState):
 	getTargetCharacter("Spirit Flame", boardState)
 	move("Spirit Flame")
 	if(targetOnRange):
-		rangedAttack()
+		doAttack("Spirit Flame")
+		pass
+	endTurn()
 
 func getTargetCharacter(attackName: String, boardState):
 	#Target most amount of characters in AoE range
@@ -63,10 +62,6 @@ func getTargetCharacter(attackName: String, boardState):
 			if auxAmount > characterAmount:
 				characterAmount = auxAmount
 				targetCell = auxCell
-	
-func rangedAttack():
-	print("attacking")
-	pass
 	
 func move(attackName: String):
 	#Move to the closest grid point where the attack reaches (max range on the attack)
@@ -111,4 +106,7 @@ func move(attackName: String):
 						targetPoint = cells[i]
 						maxDistance = distanceToTarget
 						closestDistance = distanceToCharacter
-	walk_along([cell, targetPoint])
+	if cell == targetPoint:
+		walk_along([cell])
+	else:
+		walk_along([cell, targetPoint])

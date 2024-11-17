@@ -1,9 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://cbrlucko4mhk"]
 
 [ext_resource type="PackedScene" uid="uid://cg34obo360a5w" path="res://Game/Characters/Enemies/enemy_base.tscn" id="1_6gvqk"]
-[ext_resource type="Script" path="res://kitsune.gd" id="2_swjbx"]
+[ext_resource type="Script" path="res://Game/Characters/Enemies/kitsune.gd" id="2_swjbx"]
 
 [node name="Kitsune" instance=ExtResource("1_6gvqk")]
 modulate = Color(1, 0, 1, 1)
 script = ExtResource("2_swjbx")
+max_health = 1000
 self_scene_path = ""
+health = 0
