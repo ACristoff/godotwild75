@@ -37,6 +37,7 @@ func _input(event):
 			prevLevel()
 
 func switchScene(level: int):
+	previous_level_index = curr_level_index
 	call_deferred("changeLevel", level)
 
 func changeLevel(level: int):
