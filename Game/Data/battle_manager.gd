@@ -72,6 +72,7 @@ func find_next_possible(team):
 	return null
 
 func turn_manager():
+	await get_tree().create_timer(0.5).timeout
 	if is_player_turn:
 		#For the skip turn action
 		if active_unit != null and active_unit.has_moved:
@@ -82,7 +83,6 @@ func turn_manager():
 		if next_unit == null:
 			is_player_turn = false
 			turn_indicator._SwitchingTurn()
-			await get_tree().create_timer(1).timeout
 			is_enemy_turn = true
 			for enemy in enemies:
 				if enemies[enemy] != null:
@@ -491,6 +491,7 @@ func trigger_fail_con(miko):
 func check_for_win_con():
 	#print(enemies, ghost_accumulator)
 	if enemies.size() == 0 && ghost_accumulator.size() == 0:
+		await get_tree().create_timer(1).timeout
 		LevelManager.switchScene(LevelManager.getLevelIndex("win_screen"))
 
 func _on_cursor_deselect_pressed():

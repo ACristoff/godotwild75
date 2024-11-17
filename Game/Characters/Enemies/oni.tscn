@@ -46,9 +46,7 @@ _data = {
 [node name="Oni" instance=ExtResource("1_qvy6l")]
 script = ExtResource("2_ybesi")
 move_range = 3
-max_health = 3
 self_scene_path = "res://Game/Characters/Enemies/oni.tscn"
-health = 0
 skin = ExtResource("3_1mopv")
 
 [node name="Sprite" parent="PathFollow2D" index="1"]

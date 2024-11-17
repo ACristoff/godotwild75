@@ -10,6 +10,7 @@ func _ready() -> void:
 	tween.tween_property($Turnborderlabel, "self_modulate", Color.DODGER_BLUE, 0)
 
 func _SwitchingTurn():
+	#await get_tree().create_timer(1).timeout
 	states.play("Switch")
 
 func _enemyTurn():

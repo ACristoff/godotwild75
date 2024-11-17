@@ -48,7 +48,7 @@ bg_color = Color(0.0901961, 0.0901961, 0.0901961, 0.478431)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ptcj6"]
 bg_color = Color(0.0901961, 0.0901961, 0.0901961, 0.478431)
 
-[sub_resource type="Shader" id="Shader_42mhc"]
+[sub_resource type="Shader" id="Shader_opwqh"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 uniform sampler2D mask;
@@ -71,7 +71,7 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a4mok"]
 resource_local_to_scene = true
-shader = SubResource("Shader_42mhc")
+shader = SubResource("Shader_opwqh")
 shader_parameter/scale = 0.0
 shader_parameter/mask = ExtResource("21_fqyoh")
 

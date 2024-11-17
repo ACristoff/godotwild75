@@ -30,6 +30,7 @@ func _init():
 
 func enemyBrain(boardState):
 	super(boardState)
+	await get_tree().create_timer(1).timeout
 	#Attack if able, if not move first.
 	getTargetCharacter("Spirit Flame", boardState)
 	move("Spirit Flame")

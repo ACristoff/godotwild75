@@ -46,9 +46,7 @@ _data = {
 [node name="Tanuki" instance=ExtResource("1_umwdn")]
 script = ExtResource("2_daeit")
 move_range = 3
-max_health = 3
 self_scene_path = "res://Game/Characters/Enemies/tanuki.tscn"
-health = 0
 skin = ExtResource("3_iilma")
 
 [node name="Sprite" parent="PathFollow2D" index="1"]
