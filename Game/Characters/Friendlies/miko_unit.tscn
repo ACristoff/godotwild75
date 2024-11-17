@@ -174,6 +174,7 @@ _data = {
 
 [node name="MikoUnit" groups=["miko", "mikos"] instance=ExtResource("1_av5i1")]
 script = ExtResource("2_5ylnv")
+max_health = 10
 skin = ExtResource("3_nhepp")
 
 [node name="Sprite" parent="PathFollow2D" index="1"]

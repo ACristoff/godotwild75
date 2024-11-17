@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://h82fnyvkcffl"]
+[gd_scene load_steps=11 format=3 uid="uid://b0kvthnkkup5c"]
 
 [ext_resource type="Script" path="res://Game/Data/battle_manager.gd" id="1_m2jb0"]
 [ext_resource type="PackedScene" uid="uid://gcdapkkqr808" path="res://Game/World/environment.tscn" id="2_o5vvv"]
