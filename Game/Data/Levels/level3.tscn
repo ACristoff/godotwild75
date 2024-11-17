@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cdrtmig8f1yom" path="res://Assets/UserInterface/Gameplay/turn_order.tscn" id="11_cru58"]
 [ext_resource type="PackedScene" uid="uid://dfdi4uw2mg150" path="res://Game/Characters/Enemies/tanuki.tscn" id="15_pidby"]
 
-[node name="DebugLevel4" type="Node2D"]
+[node name="DebugLevel5" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_m2jb0")
 level_music = ExtResource("2_aikar")

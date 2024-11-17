@@ -29,7 +29,7 @@ y_sort_origin = -1
 
 [node name="AttackOverlay" parent="." instance=ExtResource("5_7pnn6")]
 
-[node name="ExplosionViewOverlay2" parent="." instance=ExtResource("7_m5dg0")]
+[node name="ExplosionViewOverlay" parent="." instance=ExtResource("7_m5dg0")]
 
 [node name="ExplosionOverlay" parent="." instance=ExtResource("6_7k5cw")]
 

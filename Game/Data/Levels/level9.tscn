@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://bw6nuo3guy6ab" path="res://Game/Characters/Enemies/oni.tscn" id="15_70mhp"]
 [ext_resource type="PackedScene" uid="uid://i5jwws41qqfv" path="res://Game/Characters/Enemies/chochin.tscn" id="16_vtjra"]
 
-[node name="DebugLevel4" type="Node2D"]
+[node name="DebugLevel5" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_486rf")
 level_music = ExtResource("2_xggg7")
