@@ -271,6 +271,7 @@ func deselect_unit():
 	attack_overlay.clear()
 	hit_overlay.kill_kids()
 	unit_path.stop()
+	current_rotation = "up"
 
 func move_current_unit(new_cell: Vector2):
 	if is_occupied(new_cell) or not new_cell in walkable_cells:
