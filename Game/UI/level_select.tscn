@@ -1,0 +1,317 @@
+[gd_scene load_steps=9 format=3 uid="uid://2f0j8asfiic1"]
+
+[ext_resource type="Texture2D" uid="uid://1gsgwrxvici6" path="res://Assets/Environment/Objects/Foliage.png" id="1_mea4o"]
+[ext_resource type="FontFile" uid="uid://cidju740k3qx7" path="res://Assets/Fonts/nagayama_kai08.otf" id="2_b5cnh"]
+[ext_resource type="Texture2D" uid="uid://dn23y83sjf4ek" path="res://Assets/Environment/GridTileMap/Half1.png" id="3_r08y4"]
+[ext_resource type="Theme" path="res://Assets/Themes/iconbutton.tres" id="4_s2ywm"]
+
+[sub_resource type="Gradient" id="Gradient_623ee"]
+colors = PackedColorArray(0.1, 0, 0.0716667, 1, 0.68, 0.872, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4ttco"]
+gradient = SubResource("Gradient_623ee")
+
+[sub_resource type="Environment" id="Environment_b4yvj"]
+background_mode = 3
+glow_enabled = true
+glow_bloom = 0.08
+adjustment_brightness = 0.9
+adjustment_contrast = 1.1
+adjustment_color_correction = SubResource("GradientTexture1D_4ttco")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pfw1m"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Foliage" type="Sprite2D" parent="."]
+self_modulate = Color(0.105882, 0.109804, 0.211765, 1)
+position = Vector2(640, 360)
+scale = Vector2(4, 4)
+texture = ExtResource("1_mea4o")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_b4yvj")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.56025, 0.5025, 0.75, 1)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -288.5
+offset_right = 288.5
+offset_bottom = 86.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 35
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+texture_filter = 2
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_b5cnh")
+theme_override_font_sizes/font_size = 50
+text = "Select Level"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 15
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 40
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="1" type="TextureButton" parent="CanvasLayer/MarginContainer2/VBoxContainer/HBoxContainer"]
+material = SubResource("ShaderMaterial_pfw1m")
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+texture_normal = ExtResource("3_r08y4")
+ignore_texture_size = true
+stretch_mode = 0
+flip_v = true
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer2/VBoxContainer/HBoxContainer/1"]
+modulate = Color(0, 0.164667, 0.52, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_b5cnh")
+theme_override_font_sizes/font_size = 150
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="2" type="TextureButton" parent="CanvasLayer/MarginContainer2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+texture_normal = ExtResource("3_r08y4")
+ignore_texture_size = true
+stretch_mode = 0
+flip_v = true
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer2/VBoxContainer/HBoxContainer/2"]
+modulate = Color(0, 0.164667, 0.52, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_b5cnh")
+theme_override_font_sizes/font_size = 150
+text = "2
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="3" type="TextureButton" parent="CanvasLayer/MarginContainer2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+texture_normal = ExtResource("3_r08y4")
+ignore_texture_size = true
+stretch_mode = 0
+flip_v = true
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer2/VBoxContainer/HBoxContainer/3"]
+modulate = Color(0, 0.164667, 0.52, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_b5cnh")
+theme_override_font_sizes/font_size = 150
+text = "3
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="4" type="TextureButton" parent="CanvasLayer/MarginContainer2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+texture_normal = ExtResource("3_r08y4")
+ignore_texture_size = true
+stretch_mode = 0
+flip_v = true
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer2/VBoxContainer/HBoxContainer/4"]
+modulate = Color(0, 0.164667, 0.52, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_b5cnh")
+theme_override_font_sizes/font_size = 150
+text = "4
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="5" type="TextureButton" parent="CanvasLayer/MarginContainer2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+texture_normal = ExtResource("3_r08y4")
+ignore_texture_size = true
+stretch_mode = 0
+flip_v = true
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer2/VBoxContainer/HBoxContainer/5"]
+modulate = Color(0, 0.164667, 0.52, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_b5cnh")
+theme_override_font_sizes/font_size = 150
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="6" type="TextureButton" parent="CanvasLayer/MarginContainer2/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+texture_normal = ExtResource("3_r08y4")
+ignore_texture_size = true
+stretch_mode = 0
+flip_v = true
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer2/VBoxContainer/HBoxContainer2/6"]
+modulate = Color(0, 0.164667, 0.52, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_b5cnh")
+theme_override_font_sizes/font_size = 150
+text = "6
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="7" type="TextureButton" parent="CanvasLayer/MarginContainer2/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+texture_normal = ExtResource("3_r08y4")
+ignore_texture_size = true
+stretch_mode = 0
+flip_v = true
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer2/VBoxContainer/HBoxContainer2/7"]
+modulate = Color(0, 0.164667, 0.52, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_b5cnh")
+theme_override_font_sizes/font_size = 150
+text = "7
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="8" type="TextureButton" parent="CanvasLayer/MarginContainer2/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+texture_normal = ExtResource("3_r08y4")
+ignore_texture_size = true
+stretch_mode = 0
+flip_v = true
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer2/VBoxContainer/HBoxContainer2/8"]
+modulate = Color(0, 0.164667, 0.52, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_b5cnh")
+theme_override_font_sizes/font_size = 150
+text = "8
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="9" type="TextureButton" parent="CanvasLayer/MarginContainer2/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+texture_normal = ExtResource("3_r08y4")
+ignore_texture_size = true
+stretch_mode = 0
+flip_v = true
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer2/VBoxContainer/HBoxContainer2/9"]
+modulate = Color(0, 0.164667, 0.52, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_b5cnh")
+theme_override_font_sizes/font_size = 150
+text = "9
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="10" type="TextureButton" parent="CanvasLayer/MarginContainer2/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+theme = ExtResource("4_s2ywm")
+disabled = true
+texture_normal = ExtResource("3_r08y4")
+ignore_texture_size = true
+stretch_mode = 0
+flip_v = true
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer2/VBoxContainer/HBoxContainer2/10"]
+modulate = Color(0, 0.164667, 0.52, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_b5cnh")
+theme_override_font_sizes/font_size = 150
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1

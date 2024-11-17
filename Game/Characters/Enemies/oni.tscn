@@ -1,8 +1,47 @@
-[gd_scene load_steps=4 format=3 uid="uid://bw6nuo3guy6ab"]
+[gd_scene load_steps=7 format=3 uid="uid://cr072ggffpayq"]
 
 [ext_resource type="PackedScene" uid="uid://cg34obo360a5w" path="res://Game/Characters/Enemies/enemy_base.tscn" id="1_qvy6l"]
 [ext_resource type="Script" path="res://Game/Characters/Enemies/oni.gd" id="2_ybesi"]
 [ext_resource type="Texture2D" uid="uid://beegx76b74qp0" path="res://Assets/Characters/Enemies/Litte Oni.png" id="3_1mopv"]
+
+[sub_resource type="Animation" id="Animation_s3ohh"]
+resource_name = "Oni"
+length = 0.7
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+
+[sub_resource type="Animation" id="Animation_mn0qg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4cu46"]
+_data = {
+"Oni": SubResource("Animation_s3ohh"),
+"RESET": SubResource("Animation_mn0qg")
+}
 
 [node name="Oni" instance=ExtResource("1_qvy6l")]
 script = ExtResource("2_ybesi")
@@ -15,3 +54,12 @@ skin = ExtResource("3_1mopv")
 texture = ExtResource("3_1mopv")
 hframes = 8
 vframes = 1
+
+[node name="AnimationPlayer" parent="." index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_4cu46")
+}
+autoplay = "Oni"
+
+[node name="HealthBar" parent="." index="2"]
+position = Vector2(0, -74)
