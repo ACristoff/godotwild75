@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/Beret_Parade_Cadence_Vox_06.mp3-040953f1f3820
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

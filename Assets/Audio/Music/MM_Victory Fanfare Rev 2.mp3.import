@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/MM_Victory Fanfare Rev 2.mp3-ab523fbd0eba6cae
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

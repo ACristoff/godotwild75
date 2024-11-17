@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/MM_Ending_Theme.mp3-ad6a8f8a8d0461400a703c39d
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

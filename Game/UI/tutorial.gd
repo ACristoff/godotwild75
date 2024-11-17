@@ -5,9 +5,12 @@ var tutorial = 1
 var heiko = Color.from_hsv(41.0/359.0, 74.0/100.0, 100.0/100.0, 1.0/1.0 )
 var miko = Color.from_hsv(347.0/359.0, 62.0/100.0, 100.0/100.0, 1.0/1.0 )
 
+var tutsongo = preload("res://Assets/Audio/Music/MM_Tutorial_Town.mp3")
+
 @onready var bodytext = $Text
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	AudioManager._play_music(tutsongo, -9)
 	$ColorRect.mouse_filter = 2
 	bodytext["theme_override_colors/font_color"] = heiko
 	pass
