@@ -1,52 +1,423 @@
-[gd_scene load_steps=12 format=3 uid="uid://b0ewe66ltvvx8"]
+[gd_scene load_steps=25 format=3 uid="uid://b0ewe66ltvvx8"]
 
-[ext_resource type="Script" path="res://Game/Data/battle_manager.gd" id="1_6ijiu"]
+[ext_resource type="Script" path="res://Game/UI/tutorial.gd" id="1_731gq"]
 [ext_resource type="PackedScene" uid="uid://gcdapkkqr808" path="res://Game/World/environment.tscn" id="2_i40h2"]
-[ext_resource type="PackedScene" uid="uid://copviu6p757h8" path="res://Game/Data/unit_path.tscn" id="3_bpwdo"]
-[ext_resource type="PackedScene" uid="uid://7svoiv3k6b8h" path="res://Game/Data/hit_overlay.tscn" id="4_66uyh"]
-[ext_resource type="PackedScene" uid="uid://c0vnt11umxslf" path="res://Game/Data/attack_overlay.tscn" id="5_gdhku"]
-[ext_resource type="PackedScene" uid="uid://bjjre3i3xvkhl" path="res://Game/World/explosion_overlay.tscn" id="6_h4q7f"]
-[ext_resource type="PackedScene" uid="uid://2nbe138odbl8" path="res://Game/Characters/Friendlies/miko_unit.tscn" id="7_u43n7"]
-[ext_resource type="PackedScene" uid="uid://cg34obo360a5w" path="res://Game/Characters/Enemies/enemy_base.tscn" id="8_28frg"]
-[ext_resource type="PackedScene" uid="uid://2r5lvg6715f" path="res://Game/Characters/Friendlies/heiko_unit.tscn" id="9_8x00h"]
-[ext_resource type="PackedScene" uid="uid://d1rww8eno83bs" path="res://Game/Data/Cursor/cursor.tscn" id="10_s1323"]
-[ext_resource type="PackedScene" uid="uid://cy1ruko7jcspv" path="res://Game/Characters/Enemies/kappa.tscn" id="11_hh4mk"]
+[ext_resource type="Texture2D" uid="uid://cbfa87e83tyjh" path="res://Assets/Characters/Friendly/HeikoTutorial.png" id="4_u1wwy"]
+[ext_resource type="FontFile" uid="uid://u6qvgtgfcwtd" path="res://Assets/Fonts/MochiyPopOne-Regular.ttf" id="5_eupe1"]
+[ext_resource type="Texture2D" uid="uid://cvac1rhk2c816" path="res://Assets/Characters/Friendly/MikoSweep.png" id="5_nl05h"]
+[ext_resource type="Theme" uid="uid://yu16ssc5tp3n" path="res://Assets/Themes/Buttons2.tres" id="6_eu3y2"]
+[ext_resource type="Texture2D" uid="uid://dwabg72li1e5w" path="res://Assets/Screenshots/Screenshot 2024-11-16 185134.png" id="8_ywa4x"]
+[ext_resource type="Texture2D" uid="uid://cfe2oyh8ea6bt" path="res://Assets/Screenshots/Screenshot 2024-11-16 185528.png" id="9_tvq63"]
+[ext_resource type="Texture2D" uid="uid://lh1fepsa4x6e" path="res://Assets/UserInterface/Menu/ButtonArrow.png" id="10_akub1"]
+[ext_resource type="Texture2D" uid="uid://dtb7dx7u0jowt" path="res://Assets/UserInterface/Gameplay/GoldSelection.png" id="11_3pkkw"]
+[ext_resource type="Shader" uid="uid://gpajhwkxfmty" path="res://Assets/Shaders/swayandblur.tres" id="11_mu11w"]
+[ext_resource type="Texture2D" uid="uid://btvp8us8w222b" path="res://Assets/Screenshots/Screenshot 2024-11-16 184818.png" id="12_ue5bk"]
+[ext_resource type="Texture2D" uid="uid://b7gckxeelmr51" path="res://Assets/Screenshots/Screenshot 2024-11-16 184835.png" id="13_jsb3t"]
+[ext_resource type="Texture2D" uid="uid://crd4vj6w6n6bl" path="res://Assets/Screenshots/Screenshot 2024-11-16 190156.png" id="14_pkxks"]
+[ext_resource type="Texture2D" uid="uid://d76httmgjy6q" path="res://Assets/Screenshots/Screenshot 2024-11-16 184727.png" id="15_jpgsj"]
+[ext_resource type="Texture2D" uid="uid://bq22jcytg2ufj" path="res://Assets/Screenshots/Screenshot 2024-11-16 190211.png" id="16_ikygv"]
+[ext_resource type="Texture2D" uid="uid://bkg0nn8201v60" path="res://Assets/Screenshots/Screenshot 2024-11-16 184701.png" id="17_g81qk"]
 
-[node name="DebugLevel" type="Node2D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_libmq"]
+shader = ExtResource("11_mu11w")
+shader_parameter/blur_radius = 1.0
+shader_parameter/blur_amount = 3.021
+shader_parameter/blur_inner = 0.0
+shader_parameter/blur_outer = 0.0
+
+[sub_resource type="Animation" id="Animation_3gx12"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:material:shader_parameter/blur_radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:material:shader_parameter/blur_amount")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.021]
+}
+
+[sub_resource type="Animation" id="Animation_wr4c1"]
+resource_name = "TutorialFade"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:material:shader_parameter/blur_radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:material:shader_parameter/blur_amount")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [3.021, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_fpkbe"]
+resource_name = "TutorialFadeIN"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:material:shader_parameter/blur_amount")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 3.021]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k4ryi"]
+_data = {
+"RESET": SubResource("Animation_3gx12"),
+"TutorialFade": SubResource("Animation_wr4c1"),
+"TutorialFadeIN": SubResource("Animation_fpkbe")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_almoc"]
+bg_color = Color(0.0901961, 0.0901961, 0.0901961, 0.478431)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ptcj6"]
+bg_color = Color(0.0901961, 0.0901961, 0.0901961, 0.478431)
+
+[node name="Tutorial" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_6ijiu")
-grid = null
+script = ExtResource("1_731gq")
+
+[node name="TextureRect" type="ColorRect" parent="."]
+z_index = 10
+material = SubResource("ShaderMaterial_libmq")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1280.0
+offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="Environment" parent="." instance=ExtResource("2_i40h2")]
 
-[node name="UnitPath" parent="." instance=ExtResource("3_bpwdo")]
-y_sort_origin = -1
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_k4ryi")
+}
 
-[node name="HitOverlay" parent="." instance=ExtResource("4_66uyh")]
+[node name="HeikoTutorial" type="Sprite2D" parent="."]
+z_index = 11
+position = Vector2(135, 581)
+scale = Vector2(8, 8)
+texture = ExtResource("4_u1wwy")
+hframes = 2
 
-[node name="AttackOverlay" parent="." instance=ExtResource("5_gdhku")]
+[node name="MikoSweep" type="Sprite2D" parent="."]
+visible = false
+z_index = 13
+position = Vector2(103, 589)
+scale = Vector2(8, 8)
+texture = ExtResource("5_nl05h")
+hframes = 5
+frame = 4
 
-[node name="ExplosionOverlay" parent="." instance=ExtResource("6_h4q7f")]
+[node name="Text" type="Label" parent="."]
+z_index = 12
+offset_left = 476.0
+offset_top = 476.0
+offset_right = 1243.0
+offset_bottom = 681.0
+theme_override_fonts/font = ExtResource("5_eupe1")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_almoc")
+text = "Heiko: You're lucky I found you when I did!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
-[node name="MikoUnit" parent="." instance=ExtResource("7_u43n7")]
-position = Vector2(355, 614)
+[node name="Undo" type="Label" parent="."]
+z_index = 12
+offset_left = 278.0
+offset_top = 476.0
+offset_right = 450.0
+offset_bottom = 683.0
+theme_override_fonts/font = ExtResource("5_eupe1")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_almoc")
+text = "Undo
+<<<"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
-[node name="EnemyBase2" parent="." instance=ExtResource("8_28frg")]
-position = Vector2(288, 163)
+[node name="NextPanel" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+z_index = 13
+offset_left = -29.0
+offset_top = -21.0
+offset_right = 1300.0
+offset_bottom = 737.0
 
-[node name="EnemyBase" parent="." instance=ExtResource("8_28frg")]
-position = Vector2(351, 163)
+[node name="Undo2" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+z_index = 14
+offset_left = 278.0
+offset_top = 476.0
+offset_right = 451.0
+offset_bottom = 683.0
+theme = ExtResource("6_eu3y2")
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ptcj6")
 
-[node name="HeikoUnit" parent="." instance=ExtResource("9_8x00h")]
-position = Vector2(288, 607)
+[node name="Label" type="Label" parent="."]
+z_index = 13
+offset_left = 682.0
+offset_top = 624.0
+offset_right = 1019.0
+offset_bottom = 657.0
+theme_override_fonts/font = ExtResource("5_eupe1")
+theme_override_font_sizes/font_size = 22
+text = "Click To Continue"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Cursor" parent="." instance=ExtResource("10_s1323")]
+[node name="Panel1" type="Node2D" parent="."]
+visible = false
 
-[node name="Kappa" parent="." instance=ExtResource("11_hh4mk")]
-position = Vector2(991, 162)
+[node name="Screenshot2024-11-16185134" type="Sprite2D" parent="Panel1"]
+z_index = 13
+position = Vector2(465, 235)
+texture = ExtResource("8_ywa4x")
 
-[connection signal="accept_pressed" from="Cursor" to="." method="_on_cursor_accept_pressed"]
-[connection signal="deselect_pressed" from="Cursor" to="." method="_on_cursor_deselect_pressed"]
-[connection signal="moved" from="Cursor" to="." method="_on_cursor_moved"]
+[node name="Screenshot2024-11-16185528" type="Sprite2D" parent="Panel1"]
+z_index = 13
+position = Vector2(1006, 235)
+texture = ExtResource("9_tvq63")
 
-[editable path="HeikoUnit"]
+[node name="ButtonArrow" type="Sprite2D" parent="Panel1"]
+modulate = Color(1, 0.764706, 0.258824, 1)
+z_index = 13
+position = Vector2(744, 251)
+rotation = -3.14159
+texture = ExtResource("10_akub1")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Panel1"]
+z_index = 14
+offset_left = 269.0
+offset_top = 71.0
+offset_right = 658.0
+offset_bottom = 395.0
+texture = ExtResource("11_3pkkw")
+patch_margin_left = 12
+patch_margin_top = 5
+patch_margin_right = 12
+patch_margin_bottom = 5
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="Panel1"]
+z_index = 14
+offset_left = 814.0
+offset_top = 75.0
+offset_right = 1199.0
+offset_bottom = 395.0
+texture = ExtResource("11_3pkkw")
+patch_margin_left = 12
+patch_margin_top = 5
+patch_margin_right = 12
+patch_margin_bottom = 5
+
+[node name="Panel2" type="Node2D" parent="."]
+visible = false
+
+[node name="Screenshot2024-11-16185134" type="Sprite2D" parent="Panel2"]
+z_index = 13
+position = Vector2(462.5, 232.487)
+scale = Vector2(1.66489, 1.66489)
+texture = ExtResource("12_ue5bk")
+
+[node name="Screenshot2024-11-16185528" type="Sprite2D" parent="Panel2"]
+z_index = 13
+position = Vector2(1007.5, 236.508)
+scale = Vector2(1.62827, 1.62827)
+texture = ExtResource("13_jsb3t")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Panel2"]
+z_index = 14
+offset_left = 302.0
+offset_top = 71.0
+offset_right = 616.0
+offset_bottom = 395.0
+texture = ExtResource("11_3pkkw")
+patch_margin_left = 12
+patch_margin_top = 5
+patch_margin_right = 12
+patch_margin_bottom = 5
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="Panel2"]
+z_index = 14
+offset_left = 850.0
+offset_top = 75.0
+offset_right = 1167.0
+offset_bottom = 395.0
+texture = ExtResource("11_3pkkw")
+patch_margin_left = 12
+patch_margin_top = 5
+patch_margin_right = 12
+patch_margin_bottom = 5
+
+[node name="Panel3" type="Node2D" parent="."]
+visible = false
+
+[node name="Screenshot2024-11-16185134" type="Sprite2D" parent="Panel3"]
+z_index = 13
+position = Vector2(455.362, 210.471)
+scale = Vector2(2.52826, 2.52826)
+texture = ExtResource("14_pkxks")
+
+[node name="Screenshot2024-11-16185528" type="Sprite2D" parent="Panel3"]
+z_index = 13
+position = Vector2(1007.5, 236.508)
+scale = Vector2(1.62827, 1.62827)
+texture = ExtResource("15_jpgsj")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Panel3"]
+z_index = 14
+offset_left = 302.0
+offset_top = 146.0
+offset_right = 611.0
+offset_bottom = 279.0
+texture = ExtResource("11_3pkkw")
+patch_margin_left = 12
+patch_margin_top = 5
+patch_margin_right = 12
+patch_margin_bottom = 5
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="Panel3"]
+z_index = 14
+offset_left = 790.0
+offset_top = 75.0
+offset_right = 1226.0
+offset_bottom = 395.0
+texture = ExtResource("11_3pkkw")
+patch_margin_left = 12
+patch_margin_top = 5
+patch_margin_right = 12
+patch_margin_bottom = 5
+
+[node name="ButtonArrow" type="Sprite2D" parent="Panel3"]
+modulate = Color(1, 0.764706, 0.258824, 1)
+z_index = 13
+position = Vector2(708, 220)
+rotation = -3.14159
+texture = ExtResource("10_akub1")
+
+[node name="Panel4" type="Node2D" parent="."]
+visible = false
+
+[node name="Screenshot2024-11-16185134" type="Sprite2D" parent="Panel4"]
+z_index = 13
+position = Vector2(455.362, 210.471)
+scale = Vector2(2.52826, 2.52826)
+texture = ExtResource("16_ikygv")
+
+[node name="Screenshot2024-11-16185528" type="Sprite2D" parent="Panel4"]
+z_index = 13
+position = Vector2(1007, 226)
+scale = Vector2(1.10601, 1.10601)
+texture = ExtResource("17_g81qk")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Panel4"]
+z_index = 14
+offset_left = 302.0
+offset_top = 134.0
+offset_right = 611.0
+offset_bottom = 279.0
+texture = ExtResource("11_3pkkw")
+patch_margin_left = 12
+patch_margin_top = 5
+patch_margin_right = 12
+patch_margin_bottom = 5
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="Panel4"]
+z_index = 14
+offset_left = 830.0
+offset_top = 14.0
+offset_right = 1186.0
+offset_bottom = 437.0
+texture = ExtResource("11_3pkkw")
+patch_margin_left = 12
+patch_margin_top = 5
+patch_margin_right = 12
+patch_margin_bottom = 5
+
+[node name="ButtonArrow" type="Sprite2D" parent="Panel4"]
+modulate = Color(1, 0.764706, 0.258824, 1)
+z_index = 13
+position = Vector2(708, 220)
+rotation = -3.14159
+texture = ExtResource("10_akub1")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 14
+offset_left = -52.0
+offset_top = -91.0
+offset_right = 1332.0
+offset_bottom = 760.0
+color = Color(1, 1, 1, 0)
+
+[node name="letsago!" type="Button" parent="."]
+visible = false
+z_index = 14
+offset_left = 449.0
+offset_top = 244.0
+offset_right = 816.0
+offset_bottom = 338.0
+theme = ExtResource("6_eu3y2")
+theme_override_fonts/font = ExtResource("5_eupe1")
+text = "Can you repeat that?"
+
+[node name="restart" type="Button" parent="."]
+visible = false
+z_index = 14
+offset_left = 851.0
+offset_top = 244.0
+offset_right = 1180.0
+offset_bottom = 338.0
+theme = ExtResource("6_eu3y2")
+theme_override_fonts/font = ExtResource("5_eupe1")
+text = "I'm Ready."
+
+[connection signal="pressed" from="NextPanel" to="." method="_on_next_panel_pressed"]
+[connection signal="pressed" from="Undo2" to="." method="_on_undo_pressed"]
+[connection signal="pressed" from="letsago!" to="." method="_on_letsago_pressed"]
+[connection signal="pressed" from="restart" to="." method="_on_restart_pressed"]

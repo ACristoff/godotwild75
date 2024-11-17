@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cs3440ai1pjcf"]
+[gd_scene load_steps=46 format=3 uid="uid://cs3440ai1pjcf"]
 
 [ext_resource type="AudioStream" uid="uid://di05jk8lhdjj1" path="res://Assets/Audio/Music/MM_Victory Fanfare Rev 2.mp3" id="1_7jwwb"]
 [ext_resource type="Script" path="res://Game/UI/win_screen.gd" id="1_r8it0"]
@@ -10,11 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://6spl2drkii4x" path="res://Assets/UserInterface/Menu/Brush.png" id="5_auuqa"]
 [ext_resource type="Texture2D" uid="uid://mc1lvwhbh4" path="res://Assets/Environment/GridTileMap/perspectiveground.png" id="5_bpk8j"]
 [ext_resource type="FontFile" uid="uid://cidju740k3qx7" path="res://Assets/Fonts/nagayama_kai08.otf" id="6_8yj6i"]
-[ext_resource type="Shader" uid="uid://gpajhwkxfmty" path="res://Assets/Shaders/swayandblur.tres" id="8_7spx1"]
 [ext_resource type="Texture2D" uid="uid://bxg4ll16l8637" path="res://Assets/Environment/Objects/TrunkDark.png" id="9_f540x"]
 [ext_resource type="Texture2D" uid="uid://b1fcx6qi402lv" path="res://Assets/Environment/Objects/LeavesDark.png" id="10_ffq7q"]
 [ext_resource type="PackedScene" uid="uid://domnit2msh3jg" path="res://Assets/Shaders/god_ray.tscn" id="11_id2kl"]
-[ext_resource type="Shader" path="res://Assets/Shaders/godrays.gdshader" id="12_dflnj"]
 [ext_resource type="Theme" uid="uid://quv8ysasm6da" path="res://Assets/Themes/Buttons2.tres" id="16_8smij"]
 [ext_resource type="Texture2D" uid="uid://dtb7dx7u0jowt" path="res://Assets/UserInterface/Gameplay/GoldSelection.png" id="17_3aljm"]
 
@@ -238,9 +236,641 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
+[sub_resource type="Shader" id="Shader_m41m7"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+// Wind settings.
+uniform float speed = 1.0;
+uniform float minStrength : hint_range(0.0, 1.0) = 0.05;
+uniform float maxStrength : hint_range(0.0, 1.0) = 0.01;
+uniform float strengthScale = 100.0;
+uniform float interval = 3.5;
+uniform float detail = 1.0;
+uniform float distortion : hint_range(0.0, 1.0);
+uniform float heightOffset : hint_range(0.0, 1.0);
+
+// With the offset value, you can if you want different moves for each asset. Just put a random value (1, 2, 3) in the editor. Don't forget to mark the material as unique if you use this
+uniform float offset = 0; 
+
+
+float getWind(vec2 vertex, vec2 uv, float time){
+    float diff = pow(maxStrength - minStrength, 2.0);
+    float strength = clamp(minStrength + diff + sin(time / interval) * diff, minStrength, maxStrength) * strengthScale;
+    float wind = (sin(time) + cos(time * detail)) * strength * max(0.0, (1.0-uv.y) - heightOffset);
+    
+    return wind; 
+}
+
+void vertex() {
+    vec4 pos = MODEL_MATRIX * vec4(0.0, 0.0, 0.0, 1.0);
+    float time = TIME * speed + offset;
+    //float time = TIME * speed + pos.x * pos.y  ; not working when moving...
+    VERTEX.x += getWind(VERTEX.xy, UV, time);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4jenk"]
+resource_local_to_scene = true
+shader = SubResource("Shader_m41m7")
+shader_parameter/speed = 1.0
+shader_parameter/minStrength = 0.05
+shader_parameter/maxStrength = 0.01
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 1.0
+shader_parameter/distortion = null
+shader_parameter/heightOffset = null
+shader_parameter/offset = 0.0
+
+[sub_resource type="Shader" id="Shader_a8r77"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+// Wind settings.
+uniform float speed = 1.0;
+uniform float minStrength : hint_range(0.0, 1.0) = 0.05;
+uniform float maxStrength : hint_range(0.0, 1.0) = 0.01;
+uniform float strengthScale = 100.0;
+uniform float interval = 3.5;
+uniform float detail = 1.0;
+uniform float distortion : hint_range(0.0, 1.0);
+uniform float heightOffset : hint_range(0.0, 1.0);
+
+// With the offset value, you can if you want different moves for each asset. Just put a random value (1, 2, 3) in the editor. Don't forget to mark the material as unique if you use this
+uniform float offset = 0; 
+
+
+float getWind(vec2 vertex, vec2 uv, float time){
+    float diff = pow(maxStrength - minStrength, 2.0);
+    float strength = clamp(minStrength + diff + sin(time / interval) * diff, minStrength, maxStrength) * strengthScale;
+    float wind = (sin(time) + cos(time * detail)) * strength * max(0.0, (1.0-uv.y) - heightOffset);
+    
+    return wind; 
+}
+
+void vertex() {
+    vec4 pos = MODEL_MATRIX * vec4(0.0, 0.0, 0.0, 1.0);
+    float time = TIME * speed + offset;
+    //float time = TIME * speed + pos.x * pos.y  ; not working when moving...
+    VERTEX.x += getWind(VERTEX.xy, UV, time);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c1xpr"]
+resource_local_to_scene = true
+shader = SubResource("Shader_a8r77")
+shader_parameter/speed = 1.0
+shader_parameter/minStrength = 0.05
+shader_parameter/maxStrength = 0.01
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 1.0
+shader_parameter/distortion = null
+shader_parameter/heightOffset = null
+shader_parameter/offset = 0.0
+
+[sub_resource type="Shader" id="Shader_y0k7o"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+// Wind settings.
+uniform float speed = 1.0;
+uniform float minStrength : hint_range(0.0, 1.0) = 0.05;
+uniform float maxStrength : hint_range(0.0, 1.0) = 0.01;
+uniform float strengthScale = 100.0;
+uniform float interval = 3.5;
+uniform float detail = 1.0;
+uniform float distortion : hint_range(0.0, 1.0);
+uniform float heightOffset : hint_range(0.0, 1.0);
+
+// With the offset value, you can if you want different moves for each asset. Just put a random value (1, 2, 3) in the editor. Don't forget to mark the material as unique if you use this
+uniform float offset = 0; 
+
+
+float getWind(vec2 vertex, vec2 uv, float time){
+    float diff = pow(maxStrength - minStrength, 2.0);
+    float strength = clamp(minStrength + diff + sin(time / interval) * diff, minStrength, maxStrength) * strengthScale;
+    float wind = (sin(time) + cos(time * detail)) * strength * max(0.0, (1.0-uv.y) - heightOffset);
+    
+    return wind; 
+}
+
+void vertex() {
+    vec4 pos = MODEL_MATRIX * vec4(0.0, 0.0, 0.0, 1.0);
+    float time = TIME * speed + offset;
+    //float time = TIME * speed + pos.x * pos.y  ; not working when moving...
+    VERTEX.x += getWind(VERTEX.xy, UV, time);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_krhiw"]
+resource_local_to_scene = true
+shader = SubResource("Shader_y0k7o")
+shader_parameter/speed = 1.0
+shader_parameter/minStrength = 0.05
+shader_parameter/maxStrength = 0.01
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 1.0
+shader_parameter/distortion = null
+shader_parameter/heightOffset = null
+shader_parameter/offset = 0.0
+
+[sub_resource type="Shader" id="Shader_ntpxt"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+// Wind settings.
+uniform float speed = 1.0;
+uniform float minStrength : hint_range(0.0, 1.0) = 0.05;
+uniform float maxStrength : hint_range(0.0, 1.0) = 0.01;
+uniform float strengthScale = 100.0;
+uniform float interval = 3.5;
+uniform float detail = 1.0;
+uniform float distortion : hint_range(0.0, 1.0);
+uniform float heightOffset : hint_range(0.0, 1.0);
+
+// With the offset value, you can if you want different moves for each asset. Just put a random value (1, 2, 3) in the editor. Don't forget to mark the material as unique if you use this
+uniform float offset = 0; 
+
+
+float getWind(vec2 vertex, vec2 uv, float time){
+    float diff = pow(maxStrength - minStrength, 2.0);
+    float strength = clamp(minStrength + diff + sin(time / interval) * diff, minStrength, maxStrength) * strengthScale;
+    float wind = (sin(time) + cos(time * detail)) * strength * max(0.0, (1.0-uv.y) - heightOffset);
+    
+    return wind; 
+}
+
+void vertex() {
+    vec4 pos = MODEL_MATRIX * vec4(0.0, 0.0, 0.0, 1.0);
+    float time = TIME * speed + offset;
+    //float time = TIME * speed + pos.x * pos.y  ; not working when moving...
+    VERTEX.x += getWind(VERTEX.xy, UV, time);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6dq03"]
+resource_local_to_scene = true
+shader = SubResource("Shader_ntpxt")
+shader_parameter/speed = 1.0
+shader_parameter/minStrength = 0.05
+shader_parameter/maxStrength = 0.01
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 1.0
+shader_parameter/distortion = null
+shader_parameter/heightOffset = null
+shader_parameter/offset = 0.0
+
+[sub_resource type="Shader" id="Shader_63luj"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+// Wind settings.
+uniform float speed = 1.0;
+uniform float minStrength : hint_range(0.0, 1.0) = 0.05;
+uniform float maxStrength : hint_range(0.0, 1.0) = 0.01;
+uniform float strengthScale = 100.0;
+uniform float interval = 3.5;
+uniform float detail = 1.0;
+uniform float distortion : hint_range(0.0, 1.0);
+uniform float heightOffset : hint_range(0.0, 1.0);
+
+// With the offset value, you can if you want different moves for each asset. Just put a random value (1, 2, 3) in the editor. Don't forget to mark the material as unique if you use this
+uniform float offset = 0; 
+
+
+float getWind(vec2 vertex, vec2 uv, float time){
+    float diff = pow(maxStrength - minStrength, 2.0);
+    float strength = clamp(minStrength + diff + sin(time / interval) * diff, minStrength, maxStrength) * strengthScale;
+    float wind = (sin(time) + cos(time * detail)) * strength * max(0.0, (1.0-uv.y) - heightOffset);
+    
+    return wind; 
+}
+
+void vertex() {
+    vec4 pos = MODEL_MATRIX * vec4(0.0, 0.0, 0.0, 1.0);
+    float time = TIME * speed + offset;
+    //float time = TIME * speed + pos.x * pos.y  ; not working when moving...
+    VERTEX.x += getWind(VERTEX.xy, UV, time);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n5kxq"]
+resource_local_to_scene = true
+shader = SubResource("Shader_63luj")
+shader_parameter/speed = 1.0
+shader_parameter/minStrength = 0.05
+shader_parameter/maxStrength = 0.01
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 1.0
+shader_parameter/distortion = null
+shader_parameter/heightOffset = null
+shader_parameter/offset = 0.0
+
+[sub_resource type="Shader" id="Shader_xg50v"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+// Wind settings.
+uniform float speed = 1.0;
+uniform float minStrength : hint_range(0.0, 1.0) = 0.05;
+uniform float maxStrength : hint_range(0.0, 1.0) = 0.01;
+uniform float strengthScale = 100.0;
+uniform float interval = 3.5;
+uniform float detail = 1.0;
+uniform float distortion : hint_range(0.0, 1.0);
+uniform float heightOffset : hint_range(0.0, 1.0);
+
+// With the offset value, you can if you want different moves for each asset. Just put a random value (1, 2, 3) in the editor. Don't forget to mark the material as unique if you use this
+uniform float offset = 0; 
+
+
+float getWind(vec2 vertex, vec2 uv, float time){
+    float diff = pow(maxStrength - minStrength, 2.0);
+    float strength = clamp(minStrength + diff + sin(time / interval) * diff, minStrength, maxStrength) * strengthScale;
+    float wind = (sin(time) + cos(time * detail)) * strength * max(0.0, (1.0-uv.y) - heightOffset);
+    
+    return wind; 
+}
+
+void vertex() {
+    vec4 pos = MODEL_MATRIX * vec4(0.0, 0.0, 0.0, 1.0);
+    float time = TIME * speed + offset;
+    //float time = TIME * speed + pos.x * pos.y  ; not working when moving...
+    VERTEX.x += getWind(VERTEX.xy, UV, time);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qh0ug"]
+resource_local_to_scene = true
+shader = SubResource("Shader_xg50v")
+shader_parameter/speed = 1.0
+shader_parameter/minStrength = 0.05
+shader_parameter/maxStrength = 0.01
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 1.0
+shader_parameter/distortion = null
+shader_parameter/heightOffset = null
+shader_parameter/offset = 0.0
+
+[sub_resource type="Shader" id="Shader_0f6ca"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+// Wind settings.
+uniform float speed = 1.0;
+uniform float minStrength : hint_range(0.0, 1.0) = 0.05;
+uniform float maxStrength : hint_range(0.0, 1.0) = 0.01;
+uniform float strengthScale = 100.0;
+uniform float interval = 3.5;
+uniform float detail = 1.0;
+uniform float distortion : hint_range(0.0, 1.0);
+uniform float heightOffset : hint_range(0.0, 1.0);
+
+// With the offset value, you can if you want different moves for each asset. Just put a random value (1, 2, 3) in the editor. Don't forget to mark the material as unique if you use this
+uniform float offset = 0; 
+
+
+float getWind(vec2 vertex, vec2 uv, float time){
+    float diff = pow(maxStrength - minStrength, 2.0);
+    float strength = clamp(minStrength + diff + sin(time / interval) * diff, minStrength, maxStrength) * strengthScale;
+    float wind = (sin(time) + cos(time * detail)) * strength * max(0.0, (1.0-uv.y) - heightOffset);
+    
+    return wind; 
+}
+
+void vertex() {
+    vec4 pos = MODEL_MATRIX * vec4(0.0, 0.0, 0.0, 1.0);
+    float time = TIME * speed + offset;
+    //float time = TIME * speed + pos.x * pos.y  ; not working when moving...
+    VERTEX.x += getWind(VERTEX.xy, UV, time);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kxbk2"]
+resource_local_to_scene = true
+shader = SubResource("Shader_0f6ca")
+shader_parameter/speed = 1.0
+shader_parameter/minStrength = 0.05
+shader_parameter/maxStrength = 0.01
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 1.0
+shader_parameter/distortion = null
+shader_parameter/heightOffset = null
+shader_parameter/offset = 0.0
+
+[sub_resource type="Shader" id="Shader_tuxjd"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+// Wind settings.
+uniform float speed = 1.0;
+uniform float minStrength : hint_range(0.0, 1.0) = 0.05;
+uniform float maxStrength : hint_range(0.0, 1.0) = 0.01;
+uniform float strengthScale = 100.0;
+uniform float interval = 3.5;
+uniform float detail = 1.0;
+uniform float distortion : hint_range(0.0, 1.0);
+uniform float heightOffset : hint_range(0.0, 1.0);
+
+// With the offset value, you can if you want different moves for each asset. Just put a random value (1, 2, 3) in the editor. Don't forget to mark the material as unique if you use this
+uniform float offset = 0; 
+
+
+float getWind(vec2 vertex, vec2 uv, float time){
+    float diff = pow(maxStrength - minStrength, 2.0);
+    float strength = clamp(minStrength + diff + sin(time / interval) * diff, minStrength, maxStrength) * strengthScale;
+    float wind = (sin(time) + cos(time * detail)) * strength * max(0.0, (1.0-uv.y) - heightOffset);
+    
+    return wind; 
+}
+
+void vertex() {
+    vec4 pos = MODEL_MATRIX * vec4(0.0, 0.0, 0.0, 1.0);
+    float time = TIME * speed + offset;
+    //float time = TIME * speed + pos.x * pos.y  ; not working when moving...
+    VERTEX.x += getWind(VERTEX.xy, UV, time);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4h4wr"]
+resource_local_to_scene = true
+shader = SubResource("Shader_tuxjd")
+shader_parameter/speed = 1.0
+shader_parameter/minStrength = 0.05
+shader_parameter/maxStrength = 0.01
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 1.0
+shader_parameter/distortion = null
+shader_parameter/heightOffset = null
+shader_parameter/offset = 0.0
+
+[sub_resource type="Shader" id="Shader_q65ec"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+// Wind settings.
+uniform float speed = 1.0;
+uniform float minStrength : hint_range(0.0, 1.0) = 0.05;
+uniform float maxStrength : hint_range(0.0, 1.0) = 0.01;
+uniform float strengthScale = 100.0;
+uniform float interval = 3.5;
+uniform float detail = 1.0;
+uniform float distortion : hint_range(0.0, 1.0);
+uniform float heightOffset : hint_range(0.0, 1.0);
+
+// With the offset value, you can if you want different moves for each asset. Just put a random value (1, 2, 3) in the editor. Don't forget to mark the material as unique if you use this
+uniform float offset = 0; 
+
+
+float getWind(vec2 vertex, vec2 uv, float time){
+    float diff = pow(maxStrength - minStrength, 2.0);
+    float strength = clamp(minStrength + diff + sin(time / interval) * diff, minStrength, maxStrength) * strengthScale;
+    float wind = (sin(time) + cos(time * detail)) * strength * max(0.0, (1.0-uv.y) - heightOffset);
+    
+    return wind; 
+}
+
+void vertex() {
+    vec4 pos = MODEL_MATRIX * vec4(0.0, 0.0, 0.0, 1.0);
+    float time = TIME * speed + offset;
+    //float time = TIME * speed + pos.x * pos.y  ; not working when moving...
+    VERTEX.x += getWind(VERTEX.xy, UV, time);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eyw5o"]
+resource_local_to_scene = true
+shader = SubResource("Shader_q65ec")
+shader_parameter/speed = 1.0
+shader_parameter/minStrength = 0.05
+shader_parameter/maxStrength = 0.01
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 1.0
+shader_parameter/distortion = null
+shader_parameter/heightOffset = null
+shader_parameter/offset = 0.0
+
+[sub_resource type="Shader" id="Shader_xan7d"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+// Wind settings.
+uniform float speed = 1.0;
+uniform float minStrength : hint_range(0.0, 1.0) = 0.05;
+uniform float maxStrength : hint_range(0.0, 1.0) = 0.01;
+uniform float strengthScale = 100.0;
+uniform float interval = 3.5;
+uniform float detail = 1.0;
+uniform float distortion : hint_range(0.0, 1.0);
+uniform float heightOffset : hint_range(0.0, 1.0);
+
+// With the offset value, you can if you want different moves for each asset. Just put a random value (1, 2, 3) in the editor. Don't forget to mark the material as unique if you use this
+uniform float offset = 0; 
+
+
+float getWind(vec2 vertex, vec2 uv, float time){
+    float diff = pow(maxStrength - minStrength, 2.0);
+    float strength = clamp(minStrength + diff + sin(time / interval) * diff, minStrength, maxStrength) * strengthScale;
+    float wind = (sin(time) + cos(time * detail)) * strength * max(0.0, (1.0-uv.y) - heightOffset);
+    
+    return wind; 
+}
+
+void vertex() {
+    vec4 pos = MODEL_MATRIX * vec4(0.0, 0.0, 0.0, 1.0);
+    float time = TIME * speed + offset;
+    //float time = TIME * speed + pos.x * pos.y  ; not working when moving...
+    VERTEX.x += getWind(VERTEX.xy, UV, time);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bmm1q"]
+resource_local_to_scene = true
+shader = SubResource("Shader_xan7d")
+shader_parameter/speed = 1.0
+shader_parameter/minStrength = 0.05
+shader_parameter/maxStrength = 0.01
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 1.0
+shader_parameter/distortion = null
+shader_parameter/heightOffset = null
+shader_parameter/offset = 0.0
+
+[sub_resource type="Shader" id="Shader_dctu6"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+// Wind settings.
+uniform float speed = 1.0;
+uniform float minStrength : hint_range(0.0, 1.0) = 0.05;
+uniform float maxStrength : hint_range(0.0, 1.0) = 0.01;
+uniform float strengthScale = 100.0;
+uniform float interval = 3.5;
+uniform float detail = 1.0;
+uniform float distortion : hint_range(0.0, 1.0);
+uniform float heightOffset : hint_range(0.0, 1.0);
+
+// With the offset value, you can if you want different moves for each asset. Just put a random value (1, 2, 3) in the editor. Don't forget to mark the material as unique if you use this
+uniform float offset = 0; 
+
+
+float getWind(vec2 vertex, vec2 uv, float time){
+    float diff = pow(maxStrength - minStrength, 2.0);
+    float strength = clamp(minStrength + diff + sin(time / interval) * diff, minStrength, maxStrength) * strengthScale;
+    float wind = (sin(time) + cos(time * detail)) * strength * max(0.0, (1.0-uv.y) - heightOffset);
+    
+    return wind; 
+}
+
+void vertex() {
+    vec4 pos = MODEL_MATRIX * vec4(0.0, 0.0, 0.0, 1.0);
+    float time = TIME * speed + offset;
+    //float time = TIME * speed + pos.x * pos.y  ; not working when moving...
+    VERTEX.x += getWind(VERTEX.xy, UV, time);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_318e4"]
+resource_local_to_scene = true
+shader = SubResource("Shader_dctu6")
+shader_parameter/speed = 1.0
+shader_parameter/minStrength = 0.05
+shader_parameter/maxStrength = 0.01
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 1.0
+shader_parameter/distortion = null
+shader_parameter/heightOffset = null
+shader_parameter/offset = 0.0
+
+[sub_resource type="Shader" id="Shader_yin7v"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
+uniform float angle = -0.3;
+uniform float position = -0.2;
+uniform float spread : hint_range(0.0, 1.0) = 0.5;
+uniform float cutoff : hint_range(-1.0, 1.0) = 0.1;
+uniform float falloff : hint_range(0.0, 1.0) = 0.2;
+uniform float edge_fade : hint_range(0.0, 1.0) = 0.15;
+
+uniform float speed = 1.0;
+uniform float ray1_density = 8.0;
+uniform float ray2_density = 30.0;
+uniform float ray2_intensity : hint_range(0.0, 1.0) = 0.3;
+
+uniform vec4 color : source_color = vec4(1.0, 0.9, 0.65, 0.8);
+
+uniform bool hdr = false;
+uniform float seed = 5.0;
+
+// Random and noise functions from Book of Shader's chapter on Noise.
+float random(vec2 _uv) {
+    return fract(sin(dot(_uv.xy,
+                         vec2(12.9898, 78.233))) *
+        43758.5453123);
+}
+
+float noise (in vec2 uv) {
+    vec2 i = floor(uv);
+    vec2 f = fract(uv);
+
+    // Four corners in 2D of a tile
+    float a = random(i);
+    float b = random(i + vec2(1.0, 0.0));
+    float c = random(i + vec2(0.0, 1.0));
+    float d = random(i + vec2(1.0, 1.0));
+
+
+    // Smooth Interpolation
+
+    // Cubic Hermine Curve. Same as SmoothStep()
+    vec2 u = f * f * (3.0-2.0 * f);
+
+    // Mix 4 coorners percentages
+    return mix(a, b, u.x) +
+            (c - a)* u.y * (1.0 - u.x) +
+            (d - b) * u.x * u.y;
+}
+
+mat2 rotate(float _angle){
+    return mat2(vec2(cos(_angle), -sin(_angle)),
+                vec2(sin(_angle), cos(_angle)));
+}
+
+vec4 screen(vec4 base, vec4 blend){
+	return 1.0 - (1.0 - base) * (1.0 - blend);
+}
+
+void fragment()
+{
+
+	// Rotate, skew and move the UVs
+	vec2 transformed_uv = ( rotate(angle) * (UV - position) )  / ( (UV.y + spread) - (UV.y * spread) );
+
+	// Animate the ray according the the new transformed UVs
+	vec2 ray1 = vec2(transformed_uv.x * ray1_density + sin(TIME * 0.1 * speed) * (ray1_density * 0.2) + seed, 1.0);
+	vec2 ray2 = vec2(transformed_uv.x * ray2_density + sin(TIME * 0.2 * speed) * (ray1_density * 0.2) + seed, 1.0);
+
+	// Cut off the ray's edges
+	float cut = step(cutoff, transformed_uv.x) * step(cutoff, 1.0 - transformed_uv.x);
+	ray1 *= cut;
+	ray2 *= cut;
+
+	// Apply the noise pattern (i.e. create the rays)
+	float rays;
+
+	if (hdr){
+		// This is not really HDR, but check this to not clamp the two merged rays making
+		// their values go over 1.0. Can make for some nice effect
+		rays = noise(ray1) + (noise(ray2) * ray2_intensity);
+	}
+	else{
+		 rays = clamp(noise(ray1) + (noise(ray2) * ray2_intensity), 0., 1.);
+	}
+
+	// Fade out edges
+	rays *= smoothstep(0.0, falloff, (1.0 - UV.y)); // Bottom
+	rays *= smoothstep(0.0 + cutoff, edge_fade + cutoff, transformed_uv.x); // Left
+	rays *= smoothstep(0.0 + cutoff, edge_fade + cutoff, 1.0 - transformed_uv.x); // Right
+
+	// Color to the rays
+	vec3 shine = vec3(rays) * color.rgb;
+
+	// Try different blending modes for a nicer effect. \"Screen\" is included in the code,
+	// but take a look at https://godotshaders.com/snippet/blending-modes/ for more.
+	// With \"Screen\" blend mode:
+	shine = screen(texture(SCREEN_TEXTURE, SCREEN_UV), vec4(color)).rgb;
+
+	COLOR = vec4(shine, rays * color.a);
+}
+"
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_khlas"]
 resource_local_to_scene = true
-shader = ExtResource("12_dflnj")
+shader = SubResource("Shader_yin7v")
 shader_parameter/angle = -0.3
 shader_parameter/position = -0.2
 shader_parameter/spread = 0.319
@@ -255,9 +885,77 @@ shader_parameter/color = Color(1, 0.984, 0.76, 0.8)
 shader_parameter/hdr = false
 shader_parameter/seed = 5.0
 
+[sub_resource type="Shader" id="Shader_kky4w"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+// Wind settings.
+uniform float speed = 1.0;
+uniform float minStrength : hint_range(0.0, 1.0) = 0.05;
+uniform float maxStrength : hint_range(0.0, 1.0) = 0.01;
+uniform float strengthScale = 100.0;
+uniform float interval = 3.5;
+uniform float detail = 1.0;
+uniform float distortion : hint_range(0.0, 1.0);
+uniform float heightOffset : hint_range(0.0, 1.0);
+
+
+// With the offset value, you can if you want different moves for each asset. Just put a random value (1, 2, 3) in the editor. Don't forget to mark the material as unique if you use this
+uniform float offset = 0; 
+
+
+float getWind(vec2 vertex, vec2 uv, float time){
+    float diff = pow(maxStrength - minStrength, 2.0);
+    float strength = clamp(minStrength + diff + sin(time / interval) * diff, minStrength, maxStrength) * strengthScale;
+    float wind = (sin(time) + cos(time * detail)) * strength * max(0.0, (1.0-uv.y) - heightOffset);
+    
+    return wind; 
+}
+
+void vertex() {
+    vec4 pos = MODEL_MATRIX * vec4(0.0, 0.0, 0.0, 1.0);
+    float time = TIME * speed + offset;
+    //float time = TIME * speed + pos.x * pos.y  ; not working when moving...
+    VERTEX.x += getWind(VERTEX.xy, UV, time);
+}
+uniform int strength: hint_range(1, 512) = 2;
+
+vec4 blur_size(sampler2D tex,vec2 fragCoord, vec2 pixelSize) {
+    
+    vec4 color = vec4(0.,0.,0.,0.);
+    float strengthFloat = float(strength);	
+
+    vec2 pixel = fragCoord/pixelSize;
+    int x_min = max(int(pixel.x-strengthFloat), 0);
+    int x_max = min(int(pixel.x+strengthFloat), int(1./pixelSize.x));
+    int y_min = max(int(pixel.y-strengthFloat), 0);
+    int y_max = min(int(pixel.y+strengthFloat), int(1./pixelSize.y));
+
+    int count =0;
+
+    // Sum the pixels colors
+    for(int x=x_min; x <= x_max; x++) {
+        for(int y = y_min; y <= y_max; y++) {           
+            color += texture(tex, vec2(float(x), float(y)) * pixelSize);
+            count++;
+        }
+    }
+    
+    // Divide the color by the number of colors you summed up
+    color /= float(count);
+    
+    return color;
+}
+
+void fragment() {	
+    COLOR = blur_size(TEXTURE,UV,TEXTURE_PIXEL_SIZE);
+}
+"
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vsnry"]
 resource_local_to_scene = true
-shader = ExtResource("8_7spx1")
+shader = SubResource("Shader_kky4w")
 shader_parameter/speed = 2.0
 shader_parameter/minStrength = 0.018
 shader_parameter/maxStrength = 0.0
@@ -294,6 +992,7 @@ offset_left = -42.0
 offset_top = 521.0
 offset_right = 1612.0
 offset_bottom = 826.0
+mouse_filter = 2
 color = Color(0.0748, 0.20548, 0.22, 1)
 
 [node name="ColorRect2" type="ColorRect" parent="."]
@@ -301,6 +1000,7 @@ offset_left = -42.0
 offset_top = 221.0
 offset_right = 1612.0
 offset_bottom = 526.0
+mouse_filter = 2
 color = Color(0.0628334, 0, 0.13, 1)
 
 [node name="TreesBG" type="Node2D" parent="."]
@@ -316,7 +1016,7 @@ texture = ExtResource("9_f540x")
 texture = ExtResource("10_ffq7q")
 
 [node name="Trunk10" parent="TreesBG" instance=ExtResource("3_6tiwe")]
-material = SubResource("ShaderMaterial_ir36b")
+material = SubResource("ShaderMaterial_4jenk")
 position = Vector2(916, 352)
 scale = Vector2(3, 4)
 texture = ExtResource("9_f540x")
@@ -325,7 +1025,7 @@ texture = ExtResource("9_f540x")
 texture = ExtResource("10_ffq7q")
 
 [node name="Trunk11" parent="TreesBG" instance=ExtResource("3_6tiwe")]
-material = SubResource("ShaderMaterial_ir36b")
+material = SubResource("ShaderMaterial_c1xpr")
 position = Vector2(23, 344)
 scale = Vector2(3, 4)
 texture = ExtResource("9_f540x")
@@ -334,7 +1034,7 @@ texture = ExtResource("9_f540x")
 texture = ExtResource("10_ffq7q")
 
 [node name="Trunk12" parent="TreesBG" instance=ExtResource("3_6tiwe")]
-material = SubResource("ShaderMaterial_ir36b")
+material = SubResource("ShaderMaterial_krhiw")
 position = Vector2(1246, 305)
 scale = Vector2(3, 4)
 texture = ExtResource("9_f540x")
@@ -343,40 +1043,40 @@ texture = ExtResource("9_f540x")
 texture = ExtResource("10_ffq7q")
 
 [node name="Trunk4" parent="TreesBG" instance=ExtResource("3_6tiwe")]
-material = SubResource("ShaderMaterial_ir36b")
+material = SubResource("ShaderMaterial_6dq03")
 position = Vector2(253, 313)
 scale = Vector2(3, 3)
 
 [node name="Trunk5" parent="TreesBG" instance=ExtResource("3_6tiwe")]
-material = SubResource("ShaderMaterial_ir36b")
+material = SubResource("ShaderMaterial_n5kxq")
 position = Vector2(332, 294)
 scale = Vector2(3, 3)
 
 [node name="Trunk6" parent="TreesBG" instance=ExtResource("3_6tiwe")]
-material = SubResource("ShaderMaterial_ir36b")
+material = SubResource("ShaderMaterial_qh0ug")
 position = Vector2(560, 271)
 scale = Vector2(3, 3)
 
 [node name="Trunk7" parent="TreesBG" instance=ExtResource("3_6tiwe")]
-material = SubResource("ShaderMaterial_ir36b")
+material = SubResource("ShaderMaterial_kxbk2")
 position = Vector2(834, 273)
 scale = Vector2(3, 3)
 
 [node name="Trunk8" parent="TreesBG" instance=ExtResource("3_6tiwe")]
-material = SubResource("ShaderMaterial_ir36b")
+material = SubResource("ShaderMaterial_4h4wr")
 position = Vector2(1059, 267)
 scale = Vector2(3, 3)
 
 [node name="Trunk" parent="TreesBG" instance=ExtResource("3_6tiwe")]
-material = SubResource("ShaderMaterial_ir36b")
+material = SubResource("ShaderMaterial_eyw5o")
 position = Vector2(122, 306)
 
 [node name="Trunk2" parent="TreesBG" instance=ExtResource("3_6tiwe")]
-material = SubResource("ShaderMaterial_ir36b")
+material = SubResource("ShaderMaterial_bmm1q")
 position = Vector2(1423, 197)
 
 [node name="Trunk3" parent="TreesBG" instance=ExtResource("3_6tiwe")]
-material = SubResource("ShaderMaterial_ir36b")
+material = SubResource("ShaderMaterial_318e4")
 position = Vector2(1289, 304)
 scale = Vector2(3, 3)
 

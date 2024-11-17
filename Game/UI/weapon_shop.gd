@@ -3,6 +3,13 @@ extends Node2D
 
 
 #ALEX DID NOT WRITE THIS CODE CALEB DID
+@onready var daggersound = preload("res://Assets/Audio/UI/WeaponSounds/MM_Blade_Attack.mp3")
+@onready var fansound = preload("res://Assets/Audio/UI/WeaponSounds/MM_Fan_Attack.mp3")
+@onready var slingshotsound = preload("res://Assets/Audio/UI/WeaponSounds/MM_Slingshot_Attack.mp3")
+@onready var katanasound = preload("res://Assets/Audio/UI/WeaponSounds/MM_Blade_Attack.mp3")
+@onready var macesound = preload("res://Assets/Audio/UI/WeaponSounds/MM_Club_Attack.mp3")
+@onready var bowsound = preload("res://Assets/Audio/UI/WeaponSounds/MM_Bow_Attack.mp3")
+@onready var tridentsound = preload("res://Assets/Audio/UI/WeaponSounds/MM_Trident_Attack.mp3")
 @onready var flame = preload("res://Assets/Effects/flame_infusion.tscn")
 
 var mikoChosen = true
@@ -33,7 +40,7 @@ var chosen_weapon = ""
 signal confirm_weapon
 signal on_unlock
 
-@onready var whosSelect = $CanvasLayer/MarginContainer/VBoxContainer/MarginContainer/Label2
+#@onready var whosSelect = $CanvasLayer/MarginContainer/VBoxContainer/MarginContainer/Label2
 @onready var Value = $CanvasLayer/MarginContainer2/HBoxContainer/Label
 @onready var dagger = $Path2D/Pnt1
 @onready var trident = $Path2D/Pnt2
@@ -792,44 +799,51 @@ func select_trident():
 
 func _on_select_toggled(toggled_on: bool) -> void:
 	if toggled_on == true:
-		chosen_weapon = ("bow")
+		chosen_weapon = ("dagger")
 		$CanvasLayer/Select/Label.text = ("Selected")
+		AudioManager.play_sfx(daggersound, 1)
 	else:
 		$CanvasLayer/Select/Label.text = ("Select")
 func _on_select_2_toggled(toggled_on: bool) -> void:
 	if toggled_on == true:
-		chosen_weapon = ("trident")
+		chosen_weapon = ("fan")
 		$CanvasLayer/Select2/Label.text = ("Selected")
+		AudioManager.play_sfx(fansound, 1)
 	else:
 		$CanvasLayer/Select2/Label.text = ("Select")
 func _on_select_3_toggled(toggled_on: bool) -> void:
 	if toggled_on == true:
 		chosen_weapon = ("slingshot")
 		$CanvasLayer/Select3/Label.text = ("Selected")
+		AudioManager.play_sfx(slingshotsound, 1)
 	else:
 		$CanvasLayer/Select3/Label.text = ("Select")
 func _on_select_4_toggled(toggled_on: bool) -> void:
 	if toggled_on == true:
 		chosen_weapon = ("katana")
 		$CanvasLayer/Select4/Label.text = ("Selected")
+		AudioManager.play_sfx(katanasound, 1)
 	else:
 		$CanvasLayer/Select4/Label.text = ("Select")
 func _on_select_5_toggled(toggled_on: bool) -> void:
 	if toggled_on == true:
 		chosen_weapon = ("mace")
 		$CanvasLayer/Select5/Label.text = ("Selected")
+		AudioManager.play_sfx(macesound, 1)
 	else:
 		$CanvasLayer/Select5/Label.text = ("Select")
 func _on_select_6_toggled(toggled_on: bool) -> void:
 	if toggled_on == true:
 		chosen_weapon = ("bow")
 		$CanvasLayer/Select6/Label.text = ("Selected")
+		AudioManager.play_sfx(bowsound, 1)
 	else:
 		$CanvasLayer/Select6/Label.text = ("Select")
 func _on_select_7_toggled(toggled_on: bool) -> void:
 	if toggled_on == true:
 		chosen_weapon = ("trident")
 		$CanvasLayer/Select7/Label.text = ("Selected")
+		AudioManager.play_sfx(tridentsound, 1)
 	else:
 		$CanvasLayer/Select7/Label.text = ("Select")
 

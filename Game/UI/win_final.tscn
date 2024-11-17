@@ -1,3 +1,1017 @@
-[gd_scene format=3 uid="uid://ckrwd1glg36uk"]
+[gd_scene load_steps=18 format=3 uid="uid://ckrwd1glg36uk"]
+
+[ext_resource type="Script" path="res://Game/UI/win_final.gd" id="1_e06pu"]
+[ext_resource type="Texture2D" uid="uid://dn23y83sjf4ek" path="res://Assets/Environment/GridTileMap/Half1.png" id="1_i5xl0"]
+[ext_resource type="Texture2D" uid="uid://c66qt6kvgsqh3" path="res://Assets/Environment/GridTileMap/Half2.png" id="2_sc055"]
+[ext_resource type="Texture2D" uid="uid://bpmvmcaiamrh5" path="res://Assets/Characters/Friendly/Miko.png" id="3_axrb8"]
+[ext_resource type="Texture2D" uid="uid://k10sy15l0bhm" path="res://Assets/Characters/Friendly/MikoSpirit.png" id="4_ygx6w"]
+[ext_resource type="PackedScene" uid="uid://domnit2msh3jg" path="res://Assets/Shaders/god_ray.tscn" id="5_yb5sm"]
+
+[sub_resource type="Animation" id="Animation_coj7o"]
+resource_name = "Merge"
+length = 10.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Half1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(320, 360), Vector2(640, 360)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Half2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(960, 360), Vector2(640, 360)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Miko:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(545, 365), Vector2(640, 365)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MikoSpirit:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(736, 365), Vector2(640, 365)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Miko:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 5, 5.4, 7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [12, 12, 8, 9]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MikoSpirit:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 5, 5.4, 7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 4, 10, 9]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MikoSpirit:self_modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(9.5),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.596078)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Half2:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(9.5),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.517647)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("PointLight2D:energy")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 7.5, 7.8, 8.6, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.98, 0.98, 16.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("PointLight2D:scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(7.9, 10, 10.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(4, 4), Vector2(16, 16)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Miko:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(9.7, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("MikoSpirit:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(9.7, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Node2D:material:shader_parameter/falloff")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(9, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.167]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Node2D:material:shader_parameter/color")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(8.5, 9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Node2D:material:shader_parameter/edge_fade")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(10),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.218]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Node2D2:material:shader_parameter/color")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(8.5, 8.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.8)]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("Node2D2:material:shader_parameter/falloff")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(8.8, 9.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.152]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("Node2D2:material:shader_parameter/ray2_intensity")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(8.8, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("Node2D3:material:shader_parameter/color")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(9.1, 9.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("Node2D3:material:shader_parameter/cutoff")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(9.2, 10.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.121, -1.0]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("Node2D3:material:shader_parameter/falloff")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(9.2, 10.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 1.0]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("Node2D3:material:shader_parameter/edge_fade")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(9.2, 10.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.514, 0.969]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("ColorRect2:modulate")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(10.2, 10.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hbp6j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Half1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(320, 360)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Half2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(960, 360)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Miko:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(545, 365)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MikoSpirit:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(736, 365)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Miko:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MikoSpirit:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MikoSpirit:self_modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.596078)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Half2:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.517647)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("PointLight2D:energy")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("PointLight2D:scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Miko:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("MikoSpirit:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Node2D:material:shader_parameter/falloff")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Node2D:material:shader_parameter/color")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Node2D:material:shader_parameter/edge_fade")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.218]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Node2D2:material:shader_parameter/color")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.8)]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("Node2D2:material:shader_parameter/falloff")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("Node2D2:material:shader_parameter/ray2_intensity")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("Node2D3:material:shader_parameter/color")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.8)]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("Node2D3:material:shader_parameter/cutoff")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.121]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("Node2D3:material:shader_parameter/falloff")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("Node2D3:material:shader_parameter/edge_fade")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.514]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("ColorRect2:modulate")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h48l8"]
+_data = {
+"Merge": SubResource("Animation_coj7o"),
+"RESET": SubResource("Animation_hbp6j")
+}
+
+[sub_resource type="Gradient" id="Gradient_34ccu"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bnkxj"]
+gradient = SubResource("Gradient_34ccu")
+fill = 1
+fill_from = Vector2(0.5, 0.517544)
+fill_to = Vector2(0.802632, 0.171053)
+
+[sub_resource type="Shader" id="Shader_jdxl4"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
+uniform float angle = -0.3;
+uniform float position = -0.2;
+uniform float spread : hint_range(0.0, 1.0) = 0.5;
+uniform float cutoff : hint_range(-1.0, 1.0) = 0.1;
+uniform float falloff : hint_range(0.0, 1.0) = 0.2;
+uniform float edge_fade : hint_range(0.0, 1.0) = 0.15;
+
+uniform float speed = 1.0;
+uniform float ray1_density = 8.0;
+uniform float ray2_density = 30.0;
+uniform float ray2_intensity : hint_range(0.0, 1.0) = 0.3;
+
+uniform vec4 color : source_color = vec4(1.0, 0.9, 0.65, 0.8);
+
+uniform bool hdr = false;
+uniform float seed = 5.0;
+
+// Random and noise functions from Book of Shader's chapter on Noise.
+float random(vec2 _uv) {
+    return fract(sin(dot(_uv.xy,
+                         vec2(12.9898, 78.233))) *
+        43758.5453123);
+}
+
+float noise (in vec2 uv) {
+    vec2 i = floor(uv);
+    vec2 f = fract(uv);
+
+    // Four corners in 2D of a tile
+    float a = random(i);
+    float b = random(i + vec2(1.0, 0.0));
+    float c = random(i + vec2(0.0, 1.0));
+    float d = random(i + vec2(1.0, 1.0));
+
+
+    // Smooth Interpolation
+
+    // Cubic Hermine Curve. Same as SmoothStep()
+    vec2 u = f * f * (3.0-2.0 * f);
+
+    // Mix 4 coorners percentages
+    return mix(a, b, u.x) +
+            (c - a)* u.y * (1.0 - u.x) +
+            (d - b) * u.x * u.y;
+}
+
+mat2 rotate(float _angle){
+    return mat2(vec2(cos(_angle), -sin(_angle)),
+                vec2(sin(_angle), cos(_angle)));
+}
+
+vec4 screen(vec4 base, vec4 blend){
+	return 1.0 - (1.0 - base) * (1.0 - blend);
+}
+
+void fragment()
+{
+
+	// Rotate, skew and move the UVs
+	vec2 transformed_uv = ( rotate(angle) * (UV - position) )  / ( (UV.y + spread) - (UV.y * spread) );
+
+	// Animate the ray according the the new transformed UVs
+	vec2 ray1 = vec2(transformed_uv.x * ray1_density + sin(TIME * 0.1 * speed) * (ray1_density * 0.2) + seed, 1.0);
+	vec2 ray2 = vec2(transformed_uv.x * ray2_density + sin(TIME * 0.2 * speed) * (ray1_density * 0.2) + seed, 1.0);
+
+	// Cut off the ray's edges
+	float cut = step(cutoff, transformed_uv.x) * step(cutoff, 1.0 - transformed_uv.x);
+	ray1 *= cut;
+	ray2 *= cut;
+
+	// Apply the noise pattern (i.e. create the rays)
+	float rays;
+
+	if (hdr){
+		// This is not really HDR, but check this to not clamp the two merged rays making
+		// their values go over 1.0. Can make for some nice effect
+		rays = noise(ray1) + (noise(ray2) * ray2_intensity);
+	}
+	else{
+		 rays = clamp(noise(ray1) + (noise(ray2) * ray2_intensity), 0., 1.);
+	}
+
+	// Fade out edges
+	rays *= smoothstep(0.0, falloff, (1.0 - UV.y)); // Bottom
+	rays *= smoothstep(0.0 + cutoff, edge_fade + cutoff, transformed_uv.x); // Left
+	rays *= smoothstep(0.0 + cutoff, edge_fade + cutoff, 1.0 - transformed_uv.x); // Right
+
+	// Color to the rays
+	vec3 shine = vec3(rays) * color.rgb;
+
+	// Try different blending modes for a nicer effect. \"Screen\" is included in the code,
+	// but take a look at https://godotshaders.com/snippet/blending-modes/ for more.
+	// With \"Screen\" blend mode:
+	shine = screen(texture(SCREEN_TEXTURE, SCREEN_UV), vec4(color)).rgb;
+
+	COLOR = vec4(shine, rays * color.a);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pisva"]
+resource_local_to_scene = true
+shader = SubResource("Shader_jdxl4")
+shader_parameter/angle = -0.3
+shader_parameter/position = -0.2
+shader_parameter/spread = 0.0
+shader_parameter/cutoff = 0.1
+shader_parameter/falloff = 1.0
+shader_parameter/edge_fade = 0.218
+shader_parameter/speed = 1.0
+shader_parameter/ray1_density = 8.0
+shader_parameter/ray2_density = 30.0
+shader_parameter/ray2_intensity = 0.3
+shader_parameter/color = Color(1, 1, 1, 0)
+shader_parameter/hdr = false
+shader_parameter/seed = 5.0
+
+[sub_resource type="Shader" id="Shader_3mlyl"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
+uniform float angle = -0.3;
+uniform float position = -0.2;
+uniform float spread : hint_range(0.0, 1.0) = 0.5;
+uniform float cutoff : hint_range(-1.0, 1.0) = 0.1;
+uniform float falloff : hint_range(0.0, 1.0) = 0.2;
+uniform float edge_fade : hint_range(0.0, 1.0) = 0.15;
+
+uniform float speed = 1.0;
+uniform float ray1_density = 8.0;
+uniform float ray2_density = 30.0;
+uniform float ray2_intensity : hint_range(0.0, 1.0) = 0.3;
+
+uniform vec4 color : source_color = vec4(1.0, 0.9, 0.65, 0.8);
+
+uniform bool hdr = false;
+uniform float seed = 5.0;
+
+// Random and noise functions from Book of Shader's chapter on Noise.
+float random(vec2 _uv) {
+    return fract(sin(dot(_uv.xy,
+                         vec2(12.9898, 78.233))) *
+        43758.5453123);
+}
+
+float noise (in vec2 uv) {
+    vec2 i = floor(uv);
+    vec2 f = fract(uv);
+
+    // Four corners in 2D of a tile
+    float a = random(i);
+    float b = random(i + vec2(1.0, 0.0));
+    float c = random(i + vec2(0.0, 1.0));
+    float d = random(i + vec2(1.0, 1.0));
+
+
+    // Smooth Interpolation
+
+    // Cubic Hermine Curve. Same as SmoothStep()
+    vec2 u = f * f * (3.0-2.0 * f);
+
+    // Mix 4 coorners percentages
+    return mix(a, b, u.x) +
+            (c - a)* u.y * (1.0 - u.x) +
+            (d - b) * u.x * u.y;
+}
+
+mat2 rotate(float _angle){
+    return mat2(vec2(cos(_angle), -sin(_angle)),
+                vec2(sin(_angle), cos(_angle)));
+}
+
+vec4 screen(vec4 base, vec4 blend){
+	return 1.0 - (1.0 - base) * (1.0 - blend);
+}
+
+void fragment()
+{
+
+	// Rotate, skew and move the UVs
+	vec2 transformed_uv = ( rotate(angle) * (UV - position) )  / ( (UV.y + spread) - (UV.y * spread) );
+
+	// Animate the ray according the the new transformed UVs
+	vec2 ray1 = vec2(transformed_uv.x * ray1_density + sin(TIME * 0.1 * speed) * (ray1_density * 0.2) + seed, 1.0);
+	vec2 ray2 = vec2(transformed_uv.x * ray2_density + sin(TIME * 0.2 * speed) * (ray1_density * 0.2) + seed, 1.0);
+
+	// Cut off the ray's edges
+	float cut = step(cutoff, transformed_uv.x) * step(cutoff, 1.0 - transformed_uv.x);
+	ray1 *= cut;
+	ray2 *= cut;
+
+	// Apply the noise pattern (i.e. create the rays)
+	float rays;
+
+	if (hdr){
+		// This is not really HDR, but check this to not clamp the two merged rays making
+		// their values go over 1.0. Can make for some nice effect
+		rays = noise(ray1) + (noise(ray2) * ray2_intensity);
+	}
+	else{
+		 rays = clamp(noise(ray1) + (noise(ray2) * ray2_intensity), 0., 1.);
+	}
+
+	// Fade out edges
+	rays *= smoothstep(0.0, falloff, (1.0 - UV.y)); // Bottom
+	rays *= smoothstep(0.0 + cutoff, edge_fade + cutoff, transformed_uv.x); // Left
+	rays *= smoothstep(0.0 + cutoff, edge_fade + cutoff, 1.0 - transformed_uv.x); // Right
+
+	// Color to the rays
+	vec3 shine = vec3(rays) * color.rgb;
+
+	// Try different blending modes for a nicer effect. \"Screen\" is included in the code,
+	// but take a look at https://godotshaders.com/snippet/blending-modes/ for more.
+	// With \"Screen\" blend mode:
+	shine = screen(texture(SCREEN_TEXTURE, SCREEN_UV), vec4(color)).rgb;
+
+	COLOR = vec4(shine, rays * color.a);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_crxfj"]
+resource_local_to_scene = true
+shader = SubResource("Shader_3mlyl")
+shader_parameter/angle = -0.3
+shader_parameter/position = -0.2
+shader_parameter/spread = 0.5
+shader_parameter/cutoff = 0.313
+shader_parameter/falloff = 1.0
+shader_parameter/edge_fade = 0.224
+shader_parameter/speed = 1.0
+shader_parameter/ray1_density = 8.0
+shader_parameter/ray2_density = 30.0
+shader_parameter/ray2_intensity = 1.0
+shader_parameter/color = Color(1, 1, 1, 0.8)
+shader_parameter/hdr = false
+shader_parameter/seed = 5.0
+
+[sub_resource type="Shader" id="Shader_htij1"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
+uniform float angle = -0.3;
+uniform float position = -0.2;
+uniform float spread : hint_range(0.0, 1.0) = 0.5;
+uniform float cutoff : hint_range(-1.0, 1.0) = 0.1;
+uniform float falloff : hint_range(0.0, 1.0) = 0.2;
+uniform float edge_fade : hint_range(0.0, 1.0) = 0.15;
+
+uniform float speed = 1.0;
+uniform float ray1_density = 8.0;
+uniform float ray2_density = 30.0;
+uniform float ray2_intensity : hint_range(0.0, 1.0) = 0.3;
+
+uniform vec4 color : source_color = vec4(1.0, 0.9, 0.65, 0.8);
+
+uniform bool hdr = false;
+uniform float seed = 5.0;
+
+// Random and noise functions from Book of Shader's chapter on Noise.
+float random(vec2 _uv) {
+    return fract(sin(dot(_uv.xy,
+                         vec2(12.9898, 78.233))) *
+        43758.5453123);
+}
+
+float noise (in vec2 uv) {
+    vec2 i = floor(uv);
+    vec2 f = fract(uv);
+
+    // Four corners in 2D of a tile
+    float a = random(i);
+    float b = random(i + vec2(1.0, 0.0));
+    float c = random(i + vec2(0.0, 1.0));
+    float d = random(i + vec2(1.0, 1.0));
+
+
+    // Smooth Interpolation
+
+    // Cubic Hermine Curve. Same as SmoothStep()
+    vec2 u = f * f * (3.0-2.0 * f);
+
+    // Mix 4 coorners percentages
+    return mix(a, b, u.x) +
+            (c - a)* u.y * (1.0 - u.x) +
+            (d - b) * u.x * u.y;
+}
+
+mat2 rotate(float _angle){
+    return mat2(vec2(cos(_angle), -sin(_angle)),
+                vec2(sin(_angle), cos(_angle)));
+}
+
+vec4 screen(vec4 base, vec4 blend){
+	return 1.0 - (1.0 - base) * (1.0 - blend);
+}
+
+void fragment()
+{
+
+	// Rotate, skew and move the UVs
+	vec2 transformed_uv = ( rotate(angle) * (UV - position) )  / ( (UV.y + spread) - (UV.y * spread) );
+
+	// Animate the ray according the the new transformed UVs
+	vec2 ray1 = vec2(transformed_uv.x * ray1_density + sin(TIME * 0.1 * speed) * (ray1_density * 0.2) + seed, 1.0);
+	vec2 ray2 = vec2(transformed_uv.x * ray2_density + sin(TIME * 0.2 * speed) * (ray1_density * 0.2) + seed, 1.0);
+
+	// Cut off the ray's edges
+	float cut = step(cutoff, transformed_uv.x) * step(cutoff, 1.0 - transformed_uv.x);
+	ray1 *= cut;
+	ray2 *= cut;
+
+	// Apply the noise pattern (i.e. create the rays)
+	float rays;
+
+	if (hdr){
+		// This is not really HDR, but check this to not clamp the two merged rays making
+		// their values go over 1.0. Can make for some nice effect
+		rays = noise(ray1) + (noise(ray2) * ray2_intensity);
+	}
+	else{
+		 rays = clamp(noise(ray1) + (noise(ray2) * ray2_intensity), 0., 1.);
+	}
+
+	// Fade out edges
+	rays *= smoothstep(0.0, falloff, (1.0 - UV.y)); // Bottom
+	rays *= smoothstep(0.0 + cutoff, edge_fade + cutoff, transformed_uv.x); // Left
+	rays *= smoothstep(0.0 + cutoff, edge_fade + cutoff, 1.0 - transformed_uv.x); // Right
+
+	// Color to the rays
+	vec3 shine = vec3(rays) * color.rgb;
+
+	// Try different blending modes for a nicer effect. \"Screen\" is included in the code,
+	// but take a look at https://godotshaders.com/snippet/blending-modes/ for more.
+	// With \"Screen\" blend mode:
+	shine = screen(texture(SCREEN_TEXTURE, SCREEN_UV), vec4(color)).rgb;
+
+	COLOR = vec4(shine, rays * color.a);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hqdmq"]
+resource_local_to_scene = true
+shader = SubResource("Shader_htij1")
+shader_parameter/angle = -0.3
+shader_parameter/position = -0.2
+shader_parameter/spread = 0.304
+shader_parameter/cutoff = 0.121
+shader_parameter/falloff = 1.0
+shader_parameter/edge_fade = 0.514
+shader_parameter/speed = 1.0
+shader_parameter/ray1_density = 8.0
+shader_parameter/ray2_density = 30.0
+shader_parameter/ray2_intensity = 0.172
+shader_parameter/color = Color(1, 1, 1, 0.8)
+shader_parameter/hdr = false
+shader_parameter/seed = 5.0
 
 [node name="win_final" type="Node2D"]
+script = ExtResource("1_e06pu")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 1280.0
+offset_bottom = 721.0
+mouse_filter = 2
+color = Color(0.168527, 0.0374, 0.34, 1)
+
+[node name="Half1" type="Sprite2D" parent="."]
+position = Vector2(320, 360)
+texture = ExtResource("1_i5xl0")
+
+[node name="Half2" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.517647)
+position = Vector2(960, 360)
+texture = ExtResource("2_sc055")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(640, 360)
+zoom = Vector2(2, 2)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_h48l8")
+}
+autoplay = "Merge"
+
+[node name="Miko" type="Sprite2D" parent="."]
+position = Vector2(545, 365)
+scale = Vector2(2, 2)
+texture = ExtResource("3_axrb8")
+hframes = 16
+frame = 12
+
+[node name="MikoSpirit" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.596078)
+position = Vector2(736, 365)
+scale = Vector2(2, 2)
+texture = ExtResource("4_ygx6w")
+hframes = 16
+frame = 8
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(642, 377)
+energy = 0.0
+texture = SubResource("GradientTexture2D_bnkxj")
+
+[node name="Node2D" parent="." instance=ExtResource("5_yb5sm")]
+material = SubResource("ShaderMaterial_pisva")
+position = Vector2(692, 316)
+rotation = -1.98444
+
+[node name="Node2D2" parent="." instance=ExtResource("5_yb5sm")]
+material = SubResource("ShaderMaterial_crxfj")
+position = Vector2(487, 315)
+rotation = -3.96888
+
+[node name="Node2D3" parent="." instance=ExtResource("5_yb5sm")]
+material = SubResource("ShaderMaterial_hqdmq")
+position = Vector2(759, 492)
+rotation = -0.495674
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_right = 1297.0
+offset_bottom = 767.0
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

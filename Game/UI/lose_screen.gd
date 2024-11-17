@@ -1,6 +1,7 @@
 extends Node2D
 
-
+signal retry
+signal lvlselect
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$AudioStreamPlayer2D.play()
@@ -12,4 +13,8 @@ func _process(delta: float) -> void:
 
 
 func _on_retry_pressed() -> void:
-	pass # Replace with function body.
+	retry.emit()
+
+
+func _on_onward_2_pressed() -> void:
+	lvlselect.emit()

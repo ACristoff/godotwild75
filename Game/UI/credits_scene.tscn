@@ -1,0 +1,840 @@
+[gd_scene load_steps=35 format=3 uid="uid://57tti0dw6hkv"]
+
+[ext_resource type="Texture2D" uid="uid://1gsgwrxvici6" path="res://Assets/Environment/Objects/Foliage.png" id="1_ckm36"]
+[ext_resource type="PackedScene" uid="uid://bat17sfqaplx7" path="res://Assets/Shaders/sakuratree.tscn" id="2_6junu"]
+[ext_resource type="Texture2D" uid="uid://cjqp7qxkqaotd" path="res://Assets/Environment/Objects/Shrine.png" id="3_xfuos"]
+[ext_resource type="Texture2D" uid="uid://cvac1rhk2c816" path="res://Assets/Characters/Friendly/MikoSweep.png" id="4_yv762"]
+[ext_resource type="Script" path="res://Game/UI/miko_shivering.gd" id="5_cv4m7"]
+[ext_resource type="Texture2D" uid="uid://jrqfo2tf2gf7" path="res://Assets/Weapons/Broom.png" id="6_fw1gj"]
+[ext_resource type="PackedScene" uid="uid://domnit2msh3jg" path="res://Assets/Shaders/god_ray.tscn" id="7_hmoha"]
+[ext_resource type="Texture2D" uid="uid://6spl2drkii4x" path="res://Assets/UserInterface/Menu/Brush.png" id="8_haesn"]
+[ext_resource type="FontFile" uid="uid://cidju740k3qx7" path="res://Assets/Fonts/nagayama_kai08.otf" id="9_77mhl"]
+[ext_resource type="FontFile" uid="uid://cyw64jny6507f" path="res://Assets/Fonts/ZeroGothic.otf" id="10_vktqr"]
+[ext_resource type="Texture2D" uid="uid://cl06vw6rxuxd" path="res://Assets/Effects/Particles/Dust.png" id="11_h77pg"]
+[ext_resource type="Texture2D" uid="uid://cp1i2rrme4saq" path="res://Assets/Environment/Objects/Petals.png" id="12_ppkps"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ptk8p"]
+
+[sub_resource type="Shader" id="Shader_ytixm"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+// Wind settings.
+uniform float speed = 1.0;
+uniform float minStrength : hint_range(0.0, 1.0) = 0.05;
+uniform float maxStrength : hint_range(0.0, 1.0) = 0.01;
+uniform float strengthScale = 100.0;
+uniform float interval = 3.5;
+uniform float detail = 1.0;
+uniform float distortion : hint_range(0.0, 1.0);
+uniform float heightOffset : hint_range(0.0, 1.0);
+
+// With the offset value, you can if you want different moves for each asset. Just put a random value (1, 2, 3) in the editor. Don't forget to mark the material as unique if you use this
+uniform float offset = 0; 
+
+
+float getWind(vec2 vertex, vec2 uv, float time){
+    float diff = pow(maxStrength - minStrength, 2.0);
+    float strength = clamp(minStrength + diff + sin(time / interval) * diff, minStrength, maxStrength) * strengthScale;
+    float wind = (sin(time) + cos(time * detail)) * strength * max(0.0, (1.0-uv.y) - heightOffset);
+    
+    return wind; 
+}
+
+void vertex() {
+    vec4 pos = MODEL_MATRIX * vec4(0.0, 0.0, 0.0, 1.0);
+    float time = TIME * speed + offset;
+    //float time = TIME * speed + pos.x * pos.y  ; not working when moving...
+    VERTEX.x += getWind(VERTEX.xy, UV, time);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vlutf"]
+resource_local_to_scene = true
+shader = SubResource("Shader_ytixm")
+shader_parameter/speed = 1.0
+shader_parameter/minStrength = 0.05
+shader_parameter/maxStrength = 0.01
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 1.0
+shader_parameter/distortion = null
+shader_parameter/heightOffset = null
+shader_parameter/offset = 0.0
+
+[sub_resource type="Shader" id="Shader_ws7pu"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+// Wind settings.
+uniform float speed = 1.0;
+uniform float minStrength : hint_range(0.0, 1.0) = 0.05;
+uniform float maxStrength : hint_range(0.0, 1.0) = 0.01;
+uniform float strengthScale = 100.0;
+uniform float interval = 3.5;
+uniform float detail = 1.0;
+uniform float distortion : hint_range(0.0, 1.0);
+uniform float heightOffset : hint_range(0.0, 1.0);
+
+// With the offset value, you can if you want different moves for each asset. Just put a random value (1, 2, 3) in the editor. Don't forget to mark the material as unique if you use this
+uniform float offset = 0; 
+
+
+float getWind(vec2 vertex, vec2 uv, float time){
+    float diff = pow(maxStrength - minStrength, 2.0);
+    float strength = clamp(minStrength + diff + sin(time / interval) * diff, minStrength, maxStrength) * strengthScale;
+    float wind = (sin(time) + cos(time * detail)) * strength * max(0.0, (1.0-uv.y) - heightOffset);
+    
+    return wind; 
+}
+
+void vertex() {
+    vec4 pos = MODEL_MATRIX * vec4(0.0, 0.0, 0.0, 1.0);
+    float time = TIME * speed + offset;
+    //float time = TIME * speed + pos.x * pos.y  ; not working when moving...
+    VERTEX.x += getWind(VERTEX.xy, UV, time);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6y4pw"]
+resource_local_to_scene = true
+shader = SubResource("Shader_ws7pu")
+shader_parameter/speed = 1.0
+shader_parameter/minStrength = 0.061
+shader_parameter/maxStrength = 0.224
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 1.5
+shader_parameter/detail = 1.0
+shader_parameter/distortion = 1.0
+shader_parameter/heightOffset = 0.584
+shader_parameter/offset = 0.0
+
+[sub_resource type="Animation" id="Animation_cxu1q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Broom:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Dust2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Dust2:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4, 4)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Dust2:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Dust2:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.78, 0.61789, 0.4446, 0.941176)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Dust2:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(441, 633)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Dust:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Dust:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.78, 0.61789, 0.4446, 0.941176)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../Dust:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.6875, 1.6875)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../Dust:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../Dust:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(334, 639)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath(".:offset")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("AnimationPlayer:speed_scale")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [4.0]
+}
+
+[sub_resource type="Animation" id="Animation_newh3"]
+resource_name = "Shiver"
+length = 2.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(2, 0), Vector2(0, 0), Vector2(-2, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer:speed_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [4.0]
+}
+
+[sub_resource type="Animation" id="Animation_1je5g"]
+resource_name = "sweep"
+length = 2.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Broom:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5),
+"transitions": PackedFloat32Array(0.196146, 3.13834, 0.203063, 2.46229),
+"update": 0,
+"values": [0.0, -0.645772, 0.0, 0.645772]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Dust2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.9),
+"transitions": PackedFloat32Array(2.21915, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Dust2:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.8125, 1.8125), Vector2(2.99647, 2.99647)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Dust2:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.06116]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Dust2:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.1, 0.9),
+"transitions": PackedFloat32Array(3.13834, 1),
+"update": 0,
+"values": [Color(0.78, 0.61789, 0.4446, 0.941176), Color(0.78, 0.61789, 0.4446, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Dust2:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.1, 0.9),
+"transitions": PackedFloat32Array(0.353554, 1),
+"update": 0,
+"values": [Vector2(441, 633), Vector2(484, 625)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Dust:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1.1, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Dust:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(1.1, 1.7),
+"transitions": PackedFloat32Array(3.03144, 1),
+"update": 0,
+"values": [Color(0.78, 0.61789, 0.4446, 0.941176), Color(0.78, 0.61789, 0.4446, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../Dust:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(1.1, 1.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.6875, 1.6875), Vector2(3.29597, 3.29597)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../Dust:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(1.1, 1.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 2.30034]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../Dust:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(1.1, 1.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(334, 639), Vector2(282, 619)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("AnimationPlayer:speed_scale")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/12/type = "method"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("..")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_v0bd1"]
+resource_name = "sweep_stop"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Dust:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Dust2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rpar7"]
+_data = {
+"RESET": SubResource("Animation_cxu1q"),
+"Shiver": SubResource("Animation_newh3"),
+"sweep": SubResource("Animation_1je5g"),
+"sweep_stop": SubResource("Animation_v0bd1")
+}
+
+[sub_resource type="Shader" id="Shader_u6s6j"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
+uniform float angle = -0.3;
+uniform float position = -0.2;
+uniform float spread : hint_range(0.0, 1.0) = 0.5;
+uniform float cutoff : hint_range(-1.0, 1.0) = 0.1;
+uniform float falloff : hint_range(0.0, 1.0) = 0.2;
+uniform float edge_fade : hint_range(0.0, 1.0) = 0.15;
+
+uniform float speed = 1.0;
+uniform float ray1_density = 8.0;
+uniform float ray2_density = 30.0;
+uniform float ray2_intensity : hint_range(0.0, 1.0) = 0.3;
+
+uniform vec4 color : source_color = vec4(1.0, 0.9, 0.65, 0.8);
+
+uniform bool hdr = false;
+uniform float seed = 5.0;
+
+// Random and noise functions from Book of Shader's chapter on Noise.
+float random(vec2 _uv) {
+    return fract(sin(dot(_uv.xy,
+                         vec2(12.9898, 78.233))) *
+        43758.5453123);
+}
+
+float noise (in vec2 uv) {
+    vec2 i = floor(uv);
+    vec2 f = fract(uv);
+
+    // Four corners in 2D of a tile
+    float a = random(i);
+    float b = random(i + vec2(1.0, 0.0));
+    float c = random(i + vec2(0.0, 1.0));
+    float d = random(i + vec2(1.0, 1.0));
+
+
+    // Smooth Interpolation
+
+    // Cubic Hermine Curve. Same as SmoothStep()
+    vec2 u = f * f * (3.0-2.0 * f);
+
+    // Mix 4 coorners percentages
+    return mix(a, b, u.x) +
+            (c - a)* u.y * (1.0 - u.x) +
+            (d - b) * u.x * u.y;
+}
+
+mat2 rotate(float _angle){
+    return mat2(vec2(cos(_angle), -sin(_angle)),
+                vec2(sin(_angle), cos(_angle)));
+}
+
+vec4 screen(vec4 base, vec4 blend){
+	return 1.0 - (1.0 - base) * (1.0 - blend);
+}
+
+void fragment()
+{
+
+	// Rotate, skew and move the UVs
+	vec2 transformed_uv = ( rotate(angle) * (UV - position) )  / ( (UV.y + spread) - (UV.y * spread) );
+
+	// Animate the ray according the the new transformed UVs
+	vec2 ray1 = vec2(transformed_uv.x * ray1_density + sin(TIME * 0.1 * speed) * (ray1_density * 0.2) + seed, 1.0);
+	vec2 ray2 = vec2(transformed_uv.x * ray2_density + sin(TIME * 0.2 * speed) * (ray1_density * 0.2) + seed, 1.0);
+
+	// Cut off the ray's edges
+	float cut = step(cutoff, transformed_uv.x) * step(cutoff, 1.0 - transformed_uv.x);
+	ray1 *= cut;
+	ray2 *= cut;
+
+	// Apply the noise pattern (i.e. create the rays)
+	float rays;
+
+	if (hdr){
+		// This is not really HDR, but check this to not clamp the two merged rays making
+		// their values go over 1.0. Can make for some nice effect
+		rays = noise(ray1) + (noise(ray2) * ray2_intensity);
+	}
+	else{
+		 rays = clamp(noise(ray1) + (noise(ray2) * ray2_intensity), 0., 1.);
+	}
+
+	// Fade out edges
+	rays *= smoothstep(0.0, falloff, (1.0 - UV.y)); // Bottom
+	rays *= smoothstep(0.0 + cutoff, edge_fade + cutoff, transformed_uv.x); // Left
+	rays *= smoothstep(0.0 + cutoff, edge_fade + cutoff, 1.0 - transformed_uv.x); // Right
+
+	// Color to the rays
+	vec3 shine = vec3(rays) * color.rgb;
+
+	// Try different blending modes for a nicer effect. \"Screen\" is included in the code,
+	// but take a look at https://godotshaders.com/snippet/blending-modes/ for more.
+	// With \"Screen\" blend mode:
+	shine = screen(texture(SCREEN_TEXTURE, SCREEN_UV), vec4(color)).rgb;
+
+	COLOR = vec4(shine, rays * color.a);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2ejdf"]
+resource_local_to_scene = true
+shader = SubResource("Shader_u6s6j")
+shader_parameter/angle = -0.3
+shader_parameter/position = -0.2
+shader_parameter/spread = 0.32
+shader_parameter/cutoff = 0.133
+shader_parameter/falloff = 0.97
+shader_parameter/edge_fade = 0.183
+shader_parameter/speed = 1.0
+shader_parameter/ray1_density = 8.0
+shader_parameter/ray2_density = 30.0
+shader_parameter/ray2_intensity = 0.382
+shader_parameter/color = Color(1, 0.9, 0.65, 0.8)
+shader_parameter/hdr = false
+shader_parameter/seed = 5.0
+
+[sub_resource type="Gradient" id="Gradient_l6tjh"]
+offsets = PackedFloat32Array(0.00740741, 1)
+colors = PackedColorArray(0, 0.149333, 0.28, 0.309804, 1, 1, 1, 0.223529)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rhss0"]
+gradient = SubResource("Gradient_l6tjh")
+
+[sub_resource type="Environment" id="Environment_cgrir"]
+background_mode = 3
+reflected_light_source = 2
+glow_enabled = true
+glow_intensity = 0.78
+glow_bloom = 0.16
+glow_hdr_scale = 2.67
+glow_hdr_luminance_cap = 38.95
+adjustment_contrast = 1.26
+adjustment_color_correction = SubResource("GradientTexture1D_rhss0")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_cf0iy"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_6f5wd"]
+offsets = PackedFloat32Array(0, 0.528455, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ayymu"]
+gradient = SubResource("Gradient_6f5wd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p3wuh"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1280, 720, 1)
+spread = 20.0
+initial_velocity_min = 20.0
+initial_velocity_max = 80.0
+angular_velocity_min = -1.60933e-05
+angular_velocity_max = 50.0
+gravity = Vector3(0, 10, 0)
+scale_min = 1.5
+scale_max = 2.0
+color_ramp = SubResource("GradientTexture1D_ayymu")
+anim_offset_max = 1.0
+
+[sub_resource type="Animation" id="Animation_ejxf2"]
+resource_name = "ending"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 4),
+"transitions": PackedFloat32Array(1, 6.06287, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0sppm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w75g4"]
+_data = {
+"RESET": SubResource("Animation_0sppm"),
+"ending": SubResource("Animation_ejxf2")
+}
+
+[node name="credits_scene" type="Node2D"]
+
+[node name="Foliage" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ptk8p")
+position = Vector2(629, 348)
+scale = Vector2(4.13438, 4.07222)
+texture = ExtResource("1_ckm36")
+
+[node name="Trunk" parent="." instance=ExtResource("2_6junu")]
+material = SubResource("ShaderMaterial_vlutf")
+position = Vector2(204, 230)
+texture = null
+
+[node name="Trunk2" parent="." instance=ExtResource("2_6junu")]
+material = SubResource("ShaderMaterial_6y4pw")
+position = Vector2(695, 321)
+texture = null
+
+[node name="Shrine" type="Sprite2D" parent="."]
+position = Vector2(638, 357)
+scale = Vector2(4, 4)
+texture = ExtResource("3_xfuos")
+
+[node name="MikoSweep" type="Sprite2D" parent="."]
+position = Vector2(382, 543)
+scale = Vector2(4, 4)
+texture = ExtResource("4_yv762")
+hframes = 5
+script = ExtResource("5_cv4m7")
+
+[node name="Broom" type="Sprite2D" parent="MikoSweep"]
+position = Vector2(-1.25, 9)
+texture = ExtResource("6_fw1gj")
+offset = Vector2(2.25, -10)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MikoSweep"]
+libraries = {
+"": SubResource("AnimationLibrary_rpar7")
+}
+autoplay = "sweep"
+speed_scale = 4.0
+
+[node name="Node2D" parent="." instance=ExtResource("7_hmoha")]
+material = SubResource("ShaderMaterial_2ejdf")
+position = Vector2(40, 113)
+
+[node name="ColorRect" parent="Node2D" index="0"]
+offset_left = -59.0
+offset_right = 602.0
+offset_bottom = 559.0
+
+[node name="Brush" type="Sprite2D" parent="."]
+self_modulate = Color(0.627451, 0.141176, 0.141176, 1)
+position = Vector2(1121, 492)
+rotation = 1.5708
+scale = Vector2(2.61527, 2.61527)
+texture = ExtResource("8_haesn")
+
+[node name="Label2" type="Label" parent="Brush"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -703.949
+offset_top = 13.9783
+offset_right = -435.949
+offset_bottom = 118.978
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -1.5708
+theme_override_fonts/font = ExtResource("9_77mhl")
+theme_override_font_sizes/font_size = 32
+text = "Thanks For
+Playing!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="Brush"]
+modulate = Color(1, 1, 0.905882, 1)
+offset_left = -83.7385
+offset_top = 121.594
+offset_right = 142.261
+offset_bottom = 307.594
+rotation = -1.5708
+scale = Vector2(0.8, 0.8)
+theme_override_fonts/font = ExtResource("10_vktqr")
+theme_override_font_sizes/font_size = 17
+text = "Created by:
+
+Beret Parade
+
+Alex Cristoffanini
+Adam Hatton
+Caleb Azlin
+Jere
+Christopher"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_cgrir")
+
+[node name="Dust" type="Sprite2D" parent="."]
+modulate = Color(0.78, 0.61789, 0.4446, 0.941176)
+position = Vector2(334, 639)
+scale = Vector2(1.6875, 1.6875)
+texture = ExtResource("11_h77pg")
+
+[node name="Dust2" type="Sprite2D" parent="."]
+modulate = Color(0.78, 0.61789, 0.4446, 0.941176)
+position = Vector2(441, 633)
+scale = Vector2(4, 4)
+texture = ExtResource("11_h77pg")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_cf0iy")
+position = Vector2(462, 353)
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_p3wuh")
+texture = ExtResource("12_ppkps")
+lifetime = 10.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_w75g4")
+}
+autoplay = "ending"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -145.0
+offset_top = -140.0
+offset_right = 1443.0
+offset_bottom = 844.0
+
+[editable path="Node2D"]
