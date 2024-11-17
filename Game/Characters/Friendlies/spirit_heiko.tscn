@@ -98,14 +98,20 @@ _data = {
 [node name="SpiritHeiko" instance=ExtResource("1_ymjot")]
 position = Vector2(0, 0)
 max_health = 10
+health = 10
+
+[node name="Shadow" parent="PathFollow2D" index="0"]
+modulate = Color(1, 1, 1, 1)
+scale = Vector2(1, 1)
+texture = null
 
 [node name="Sprite" parent="PathFollow2D" index="1"]
 texture = ExtResource("2_gk5s8")
+
+[node name="HealthBar" parent="PathFollow2D" index="2"]
+position = Vector2(0, 0)
 
 [node name="AnimationPlayer" parent="." index="1"]
 libraries = {
 "": SubResource("AnimationLibrary_flse4")
 }
-
-[node name="action_select" parent="." index="2"]
-z_index = 0

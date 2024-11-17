@@ -48,6 +48,14 @@ max_health = 3
 self_scene_path = "res://Game/Characters/Enemies/kappa.tscn"
 health = 0
 
+[node name="Shadow" parent="PathFollow2D" index="0"]
+modulate = Color(1, 1, 1, 1)
+scale = Vector2(1, 1)
+texture = null
+
+[node name="HealthBar" parent="PathFollow2D" index="2"]
+position = Vector2(0, 0)
+
 [node name="AnimationPlayer" parent="." index="1"]
 libraries = {
 "": SubResource("AnimationLibrary_akc3o")

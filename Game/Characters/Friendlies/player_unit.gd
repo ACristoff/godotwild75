@@ -39,6 +39,10 @@ func action_select(state):
 	action_ui.visible = state
 	pass
 
+func _ready():
+	super()
+	max_health = 10
+
 func _process(delta):
 	super(delta)
 	pass

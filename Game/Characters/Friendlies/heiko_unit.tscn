@@ -104,10 +104,19 @@ _data = {
 script = ExtResource("2_welh2")
 max_health = 10
 self_scene_path = "res://Game/Characters/Friendlies/spirit_heiko.tscn"
+health = 10
 skin = ExtResource("2_htbp3")
+
+[node name="Shadow" parent="PathFollow2D" index="0"]
+modulate = Color(1, 1, 1, 1)
+scale = Vector2(1, 1)
+texture = null
 
 [node name="Sprite" parent="PathFollow2D" index="1"]
 texture = ExtResource("2_htbp3")
+
+[node name="HealthBar" parent="PathFollow2D" index="2"]
+position = Vector2(0, 0)
 
 [node name="AnimationPlayer" parent="." index="1"]
 libraries = {
@@ -115,6 +124,3 @@ libraries = {
 }
 autoplay = "idle_UP"
 speed_scale = 0.5
-
-[node name="action_select" parent="." index="2"]
-z_index = 0

@@ -15,5 +15,5 @@ var heiko_attacks = [
 
 func _init():
 	attacks = heiko_attacks
-	health = 1
+	health = 10
 	pass

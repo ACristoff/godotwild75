@@ -21,7 +21,6 @@ func _ready():
 	super()
 	unitPath = unit_path_scene.instantiate()
 	add_child(unitPath)
-	characterList = get_tree().get_nodes_in_group("player")
 	
 func _process(delta):
 	walk(delta)
@@ -31,6 +30,7 @@ func _init():
 	health = 1
 
 func enemyBrain(state):
+	characterList = get_tree().get_nodes_in_group("player")
 	boardState = state
 
 func endTurn():

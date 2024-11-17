@@ -10,7 +10,7 @@ func spawn_init(miko_data):
 
 func _ready():
 	super()
-	
+	max_health = 10
 	#print("hello spirit world :)")
 	pass
 	

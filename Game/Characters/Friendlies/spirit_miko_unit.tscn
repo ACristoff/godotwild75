@@ -175,19 +175,25 @@ _data = {
 [node name="SpiritMikoUnit" groups=["mikos"] instance=ExtResource("1_m0gts")]
 script = ExtResource("2_ptnpl")
 max_health = 10
+health = 10
 skin = ExtResource("3_tlqia")
 
 [node name="PathFollow2D" parent="." index="0" groups=["mikos"]]
 
+[node name="Shadow" parent="PathFollow2D" index="0"]
+modulate = Color(1, 1, 1, 1)
+scale = Vector2(1, 1)
+texture = null
+
 [node name="Sprite" parent="PathFollow2D" index="1"]
 texture = null
 frame = 8
+
+[node name="HealthBar" parent="PathFollow2D" index="2"]
+position = Vector2(0, 0)
 
 [node name="AnimationPlayer" parent="." index="1"]
 libraries = {
 "": SubResource("AnimationLibrary_oqd6l")
 }
 autoplay = "idle_UP"
-
-[node name="action_select" parent="." index="2"]
-z_index = 0
