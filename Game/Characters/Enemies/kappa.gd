@@ -16,9 +16,6 @@ var targetOnRange = false
 
 func _ready():
 	super()
-	move_range = 2
-	max_health = 2
-	onibiDrop = 20
 	set_process(true)
 
 func _process(delta):
@@ -27,6 +24,9 @@ func _process(delta):
 func _init():
 	super()
 	attacks = kappa_attacks
+	max_health = 2
+	move_range = 2
+	onibiDrop = 20
 
 func enemyBrain(boardState):
 	super(boardState)

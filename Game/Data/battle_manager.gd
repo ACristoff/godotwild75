@@ -156,13 +156,13 @@ func reinitialize():
 	turn_manager()
 
 func on_enemy_finished_walk(path, enemy):
-	print(path[0], enemies[path[0]])
+	#print(path[0], enemies[path[0]])
 	enemies.erase(path[0]) 
 	units.erase(path[0])
 	
 	enemies[path[-1]] = enemy
 	units[path[-1]] = enemy
-	print(enemies, units)
+	#print(enemies, units)
 	pass
 
 func on_unit_state_change(state):
@@ -408,6 +408,7 @@ func manage_attack(attack_cells, team_to_hit):
 						grid.calculate_mirror_position(cell)
 					])
 			units[cell].take_damage(current_attack.DAMAGE)
+			prints(units[cell].health,  current_attack.DAMAGE)
 		else:
 			#print("MISS", cell)
 			pass
@@ -455,7 +456,7 @@ func handle_exorcism(unit, attack):
 				units[mirrored_vec].take_damage(5)
 			else:
 				units[mirrored_vec].take_damage(5)
-	prints(unit, attack, unit.cell, positions_to_blow)
+	#prints(unit, attack, unit.cell, positions_to_blow)
 	explosion_overlay.blow_up_squares(positions_to_blow)
 	pass
 
