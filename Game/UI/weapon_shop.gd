@@ -95,7 +95,7 @@ func _ready() -> void:
 	var manager: GameManager = get_node("/root/GameManager")
 	#print(manager.weapon_data, weapon_dummy_data)
 	
-	_locker(1000, manager.weapon_data)
+	_locker(LevelManager.onibi, manager.weapon_data)
 	#onibi = 10000
 	
 	#print(manager)

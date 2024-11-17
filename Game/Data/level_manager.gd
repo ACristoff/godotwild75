@@ -5,6 +5,8 @@ extends Node2D
 
 var previous_level_index = 0
 var curr_level_index = 0
+#this is caleb-code
+var onibi = 0
 
 var current_scene : Node2D = null
 

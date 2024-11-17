@@ -456,6 +456,8 @@ func on_unit_death(unit):
 	if unit is PlayerUnit:
 		friendlies.erase(unit.cell)
 	elif unit is EnemyUnit:
+		LevelManager.onibi += 50
+		
 		print('unit dead')
 		enemies.erase(unit.cell)
 		check_for_win_con()
