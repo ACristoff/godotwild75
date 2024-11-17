@@ -4,11 +4,13 @@ extends Node2D
 const DIRECTIONS = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 
 @export var grid: Resource = preload("res://Game/Data/grid.tres")
-@export var level_music: AudioStreamWAV
+@export var level_music: AudioStreamMP3
 
 @onready var win_screen = preload("res://Game/UI/win_screen.tscn")
 @onready var fail_screen = preload("res://Game/UI/lose_screen.tscn")
 @onready var deselect_sound = preload("res://Assets/Audio/UI/Menu_Back.mp3")
+@onready var battlesongo = preload("res://Assets/Audio/Music/MM_Battle_Theme_1.mp3")
+@onready var battlesongo2 = preload("res://Assets/Audio/Music/MM_Battle_Theme_2.mp3")
 
 @onready var spirit_miko_scene:  = preload("res://Game/Characters/Friendlies/spirit_miko_unit.tscn") 
 var miko: PlayerUnit
@@ -36,6 +38,7 @@ var current_rotation = "up"
 ##TODO organize functions
 
 func _ready():
+	AudioManager._play_music(level_music, -5)
 	reinitialize()
 	pass
 
@@ -62,13 +65,18 @@ func mutate_attack(attack_pattern):
 ##Finds the next unit in a given team that has moves available
 func find_next_possible(team):
 	for unit in team:
-		var current = units[unit] as Unit
-		if !current.has_moved:
-			return current
+		if units[unit] != null:
+			var current = units[unit] as Unit
+			if !current.has_moved:
+				return current
 	return null
 
 func turn_manager():
 	if is_player_turn:
+		#For the skip turn action
+		if active_unit != null and active_unit.has_moved:
+			deselect_unit()
+			clear_active_unit()
 		#Check if all units are exhausted
 		var next_unit = find_next_possible(friendlies)
 		if next_unit == null:
@@ -76,6 +84,9 @@ func turn_manager():
 			turn_indicator._SwitchingTurn()
 			await get_tree().create_timer(1).timeout
 			is_enemy_turn = true
+			for enemy in enemies:
+				if enemies[enemy] != null:
+					enemies[enemy].has_moved = false
 			turn_manager()
 	else:
 		##TODO Do enemy turns here
@@ -387,7 +398,7 @@ func _on_cursor_accept_pressed(cell):
 func manage_attack(attack_cells, team_to_hit):
 	attack_overlay.clear()
 	for cell in attack_cells:
-		if units.has(cell):
+		if units.has(cell) and units[cell] != null:
 			var unit = units[cell] as Unit
 			#handle_exorcism(unit, current_attack)
 			if grid.is_in_real_world(cell) && units[cell].health <= current_attack.DAMAGE:
@@ -416,9 +427,11 @@ func spawn_ghost(unit, mirrored_origin):
 	if ghost.is_in_group("enemy"):
 		enemies[mirrored_origin] = ghost
 		ghost.isSpirit = true
+		ghost.connect("walkadoodledoo", on_enemy_finished_walk)
 	elif ghost.is_in_group("player"):
 		friendlies[mirrored_origin] = ghost
 		ghost.connect("unit_state_change", on_unit_state_change)
+		ghost.has_moved = false
 	ghost.connect("death", on_unit_death)
 	ghost.cell = mirrored_origin
 	pass
@@ -464,7 +477,7 @@ func on_unit_death(unit):
 	if unit is PlayerUnit:
 		friendlies.erase(unit.cell)
 	elif unit is EnemyUnit:
-		LevelManager.onibi += 50
+		LevelManager.onibi += unit.onibiDrop
 		
 		print('unit dead')
 		enemies.erase(unit.cell)

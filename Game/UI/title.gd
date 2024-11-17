@@ -50,10 +50,10 @@ func LogoSFX():
 	var random = randi_range(0,8)
 	AudioManager.play_sfx_wav(bereparedosfx[random], 1)
 func WashSFX():
-	AudioManager.play_sfx(washsfx, 1)
+	AudioManager.play_sfx(washsfx, -14)
 func TitleMusic():
 	#print("pls")
-	AudioManager._play_music(titlebgm, 1)
+	AudioManager._play_music(titlebgm, -14)
 func SweepSFX():
 	$AudioStreamPlayer2D.play()
 func Start_sweep():

@@ -21,3 +21,4 @@ z_index = 0
 [connection signal="attack_chosen" from="action_select" to="." method="_on_action_select_attack_chosen"]
 [connection signal="attack_selected" from="action_select" to="." method="_on_action_select_attack_selected"]
 [connection signal="move_selected" from="action_select" to="." method="_on_action_select_move_selected"]
+[connection signal="skip_selected" from="action_select" to="." method="_on_action_select_skip_selected"]

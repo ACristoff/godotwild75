@@ -1,19 +1,23 @@
-[gd_scene load_steps=11 format=3 uid="uid://dkkvanimg6u6w"]
+[gd_scene load_steps=14 format=3 uid="uid://527ymuml82gh"]
 
 [ext_resource type="Script" path="res://Game/Data/battle_manager.gd" id="1_v5s7l"]
+[ext_resource type="AudioStream" uid="uid://box2onfca6raa" path="res://Assets/Audio/Music/MM_Battle_Theme_2.mp3" id="2_1nhkf"]
 [ext_resource type="PackedScene" uid="uid://gcdapkkqr808" path="res://Game/World/environment.tscn" id="2_sgc5j"]
 [ext_resource type="PackedScene" uid="uid://copviu6p757h8" path="res://Game/Data/unit_path.tscn" id="3_hkrqy"]
 [ext_resource type="PackedScene" uid="uid://7svoiv3k6b8h" path="res://Game/Data/hit_overlay.tscn" id="4_37dom"]
 [ext_resource type="PackedScene" uid="uid://c0vnt11umxslf" path="res://Game/Data/attack_overlay.tscn" id="5_36w1k"]
 [ext_resource type="PackedScene" uid="uid://bjjre3i3xvkhl" path="res://Game/World/explosion_overlay.tscn" id="6_l4mws"]
 [ext_resource type="PackedScene" uid="uid://2nbe138odbl8" path="res://Game/Characters/Friendlies/miko_unit.tscn" id="7_hbllr"]
-[ext_resource type="PackedScene" uid="uid://cg34obo360a5w" path="res://Game/Characters/Enemies/enemy_base.tscn" id="8_bxhtn"]
 [ext_resource type="PackedScene" uid="uid://2r5lvg6715f" path="res://Game/Characters/Friendlies/heiko_unit.tscn" id="9_tmtuw"]
 [ext_resource type="PackedScene" uid="uid://d1rww8eno83bs" path="res://Game/Data/Cursor/cursor.tscn" id="10_fgko5"]
+[ext_resource type="PackedScene" uid="uid://cdrtmig8f1yom" path="res://Assets/UserInterface/Gameplay/turn_order.tscn" id="11_lwecy"]
+[ext_resource type="PackedScene" uid="uid://bw6nuo3guy6ab" path="res://Game/Characters/Enemies/oni.tscn" id="12_031pv"]
+[ext_resource type="PackedScene" uid="uid://dfdi4uw2mg150" path="res://Game/Characters/Enemies/tanuki.tscn" id="13_ncll6"]
 
 [node name="DebugLevel2" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_v5s7l")
+level_music = ExtResource("2_1nhkf")
 
 [node name="Environment" parent="." instance=ExtResource("2_sgc5j")]
 
@@ -27,19 +31,28 @@ y_sort_origin = -1
 [node name="ExplosionOverlay" parent="." instance=ExtResource("6_l4mws")]
 
 [node name="MikoUnit" parent="." instance=ExtResource("7_hbllr")]
-position = Vector2(290, 425)
+position = Vector2(290, 548)
 max_health = 3
-
-[node name="EnemyBase2" parent="." instance=ExtResource("8_bxhtn")]
-position = Vector2(358, 419)
-max_health = 3
-health = 0
 
 [node name="HeikoUnit" parent="." instance=ExtResource("9_tmtuw")]
-position = Vector2(227, 364)
+position = Vector2(157, 416)
 max_health = 3
 
 [node name="Cursor" parent="." instance=ExtResource("10_fgko5")]
+
+[node name="TurnIndicator" parent="." instance=ExtResource("11_lwecy")]
+
+[node name="Oni" parent="." instance=ExtResource("12_031pv")]
+position = Vector2(480, 224)
+
+[node name="Oni2" parent="." instance=ExtResource("12_031pv")]
+position = Vector2(158, 292)
+
+[node name="Oni3" parent="." instance=ExtResource("12_031pv")]
+position = Vector2(1179, 545)
+
+[node name="Tanuki" parent="." instance=ExtResource("13_ncll6")]
+position = Vector2(479, 544)
 
 [connection signal="accept_pressed" from="Cursor" to="." method="_on_cursor_accept_pressed"]
 [connection signal="deselect_pressed" from="Cursor" to="." method="_on_cursor_deselect_pressed"]

@@ -113,4 +113,8 @@ func _on_letsago_pressed() -> void:
 
 func _on_restart_pressed() -> void:
 	#i mixed them up this starts the game
-	tutorial = 17
+	if tutorial == 16:
+		tutorial = 17
+	else:
+		AudioManager.stop()
+		LevelManager.nextLevel()

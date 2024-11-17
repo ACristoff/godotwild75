@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cr072ggffpayq"]
+[gd_scene load_steps=7 format=3 uid="uid://bw6nuo3guy6ab"]
 
 [ext_resource type="PackedScene" uid="uid://cg34obo360a5w" path="res://Game/Characters/Enemies/enemy_base.tscn" id="1_qvy6l"]
 [ext_resource type="Script" path="res://Game/Characters/Enemies/oni.gd" id="2_ybesi"]
@@ -45,6 +45,7 @@ _data = {
 
 [node name="Oni" instance=ExtResource("1_qvy6l")]
 script = ExtResource("2_ybesi")
+move_range = 3
 max_health = 3
 self_scene_path = "res://Game/Characters/Enemies/oni.tscn"
 health = 0

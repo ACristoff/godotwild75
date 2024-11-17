@@ -45,15 +45,24 @@ _data = {
 
 [node name="Kitsune" instance=ExtResource("1_6gvqk")]
 script = ExtResource("2_swjbx")
+move_range = 3
 max_health = 3
 self_scene_path = "res://Game/Characters/Enemies/kitsune.tscn"
 health = 0
 skin = ExtResource("3_j0mtd")
 
+[node name="Shadow" parent="PathFollow2D" index="0"]
+modulate = Color(1, 1, 1, 1)
+scale = Vector2(1, 1)
+texture = null
+
 [node name="Sprite" parent="PathFollow2D" index="1"]
 texture = ExtResource("3_j0mtd")
 hframes = 8
 vframes = 1
+
+[node name="HealthBar" parent="PathFollow2D" index="2"]
+position = Vector2(0, 0)
 
 [node name="AnimationPlayer" parent="." index="1"]
 libraries = {

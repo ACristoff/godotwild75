@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://h82fnyvkcffl"]
+[gd_scene load_steps=15 format=3 uid="uid://b0kvthnkkup5c"]
 
 [ext_resource type="Script" path="res://Game/Data/battle_manager.gd" id="1_m2jb0"]
+[ext_resource type="AudioStream" uid="uid://b0fvnhnsbtonj" path="res://Assets/Audio/Music/MM_Battle_Theme_1.mp3" id="2_aikar"]
 [ext_resource type="PackedScene" uid="uid://gcdapkkqr808" path="res://Game/World/environment.tscn" id="2_o5vvv"]
 [ext_resource type="PackedScene" uid="uid://copviu6p757h8" path="res://Game/Data/unit_path.tscn" id="3_gnqkt"]
 [ext_resource type="PackedScene" uid="uid://7svoiv3k6b8h" path="res://Game/Data/hit_overlay.tscn" id="4_e54yu"]
@@ -10,10 +11,14 @@
 [ext_resource type="PackedScene" uid="uid://2r5lvg6715f" path="res://Game/Characters/Friendlies/heiko_unit.tscn" id="9_vgcdo"]
 [ext_resource type="PackedScene" uid="uid://cy1ruko7jcspv" path="res://Game/Characters/Enemies/kappa.tscn" id="10_hc8do"]
 [ext_resource type="PackedScene" uid="uid://d1rww8eno83bs" path="res://Game/Data/Cursor/cursor.tscn" id="10_q81mo"]
+[ext_resource type="PackedScene" uid="uid://cdrtmig8f1yom" path="res://Assets/UserInterface/Gameplay/turn_order.tscn" id="11_cru58"]
+[ext_resource type="PackedScene" uid="uid://i5jwws41qqfv" path="res://Game/Characters/Enemies/chochin.tscn" id="13_t0jx7"]
+[ext_resource type="PackedScene" uid="uid://dfdi4uw2mg150" path="res://Game/Characters/Enemies/tanuki.tscn" id="15_pidby"]
 
-[node name="DebugLevel3" type="Node2D"]
+[node name="DebugLevel4" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_m2jb0")
+level_music = ExtResource("2_aikar")
 
 [node name="Environment" parent="." instance=ExtResource("2_o5vvv")]
 
@@ -36,41 +41,22 @@ max_health = 3
 
 [node name="Cursor" parent="." instance=ExtResource("10_q81mo")]
 
-[node name="Kappa" parent="." instance=ExtResource("10_hc8do")]
-position = Vector2(545, 167)
-
-[node name="Kappa2" parent="." instance=ExtResource("10_hc8do")]
-position = Vector2(1126, 167)
-
-[node name="Kappa3" parent="." instance=ExtResource("10_hc8do")]
-position = Vector2(416, 166)
-
-[node name="Kappa4" parent="." instance=ExtResource("10_hc8do")]
-position = Vector2(995, 163)
-
-[node name="Kappa5" parent="." instance=ExtResource("10_hc8do")]
-position = Vector2(285, 166)
-
-[node name="Kappa6" parent="." instance=ExtResource("10_hc8do")]
-position = Vector2(863, 165)
-
-[node name="Kappa7" parent="." instance=ExtResource("10_hc8do")]
-position = Vector2(163, 166)
-
-[node name="Kappa8" parent="." instance=ExtResource("10_hc8do")]
-position = Vector2(735, 171)
-
-[node name="Kappa9" parent="." instance=ExtResource("10_hc8do")]
-position = Vector2(99, 230)
-
-[node name="Kappa10" parent="." instance=ExtResource("10_hc8do")]
-position = Vector2(737, 293)
-
-[node name="Kappa11" parent="." instance=ExtResource("10_hc8do")]
-position = Vector2(738, 413)
-
 [node name="Kappa12" parent="." instance=ExtResource("10_hc8do")]
-position = Vector2(95, 356)
+position = Vector2(352, 610)
+
+[node name="Kappa13" parent="." instance=ExtResource("10_hc8do")]
+position = Vector2(1120, 226)
+
+[node name="TurnIndicator" parent="." instance=ExtResource("11_cru58")]
+
+[node name="Chochin" parent="." instance=ExtResource("13_t0jx7")]
+position = Vector2(221, 414)
+
+[node name="Chochin3" parent="." instance=ExtResource("13_t0jx7")]
+position = Vector2(802, 540)
+
+[node name="Tanuki" parent="." instance=ExtResource("15_pidby")]
+position = Vector2(160, 231)
 
 [connection signal="accept_pressed" from="Cursor" to="." method="_on_cursor_accept_pressed"]
 [connection signal="deselect_pressed" from="Cursor" to="." method="_on_cursor_deselect_pressed"]

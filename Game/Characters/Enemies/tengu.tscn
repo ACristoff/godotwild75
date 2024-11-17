@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c7jhfoocdh6d6"]
+[gd_scene load_steps=7 format=3 uid="uid://p7hcn583iptc"]
 
 [ext_resource type="PackedScene" uid="uid://cg34obo360a5w" path="res://Game/Characters/Enemies/enemy_base.tscn" id="1_mfn4k"]
 [ext_resource type="Script" path="res://Game/Characters/Enemies/tengu.gd" id="2_xn5yj"]
@@ -45,6 +45,7 @@ _data = {
 
 [node name="Tengu" instance=ExtResource("1_mfn4k")]
 script = ExtResource("2_xn5yj")
+move_range = 3
 max_health = 3
 self_scene_path = "res://Game/Characters/Enemies/tengu.tscn"
 health = 0

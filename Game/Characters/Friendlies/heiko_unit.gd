@@ -4,7 +4,7 @@ var heiko_attacks = [
 	{
 		"weapon_name": "Palm Strike",
 		"RANGE": 1,
-		"DAMAGE": 1,
+		"DAMAGE": 3,
 		"MOVE": Vector2(0,0),
 		"EXORCISM": false,
 		"BLAST_PATTERN": [

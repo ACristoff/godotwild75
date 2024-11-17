@@ -5,6 +5,15 @@
 
 [node name="BossOni" instance=ExtResource("1_fd6ws")]
 script = ExtResource("2_nxcf8")
+move_range = 3
 max_health = 3
 self_scene_path = "res://Game/Characters/Enemies/boss_oni.tscn"
 health = 0
+
+[node name="Shadow" parent="PathFollow2D" index="0"]
+modulate = Color(1, 1, 1, 1)
+scale = Vector2(1, 1)
+texture = null
+
+[node name="HealthBar" parent="PathFollow2D" index="2"]
+position = Vector2(0, 0)

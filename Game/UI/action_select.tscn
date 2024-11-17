@@ -48,6 +48,23 @@ text = "Attack"
 icon = ExtResource("3_p6aa5")
 expand_icon = true
 
+[node name="skip" type="Button" parent="."]
+offset_top = 98.0
+offset_right = 115.0
+offset_bottom = 137.0
+theme = ExtResource("2_t8em4")
+theme_override_colors/font_hover_pressed_color = Color(0.0656515, 0.496933, 0.500173, 1)
+theme_override_colors/font_hover_color = Color(0.268018, 0.651819, 0.617826, 1)
+theme_override_colors/font_pressed_color = Color(0.0721137, 0.498297, 0.488208, 1)
+theme_override_colors/font_focus_color = Color(0.776471, 0.168627, 0.168627, 1)
+theme_override_colors/font_color = Color(0.366595, 0.366595, 0.366595, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_constants/icon_max_width = 25
+theme_override_font_sizes/font_size = 38
+text = "Skip"
+expand_icon = true
+
 [node name="GoldSelection" type="Sprite2D" parent="."]
 position = Vector2(-3.8147e-06, -1.90735e-06)
 scale = Vector2(0.995868, 0.989796)
@@ -66,3 +83,5 @@ pitch_scale = 0.77
 [connection signal="pressed" from="move" to="." method="_on_move_pressed"]
 [connection signal="mouse_entered" from="attack" to="." method="_on_attack_mouse_entered"]
 [connection signal="pressed" from="attack" to="." method="_on_attack_pressed"]
+[connection signal="mouse_entered" from="skip" to="." method="_on_attack_mouse_entered"]
+[connection signal="pressed" from="skip" to="." method="_on_skip_pressed"]

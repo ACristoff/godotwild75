@@ -105,3 +105,7 @@ func checkTurnEnded():
 	if has_attacked and has_walked:
 		has_moved = true
 		turnEnded.emit()
+
+func _on_action_select_skip_selected():
+	finish_attack()
+	finish_walk()

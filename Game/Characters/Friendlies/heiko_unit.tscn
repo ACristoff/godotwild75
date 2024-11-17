@@ -102,6 +102,7 @@ _data = {
 
 [node name="HeikoUnit" instance=ExtResource("1_k1f0n")]
 script = ExtResource("2_welh2")
+move_range = 3
 max_health = 10
 self_scene_path = "res://Game/Characters/Friendlies/spirit_heiko.tscn"
 health = 10

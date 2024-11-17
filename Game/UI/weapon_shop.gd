@@ -11,6 +11,7 @@ extends Node2D
 @onready var bowsound = preload("res://Assets/Audio/UI/WeaponSounds/MM_Bow_Attack.mp3")
 @onready var tridentsound = preload("res://Assets/Audio/UI/WeaponSounds/MM_Trident_Attack.mp3")
 @onready var flame = preload("res://Assets/Effects/flame_infusion.tscn")
+@onready var weaposongo = preload("res://Assets/Audio/Music/Weapon_Shop.mp3")
 
 var mikoChosen = true
 var onibi : int
@@ -40,6 +41,8 @@ var chosen_weapon = ""
 signal confirm_weapon
 signal on_unlock
 
+var manager: GameManager
+
 #@onready var whosSelect = $CanvasLayer/MarginContainer/VBoxContainer/MarginContainer/Label2
 @onready var Value = $CanvasLayer/MarginContainer2/HBoxContainer/Label
 @onready var dagger = $Path2D/Pnt1
@@ -60,39 +63,40 @@ var pos6 = 0.715
 var pos7 = 0.858
 
 var weapon_dummy_data = {
-	"dagger": {
+	"Dagger": {
 		"state" : 'UNLOCKED',
 		"isSelected" : true
 	},
-	"fan": {
+	"Fan": {
 		"state" : 'LOCKED',
-		"isSelected" : 'false'
+		"isSelected" : false
 	},
-	"slingshot": {
+	"Slingshot": {
 		"state" : 'LOCKED',
-		"isSelected" : 'false'
+		"isSelected" : false
 	},
-	"katana": {
+	"Katana": {
 		"state" : 'LOCKED',
-		"isSelected" : 'false'
+		"isSelected" : false
 	},
-	"mace": {
+	"Mace": {
 		"state" : 'LOCKED',
-		"isSelected" : 'false'
+		"isSelected" : false
 	},
-	"bow": {
+	"Bow": {
 		"state" : 'LOCKED',
-		"isSelected" : 'false'
+		"isSelected" : false
 	},
-	"trident": {
+	"Trident": {
 		"state" : 'LOCKED',
-		"isSelected" : 'false'
+		"isSelected" : false
 	}
 }
 
 func _ready() -> void:
-	$AudioStreamPlayer2D2.play()
-	var manager: GameManager = get_node("/root/GameManager")
+	AudioManager.play_sfx(weaposongo, -9)
+	#$AudioStreamPlayer2D2.play()
+	manager = get_node("/root/GameManager")
 	#print(manager.weapon_data, weapon_dummy_data)
 	
 	_locker(LevelManager.onibi, manager.weapon_data)
@@ -541,7 +545,6 @@ func _on_texture_button_2_pressed() -> void:
 			#$CanvasLayer/ButtonArrow/TextureButton.disabled = true
 			#$CanvasLayer/ButtonArrow2/TextureButton2.disabled = true
 func unlock_dagger():
-	
 	on_unlock.emit("dagger")
 	bought1 = true
 	update_select()
@@ -616,36 +619,43 @@ func update_visuals():
 			$Path2D/Pnt1/Dagger.value = fill_price
 			if fill_price == 50:
 				unlock_dagger()
+				manager.weapon_data["Dagger"]["state"] = "UNLOCKED"
 		elif type == 2:
 			$Path2D/Pnt7/Cost.text = str(fill_price) + "/80"
 			$Path2D/Pnt7/Fan.value = fill_price
 			if fill_price == 80:
 				unlock_fan()
+				manager.weapon_data["Fan"]["state"] = "UNLOCKED"
 		elif type == 3:
 			$Path2D/Pnt6/Cost.text = str(fill_price) + "/100"
 			$Path2D/Pnt6/Slingshot.value = fill_price
 			if fill_price == 100:
 				unlock_slingshot()
+				manager.weapon_data["Slingshot"]["state"] = "UNLOCKED"
 		elif type == 4:
 			$Path2D/Pnt5/Cost.text = str(fill_price) + "/240"
 			$Path2D/Pnt5/Katana.value = fill_price
 			if fill_price == 240:
 				unlock_katana()
+				manager.weapon_data["Katana"]["state"] = "UNLOCKED"
 		elif type == 5:
 			$Path2D/Pnt4/Cost.text = str(fill_price) + "/400"
 			$Path2D/Pnt4/Mace.value = fill_price
 			if fill_price == 400:
 				unlock_mace()
+				manager.weapon_data["Mace"]["state"] = "UNLOCKED"
 		elif type == 6:
 			$Path2D/Pnt3/Cost.text = str(fill_price) + "/520"
 			$Path2D/Pnt3/Bow.value = fill_price
 			if fill_price == 520:
 				unlock_bow()
+				manager.weapon_data["Bow"]["state"] = "UNLOCKED"
 		elif type == 7:
 			$Path2D/Pnt2/Cost.text = str(fill_price) + "/888"
 			$Path2D/Pnt2/Trident.value = fill_price
 			if fill_price == 888:
 				unlock_trident()
+				manager.weapon_data["Trident"]["state"] = "UNLOCKED"
 func update_select():
 	if type == 1:
 		if bought1:
@@ -857,7 +867,6 @@ func _on_select_7_toggled(toggled_on: bool) -> void:
 func _on_button_pressed() -> void:
 	_confirmed()
 	LevelManager.nextLevel()
-
 
 func _confirmed():
 	confirm_weapon.emit(chosen_weapon)

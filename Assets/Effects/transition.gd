@@ -5,7 +5,8 @@ extends ColorRect
 @onready var animation = $AnimationPlayer
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	if is_on:
+		animation.play("Transition_In")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

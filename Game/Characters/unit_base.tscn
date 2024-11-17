@@ -4,13 +4,14 @@
 [ext_resource type="Resource" uid="uid://utpajlyrymk" path="res://Game/Data/grid.tres" id="2_rcmob"]
 [ext_resource type="Texture2D" uid="uid://bgpptpmtcs5ow" path="res://Assets/UserInterface/Gameplay/Shadow.png" id="3_88c5r"]
 [ext_resource type="Texture2D" uid="uid://k10sy15l0bhm" path="res://Assets/Characters/Friendly/MikoSpirit.png" id="3_ge4xx"]
-[ext_resource type="PackedScene" uid="uid://bpa4u7hs7lnpf" path="res://Game/UI/healthbar.tscn" id="4_ebovg"]
+[ext_resource type="PackedScene" uid="uid://d0wvn2340i1oa" path="res://Game/UI/healthbar.tscn" id="4_ebovg"]
 
 [node name="UnitBase" type="Path2D"]
 y_sort_enabled = true
 position = Vector2(96, 160)
 script = ExtResource("1_0rb1m")
 grid = ExtResource("2_rcmob")
+move_range = 2
 max_health = 1
 health = 1
 
