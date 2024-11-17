@@ -66,6 +66,12 @@ func _on_attack_mouse_entered() -> void:
 	tween.tween_property($GoldSelection, "global_position", $attack.global_position, .05)
 	tween.tween_callback(border_effect)
 
+func _on_skip_mouse_entered() -> void:
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.tween_property($GoldSelection, "global_position", $skip.global_position, .05)
+	tween.tween_callback(border_effect)
+
 func border_effect():
 	$switch_sound.play()
 
