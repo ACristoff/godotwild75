@@ -39,7 +39,7 @@ func walk_along(path):
 	super(path)
 	print("this is my path ese", path)
 	walkadoodledoo.emit(path, self)
-	
+	cell = path[-1]
 
 func endTurn():
 	unitPath.stop()

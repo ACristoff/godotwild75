@@ -465,7 +465,7 @@ func trigger_fail_con(miko):
 	pass
 
 func check_for_win_con():
-	print(enemies, ghost_accumulator)
+	#print(enemies, ghost_accumulator)
 	if enemies.size() == 0 && ghost_accumulator.size() == 0:
 		LevelManager.switchScene(LevelManager.getLevelIndex("win_screen"))
 
