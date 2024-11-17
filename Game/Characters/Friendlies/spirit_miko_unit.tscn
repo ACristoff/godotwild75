@@ -174,7 +174,6 @@ _data = {
 
 [node name="SpiritMikoUnit" groups=["mikos"] instance=ExtResource("1_m0gts")]
 script = ExtResource("2_ptnpl")
-move_range = 3
 max_health = 10
 health = 10
 skin = ExtResource("3_tlqia")
@@ -187,11 +186,7 @@ scale = Vector2(1, 1)
 texture = null
 
 [node name="Sprite" parent="PathFollow2D" index="1"]
-texture = null
 frame = 8
-
-[node name="HealthBar" parent="PathFollow2D" index="2"]
-position = Vector2(0, 0)
 
 [node name="AnimationPlayer" parent="." index="1"]
 libraries = {

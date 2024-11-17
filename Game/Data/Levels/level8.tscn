@@ -8,10 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://c0vnt11umxslf" path="res://Game/Data/attack_overlay.tscn" id="5_br883"]
 [ext_resource type="PackedScene" uid="uid://bjjre3i3xvkhl" path="res://Game/World/explosion_overlay.tscn" id="6_8nv26"]
 [ext_resource type="PackedScene" uid="uid://2nbe138odbl8" path="res://Game/Characters/Friendlies/miko_unit.tscn" id="7_nr14p"]
-[ext_resource type="PackedScene" uid="uid://cg34obo360a5w" path="res://Game/Characters/Enemies/enemy_base.tscn" id="8_gld57"]
 [ext_resource type="PackedScene" uid="uid://2r5lvg6715f" path="res://Game/Characters/Friendlies/heiko_unit.tscn" id="9_bsm6l"]
 [ext_resource type="PackedScene" uid="uid://d1rww8eno83bs" path="res://Game/Data/Cursor/cursor.tscn" id="10_2b3f3"]
 [ext_resource type="PackedScene" uid="uid://cdrtmig8f1yom" path="res://Assets/UserInterface/Gameplay/turn_order.tscn" id="11_0gep3"]
+[ext_resource type="PackedScene" uid="uid://p7hcn583iptc" path="res://Game/Characters/Enemies/tengu.tscn" id="12_1eijf"]
 
 [node name="DebugLevel3" type="Node2D"]
 y_sort_enabled = true
@@ -33,11 +33,6 @@ y_sort_origin = -1
 position = Vector2(290, 425)
 max_health = 3
 
-[node name="EnemyBase2" parent="." instance=ExtResource("8_gld57")]
-position = Vector2(358, 419)
-max_health = 3
-health = 0
-
 [node name="HeikoUnit" parent="." instance=ExtResource("9_bsm6l")]
 position = Vector2(227, 364)
 max_health = 3
@@ -45,6 +40,33 @@ max_health = 3
 [node name="Cursor" parent="." instance=ExtResource("10_2b3f3")]
 
 [node name="TurnIndicator" parent="." instance=ExtResource("11_0gep3")]
+
+[node name="Tengu" parent="." instance=ExtResource("12_1eijf")]
+position = Vector2(1116, 413)
+
+[node name="Tengu2" parent="." instance=ExtResource("12_1eijf")]
+position = Vector2(475, 352)
+
+[node name="Tengu3" parent="." instance=ExtResource("12_1eijf")]
+position = Vector2(480, 479)
+
+[node name="Tengu4" parent="." instance=ExtResource("12_1eijf")]
+position = Vector2(535, 414)
+
+[node name="Tengu5" parent="." instance=ExtResource("12_1eijf")]
+position = Vector2(1054, 355)
+
+[node name="Tengu6" parent="." instance=ExtResource("12_1eijf")]
+position = Vector2(988, 410)
+
+[node name="Tengu7" parent="." instance=ExtResource("12_1eijf")]
+position = Vector2(1051, 475)
+
+[node name="Tengu8" parent="." instance=ExtResource("12_1eijf")]
+position = Vector2(1116, 289)
+
+[node name="Tengu9" parent="." instance=ExtResource("12_1eijf")]
+position = Vector2(539, 286)
 
 [connection signal="accept_pressed" from="Cursor" to="." method="_on_cursor_accept_pressed"]
 [connection signal="deselect_pressed" from="Cursor" to="." method="_on_cursor_deselect_pressed"]

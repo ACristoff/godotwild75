@@ -13,7 +13,7 @@ texture = ExtResource("3_7jwym")
 modulate_color = Color(0, 0, 0, 0.509804)
 
 [node name="ActionSelect" type="Node2D"]
-z_index = 100
+z_index = 4096
 position = Vector2(-158, -119)
 script = ExtResource("1_7o3yn")
 
@@ -32,7 +32,7 @@ expand_icon = true
 
 [node name="attack" type="Button" parent="."]
 offset_top = 49.0
-offset_right = 111.0
+offset_right = 115.0
 offset_bottom = 88.0
 theme = ExtResource("2_t8em4")
 theme_override_colors/font_hover_pressed_color = Color(0.776471, 0.168627, 0.168627, 1)
@@ -66,7 +66,6 @@ text = "Skip"
 expand_icon = true
 
 [node name="GoldSelection" type="Sprite2D" parent="."]
-position = Vector2(-3.8147e-06, -1.90735e-06)
 scale = Vector2(0.995868, 0.989796)
 texture = ExtResource("4_yrgo7")
 offset = Vector2(55.4793, 19.9536)
@@ -83,5 +82,5 @@ pitch_scale = 0.77
 [connection signal="pressed" from="move" to="." method="_on_move_pressed"]
 [connection signal="mouse_entered" from="attack" to="." method="_on_attack_mouse_entered"]
 [connection signal="pressed" from="attack" to="." method="_on_attack_pressed"]
-[connection signal="mouse_entered" from="skip" to="." method="_on_attack_mouse_entered"]
+[connection signal="mouse_entered" from="skip" to="." method="_on_skip_mouse_entered"]
 [connection signal="pressed" from="skip" to="." method="_on_skip_pressed"]

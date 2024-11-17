@@ -94,7 +94,7 @@ var weapon_dummy_data = {
 }
 
 func _ready() -> void:
-	AudioManager.play_sfx(weaposongo, -9)
+	AudioManager._play_music(weaposongo, -9)
 	#$AudioStreamPlayer2D2.play()
 	manager = get_node("/root/GameManager")
 	#print(manager.weapon_data, weapon_dummy_data)
