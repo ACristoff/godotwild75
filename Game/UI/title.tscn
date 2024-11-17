@@ -501,7 +501,7 @@ tracks/5/keys = {
 "method": &"MikoShiver"
 }, {
 "args": [],
-"method": &"BarrelSequence"
+"method": &"SurpriseKappa"
 }, {
 "args": [],
 "method": &"Escape"
@@ -1100,7 +1100,7 @@ _data = {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5j0b3"]
 
-[sub_resource type="Shader" id="Shader_rtf0e"]
+[sub_resource type="Shader" id="Shader_xq2qd"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -1137,7 +1137,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xt8vo"]
 resource_local_to_scene = true
-shader = SubResource("Shader_rtf0e")
+shader = SubResource("Shader_xq2qd")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.05
 shader_parameter/maxStrength = 0.01
@@ -1148,7 +1148,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-[sub_resource type="Shader" id="Shader_u7lqt"]
+[sub_resource type="Shader" id="Shader_3ov7r"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -1185,7 +1185,7 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dvxt8"]
 resource_local_to_scene = true
-shader = SubResource("Shader_u7lqt")
+shader = SubResource("Shader_3ov7r")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.061
 shader_parameter/maxStrength = 0.224
@@ -1582,7 +1582,7 @@ _data = {
 "sweep_stop": SubResource("Animation_v0bd1")
 }
 
-[sub_resource type="Shader" id="Shader_mhyvj"]
+[sub_resource type="Shader" id="Shader_b8c5o"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 
@@ -1688,7 +1688,7 @@ void fragment()
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2ec88"]
 resource_local_to_scene = true
-shader = SubResource("Shader_mhyvj")
+shader = SubResource("Shader_b8c5o")
 shader_parameter/angle = -0.3
 shader_parameter/position = -0.2
 shader_parameter/spread = 0.32
@@ -1827,7 +1827,7 @@ scale_max = 2.0
 color_ramp = SubResource("GradientTexture1D_yqpo3")
 anim_offset_max = 1.0
 
-[sub_resource type="Shader" id="Shader_5t2mr"]
+[sub_resource type="Shader" id="Shader_1c20f"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 uniform sampler2D mask;
@@ -1850,7 +1850,7 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yscm4"]
 resource_local_to_scene = true
-shader = SubResource("Shader_5t2mr")
+shader = SubResource("Shader_1c20f")
 shader_parameter/scale = 0.0
 shader_parameter/mask = ExtResource("24_6mb7l")
 

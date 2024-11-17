@@ -21,6 +21,7 @@ extends Node2D
 @onready var titlebgm = preload("res://Assets/Audio/Music/MM Theme but again.mp3")
 @onready var sweepsfx = preload("res://Assets/Audio/UI/Sweep_3.mp3")
 @onready var kappasfx = preload("res://Assets/Audio/UI/Kappa.mp3")
+@onready var kappabarrel = preload("res://Assets/Audio/UI/Kappa_In_Barrel.mp3")
 
 var fullscreen = false
 var on1 = true
@@ -61,11 +62,13 @@ func Start_sweep():
 func Kacophany():
 	$AudioStreamPlayer2D2.play()
 func BarrelSequence():
-	AudioManager.play_sfx(kappasfx, 1)
+	AudioManager.play_sfx(kappabarrel, 1)
 	var tween = create_tween()
 	tween.tween_property($Barrel, "scale", Vector2(4.2, 3.8), .33)
 	tween.tween_property($Barrel, "scale", Vector2(3.8, 4.2), .33)
 	tween.tween_property($Barrel, "scale", Vector2(4, 4), .44)
+func SurpriseKappa():
+	AudioManager.play_sfx(kappasfx, 1)
 func SweepStop():
 	$MikoSweep/AnimationPlayer.play("sweep_stop")
 func MikoShiver():
