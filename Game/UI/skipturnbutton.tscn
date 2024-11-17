@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://dsqypqy2r0xi2"]
+
+[ext_resource type="Script" path="res://skip_turn.gd" id="1_osx03"]
+[ext_resource type="Texture2D" uid="uid://dtb7dx7u0jowt" path="res://Assets/UserInterface/Gameplay/GoldSelection.png" id="2_3r54m"]
+[ext_resource type="Theme" uid="uid://yu16ssc5tp3n" path="res://Assets/Themes/Buttons2.tres" id="3_ckjnv"]
+
+[node name="skipturnbutton" type="Node2D"]
+script = ExtResource("1_osx03")
+
+[node name="GoldSelection" type="Sprite2D" parent="."]
+position = Vector2(0.249995, 1.19209e-06)
+scale = Vector2(1.21901, 0.77551)
+texture = ExtResource("2_3r54m")
+
+[node name="Button" type="Button" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -69.0
+offset_top = -15.5
+offset_right = 69.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_ckjnv")
+theme_override_font_sizes/font_size = 30
+text = "Skip Turn"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
