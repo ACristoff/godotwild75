@@ -44,7 +44,7 @@ _data = {
 
 [node name="Kappa" instance=ExtResource("1_gtxh3")]
 script = ExtResource("2_fu7w7")
-max_health = 3
+max_health = 2
 self_scene_path = "res://Game/Characters/Enemies/kappa.tscn"
 health = 0
 

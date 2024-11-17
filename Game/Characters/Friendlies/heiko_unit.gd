@@ -18,8 +18,13 @@ var heiko_attacks = [
 	},
 ]
 
+func _ready():
+	super()
+	move_range = 3
 
 func _init():
+	super()
 	attacks = heiko_attacks
 	health = 10
+	move_range = 3
 	pass

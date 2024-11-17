@@ -32,7 +32,7 @@ func _process(delta):
 
 func _init():
 	super()
-	health = 1
+	#health = 1
 
 func enemyBrain(state):
 	characterList = get_tree().get_nodes_in_group("player")
