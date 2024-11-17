@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://c7jhfoocdh6d6" path="res://Game/Characters/Enemies/tengu.tscn" id="11_slvbi"]
 [ext_resource type="PackedScene" uid="uid://cdrtmig8f1yom" path="res://Assets/UserInterface/Gameplay/turn_order.tscn" id="12_f1a83"]
 
-[node name="DebugLevel3" type="Node2D"]
+[node name="DebugLevel4" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_3trxe")
 

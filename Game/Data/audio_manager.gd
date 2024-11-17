@@ -24,7 +24,7 @@ func switch_songs():
 
 
 func _play_music(music: AudioStreamMP3, volume = 0.0):
-	print('test', music)
+	#print('test', music)
 	if current_music:
 		new_music = music
 		new_volume = volume

@@ -709,7 +709,7 @@ func _on_infuse_pressed() -> void:
 		for i in cost:
 			if !loop_break:
 				if onibi != 0:
-					print(onibi_refund)
+					#print(onibi_refund)
 					onibi -= 1
 					#$AudioStreamPlayer2D.pitch_scale += .5
 					onibi_refund += 1
@@ -730,7 +730,7 @@ func _on_infuse_pressed() -> void:
 		for i in cost:
 			if loop_break == false:
 				if onibi != 0:
-					print(onibi_refund)
+					#print(onibi_refund)
 					onibi -= 1
 					onibi_refund += 1
 					#$AudioStreamPlayer2D.pitch_scale += .5
@@ -751,7 +751,7 @@ func _on_infuse_pressed() -> void:
 		for i in onibi:
 			if loop_break == false:
 				if onibi != 0:
-					print(onibi_refund)
+					#print(onibi_refund)
 					onibi -= 1
 					onibi_refund += 1
 					await(get_tree().create_timer(frequency).timeout)

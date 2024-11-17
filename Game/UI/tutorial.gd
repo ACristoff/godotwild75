@@ -93,7 +93,7 @@ func _process(delta: float) -> void:
 
 func _on_next_panel_pressed() -> void:
 	tutorial += 1
-	print("next")
+	#print("next")
 
 
 func _on_undo_pressed() -> void:
@@ -101,7 +101,7 @@ func _on_undo_pressed() -> void:
 		tutorial = 1
 	else:
 		tutorial -= 1
-	print("undo")
+	#print("undo")
 
 
 func _on_letsago_pressed() -> void:
