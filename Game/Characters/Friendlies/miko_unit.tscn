@@ -174,7 +174,6 @@ _data = {
 
 [node name="MikoUnit" groups=["miko", "mikos"] instance=ExtResource("1_av5i1")]
 script = ExtResource("2_5ylnv")
-move_range = 3
 max_health = 10
 health = 10
 skin = ExtResource("3_nhepp")
