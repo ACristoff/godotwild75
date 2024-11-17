@@ -44,7 +44,6 @@ _data = {
 
 [node name="Kappa" instance=ExtResource("1_gtxh3")]
 script = ExtResource("2_fu7w7")
-move_range = 3
 max_health = 3
 self_scene_path = "res://Game/Characters/Enemies/kappa.tscn"
 health = 0
@@ -53,9 +52,6 @@ health = 0
 modulate = Color(1, 1, 1, 1)
 scale = Vector2(1, 1)
 texture = null
-
-[node name="HealthBar" parent="PathFollow2D" index="2"]
-position = Vector2(0, 0)
 
 [node name="AnimationPlayer" parent="." index="1"]
 libraries = {
