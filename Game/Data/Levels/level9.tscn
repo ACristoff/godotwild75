@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://6ftw7wtxk6xj"]
+[gd_scene load_steps=13 format=3 uid="uid://6ftw7wtxk6xj"]
 
 [ext_resource type="Script" path="res://Game/Data/battle_manager.gd" id="1_486rf"]
 [ext_resource type="PackedScene" uid="uid://gcdapkkqr808" path="res://Game/World/environment.tscn" id="2_h4uch"]
+[ext_resource type="AudioStream" uid="uid://box2onfca6raa" path="res://Assets/Audio/Music/MM_Battle_Theme_2.mp3" id="2_xggg7"]
 [ext_resource type="PackedScene" uid="uid://copviu6p757h8" path="res://Game/Data/unit_path.tscn" id="3_vdmmr"]
 [ext_resource type="PackedScene" uid="uid://7svoiv3k6b8h" path="res://Game/Data/hit_overlay.tscn" id="4_f0y7l"]
 [ext_resource type="PackedScene" uid="uid://c0vnt11umxslf" path="res://Game/Data/attack_overlay.tscn" id="5_nsopr"]
@@ -15,6 +16,7 @@
 [node name="DebugLevel2" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_486rf")
+level_music = ExtResource("2_xggg7")
 
 [node name="Environment" parent="." instance=ExtResource("2_h4uch")]
 

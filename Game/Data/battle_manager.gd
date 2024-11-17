@@ -4,11 +4,13 @@ extends Node2D
 const DIRECTIONS = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 
 @export var grid: Resource = preload("res://Game/Data/grid.tres")
-@export var level_music: AudioStreamWAV
+@export var level_music: AudioStreamMP3
 
 @onready var win_screen = preload("res://Game/UI/win_screen.tscn")
 @onready var fail_screen = preload("res://Game/UI/lose_screen.tscn")
 @onready var deselect_sound = preload("res://Assets/Audio/UI/Menu_Back.mp3")
+@onready var battlesongo = preload("res://Assets/Audio/Music/MM_Battle_Theme_1.mp3")
+@onready var battlesongo2 = preload("res://Assets/Audio/Music/MM_Battle_Theme_2.mp3")
 
 @onready var spirit_miko_scene:  = preload("res://Game/Characters/Friendlies/spirit_miko_unit.tscn") 
 var miko: PlayerUnit
@@ -36,6 +38,7 @@ var current_rotation = "up"
 ##TODO organize functions
 
 func _ready():
+	AudioManager._play_music(level_music, -5)
 	reinitialize()
 	pass
 

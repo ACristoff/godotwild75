@@ -18,7 +18,7 @@ func _on_retry_pressed() -> void:
 
 
 func _on_onward_2_pressed() -> void:
-	lvlselect.emit()
+	LevelManager.switchScene(LevelManager.previous_level_index-1)
 
 
 func _on_retry_2_pressed():
