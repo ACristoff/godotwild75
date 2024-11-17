@@ -12,22 +12,8 @@ var heiko_attacks = [
 	},
 ]
 
-	#"Dagger": {
-		#"weapon_name": "Dagger",
-		#"state": 'LOCKED',
-		#"isSelected": true,
-		#"DAMAGE": 2,
-		#"ATTACK_VECS": [Vector2(0, -1,), Vector2(0, -2)],
-		#"BLAST_PATTERN": [
-			#Vector2(0,0),
-			#Vector2(1, -1),
-			#Vector2(-1, -1),
-			#Vector2(-1 ,1),
-			#Vector2(1 ,1)
-		#],
-	#},
-
 
 func _init():
 	attacks = heiko_attacks
+	health = 1
 	pass
