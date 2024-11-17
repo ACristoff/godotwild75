@@ -358,14 +358,20 @@ func _on_cursor_accept_pressed(cell):
 					mirrored_unit_cell = miko.cell
 				#var mirror_origin = attack_origin - active_unit.cell
 				##prints("relative is", mirror_origin, mirrored_unit_cell)
-				#for to_hit_cell in current_attack.ATTACK_VECS:
+				var count = cells_in_range.size()
+				for to_hit_cell in count:
+					
 					###Refactor this to work from alternate miko origin, then do an operation
-					#var hit_cell = mirror_origin + to_hit_cell
+					#var hit_cell = mirrored_unit_cell + to_hit_cell
 					#hit_cell = hit_cell + mirrored_unit_cell
 					#attack_cells.append(hit_cell)
+					var hit_cell = grid.calculate_mirror_position(attack_cells[to_hit_cell])
+					print(hit_cell)
+					attack_cells.append(hit_cell)
 					#pass
 				##print("miko or spirit miko attacked!")
 			##DO ATTACK
+			print(attack_cells)
 			manage_attack(attack_cells, "ENEMY")
 			await get_tree().create_timer(0.4).timeout
 			if ghost_accumulator.size() > 0:
