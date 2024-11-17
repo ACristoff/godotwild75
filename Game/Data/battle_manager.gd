@@ -51,6 +51,8 @@ func _input(event):
 				#print(current_rotation, "THE CURRENT ATTACK",  current_attack)
 				
 				hit_overlay.make_squares(current_attack.ATTACK_VECS[current_rotation])
+				#current_attack = "FUCK DUMB SHIT"
+				#prints(current_attack, active_unit.current_attack, "BLKU")
 
 #This rotates the attack pattern 90 degrees
 func mutate_attack(attack_pattern):
@@ -136,7 +138,7 @@ func on_unit_state_change(state):
 		#var attack_cells = get_attack_cells()
 		pass
 	if state == PlayerUnit.unit_states.ATTACK_ACTION_THINK:
-		#prints('current', active_unit.current_attack)
+		prints('current', active_unit.current_attack, current_attack, active_unit)
 		current_attack = active_unit.current_attack.duplicate()
 		var attack_cells = get_attack_cells(active_unit, active_unit.current_attack)
 		var all_cells = []
@@ -145,7 +147,6 @@ func on_unit_state_change(state):
 				all_cells.append(vec)
 				pass
 		attack_overlay.draw(all_cells)
-		#print(all_cells)
 		hit_overlay.make_squares(attack_cells["up"])
 		current_attack.ATTACK_VECS = attack_cells
 	pass
@@ -328,6 +329,7 @@ func _on_cursor_accept_pressed(cell):
 			if (!cells_in_range.has(cell)):
 				deselect_unit()
 				clear_active_unit()
+				
 				return
 			var attack_cells = cells_in_range
 			if active_unit == miko || active_unit == spirit_miko:
