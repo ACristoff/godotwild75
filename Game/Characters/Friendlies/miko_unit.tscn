@@ -189,5 +189,4 @@ autoplay = "idle_UP"
 speed_scale = 0.5
 
 [node name="action_select" parent="." index="2"]
-visible = true
 z_index = 4096

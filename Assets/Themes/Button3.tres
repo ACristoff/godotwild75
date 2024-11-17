@@ -1,0 +1,22 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://b4enoqhimu4lc"]
+
+[ext_resource type="FontFile" uid="uid://cidju740k3qx7" path="res://Assets/Fonts/nagayama_kai08.otf" id="1_x2byj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7mh1a"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6vbu4"]
+bg_color = Color(0.0901961, 0.0901961, 0.0901961, 0.478431)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dbkag"]
+bg_color = Color(0.0901961, 0.0901961, 0.0901961, 0.478431)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h0g2y"]
+bg_color = Color(0.0901961, 0.0901961, 0.0901961, 0.478431)
+
+[resource]
+Button/font_sizes/font_size = 32
+Button/fonts/font = ExtResource("1_x2byj")
+Button/styles/focus = SubResource("StyleBoxEmpty_7mh1a")
+Button/styles/hover = SubResource("StyleBoxFlat_6vbu4")
+Button/styles/normal = SubResource("StyleBoxFlat_dbkag")
+Button/styles/pressed = SubResource("StyleBoxFlat_h0g2y")
