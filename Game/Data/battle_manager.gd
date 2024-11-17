@@ -420,6 +420,7 @@ func spawn_ghost(unit, mirrored_origin):
 	if ghost.is_in_group("enemy"):
 		enemies[mirrored_origin] = ghost
 		ghost.isSpirit = true
+		ghost.connect("walkadoodledoo", on_enemy_finished_walk)
 	elif ghost.is_in_group("player"):
 		friendlies[mirrored_origin] = ghost
 		ghost.connect("unit_state_change", on_unit_state_change)
