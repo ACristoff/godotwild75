@@ -11,6 +11,7 @@ extends Node2D
 @onready var bowsound = preload("res://Assets/Audio/UI/WeaponSounds/MM_Bow_Attack.mp3")
 @onready var tridentsound = preload("res://Assets/Audio/UI/WeaponSounds/MM_Trident_Attack.mp3")
 @onready var flame = preload("res://Assets/Effects/flame_infusion.tscn")
+@onready var weaposongo = preload("res://Assets/Audio/Music/Weapon_Shop.mp3")
 
 var mikoChosen = true
 var onibi : int
@@ -93,7 +94,8 @@ var weapon_dummy_data = {
 }
 
 func _ready() -> void:
-	$AudioStreamPlayer2D2.play()
+	AudioManager.play_sfx(weaposongo, -9)
+	#$AudioStreamPlayer2D2.play()
 	manager = get_node("/root/GameManager")
 	#print(manager.weapon_data, weapon_dummy_data)
 	
