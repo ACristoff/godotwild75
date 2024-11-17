@@ -15,9 +15,7 @@ var targetOnRange = false
 
 func _ready():
 	super()
-	move_range = 2
-	max_health = 3
-	onibiDrop = 30
+
 	set_process(true)
 
 func _process(delta):
@@ -26,6 +24,9 @@ func _process(delta):
 func _init():
 	super()
 	attacks = kitsune_attacks
+	move_range = 2
+	max_health = 3
+	onibiDrop = 30
 
 func enemyBrain(boardState):
 	super(boardState)

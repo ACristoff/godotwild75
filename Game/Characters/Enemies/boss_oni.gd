@@ -21,8 +21,7 @@ var targetOnRange = false
 
 func _ready():
 	super()
-	move_range = 2
-	max_health = 10
+
 	set_process(true)
 
 func _process(delta):
@@ -31,6 +30,8 @@ func _process(delta):
 func _init():
 	super()
 	attacks = oni_attacks
+	move_range = 2
+	max_health = 10
 
 func enemyBrain(boardState):
 	super(boardState)
