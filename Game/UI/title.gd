@@ -31,7 +31,7 @@ var click = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	lock_pause()
-	print(titlebgm)
+	#print(titlebgm)
 	pass # Replace with function body.
 
 func lock_pause():
@@ -52,7 +52,7 @@ func LogoSFX():
 func WashSFX():
 	AudioManager.play_sfx(washsfx, 1)
 func TitleMusic():
-	print("pls")
+	#print("pls")
 	AudioManager._play_music(titlebgm, 1)
 func SweepSFX():
 	$AudioStreamPlayer2D.play()

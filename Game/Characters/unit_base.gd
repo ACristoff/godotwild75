@@ -135,7 +135,7 @@ func _process(delta: float) -> void:
 
 #All the shit for dying
 func die():
-	print("unit fucking died")
+	#print("unit fucking died")
 	has_died = true
 	death.emit(self)
 	queue_free()

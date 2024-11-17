@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://i5jwws41qqfv"]
+[gd_scene load_steps=7 format=3 uid="uid://b1ud8twiu5ka3"]
 
 [ext_resource type="PackedScene" uid="uid://cg34obo360a5w" path="res://Game/Characters/Enemies/enemy_base.tscn" id="1_ms2u7"]
 [ext_resource type="Script" path="res://Game/Characters/Enemies/chochin.gd" id="2_evmvf"]

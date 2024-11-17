@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b8wtijsxtxydm"]
+[gd_scene load_steps=12 format=3 uid="uid://b8wtijsxtxydm"]
 
 [ext_resource type="Script" path="res://Game/Data/battle_manager.gd" id="1_2m3fm"]
 [ext_resource type="PackedScene" uid="uid://gcdapkkqr808" path="res://Game/World/environment.tscn" id="2_ybcre"]
@@ -7,9 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://c0vnt11umxslf" path="res://Game/Data/attack_overlay.tscn" id="5_kjfds"]
 [ext_resource type="PackedScene" uid="uid://bjjre3i3xvkhl" path="res://Game/World/explosion_overlay.tscn" id="6_2mg8c"]
 [ext_resource type="PackedScene" uid="uid://2nbe138odbl8" path="res://Game/Characters/Friendlies/miko_unit.tscn" id="7_bw7wy"]
-[ext_resource type="PackedScene" uid="uid://cg34obo360a5w" path="res://Game/Characters/Enemies/enemy_base.tscn" id="8_y0w88"]
 [ext_resource type="PackedScene" uid="uid://2r5lvg6715f" path="res://Game/Characters/Friendlies/heiko_unit.tscn" id="9_knkc3"]
+[ext_resource type="PackedScene" uid="uid://cbrlucko4mhk" path="res://Game/Characters/Enemies/kitsune.tscn" id="10_hfq6l"]
 [ext_resource type="PackedScene" uid="uid://d1rww8eno83bs" path="res://Game/Data/Cursor/cursor.tscn" id="10_n8nem"]
+[ext_resource type="PackedScene" uid="uid://cdrtmig8f1yom" path="res://Assets/UserInterface/Gameplay/turn_order.tscn" id="11_7kodi"]
 
 [node name="DebugLevel2" type="Node2D"]
 y_sort_enabled = true
@@ -27,19 +28,19 @@ y_sort_origin = -1
 [node name="ExplosionOverlay" parent="." instance=ExtResource("6_2mg8c")]
 
 [node name="MikoUnit" parent="." instance=ExtResource("7_bw7wy")]
-position = Vector2(290, 425)
+position = Vector2(477, 233)
 max_health = 3
-
-[node name="EnemyBase2" parent="." instance=ExtResource("8_y0w88")]
-position = Vector2(358, 419)
-max_health = 3
-health = 0
 
 [node name="HeikoUnit" parent="." instance=ExtResource("9_knkc3")]
-position = Vector2(227, 364)
+position = Vector2(291, 423)
 max_health = 3
 
 [node name="Cursor" parent="." instance=ExtResource("10_n8nem")]
+
+[node name="Kitsune" parent="." instance=ExtResource("10_hfq6l")]
+position = Vector2(159, 231)
+
+[node name="TurnIndicator" parent="." instance=ExtResource("11_7kodi")]
 
 [connection signal="accept_pressed" from="Cursor" to="." method="_on_cursor_accept_pressed"]
 [connection signal="deselect_pressed" from="Cursor" to="." method="_on_cursor_deselect_pressed"]
