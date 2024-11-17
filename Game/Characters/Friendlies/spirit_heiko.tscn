@@ -106,3 +106,6 @@ texture = ExtResource("2_gk5s8")
 libraries = {
 "": SubResource("AnimationLibrary_flse4")
 }
+
+[node name="action_select" parent="." index="2"]
+z_index = 0

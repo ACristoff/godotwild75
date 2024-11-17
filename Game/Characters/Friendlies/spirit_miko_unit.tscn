@@ -188,3 +188,6 @@ libraries = {
 "": SubResource("AnimationLibrary_oqd6l")
 }
 autoplay = "idle_UP"
+
+[node name="action_select" parent="." index="2"]
+z_index = 0

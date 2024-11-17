@@ -14,6 +14,7 @@ modulate_color = Color(0, 0, 0, 0.509804)
 
 [node name="ActionSelect" type="Node2D"]
 z_index = 100
+position = Vector2(-158, -119)
 script = ExtResource("1_7o3yn")
 
 [node name="move" type="Button" parent="."]
