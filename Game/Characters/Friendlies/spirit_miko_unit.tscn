@@ -186,11 +186,7 @@ scale = Vector2(1, 1)
 texture = null
 
 [node name="Sprite" parent="PathFollow2D" index="1"]
-texture = null
 frame = 8
-
-[node name="HealthBar" parent="PathFollow2D" index="2"]
-position = Vector2(0, 0)
 
 [node name="AnimationPlayer" parent="." index="1"]
 libraries = {
