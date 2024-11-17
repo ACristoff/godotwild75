@@ -1827,7 +1827,7 @@ scale_max = 2.0
 color_ramp = SubResource("GradientTexture1D_yqpo3")
 anim_offset_max = 1.0
 
-[sub_resource type="Shader" id="Shader_biymx"]
+[sub_resource type="Shader" id="Shader_8v4f8"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 uniform sampler2D mask;
@@ -1850,7 +1850,7 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yscm4"]
 resource_local_to_scene = true
-shader = SubResource("Shader_biymx")
+shader = SubResource("Shader_8v4f8")
 shader_parameter/scale = 0.0
 shader_parameter/mask = ExtResource("24_6mb7l")
 
