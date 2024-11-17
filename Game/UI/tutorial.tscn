@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://c0jt35tedkwl"]
+[gd_scene load_steps=30 format=3 uid="uid://c0jt35tedkwl"]
 
 [ext_resource type="Script" path="res://Game/UI/tutorial.gd" id="1_731gq"]
 [ext_resource type="PackedScene" uid="uid://gcdapkkqr808" path="res://Game/World/environment.tscn" id="2_i40h2"]
@@ -19,6 +19,8 @@
 [ext_resource type="Texture2D" uid="uid://bkg0nn8201v60" path="res://Assets/Screenshots/Screenshot 2024-11-16 184701.png" id="17_g81qk"]
 [ext_resource type="Texture2D" uid="uid://bpmvmcaiamrh5" path="res://Assets/Characters/Friendly/Miko.png" id="18_08nff"]
 [ext_resource type="Texture2D" uid="uid://k10sy15l0bhm" path="res://Assets/Characters/Friendly/MikoSpirit.png" id="19_8rqvs"]
+[ext_resource type="PackedScene" uid="uid://b5wuajjdswd23" path="res://Assets/Effects/transition.tscn" id="20_0i6qn"]
+[ext_resource type="Texture2D" uid="uid://bjx2labdxfhtt" path="res://Assets/UserInterface/Menu/FlameTransition.png" id="21_fqyoh"]
 
 [sub_resource type="Animation" id="Animation_3gx12"]
 length = 0.001
@@ -45,6 +47,33 @@ bg_color = Color(0.0901961, 0.0901961, 0.0901961, 0.478431)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ptcj6"]
 bg_color = Color(0.0901961, 0.0901961, 0.0901961, 0.478431)
+
+[sub_resource type="Shader" id="Shader_biymx"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+uniform sampler2D mask;
+uniform float scale : hint_range(0.0, 1.0, 0.1);
+void fragment() {
+	float s = scale * 75.0f;
+	//float s = scale == 0.0 ? 0.0 : pow(2.0, 10.0 * scale - 10.0);
+	//s += 75.0f;
+	int cutoff = int(s/75.0f);
+	vec2 offset = vec2(0.5, 0.5) * (1.0 - s);
+	vec4 mask_color = texture(mask, UV * s + offset);
+	COLOR.a = COLOR.a - mask_color.a + float(cutoff);
+}
+
+//void light() {
+	// Called for every pixel for every light affecting the CanvasItem.
+	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a4mok"]
+resource_local_to_scene = true
+shader = SubResource("Shader_biymx")
+shader_parameter/scale = 0.0
+shader_parameter/mask = ExtResource("21_fqyoh")
 
 [node name="Tutorial" type="Node2D"]
 y_sort_enabled = true
@@ -360,6 +389,14 @@ scale = Vector2(2, 2)
 texture = ExtResource("19_8rqvs")
 hframes = 16
 frame = 12
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Transition2" parent="CanvasLayer" instance=ExtResource("20_0i6qn")]
+material = SubResource("ShaderMaterial_a4mok")
+offset_right = 1280.0
+offset_bottom = 720.0
+is_on = true
 
 [connection signal="pressed" from="NextPanel" to="." method="_on_next_panel_pressed"]
 [connection signal="pressed" from="Undo2" to="." method="_on_undo_pressed"]
