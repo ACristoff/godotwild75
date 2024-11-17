@@ -6,4 +6,6 @@
 [node name="Oni" instance=ExtResource("1_qvy6l")]
 modulate = Color(1, 0, 0, 1)
 script = ExtResource("2_ybesi")
+max_health = 1000
 self_scene_path = ""
+health = 0

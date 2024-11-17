@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://brdi28cpv8gdd" path="res://Assets/UserInterface/Menu/StyleBoxFlat.png" id="3_7jwym"]
 [ext_resource type="Texture2D" uid="uid://dipb1eh6q500v" path="res://Assets/UserInterface/Gameplay/FightIcon.png" id="3_p6aa5"]
 [ext_resource type="Texture2D" uid="uid://dtb7dx7u0jowt" path="res://Assets/UserInterface/Gameplay/GoldSelection.png" id="4_yrgo7"]
-[ext_resource type="AudioStream" uid="uid://c2xq3x4j7p7fi" path="res://Assets/Audio/UI/glass_006.ogg" id="5_16g6k"]
-[ext_resource type="AudioStream" uid="uid://c22aajxja72kj" path="res://Assets/Audio/UI/glass_004.ogg" id="6_0h1ao"]
+[ext_resource type="AudioStream" uid="uid://chid2cr5d5ix8" path="res://Assets/Audio/UI/Menu_Tick.mp3" id="6_e26pf"]
+[ext_resource type="AudioStream" uid="uid://cd5j1o5mquhru" path="res://Assets/Audio/UI/Menu_Accept.mp3" id="7_6uk4x"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uotxp"]
 texture = ExtResource("3_7jwym")
@@ -54,10 +54,10 @@ texture = ExtResource("4_yrgo7")
 offset = Vector2(55.4793, 19.9536)
 
 [node name="switch_sound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("5_16g6k")
+stream = ExtResource("6_e26pf")
 
 [node name="select_sound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("6_0h1ao")
+stream = ExtResource("7_6uk4x")
 volume_db = -0.99
 pitch_scale = 0.77
 

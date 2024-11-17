@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/some kinda battle thing ROUGH.mp3-a86179a181a
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

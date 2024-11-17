@@ -7,7 +7,7 @@ class_name Oni
 var oni_attacks = {
 	"Club Strike": {
 		"RANGE": 1,
-		"DAMAGE": 3,
+		"DAMAGE": 2,
 		"MOVE": Vector2(0,0),
 		"EXORCISM": false,
 		"BLAST_PATTERN": [],
@@ -35,7 +35,9 @@ func enemyBrain(boardState):
 	#Attack if able, if not move first.
 	move("Club Strike")
 	if(targetOnRange):
-		meleeAttack()
+		doAttack("Club Strike")
+		pass
+	endTurn()
 
 func getTargetCharacter(attackName: String):
 	#Target closest character
@@ -55,10 +57,6 @@ func getTargetCharacter(attackName: String):
 			if (distance < minDistance):
 				minDistance = distance
 				targetCharacter = ch
-	
-func meleeAttack():
-	print("attacking")
-	pass
 	
 func move(attackName: String):
 	#Move to the closest grid point where the attack reaches (max range on the attack)
@@ -103,5 +101,7 @@ func move(attackName: String):
 						targetPoint = cells[i]
 						minDistance = distanceToTarget
 						closestDistance = distanceToCharacter
-			
-	walk_along([cell, targetPoint])
+	if cell == targetPoint:
+		walk_along([cell])
+	else:
+		walk_along([cell, targetPoint])
