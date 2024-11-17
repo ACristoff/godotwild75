@@ -79,6 +79,7 @@ func turn_manager():
 			is_player_turn = false
 			is_enemy_turn = true
 			turn_indicator._SwitchingTurn()
+			turn_manager()
 	else:
 		##TODO Do enemy turns here
 		var next_unit = find_next_possible(enemies)
@@ -90,6 +91,7 @@ func turn_manager():
 			is_enemy_turn = false
 			is_player_turn = true
 			turn_indicator._SwitchingTurn()
+			turn_manager()
 	pass
 
 ## Clears, and refills the `_units` dictionary with game objects that are on the board.
@@ -119,6 +121,7 @@ func reinitialize():
 				friendlies[spirit_miko_spawned.cell] = spirit_miko_spawned
 				spirit_miko_spawned.connect("unit_state_change", on_unit_state_change)
 				spirit_miko_spawned.connect("death", on_unit_death)
+				spirit_miko_spawned.connect("turnEnded", _on_turn_ended)
 				spirit_miko_spawned.spawn_init("bluh")
 				spirit_miko = spirit_miko_spawned
 				spirit_miko.attacks = unit.attacks
