@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://hqcychtuc805"]
+[gd_scene load_steps=6 format=3 uid="uid://hqcychtuc805"]
 
 [ext_resource type="Script" path="res://Game/Characters/unit_base.gd" id="1_0rb1m"]
 [ext_resource type="Resource" uid="uid://utpajlyrymk" path="res://Game/Data/grid.tres" id="2_rcmob"]
+[ext_resource type="Texture2D" uid="uid://bgpptpmtcs5ow" path="res://Assets/UserInterface/Gameplay/Shadow.png" id="3_88c5r"]
 [ext_resource type="Texture2D" uid="uid://k10sy15l0bhm" path="res://Assets/Characters/Friendly/MikoSpirit.png" id="3_ge4xx"]
-[ext_resource type="PackedScene" uid="uid://d0wvn2340i1oa" path="res://Game/UI/healthbar.tscn" id="4_ebovg"]
+[ext_resource type="PackedScene" uid="uid://bpa4u7hs7lnpf" path="res://Game/UI/healthbar.tscn" id="4_ebovg"]
 
 [node name="UnitBase" type="Path2D"]
 y_sort_enabled = true
@@ -18,6 +19,9 @@ rotates = false
 loop = false
 
 [node name="Shadow" type="Sprite2D" parent="PathFollow2D"]
+modulate = Color(0, 0, 0, 0.298039)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_88c5r")
 
 [node name="Sprite" type="Sprite2D" parent="PathFollow2D"]
 y_sort_enabled = true
@@ -28,5 +32,6 @@ hframes = 16
 frame = 11
 
 [node name="HealthBar" parent="PathFollow2D" instance=ExtResource("4_ebovg")]
+position = Vector2(0, -92)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
