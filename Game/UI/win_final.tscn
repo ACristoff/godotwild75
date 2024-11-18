@@ -582,7 +582,7 @@ fill = 1
 fill_from = Vector2(0.5, 0.517544)
 fill_to = Vector2(0.802632, 0.171053)
 
-[sub_resource type="Shader" id="Shader_wljoi"]
+[sub_resource type="Shader" id="Shader_2oxff"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 
@@ -688,7 +688,7 @@ void fragment()
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pisva"]
 resource_local_to_scene = true
-shader = SubResource("Shader_wljoi")
+shader = SubResource("Shader_2oxff")
 shader_parameter/angle = -0.3
 shader_parameter/position = -0.2
 shader_parameter/spread = 0.0
@@ -703,7 +703,7 @@ shader_parameter/color = Color(1, 1, 1, 0)
 shader_parameter/hdr = false
 shader_parameter/seed = 5.0
 
-[sub_resource type="Shader" id="Shader_w0e3e"]
+[sub_resource type="Shader" id="Shader_4up48"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 
@@ -809,7 +809,7 @@ void fragment()
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_crxfj"]
 resource_local_to_scene = true
-shader = SubResource("Shader_w0e3e")
+shader = SubResource("Shader_4up48")
 shader_parameter/angle = -0.3
 shader_parameter/position = -0.2
 shader_parameter/spread = 0.5
@@ -824,7 +824,7 @@ shader_parameter/color = Color(1, 1, 1, 0.8)
 shader_parameter/hdr = false
 shader_parameter/seed = 5.0
 
-[sub_resource type="Shader" id="Shader_q6twy"]
+[sub_resource type="Shader" id="Shader_sjnd6"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 
@@ -930,7 +930,7 @@ void fragment()
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hqdmq"]
 resource_local_to_scene = true
-shader = SubResource("Shader_q6twy")
+shader = SubResource("Shader_sjnd6")
 shader_parameter/angle = -0.3
 shader_parameter/position = -0.2
 shader_parameter/spread = 0.304

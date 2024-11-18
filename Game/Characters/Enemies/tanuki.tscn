@@ -57,3 +57,4 @@ vframes = 1
 libraries = {
 "": SubResource("AnimationLibrary_suisl")
 }
+autoplay = "Tanuki"

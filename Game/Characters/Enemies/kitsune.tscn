@@ -61,7 +61,7 @@ hframes = 8
 vframes = 1
 
 [node name="HealthBar" parent="PathFollow2D" index="2"]
-position = Vector2(0, 0)
+position = Vector2(0, -76)
 
 [node name="AnimationPlayer" parent="." index="1"]
 libraries = {

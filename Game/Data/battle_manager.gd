@@ -5,6 +5,7 @@ const DIRECTIONS = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 
 @export var grid: Resource = preload("res://Game/Data/grid.tres")
 @export var level_music: AudioStreamMP3
+@export var is_final_level = false
 
 @onready var win_screen = preload("res://Game/UI/win_screen.tscn")
 @onready var fail_screen = preload("res://Game/UI/lose_screen.tscn")
@@ -516,7 +517,11 @@ func check_for_win_con():
 	#print(enemies, ghost_accumulator)
 	if enemies.size() == 0 && ghost_accumulator.size() == 0:
 		await get_tree().create_timer(1).timeout
-		LevelManager.switchScene(LevelManager.getLevelIndex("win_screen"))
+		if !is_final_level:
+			LevelManager.switchScene(LevelManager.getLevelIndex("win_screen"))
+		else:
+			LevelManager.switchScene(LevelManager.getLevelIndex("win_final"))
+			
 
 func _on_cursor_deselect_pressed():
 	if active_unit:

@@ -379,7 +379,7 @@ func _switch_weapon_left():
 		tween.tween_property(slingshot, "progress_ratio", pos3, .5)
 		tween.tween_property(fan, "progress_ratio", pos4, .5)
 		tween.set_parallel(false)
-		WeaponName = "Yanabo"
+		WeaponName = "Kanabo"
 		cost = 400
 		type = 5
 		tween.tween_callback(_refresh_buttons)
@@ -461,31 +461,31 @@ func _refresh_buttons():
 	$CanvasLayer/Infuse.disabled = false
 	if type == 1:
 		price = 50
-		frequency = .09
+		frequency = .089
 		$Path2D/Pnt1/Dagger/ColorRect.visible = true
 		$Path2D/Pnt1/Cost.visible = true
 	elif type == 2:
 		price = 80
-		frequency = .08
+		frequency = .068
 		$Path2D/Pnt7/Fan/ColorRect.visible = true
 		$Path2D/Pnt7/Cost.visible = true
 	elif type == 3:
-		frequency = .07
+		frequency = .047
 		$Path2D/Pnt6/Slingshot/ColorRect.visible = true
 		$Path2D/Pnt6/Cost.visible = true
 		price = 100
 	elif type == 4:
-		frequency = .05
+		frequency = .035
 		$Path2D/Pnt5/Katana/ColorRect.visible = true
 		$Path2D/Pnt5/Cost.visible = true
 		price = 240
 	elif type == 5:
-		frequency = .02
+		frequency = .022
 		$Path2D/Pnt4/Mace/ColorRect.visible = true
 		$Path2D/Pnt4/Cost.visible = true
 		price = 400
 	elif type == 6:
-		frequency = .01
+		frequency = .011
 		$Path2D/Pnt3/Bow/ColorRect.visible = true
 		$Path2D/Pnt3/Cost.visible = true
 		price = 520
